@@ -132,7 +132,7 @@ specify their support for conditional mandatory test cases.
 
 
 
-#### 4.2.2.2 Elements Specified in the Test Procedure
+#### Elements Specified in the Test Procedure
 
 Many of the mandatory and conditional mandatory tests specify the objects,
 parameters, or operations to be used for the test. If the specific elements
@@ -140,7 +140,7 @@ are not supported by the EUT, other elements that will satisfy the test criteria
 MAY be used instead. If so, the test report MUST include the alternate elements
 used.
 
-#### 4.2.2.3 Required EUT Information and Resources
+#### Required EUT Information and Resources
 
 In order to be able to perform the tests and create a report of the
 results, the following must be provided concerning the Endpoint Under
@@ -152,7 +152,7 @@ Test:
 4. If the service elements specified in the tests are not supported, provide a
 list of alternate elements used in the testing.
 
-### 4.2.3 Clean-Up Procedures
+### Clean-Up Procedures
 
 A number of tests that make changes to the EUT have procedures that are
 not part of the validation portion of the test case. These procedures
@@ -162,7 +162,7 @@ the next. The most obvious example is using the Delete message to remove
 any objects that were added as part of the procedure, but the clean-up
 procedure may include any number of steps.
 
-## 4.3 Universal Test Metrics
+## Universal Test Metrics
 
 Due to the nature of performative testing of protocol messages, certain
 requirements in the specification are effectively tested every time.
@@ -185,7 +185,7 @@ requirements must still be met by endpoint implementations.
 4.  Path Names in messages originating from the EUT use instance number
     addressing (R-MSG.3).
 
-## 4.4 Notes about test case descriptions
+## Notes about test case descriptions
 
 Each of the test cases below have the following sections:
 
@@ -206,7 +206,7 @@ to perform the test.
 **Test Metrics** - The metrics indicate the required behavior that must
 be observed to consider the test passed.
 
-### 4.4.1 Use of examples
+### Use of examples
 
 The test setup, procedure, and metrics in each test case may contain
 examples of the data to be sent to or received from the EUT. In these
