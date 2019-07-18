@@ -1,6 +1,6 @@
-## 5.7 WebSocket Test Cases
+## 7 WebSocket Test Cases
 
-### 5.7.1 Session Establishment
+### 7.1 Session Establishment
 
 #### Purpose
 
@@ -43,7 +43,7 @@ body {
 1. The EUT is able to establish a WebSocket connection to the controller
 2. The EUT sends a GetResponse to the Get message sent in step 3
 
-### 5.7.2 Use of only one session
+### 7.2 Use of only one session
 
 #### Purpose
 
@@ -85,7 +85,7 @@ body {
 1. After the second WebSocket connection is opened the EUT closes either
    the first or second WebSocket connection.
 
-### 5.7.3 Agent session acceptance from Controller
+### 7.3 Agent session acceptance from Controller
 
 #### Purpose
 
@@ -129,7 +129,7 @@ body {
 1. The EUT allows a WebSocket connection from the controller.
 2. The EUT sends a GetResponse.
 
-### 5.7.4 Closing a WebSocket Connection
+### 7.4 Closing a WebSocket Connection
 
 #### Purpose
 
@@ -155,7 +155,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 1. The EUT closes the underlying TCP session after step 1.
 
-### 5.7.5 Rejection of Session Establishment
+### 7.5 Rejection of Session Establishment
 
 #### Purpose
 
@@ -184,7 +184,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. The EUT rejects the WebSocket connection with the missing
    `Sec-WebSocket-Protocol` header.
 
-### 5.7.6 Error Handling - Unprocessed Records
+### 7.6 Error Handling - Unprocessed Records
 
 #### Purpose
 
@@ -210,7 +210,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. After step 1 the EUT closes the WebSocket connection with
    a WebSocket `Close` control frame containing status code 1003.
 
-### 5.7.7 Use of Ping and Pong frames
+### 7.7 Use of Ping and Pong frames
 
 #### Purpose
 
@@ -241,7 +241,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 2. The EUT doesn't terminate the WebSocket connection after
    recieving an unsolicited `Pong` control frame.
 
-### 5.7.8 WebSocket Session Retry
+### 7.8 WebSocket Session Retry
 
 #### Purpose
 
@@ -291,7 +291,7 @@ body {
    in confromance with the `SessionRetryMinimumWaitInterval` and
    `SessionRetryIntervalMultiplier` parameters.
 
-### 5.7.9 Use of TLS
+### 7.9 Use of TLS
 
 #### Purpose
 

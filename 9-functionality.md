@@ -1,6 +1,6 @@
-## 5.9 Functionality Test Cases
+## 9 Functionality Test Cases
 
-### 5.9.1 Use of the Timer! Event
+### 9.1 Use of the Timer! Event
 
 #### Purpose
 
@@ -45,7 +45,7 @@ body {
    element.
 2. The EUT sends a Notify message with an event element containing Timer!
 
-### 5.9.2 Use of Device.LocalAgent.AddCertificate()
+### 9.2 Use of Device.LocalAgent.AddCertificate()
 
 #### Purpose
 
@@ -128,7 +128,7 @@ body {
    an Alias which matches the certificate added in step 1.
 4. The EUT sends an OperateResponse after step 5.
 
-### 5.9.3 Upgraded the Agent's Firmware - Autoactivate enabled
+### 9.3 Upgraded the Agent's Firmware - Autoactivate enabled
 
 #### Purpose
 
@@ -200,7 +200,7 @@ body {
    on which the Download() operation was called; also that
    `Device.LocalAgent.SoftwareVersion` matches the expected version.
 
-### 5.9.4 Upgrading the Agent's Firmware - Using TimeWindow, Immediate
+### 9.4 Upgrading the Agent's Firmware - Using TimeWindow, Immediate
 
 #### Purpose
 
@@ -269,7 +269,7 @@ body {
    containing a SoftwareVersion element with the expected
    software version.
 
-### 5.9.5 Upgrading the Agent's Firmware - Using TimeWindow, AnyTime
+### 9.5 Upgrading the Agent's Firmware - Using TimeWindow, AnyTime
 
 #### Purpose
 
@@ -338,7 +338,7 @@ body {
    parameter that matches the expected version.
 
 
-### 5.9.6 Upgrading the Agent's Firmware - Validated Firmware
+### 9.6 Upgrading the Agent's Firmware - Validated Firmware
 
 #### Purpose
 
@@ -402,7 +402,7 @@ body {
 2. The ETU sends a Notify message with a TransferComplete! event.
 2. The EUT sends a Get response with a Status parameter of ValidationFailed.
 
-### 5.9.7 Upgrading the Agent's Firmware - Download to Active Bank
+### 9.7 Upgrading the Agent's Firmware - Download to Active Bank
 
 #### Purpose
 
@@ -454,7 +454,7 @@ an error indicating that downloading to an active firmware slot is not allowed.
 2. If an OperationComplete Notification is sent, the EUT sends a Notify message
 with a Boot! event and a FirmwareUpdated argument set to true.
 
-### 5.9.8 Upgrading the Agent's Firmware - Cancelling a request using the Cancel() command
+### 9.8 Upgrading the Agent's Firmware - Cancelling a request using the Cancel() command
 
 #### Purpose
 
@@ -540,7 +540,7 @@ body {
    either non-existent or the Status parameter of the relevant request is
    either Cancelled or Cancelling.
 
-### 5.9.9 Adding a New Controller - OnBoardRequest
+### 9.9 Adding a New Controller - OnBoardRequest
 
 #### Purpose
 
@@ -653,7 +653,7 @@ body {
 2. The EUT sends a Notify message to the secondary Controller containing an
    OnBoardRequest element.
 
-### 5.9.10 Use of the Boot! event and BootParameters
+### 9.10 Use of the Boot! event and BootParameters
 
 #### Purpose
 

@@ -1,8 +1,8 @@
-# 5. USP Agent Test Cases
+# USP Agent Test Cases
 
-## 5.1 Messages and Path Names
+## 1 Messages and Path Names
 
-### 5.1.1 Add message with allow partial false, single object, required parameters succeed
+### 1.1 Add message with allow partial false, single object, required parameters succeed
 
 #### Purpose
 
@@ -120,7 +120,7 @@ Mandatory
 4.  The Subscription object's values match the values set in the
     param_settings element.
 
-### 5.1.2 Add message with allow partial true, single object, required parameters succeed
+### 1.2 Add message with allow partial true, single object, required parameters succeed
 
 #### Purpose
 
@@ -238,7 +238,7 @@ Mandatory
 4.  The Subscription object's values match the values set in the
     param_settings element.
 
-### 5.1.3 Add message with allow partial false, single object, required parameters fail
+### 1.3 Add message with allow partial false, single object, required parameters fail
 
 #### Purpose
 
@@ -312,7 +312,7 @@ Mandatory
     with a param_path of "Device.LocalAgent.Subscription.", and an
     err_code of 7010, "Unsupported Parameter".
 
-### 5.1.4 Add message with allow partial false, single invalid object
+### 1.4 Add message with allow partial false, single invalid object
 
 #### Purpose
 
@@ -382,7 +382,7 @@ Mandatory
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
     err_code of 7016, "Object does not exist".
 
-### 5.1.5 Add message with allow partial false, multiple objects
+### 1.5 Add message with allow partial false, multiple objects
 
 #### Purpose
 
@@ -526,7 +526,7 @@ Mandatory
 5.  The second Subscription object's values match the values set in the
     param_settings element.
 
-### 5.1.6 Add message with allow partial false, multiple objects with an invalid object
+### 1.6 Add message with allow partial false, multiple objects with an invalid object
 
 #### Purpose
 
@@ -614,7 +614,7 @@ Mandatory
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
     err_code of 7016, "Object does not exist".
 
-### 5.1.7 Add message with allow partial false, multiple objects, required parameters fail in single object
+### 1.7 Add message with allow partial false, multiple objects, required parameters fail in single object
 
 #### Purpose
 
@@ -703,7 +703,7 @@ Mandatory
     "Device.LocalAgent.Subscription.{i}.InvalidParameter", and an
     err_code of 7010, "Unsupported Parameter".
 
-### 5.1.8 Add message with allow partial true, required parameters fail, invalid value, single object
+### 1.8 Add message with allow partial true, required parameters fail, invalid value, single object
 
 #### Purpose
 
@@ -775,7 +775,7 @@ Mandatory
     OperationFailure element contains an err_code of "7017", "Object
     could not be created".
 
-### 5.1.9 Add message with allow partial true, required parameters fail, multiple objects
+### 1.9 Add message with allow partial true, required parameters fail, multiple objects
 
 #### Purpose
 
@@ -916,7 +916,7 @@ Mandatory
 4.  The Subscription object's values match the values set in the
     param_settings element.
 
-### 5.1.10 Add message with unique key addressing in path
+### 1.10 Add message with unique key addressing in path
 
 #### Purpose
 
@@ -1030,7 +1030,7 @@ Mandatory
 4.  The BootParameter object's values match the values set in the
     param_settings element.
 
-### 5.1.11 Set message with allow partial false, required parameters pass
+### 1.11 Set message with allow partial false, required parameters pass
 
 #### Purpose
 
@@ -1113,7 +1113,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element.
 
-### 5.1.12 Set message with allow partial true, required parameters pass
+### 1.12 Set message with allow partial true, required parameters pass
 
 #### Purpose
 
@@ -1196,7 +1196,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element.
 
-### 5.1.13 Set message with allow partial false, multiple objects
+### 1.13 Set message with allow partial false, multiple objects
 
 #### Purpose
 
@@ -1288,7 +1288,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
 
-### 5.1.14 Set message with allow partial false, required parameters fail
+### 1.14 Set message with allow partial false, required parameters fail
 
 #### Purpose
 
@@ -1349,7 +1349,7 @@ Mandatory
     identifier&gt;.InvalidParameter" and an err_code of "7010",
     "Unsupported Parameter".
 
-### 5.1.15 Set message with allow partial false, multiple objects, required parameters fail in single object
+### 1.15 Set message with allow partial false, multiple objects, required parameters fail in single object
 
 #### Purpose
 
@@ -1418,7 +1418,7 @@ Mandatory
     identifier&gt;.InvalidParameter" and an err_code of "7010",
     "Unsupported Parameter".
 
-### 5.1.16 Set message with allow partial true, required parameter fails, multiple objects
+### 1.16 Set message with allow partial true, required parameter fails, multiple objects
 
 #### Purpose
 
@@ -1522,7 +1522,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element for the first object.
 
-### 5.1.17 Set message with allow partial true, non-required parameter fails, multiple parameters
+### 1.17 Set message with allow partial true, non-required parameter fails, multiple parameters
 
 #### Purpose
 
@@ -1619,7 +1619,7 @@ Mandatory
 3.  The retrieved value of NotifRetry matches the value set in the
     param_settings element.
 
-### 5.1.18 Set message with unique key addressing in path
+### 1.18 Set message with unique key addressing in path
 
 #### Purpose
 
@@ -1701,7 +1701,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element.
 
-### 5.1.19 Set message with wildcard search path, allow partial false, required parameters pass
+### 1.19 Set message with wildcard search path, allow partial false, required parameters pass
 
 #### Purpose
 
@@ -1785,7 +1785,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
 
-### 5.1.20 Set message with wildcard search path, allow partial false, required parameters fail
+### 1.20 Set message with wildcard search path, allow partial false, required parameters fail
 
 #### Purpose
 
@@ -1848,7 +1848,7 @@ Mandatory
     identifier of relevant object&gt;.InvalidParameter" and an err_code
     of "7010", "Unsupported Parameter".
 
-### 5.1.21 Set message with wildcard search path, allow partial true, required parameters fail
+### 1.21 Set message with wildcard search path, allow partial true, required parameters fail
 
 #### Purpose
 
@@ -1917,7 +1917,7 @@ Mandatory
         param element with a value of "InvalidParameter", and an
         err_code of "7010", "Unsupported parameter"
 
-### 5.1.22 Set message with search expression search path
+### 1.22 Set message with search expression search path
 
 #### Purpose
 
@@ -1999,7 +1999,7 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element.
 
-### 5.1.23 Set message with invalid path
+### 1.23 Set message with invalid path
 
 #### Purpose
 
@@ -2057,7 +2057,7 @@ Mandatory
     The OperationFailure contains an err_code of "7016", "Object does
     not exist".
 
-### 5.1.24 Delete message with allow partial false, valid object instance
+### 1.24 Delete message with allow partial false, valid object instance
 
 #### Purpose
 
@@ -2110,7 +2110,7 @@ a requested_path equal to "Device.LocalAgent.Subscription.&lt;instance
 identifier&gt;." and an oper_success element, with one affected_path
 element equal to the path name of the Deleted object.
 
-### 5.1.25 Delete message with allow partial false, object instance doesn't exist
+### 1.25 Delete message with allow partial false, object instance doesn't exist
 
 #### Purpose
 
@@ -2165,7 +2165,7 @@ arguments", with the param_errs element containing a single error with
 a param_path of "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.", and an err_code of
 7016, "Object does not exist".
 
-### 5.1.26 Delete message with allow partial false, invalid object
+### 1.26 Delete message with allow partial false, invalid object
 
 #### Purpose
 
@@ -2216,7 +2216,7 @@ arguments", with the param_errs element containing a single error with
 a param_path of "Device.LocalAgent.InvalidObject.", and an err_code of
 7026, "InvalidPath".
 
-### 5.1.27 Delete message with allow partial false, multiple objects
+### 1.27 Delete message with allow partial false, multiple objects
 
 #### Purpose
 
@@ -2275,7 +2275,7 @@ a requested_path equal to the obj_paths of the Delete message, and an
 oper_success element containing an affected_path element equal to the
 path name of the deleted object.
 
-### 5.1.28 Delete message with allow partial false, multiple objects, invalid object
+### 1.28 Delete message with allow partial false, multiple objects, invalid object
 
 #### Purpose
 
@@ -2334,7 +2334,7 @@ arguments", with the param_errs element containing a single error with
 a param_path of "Device.LocalAgent.InvalidObject.", and an err_code of
 7026, "InvalidPath".
 
-### 5.1.29 Delete message with allow partial true, object instance doesn't exist
+### 1.29 Delete message with allow partial true, object instance doesn't exist
 
 #### Purpose
 
@@ -2384,7 +2384,7 @@ structure:
 message with a requested_path of "Device.LocalAgent.Subscription.&lt;instance identifier&gt;." and an oper_failure element, with
 err_code "7016", "Object does not exist".
 
-### 5.1.30 Delete message with allow partial true, invalid object
+### 1.30 Delete message with allow partial true, invalid object
 
 #### Purpose
 
@@ -2434,7 +2434,7 @@ structure:
 message with a requested_path of "Device.LocalAgent.InvalidObject." and an oper_failure element, with
 err_code "7026", "Invalid Path".
 
-### 5.1.31 Delete message with allow partial true, multiple objects, invalid object
+### 1.31 Delete message with allow partial true, multiple objects, invalid object
 
 #### Purpose
 
@@ -2494,7 +2494,7 @@ with the value Device.LocalAgent.Subscription.&lt;instance
 identifier&gt;.", and the other with an oper_failure element containing
 an err_code of "7026", "InvalidPath".
 
-### 5.1.32 Delete message with allow partial true, multiple objects, object doesn't exist
+### 1.32 Delete message with allow partial true, multiple objects, object doesn't exist
 
 #### Purpose
 
@@ -2554,7 +2554,7 @@ with the value Device.LocalAgent.Subscription.&lt;instance
 identifier&gt;.", and the other with an oper_failure
 element containing an err_code of "7016", "Object does not exist".
 
-### 5.1.33 Delete message with unique key addressing
+### 1.33 Delete message with unique key addressing
 
 #### Purpose
 
@@ -2616,7 +2616,7 @@ affected_path element equal to the path name of the Deleted object.
 
 3. The affected_path element uses instance number addressing.
 
-### 5.1.34 Delete message with wildcard search path, valid objects
+### 1.34 Delete message with wildcard search path, valid objects
 
 #### Purpose
 
@@ -2671,7 +2671,7 @@ requested path equal to "Device.LocalAgent.Subscription.&ast;." and an
 oper_success element  with one or more affected_path elements equal to
 the path names of the Deleted objects.
 
-### 5.1.35 Delete message with search expression search path
+### 1.35 Delete message with search expression search path
 
 #### Purpose
 
@@ -2738,7 +2738,7 @@ successfully Deleted objects.
 3. The BootParameter whose Enable parameter was equal to
 "false" was not deleted.
 
-### 5.1.36 Get message with full parameter path
+### 1.36 Get message with full parameter path
 
 #### Purpose
 
@@ -2787,7 +2787,7 @@ single resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "EndpointID" and a value equal to
 the EUT's EndpointID.
 
-### 5.1.37 Get message with multiple full parameter paths, same object
+### 1.37 Get message with multiple full parameter paths, same object
 
 #### Purpose
 
@@ -2841,7 +2841,7 @@ resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "SoftwareVersion" with a valid
 value.
 
-### 5.1.38 Get message with multiple full parameter paths, different objects
+### 1.38 Get message with multiple full parameter paths, different objects
 
 #### Purpose
 
@@ -2897,7 +2897,7 @@ a requested_path equal to "Device.LocalAgent.Subscription..Enable", a
 single resolved_path equal to "Device.LocalAgent.Subscription..", and a
 single result_params element with a key of "Enable" with a valid value.
 
-### 5.1.39 Get message with object path
+### 1.39 Get message with object path
 
 #### Purpose
 
@@ -2949,7 +2949,7 @@ the keys and values of each sub-object's parameters.
 
 3. The keys of all result_params elements are relative paths.
 
-### 5.1.40 Get message with object instance path
+### 1.40 Get message with object instance path
 
 #### Purpose
 
@@ -3003,7 +3003,7 @@ contain keys and values of the parameters of
 
 3. The keys of all result_params elements are relative paths.
 
-### 5.1.41 Get message with invalid parameter
+### 1.41 Get message with invalid parameter
 
 #### Purpose
 
@@ -3049,7 +3049,7 @@ The requested_path_results has a requested_path equal to
 "Device.LocalAgent.InvalidParameter", and an err_code of "7010",
 "Unsupported Parameter".
 
-### 5.1.42 Get message with invalid parameter and valid parameter
+### 1.42 Get message with invalid parameter and valid parameter
 
 #### Purpose
 
@@ -3101,7 +3101,7 @@ the EUT's EndpointID. The other requested_path_results has a
 requested_path equal to "Device.LocalAgent.InvalidParameter", and an
 err_code of "7010", "Unsupported Parameter".
 
-### 5.1.43 Get message using unique key addressing
+### 1.43 Get message using unique key addressing
 
 #### Purpose
 
@@ -3153,7 +3153,7 @@ resolved_path_results element, with a resolved_path of
 "Device.LocalAgent.Subscription..", and a result_params element contain
 with a key of "Enable" and a valid value.
 
-### 5.1.44 Get message using wildcard search path on full parameter
+### 1.44 Get message using wildcard search path on full parameter
 
 #### Purpose
 
@@ -3205,7 +3205,7 @@ resolved_path_results elements, each with a resolved_path of
 "Device.LocalAgent.Subscription..", and a result_params element contain
 with a key of "Enable" and a valid value.
 
-### 5.1.45 Get message using wildcard search path on object path
+### 1.45 Get message using wildcard search path on object path
 
 #### Purpose
 
@@ -3260,7 +3260,7 @@ Subscription object.
 
 3. The keys of all result_params elements are relative paths.
 
-### 5.1.46 Get message using search expression search path (equivalence)
+### 1.46 Get message using search expression search path (equivalence)
 
 #### Purpose
 
@@ -3320,7 +3320,7 @@ Subscription object where the Enable parameter is "true".
 4. The EUT does not return any parameters from Subscription
 objects whose Enable parameter is "false".
 
-### 5.1.47 Get message using search expression search path (non-equivelance)
+### 1.47 Get message using search expression search path (non-equivelance)
 
 #### Purpose
 
@@ -3380,7 +3380,7 @@ Subscription object where the Enable parameter is "true".
 4. The EUT does not return any parameters from Subscription
 objects whose Enable parameter is "false".
 
-### 5.1.48 Get message using search expression search path (exclusive greater comparison)
+### 1.48 Get message using search expression search path (exclusive greater comparison)
 
 #### Purpose
 
@@ -3441,7 +3441,7 @@ greater than 10.
 4. The EUT does not return any parameters from Subscription
 objects whose NotifExpiration parameter is equal to or less than 10.
 
-### 5.1.49 Get message using search expression search path (exclusive lesser comparison)
+### 1.49 Get message using search expression search path (exclusive lesser comparison)
 
 #### Purpose
 
@@ -3502,7 +3502,7 @@ than 10.
 4. The EUT does not return any parameters from Subscription
 objects whose NotifExpiration parameter is equal to or greater than 10.
 
-### 5.1.50 Get message using search expression search path (inclusive greater comparison)
+### 1.50 Get message using search expression search path (inclusive greater comparison)
 
 #### Purpose
 
@@ -3563,7 +3563,7 @@ greater than or equal to 10.
 4. The EUT does not return any parameters from Subscription
 objects whose NotifExpiration parameter is less than 10.
 
-### 5.1.51 Get message using search expression search path (inclusive lesser comparison)
+### 1.51 Get message using search expression search path (inclusive lesser comparison)
 
 #### Purpose
 
@@ -3624,7 +3624,7 @@ less than or equal to 10.
 4. The EUT does not return any parameters from Subscription
 objects whose NotifExpiration parameter is greater than 10.
 
-### 5.1.52 Notify - Subscription creation using Value Change
+### 1.52 Notify - Subscription creation using Value Change
 
 #### Purpose
 
@@ -3733,7 +3733,7 @@ identifier>.ProvisioningCode to an arbitrary value that is not
     identifier>.ProvisioningCode" and a param_value of
     "TestValue52".
 
-### 5.1.53 Notify - Subscription Deletion Using Value Change
+### 1.53 Notify - Subscription Deletion Using Value Change
 
 #### Purpose
 
@@ -3869,7 +3869,7 @@ identifier>.ProvisioningCode to an arbitrary value that is not
 2.  The EUT does not send a Notify message based on the activity in the
     ProvisioningCode parameter.
 
-### 5.1.54 Notification Retry using Value Change
+### 1.54 Notification Retry using Value Change
 
 #### Purpose
 
@@ -3992,7 +3992,7 @@ value (5).
 2.  The first retry occurs within 5-10 seconds. The second retry occurs
     within 10-20 seconds.
 
-### 5.1.55 Subscription Expiration using Value Change
+### 1.55 Subscription Expiration using Value Change
 
 #### Purpose
 
@@ -4126,7 +4126,7 @@ identifier&gt;.ProvisioningCode to an arbitrary value that is not
 
 3.  The EUT does not send a Notify message after step 9.
 
-### 5.1.56 Notification Retry Expiration using Value Change
+### 1.56 Notification Retry Expiration using Value Change
 
 #### Purpose
 
@@ -4248,7 +4248,7 @@ value (5).
 
 2.  The EUT does not retry the Notify message after 20 seconds.
 
-### 5.1.57 ObjectCreation Notification
+### 1.57 ObjectCreation Notification
 
 #### Purpose
 
@@ -4366,7 +4366,7 @@ information to send and receive USP Records to each other.
     "Notify57-2" and "Recipient, Device.LocalAgent.Controller.&lt;instance
     identifier&gt;.".
 
-### 5.1.58 ObjectDeletion Notification
+### 1.58 ObjectDeletion Notification
 
 #### Purpose
 
@@ -4466,7 +4466,7 @@ body {
     obj_path of "Device.LocalAgent.Subscription.&lt;instance
     number&gt;."
 
-### 5.1.59 Event Notification using Periodic!
+### 1.59 Event Notification using Periodic!
 
 #### Purpose
 
@@ -4567,7 +4567,7 @@ body {
 4. A second Periodic event is sent by the EUT 60 (+/- 4) seconds after
    the first.
 
-### 5.1.60 OnBoardRequest Notification
+### 1.60 OnBoardRequest Notification
 
 #### Purpose
 
@@ -4618,7 +4618,7 @@ Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.SendOnBoardRequ
     the oui, product_class, serial_number, and
     agent_supported_protocol_versions fields.
 
-### 5.1.61 Operate message using Reboot() with send_resp true
+### 1.61 Operate message using Reboot() with send_resp true
 
 #### Purpose
 
@@ -4669,7 +4669,7 @@ Conditional Mandatory (supports Reboot:1 or any other command)
 
 2.  The EUT reboots and resumes connectivity with the test system.
 
-### 5.1.62 Operate message using Reboot() with send_resp false
+### 1.62 Operate message using Reboot() with send_resp false
 
 #### Purpose
 
@@ -4713,7 +4713,7 @@ Conditional Mandatory (supports Reboot:1 or any other command)
 
 1.  The EUT reboots and resumes connectivity with the test system.
 
-### 5.1.63 Operate message using input arguments
+### 1.63 Operate message using input arguments
 
 #### Purpose
 
@@ -4766,7 +4766,7 @@ body {
    "Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()".
 
 
-### 5.1.64 Asynchronous operation with send_resp true
+### 1.64 Asynchronous operation with send_resp true
 
 #### Purpose
 
@@ -4822,7 +4822,7 @@ body {
    obj\_path of "Device.IP.Diagnostics.TraceRoute()".
 
 
-### 5.1.65 Asynchronous operation with send_resp false
+### 1.65 Asynchronous operation with send_resp false
 
 #### Purpose
 
@@ -4872,7 +4872,7 @@ body {
    obj\_path of "Device.IP.Diagnostics.TraceRoute()".
 
 
-### 5.1.66 GetInstances using a single object, first\_level\_only true
+### 1.66 GetInstances using a single object, first\_level\_only true
 
 #### Purpose
 
@@ -4917,7 +4917,7 @@ body {
    Device.LocalAgent. instances.
 
 
-### 5.1.67 GetInstances using a single object, first\_level\_only false
+### 1.67 GetInstances using a single object, first\_level\_only false
 
 #### Purpose
 
@@ -4960,7 +4960,7 @@ body {
    all instances of the Controller object, plus any instances of all sub-objects.
 
 
-### 5.1.68 GetInstances with multiple objects
+### 1.68 GetInstances with multiple objects
 
 #### Purpose
 
@@ -5007,7 +5007,7 @@ body {
 2. Both req\_path\_results and each having at least one cur\_insts element.
 
 
-### 5.1.69 GetInstances with root object
+### 1.69 GetInstances with root object
 
 #### Purpose
 
@@ -5049,7 +5049,7 @@ body {
 in its instantiated data model.
 
 
-### 5.1.70 GetInstances with wildcard search path
+### 1.70 GetInstances with wildcard search path
 
 #### Purpose
 
@@ -5092,7 +5092,7 @@ body {
    Device.LocalAgent.Controller.{i}.MTP. instance.
 
 
-### 5.1.71 GetInstances with search expression search path
+### 1.71 GetInstances with search expression search path
 
 #### Purpose
 
@@ -5139,7 +5139,7 @@ body {
 
 
 
-### 5.1.72 GetSupportedDM using a single object, first\_level\_only false, all options
+### 1.72 GetSupportedDM using a single object, first\_level\_only false, all options
 
 #### Purpose
 
@@ -5190,7 +5190,7 @@ body {
 
 
 
-### 5.1.73 GetSupportedDM using a single object, first\_level\_only true, all options
+### 1.73 GetSupportedDM using a single object, first\_level\_only true, all options
 
 #### Purpose
 
@@ -5238,7 +5238,7 @@ body {
 
 
 
-### 5.1.74 GetSupportedDM using a single object, first\_level\_only true, no options
+### 1.74 GetSupportedDM using a single object, first\_level\_only true, no options
 
 #### Purpose
 
@@ -5285,7 +5285,7 @@ body {
    any parameters, events, or params.
 
 
-### 5.1.75 GetSupportedDM using multiple objects, first\_level\_only true, all options
+### 1.75 GetSupportedDM using multiple objects, first\_level\_only true, all options
 
 #### Purpose
 
@@ -5335,7 +5335,7 @@ body {
    events, and commands of only the specified objects.
 
 
-### 5.1.76 GetSupportedDM on root object, all options
+### 1.76 GetSupportedDM on root object, all options
 
 #### Purpose
 
@@ -5381,7 +5381,7 @@ body {
    commands, parameters, and events.
 
 
-### 5.1.77 GetSupportedDM on unsupported object
+### 1.77 GetSupportedDM on unsupported object
 
 #### Procedure
 
