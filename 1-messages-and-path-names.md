@@ -4002,7 +4002,7 @@ expired.
 
 #### Functionality Tag
 
-Mandatory
+Conditionally Mandatory (Supports TimeToLive in Device.LocalAgent.Subscription.)
 
 #### Test Setup
 
