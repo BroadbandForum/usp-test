@@ -1,6 +1,6 @@
-## 5.6 STOMP Test Cases
+## 6 STOMP Test Cases
 
-### 5.6.1 Support of Required Profiles
+### 6.1 Support of Required Profiles
 
 #### Purpose
 
@@ -58,7 +58,7 @@ body {
         Device.STOMP.Connection.{i}.ServerRetryInitialMultiplier
         Device.STOMP.Connection.{i}.ServerRetryMaxInterval
 
-### 5.6.2 STOMP session establishment
+### 6.2 STOMP session establishment
 
 #### Purpose
 
@@ -82,7 +82,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 1. The EUT sends a STOMP frame to the STOMP server to initiate the STOMP session.
 
-### 5.6.3 STOMP Connection Retry
+### 6.3 STOMP Connection Retry
 
 #### Purpose
 
@@ -145,7 +145,7 @@ body {
 2. The EUT retries a second time in accordance with `ServerRetryInitialInterval`
    and `ServerRetryIntervalMultiplier`.
 
-### 5.6.4 Successful USP message over STOMP with required headers
+### 6.4 Successful USP message over STOMP with required headers
 
 #### Purpose
 
@@ -191,7 +191,7 @@ body {
    is present and contains the STOMP destination of the EUT.
 
 
-### 5.6.5 STOMP destination - provided in subscribe-dest
+### 6.5 STOMP destination - provided in subscribe-dest
 
 #### Purpose
 
@@ -238,7 +238,7 @@ body {
    header which matches the destination configured in step 1.
 
 
-### 5.6.6 STOMP destination - configured in USP data model
+### 6.6 STOMP destination - configured in USP data model
 
 #### Purpose
 
@@ -308,7 +308,7 @@ body {
    header which contains the STOMP destination configured in step 1.
 
 
-### 5.6.7 STOMP Destination - terminates unconfigured session
+### 6.7 STOMP Destination - terminates unconfigured session
 
 #### Purpose
 
@@ -362,7 +362,7 @@ body {
 1. The EUT terminates the STOMP session after the STOMP server sends
    a CONNECTION to the EUT.
 
-### 5.6.8 Use of STOMP heartbeat mechanism
+### 6.8 Use of STOMP heartbeat mechanism
 
 #### Purpose
 
@@ -426,7 +426,7 @@ body {
 2. After the EUT is connected to the STOMP server, the EUT sends heartbeat messages
    every 15 seconds.
 
-### 5.6.9 Error Handling - Unprocessed Record
+### 6.9 Error Handling - Unprocessed Record
 
 #### Purpose
 
@@ -451,7 +451,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 1. The EUT does not send a response to the malformed record.
 
-### 5.6.10 Agent's STOMP destination is changed
+### 6.10 Agent's STOMP destination is changed
 
 #### Purpose
 
@@ -504,7 +504,7 @@ body {
 2. After the EUT sent an UNSUBSCRIBE to the STOMP server it sent a SUBSCRIBE
    message with the new destination to the STOMP server.
 
-### 5.6.11 STOMP - Use of TLS
+### 6.11 STOMP - Use of TLS
 
 #### Purpose
 

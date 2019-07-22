@@ -1,6 +1,6 @@
-## 5.4 General MTP Test Cases
+## 4 General MTP Test Cases
 
-### 5.4.1 Use of X.509 certificates at the MTP layer
+### 4.1 Use of X.509 certificates at the MTP layer
 
 #### Purpose
 
