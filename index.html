@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <title>WT-469 - Conformance Test Plan for User Services Platform Agents</title>
+  <title>TR-469 Conformance Test Plan for User Services Platform Agents</title>
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -18,20 +18,33 @@
 <body>
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#wt-469---conformance-test-plan-for-user-services-platform-agents">WT-469 - Conformance Test Plan for User Services Platform Agents</a><ul>
+<li><a href="#legal-notice">Legal Notice</a><ul>
+<li><a href="#intellectual-property">Intellectual Property</a></li>
+<li><a href="#terms-of-use">Terms of Use</a></li>
+</ul></li>
+<li><a href="#revision-history">Revision History</a><ul>
+<li><a href="#release-1.0">Release 1.0</a></li>
+</ul></li>
+<li><a href="#editors">Editors</a></li>
+<li><a href="#work-area-directors">Work Area Directors</a></li>
+</ul></li>
+<li><a href="#introduction">Introduction</a><ul>
 <li><a href="#executive-summary">Executive Summary</a></li>
 <li><a href="#purpose">Purpose</a></li>
 <li><a href="#scope">Scope</a></li>
+</ul></li>
 <li><a href="#test-setup">Test Setup</a><ul>
 <li><a href="#test-equipment">Test Equipment</a></li>
 <li><a href="#test-setup-and-execution">Test Setup and Execution</a><ul>
 <li><a href="#basic-test-setup">Basic Test Setup</a></li>
 <li><a href="#mandatory-vs.-conditional-mandatory-tests">Mandatory vs. Conditional Mandatory Tests</a></li>
 <li><a href="#endpoint-requirements-and-metadata-collection">Endpoint Requirements and Metadata Collection</a></li>
-<li><a href="#clean-up-procedures">4.2.3 Clean-Up Procedures</a></li>
+<li><a href="#clean-up-procedures">Clean-Up Procedures</a></li>
 </ul></li>
-<li><a href="#universal-test-metrics">4.3 Universal Test Metrics</a></li>
-<li><a href="#notes-about-test-case-descriptions">4.4 Notes about test case descriptions</a><ul>
-<li><a href="#use-of-examples">4.4.1 Use of examples</a></li>
+<li><a href="#universal-test-metrics">Universal Test Metrics</a></li>
+<li><a href="#notes-about-test-case-descriptions">Notes about test case descriptions</a><ul>
+<li><a href="#use-of-examples">Use of examples</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#usp-agent-test-cases">USP Agent Test Cases</a><ul>
@@ -219,13 +232,82 @@
 </ul></li>
 </ul>
 </nav>
-<p><strong>WT-469 - Conformance Test Plan for User Services Platform Agents</strong></p>
+<h1 id="wt-469---conformance-test-plan-for-user-services-platform-agents">WT-469 - Conformance Test Plan for User Services Platform Agents</h1>
 <p><strong>Issue 1</strong></p>
-<h1 id="executive-summary">Executive Summary</h1>
+<p>You can find a pdf version of this document <strong><a href="https://www.broadband-forum.org/technical/download/TR-469.pdf">here</a></strong>.</p>
+<h2 id="legal-notice">Legal Notice</h2>
+<p>The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment. This Technical Report has been approved by members of the Forum. This Technical Report is subject to change. This Technical Report is copyrighted by the Broadband Forum, and all rights are reserved. Portions of this Technical Report may be copyrighted by Broadband Forum members.</p>
+<h3 id="intellectual-property">Intellectual Property</h3>
+<p>Recipients of this Technical Report are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Technical Report, or use of any software code normatively referenced in this Technical Report, and to provide supporting documentation.</p>
+<h3 id="terms-of-use">Terms of Use</h3>
+<h4 id="license">License</h4>
+<p>Broadband Forum hereby grants you the right, without charge, on a perpetual, non-exclusive and worldwide basis, to utilize the Technical Report for the purpose of developing, making, having made, using, marketing, importing, offering to sell or license, and selling or licensing, and to otherwise distribute, products complying with the Technical Report, in all cases subject to the conditions set forth in this notice and any relevant patent and other intellectual property rights of third parties (which may include members of Broadband Forum). This license grant does not include the right to sublicense, modify or create derivative works based upon the Technical Report except to the extent this Technical Report includes text implementable in computer code, in which case your right under this License to create and modify derivative works is limited to modifying and creating derivative works of such code. For the avoidance of doubt, except as qualified by the preceding sentence, products implementing this Technical Report are not deemed to be derivative works of the Technical Report.</p>
+<h4 id="no-warranties">NO WARRANTIES</h4>
+<p>THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT THE IMPLEMENTER’S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT.</p>
+<h4 id="third-party-rights">THIRD PARTY RIGHTS</h4>
+<p>Without limiting the generality of Section 2 above, BROADBAND FORUM ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS, OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED.</p>
+<p>The text of this notice must be included in all copies of this Technical Report.</p>
+<h2 id="revision-history">Revision History</h2>
+<h3 id="release-1.0">Release 1.0</h3>
+<ul>
+<li>First release of this test plan, containing test cases for basic compliance with TR-369/USP.</li>
+</ul>
+<h2 id="editors">Editors</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th style="text-align: center;">Company</th>
+<th style="text-align: center;">Email</th>
+<th style="text-align: left;">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jason Walls</td>
+<td style="text-align: center;">QA Cafe, LLC</td>
+<td style="text-align: center;">jason@qacafe.com</td>
+<td style="text-align: left;">Editor</td>
+</tr>
+</tbody>
+</table>
+<h2 id="work-area-directors">Work Area Directors</h2>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 31%" />
+<col style="width: 22%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th style="text-align: center;">Company</th>
+<th style="text-align: center;">Email</th>
+<th style="text-align: left;">Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Jason Walls</td>
+<td style="text-align: center;">QA Cafe, LLC</td>
+<td style="text-align: center;">jason@qacafe.com</td>
+<td style="text-align: left;">Broadband User Services Work Area Director</td>
+</tr>
+<tr class="even">
+<td>John Blackford</td>
+<td style="text-align: center;">Arris</td>
+<td style="text-align: center;">john.blackford@arris.com</td>
+<td style="text-align: left;">Broadband User Services Work Area Director</td>
+</tr>
+</tbody>
+</table>
+<h1 id="introduction">Introduction</h1>
+<h2 id="executive-summary">Executive Summary</h2>
 <p>Testing is crucial to promoting the interoperability and adoption of standards. To meet this, the Broadband Forum regularly produces test suites that validate the conformance of implementations of their standards. This specification defines the test setup, test procedures, and test metrics to validate Agent and implementations of the <a href="https://usp.technology">User Services Platform (USP)</a>, published as BBF TR-369.</p>
-<h1 id="purpose">Purpose</h1>
+<h2 id="purpose">Purpose</h2>
 <p>This purpose of this document is to provide a definitive guide for validating the compliance of USP Agents in accordance with the specification.</p>
-<h1 id="scope">Scope</h1>
+<h2 id="scope">Scope</h2>
 <p>The tests defined below are intended to validate the specific requirements outlined in the USP specification, as well as those requirements defined in the Device:2 Data Model for USP Agents for objects, parameters, commands, and events necessary for the operation of USP.</p>
 <h1 id="test-setup">Test Setup</h1>
 <h2 id="test-equipment">Test Equipment</h2>
@@ -443,9 +525,9 @@
 </tr>
 </tbody>
 </table>
-<h4 id="elements-specified-in-the-test-procedure">4.2.2.2 Elements Specified in the Test Procedure</h4>
+<h4 id="elements-specified-in-the-test-procedure">Elements Specified in the Test Procedure</h4>
 <p>Many of the mandatory and conditional mandatory tests specify the objects, parameters, or operations to be used for the test. If the specific elements are not supported by the EUT, other elements that will satisfy the test criteria MAY be used instead. If so, the test report MUST include the alternate elements used.</p>
-<h4 id="required-eut-information-and-resources">4.2.2.3 Required EUT Information and Resources</h4>
+<h4 id="required-eut-information-and-resources">Required EUT Information and Resources</h4>
 <p>In order to be able to perform the tests and create a report of the results, the following must be provided concerning the Endpoint Under Test:</p>
 <ol type="1">
 <li>The software and/or firmware version of the EUT.</li>
@@ -453,9 +535,9 @@
 <li>A list of the features supported in section 4.2.2.1.1.</li>
 <li>If the service elements specified in the tests are not supported, provide a list of alternate elements used in the testing.</li>
 </ol>
-<h3 id="clean-up-procedures">4.2.3 Clean-Up Procedures</h3>
+<h3 id="clean-up-procedures">Clean-Up Procedures</h3>
 <p>A number of tests that make changes to the EUT have procedures that are not part of the validation portion of the test case. These procedures are intended to “clean up” any changes that were made during the test to ensure that the EUT is in a relatively known state from one test case to the next. The most obvious example is using the Delete message to remove any objects that were added as part of the procedure, but the clean-up procedure may include any number of steps.</p>
-<h2 id="universal-test-metrics">4.3 Universal Test Metrics</h2>
+<h2 id="universal-test-metrics">Universal Test Metrics</h2>
 <p>Due to the nature of performative testing of protocol messages, certain requirements in the specification are effectively tested every time. Writing additional test cases for these metrics is unnecessary, but the requirements must still be met by endpoint implementations.</p>
 <ol type="1">
 <li><p>The Endpoint ID of the Endpoint Under Test is valid (ARC.3, ARC.4, ARC.5, and the requirements outlined in the <a href="http://usp.technology/specification/architecture/#endpoint_identifier">authority-scheme table</a>).</p></li>
@@ -463,14 +545,14 @@
 <li><p>The Path Names and Search Paths used in messages sent by the Endpoint Under Test are valid according to <a href="http://usp.technology/specification/architecture/#data_model_path_grammar">Data Model Path Grammar</a> and TR-106 (ARC.7).</p></li>
 <li><p>Path Names in messages originating from the EUT use instance number addressing (R-MSG.3).</p></li>
 </ol>
-<h2 id="notes-about-test-case-descriptions">4.4 Notes about test case descriptions</h2>
+<h2 id="notes-about-test-case-descriptions">Notes about test case descriptions</h2>
 <p>Each of the test cases below have the following sections:</p>
 <p><strong>Purpose</strong> - The purpose describes the reasoning for the test case, based on the normative requirements defined in USP.</p>
 <p><strong>Functionality Tag</strong> - The functionality tag indicates whether the test is mandatory or conditional mandatory. If it is the latter, this section will list any additional Device:2 profiles necessary to the performance of the test case.</p>
 <p><strong>Test Setup</strong> - The test setup section indicates any special prior conditions that must be configured before performing the test.</p>
 <p><strong>Test Procedure</strong> - The procedure indicates the steps, in order, taken to perform the test.</p>
 <p><strong>Test Metrics</strong> - The metrics indicate the required behavior that must be observed to consider the test passed.</p>
-<h3 id="use-of-examples">4.4.1 Use of examples</h3>
+<h3 id="use-of-examples">Use of examples</h3>
 <p>The test setup, procedure, and metrics in each test case may contain examples of the data to be sent to or received from the EUT. In these examples, elements that are to be filled with a known value dependent on the protocol’s behavior are indicated with greater-than/less-than brackets (&lt;for example&gt;), to indicate a variable. These examples should not be taken literally.</p>
 <h1 id="usp-agent-test-cases">USP Agent Test Cases</h1>
 <h2 id="messages-and-path-names">1 Messages and Path Names</h2>
