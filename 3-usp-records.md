@@ -1,6 +1,6 @@
-## 5.9 USP Record Test Cases
+## 3 USP Record Test Cases
 
-### 5.3.1 Bad request outside a session context
+### 3.1 Bad request outside a session context
 
 #### Purpose
 
@@ -26,52 +26,7 @@ Mandatory
 1. After the EUT receives the malformed USP record, it exibits the expected
    "bad request" behavior for the applicable MTP.
 
-### 5.3.2 Agent protects USP Record integrity when MTP protection is not present
-
-#### Purpose
-
-The purpose of this test is to ensure the EUT protects the non-payload
-portion of a USP Record when MTP protections are not present.
-
-#### Functionality Tags
-
-Conditional Mandatory (supports integrity protection at the USP layer)
-
-#### Test Setup
-
-1. Ensure the relevant equipment are configured to not provide integrity protection
-   at the MTP layer.
-2. Ensure that the EUT and test equipment have the necessary information to
-   send and receive USP records to each other.
-
-#### Test Procedure
-
-1. Send a Get message to the EUT with the following structure:
-
-```
-header {
-    msg_id: "<msg_id>"
-    msg_type: GET
-}
-body {
-    request {
-        get {
-            param_paths: Device.DeviceInfo.
-        }
-    }
-}
-```
-
-2. Wait for a GetResponse from the EUT.
-3. Validate the integrity of the non-payload fields in the
-   USP Record using the mac_signature.
-
-#### Test Metrics
-
-1. The USP Record containing the GetResponse has a valid mac_signature
-   value.
-
-### 5.3.3 Agent Verifies Non-Payload Field Integrity
+### 3.2 Agent Verifies Non-Payload Field Integrity
 
 #### Purpose
 
@@ -80,26 +35,52 @@ of the non-payload fields in a USP record.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports integrity protection at the USP layer)
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
 
 #### Test Setup
 
-1. Ensure the relevant equipment are configured to not provide integrity protection
+1. Ensure the relevant equipment are configured to NOT provide integrity protection
    at the MTP layer.
 2. Ensure that the EUT and test equipment have the necessary information to
    send and receive USP records to each other.
 
 #### Test Procedure
 
-1. Send a Get message to the EUT with a `payload_security` of PLAINTEXT and an
-   invalid `mac_signature` value.
+1. Send a Get message to the EUT with a `payload_security` of PLAINTEXT.
 
 #### Test Metrics
 
-1. After the EUT receives the USP record with the invalid mac_signature, it
-   exibits the expected "bad request" behavior for the applicable MTP.
+1. After the EUT receives the USP record, it
+exhibits the expected "bad request" behavior for the applicable MTP.
 
-### 5.3.4 Using TLS for USP Record Integrity
+### 3.3 Agent rejects invalid signature starting a session context
+
+#### Purpose
+
+The purpose of this test is to ensure the EUT handles an attempt to start
+a session context with an invalid mac_signature.
+
+#### Functionality Tags
+
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
+
+#### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to
+  send and receive USP records to each other.
+
+#### Test Procedure
+
+1. Send a TLS "client hello" to the EUT to begin a session context as described
+in "[End to End Message Exchange](https://usp.technology/specification/e2e-message-exchange/)"
+in TR-369 with an invalid mac_signature.
+
+#### Test Metrics
+
+1. After the EUT receives the USP record, it
+exhibits the expected "bad request" behavior for the applicable MTP.
+
+### 3.4 Using TLS for USP Record Integrity
 
 #### Purpose
 
@@ -109,7 +90,7 @@ handshake has completed.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports integrity protection at the USP layer)
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
 
 #### Test Setup
 
@@ -142,7 +123,7 @@ body {
 2. The `mac_signature` in the USP record sent by the EUT validates the
    integrity of the non-payload fields.
 
-### 5.3.5 Failure to Establish TLS
+### 3.5 Failure to Establish TLS
 
 #### Purpose
 
@@ -151,11 +132,11 @@ TLS session used to encapsulate the payload cannot be established.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports integrity protection at the USP layer)
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
 
 #### Test Setup
 
-1. Configure the controller to use TLS as a `payload_security`.
+1. Configure the controller to use TLS12 as a `payload_security`.
 2. Ensure `PeriodicNotifInterval` is 60, and the controller used for
    testing is subscribed to Periodic Event Notification.
 
@@ -194,7 +175,7 @@ body {
 2. After step 5, the EUT waits before retrying the session in
    accordance with the `SessionRetry` parameters found in step 1.
 
-### 5.3.6 Agent ignores TLS renegotiation for E2E message exchange
+### 3.6 Agent ignores TLS renegotiation for E2E message exchange
 
 #### Purpose
 
@@ -203,7 +184,7 @@ frames during a E2E message exchange.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports integrity protection at the USP layer)
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
 
 #### Test Setup
 
@@ -236,7 +217,7 @@ body {
 1. Between sending the TLS renegotiation request and receiving the
    GetResponse, the EUT does not send any USP records.
 
-### 5.3.7 Use of X.509 Certificates
+### 3.7 Use of X.509 Certificates
 
 #### Purpose
 
@@ -246,7 +227,7 @@ provides a X.509 certificate for the purpose of authentication.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports integrity protection at the USP layer)
+"Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)"
 
 #### Test Setup
 
@@ -281,7 +262,7 @@ body {
    controller.
 3. The EUT rejects the controller's certificate.
 
-### 5.3.8 Establishing a Session Context
+### 3.8 Establishing a Session Context
 
 #### Purpose
 
@@ -324,7 +305,7 @@ body {
    a session context, a `sequence_number` of 1 and a `session_id`
    that matched the session identifier sent to the EUT.
 
-### 5.3.9 Receipt of a Record out of a Session Context
+### 3.9 Receipt of a Record out of a Session Context
 
 #### Purpose
 
@@ -366,7 +347,7 @@ Record {
 1. The EUT sends the GetResponse in a USP Record using the new `session_id`
    and a `sequence_id` of 1.
 
-### 5.3.10 Session Context Expiration
+### 3.10 Session Context Expiration
 
 #### Purpose
 
@@ -464,7 +445,7 @@ body {
 2. None of the three Notify messages recieved in step 4 shared the same session
    context.
 
-### 5.3.11 Use of Sequence ID and Expected ID
+### 3.11 Use of Sequence ID and Expected ID
 
 #### Purpose
 
@@ -506,7 +487,7 @@ Conditional Mandatory (supports USP session context)
 6. After step 5 The EUT sends a GetResponse containing the parameter
    `Device.DeviceInfo.SoftwareVersion`.
 
-### 5.3.12 Preservation of USP Records
+### 3.12 Preservation of USP Records
 
 The purpose of this test is to ensure the EUT preserves a sent record in
 the event the receiving endpoint requests a retransmission.
@@ -548,7 +529,7 @@ body {
 1. The EUT sends the same GetResponse twice, once after step 2 and once
    after step 4.
 
-### 5.3.13 Agent Rejects Records with Different Payload Security than the Established Context
+### 3.13 Agent Rejects Records with Different Payload Security than the Established Context
 
 #### Purpose
 
@@ -579,7 +560,7 @@ Conditional Mandatory (supports USP session context)
 1. The EUT does not send a GetResponse.
 2. The EUT starts a new session after step 2.
 
-### 5.3.14 Use of retransmit_id
+### 3.14 Use of retransmit_id
 
 #### Purpose
 
@@ -635,7 +616,7 @@ body {
 2. On the third retransmit request, the EUT doesn't send a SetResponse and
    instead starts a new session with the controller.
 
-### 5.3.15 Handling Duplicate Records
+### 3.15 Handling Duplicate Records
 
 #### Purpose
 
