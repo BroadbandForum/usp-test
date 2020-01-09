@@ -360,7 +360,7 @@ body {
 #### Test Metrics
 
 1. The EUT terminates the STOMP session after the STOMP server sends
-   a CONNECTION to the EUT.
+   a CONNECTED to the EUT.
 
 ### 6.8 Use of STOMP heartbeat mechanism
 

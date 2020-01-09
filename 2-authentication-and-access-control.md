@@ -532,6 +532,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
    and receive USP Records to each other.
 2. Ensure the Controller used for testing has an assigned Role that is writable.
 3. Ensure there is one or more Subscription object that can be deleted.
+
 #### Test Procedure
 
 1. Send an Add message to the EUT with the following structure:

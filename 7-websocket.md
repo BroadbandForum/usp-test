@@ -52,7 +52,7 @@ only one WebSocket connection to a controller at a time.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports the WebSocket MTP)
+Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)
 
 #### Test Setup
 

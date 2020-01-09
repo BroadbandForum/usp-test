@@ -194,6 +194,7 @@ specify their support for conditional mandatory test cases.
 | 3 | At least one asynchronous command | 1.64, 1.65 | |
 | 4 | Subscription.{i}.NotifExpiration parameter |  1.56 | An extension to the Subscription:1 profile |
 | 5 | Controller:1 profile | 1.59 | |
+| 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 | 7 | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
 | 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60 | |
 | 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.64, 1.65, 9.1 | |
@@ -217,7 +218,7 @@ specify their support for conditional mandatory test cases.
 | 27 | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
 | 28 | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
 | 29 | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
-| 30 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
+
 
 #### Elements Specified in the Test Procedure
 
