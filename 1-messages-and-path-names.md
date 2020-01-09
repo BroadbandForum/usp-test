@@ -2152,7 +2152,7 @@ structure:
 
 #### Test Metrics
 
-1. The EUT's sends a DeleteResponse containing an oper_success element that contains an empty affected_path list.
+1. The EUT sends a DeleteResponse containing an empty oper_success element.
 
 ### 1.26 Delete message with allow partial false, invalid object
 
@@ -2367,7 +2367,7 @@ structure:
 
 #### Test Metrics
 
-1. The EUT's sends a DeleteResponse containing an oper_success element that contains an empty affected_path list.
+1. The EUT sends a DeleteResponse containing an empty oper_success element.
 
 ### 1.30 Delete message with allow partial true, invalid object
 
@@ -2534,7 +2534,7 @@ structure:
 1. The EUT's sends a DeleteResp.
 
 2. The DeleteResp contains two deleted_obj_results elements,
-each with an oper_success element, each containing an empty affected_path element.
+each with an empty oper_success element.
 
 ### 1.33 Delete message with unique key addressing
 
