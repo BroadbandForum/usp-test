@@ -1,6 +1,6 @@
-## 5.2 Authentication and Access Control Test Cases
+## 2 Authentication and Access Control Test Cases
 
-### 5.2.1 Agent does not accept messages from its own Endpoint ID
+### 2.1 Agent does not accept messages from its own Endpoint ID
 
 #### Purpose
 
@@ -35,7 +35,7 @@ Record {
 
 1. The EUT does not respond to the message.
 
-### 5.2.2 Agent rejects messages that do not contain its to_id in the USP Record
+### 2.2 Agent rejects messages that do not contain its to_id in the USP Record
 
 #### Purpose
 
@@ -70,7 +70,7 @@ Record {
 
 1. The EUT does not respond to the USP message.
 
-### 5.2.3 Agent does not process messages without 's certificate information
+### 2.3 Agent does not process messages without 's certificate information
 
 #### Purpose
 
@@ -79,7 +79,7 @@ when the EUT does not possess the Controller's certificate information.
 
 #### Functionality Tags
 
-Mandatory
+Conditional Mandatory (UntrustedRole is not support, or can be disabled)
 
 #### Test Setup
 
@@ -87,6 +87,8 @@ Mandatory
    send and receive USP Records to each other.
 2. Simulate a second Controller whose credentials are signed by an untrusted
 certificate authority.
+3. Ensure that the UntrustedRole feature is either unsupported or disabled in
+the EUT.
 
 #### Test Procedure
 
@@ -111,7 +113,7 @@ body {
 
 1. Ensure the EUT does not respond to the Get message.
 
-### 5.2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName
+### 2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName
 
 #### Purpose
 
@@ -136,7 +138,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 1. The EUT does not respond to the Get message.
 
-### 5.2.5 Agent use of self-signed certificates
+### 2.5 Agent use of self-signed certificates
 
 #### Purpose
 
@@ -177,7 +179,7 @@ body {
 1. The EUT responds to the Get with a GetResponse containing a
    Device.LocalAgent.ControllerTrust.{i}.Alias parameter.
 
-### 5.2.6 Connecting without absolute time
+### 2.6 Connecting without absolute time
 
 #### Purpose
 
@@ -218,7 +220,7 @@ body {
 1. The EUT responds to the Get message with a GetReponse, ignoring the expired
    dates on the certificate.
 
-### 5.2.7 Agent ignores unsigned or invalid Record signatures
+### 2.7 Agent ignores unsigned or invalid Record signatures
 
 #### Purpose
 
@@ -242,7 +244,7 @@ Mandatory
 
 1. The EUT does not respond to the Get message.
 
-### 5.2.8 Agent ignores invalid TLS certificate
+### 2.8 Agent ignores invalid TLS certificate
 
 #### Purpose
 
@@ -257,16 +259,17 @@ Mandatory
 
 1. Ensure that the EUT and test equipment have the necessary information to send
    and receive USP Records to each other.
+2. Ensure that the EUT has obtained an absolute time reference.
 
 #### Test Procedure
 
-1. Send a Get message to the EUT with an invalid TLS certificate.
+1. Send a Get message to the EUT with an expire TLS certificate.
 
 #### Test Metrics
 
 1. The EUT doesn't respond to the Get message.
 
-### 5.2.9 Use of the Untrusted role
+### 2.9 Use of the Untrusted role
 
 #### Purpose
 
@@ -308,7 +311,7 @@ body {
 1. Ensure the `Device.LocalAgent.Controller.<secondary Controller instance>.AssignedRole`
    matches the value of `Device.LocalAgent.ControllerTrust.UntrustedRole`.
 
-### 5.2.10 Adding a Role
+### 2.10 Adding a Role
 
 #### Purpose
 
@@ -358,7 +361,7 @@ body {
 
 1. The EUT correctly sent an AddResponse with a new Role instance.
 
-### 5.2.11 Permissions - Object Creation Allowed
+### 2.11 Permissions - Object Creation Allowed
 
 #### Purpose
 
@@ -435,7 +438,7 @@ body {
 2. The EUT sends an AddResponse with a oper_success element containing a
    new Device.LocalAgent.Subscription. object in step 2.
 
-### 5.2.12 Permissions - Object Creation Not Allowed
+### 2.12 Permissions - Object Creation Not Allowed
 
 #### Purpose
 
@@ -512,7 +515,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an Error containing type 7006 - Permission Denied.
 
-### 5.2.13 Permissions - Object Deletion Allowed
+### 2.13 Permissions - Object Deletion Allowed
 
 #### Purpose
 
@@ -588,7 +591,7 @@ body {
 2. The EUT sends an DeleteResponse with a oper_success element containing the
    Device.LocalAgent.Subscription. object in step 2.
 
-### 5.2.14 Permissions - Object Deletion Not Allowed
+### 2.14 Permissions - Object Deletion Not Allowed
 
 #### Purpose
 
@@ -664,7 +667,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an Error containing type 7006 - Permission Denied.
 
-### 5.2.15 Permissions - Parameter Update Allowed
+### 2.15 Permissions - Parameter Update Allowed
 
 #### Purpose
 
@@ -752,7 +755,7 @@ body {
 2. The EUT sends a SetResponse with a oper_success element containing
    Device.LocalAgent.Subscription.{i}.Alias in step 2.
 
-### 5.2.16 Permissions - Parameter Update Not Allowed
+### 2.16 Permissions - Parameter Update Not Allowed
 
 #### Purpose
 
@@ -839,7 +842,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an Error containing type 7006 - Permission Denied.
 
-### 5.2.17 Permissions - Operation Allowed
+### 2.17 Permissions - Operation Allowed
 
 #### Purpose
 
@@ -913,7 +916,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an OperateResponse with a req_output_args element in step 2.
 
-### 5.2.18 Permissions - Operation Not Allowed
+### 2.18 Permissions - Operation Not Allowed
 
 #### Purpose
 
@@ -987,7 +990,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an Error containing type 7006 - Permission Denied.
 
-### 5.2.19 Permissions - Value Change Notification Allowed on Parameter
+### 2.19 Permissions - Value Change Notification Allowed on Parameter
 
 #### Purpose
 
@@ -1089,7 +1092,7 @@ body {
 4. The EUT sends a Notify message with a value_change element pointing to
    `Device.LocalAgent.Controller.<Controller instance>.PeriodicNotifInterval`.
 
-### 5.2.20 Permissions - Value Change Notification Not Allowed on Parameter
+### 2.20 Permissions - Value Change Notification Not Allowed on Parameter
 
 #### Purpose
 
@@ -1181,7 +1184,7 @@ body {
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
 2. The EUT sends an Error containing type 7006 - Permission Denied.
 
-### 5.2.21 Permissions - Overlapping Permissions
+### 2.21 Permissions - Overlapping Permissions
 
 #### Purpose
 
@@ -1281,7 +1284,7 @@ body {
 2. The EUT sends a GetResponse with a result_params element containing
    parameters of the specified BootParameter instance.
 
-### 5.2.22 Using Get when no read permissions are available on some parameters
+### 2.22 Using Get when no read permissions are available on some parameters
 
 #### Purpose
 

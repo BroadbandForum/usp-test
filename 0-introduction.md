@@ -1,8 +1,97 @@
-**ID-369 - Conformance Test Plan for USP Agents**
+# WT-469 - Conformance Test Plan for User Services Platform Agents
 
 **Issue 1**
 
-# 1. Executive Summary
+You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TR-469.pdf)**.
+
+## Legal Notice
+
+  The Broadband Forum is a non-profit corporation organized to create
+  guidelines for broadband network system development and deployment.
+  This Technical Report has been approved by members of the Forum.
+  This Technical Report is subject to change.  This Technical Report
+  is copyrighted by the Broadband Forum, and all rights are reserved.
+  Portions of this Technical Report may be copyrighted by Broadband
+  Forum members.
+
+### Intellectual Property
+
+  Recipients of this Technical Report are requested to submit, with
+  their comments, notification of any relevant patent claims or other
+  intellectual property rights of which they may be aware that might
+  be infringed by any implementation of this Technical Report, or use
+  of any software code normatively referenced in this Technical Report,
+  and to provide supporting documentation.
+
+### Terms of Use
+
+#### License
+
+  Broadband Forum hereby grants you the right, without charge, on a
+  perpetual, non-exclusive and worldwide basis, to utilize the Technical
+  Report for the purpose of developing, making, having made, using,
+  marketing, importing, offering to sell or license, and selling or
+  licensing, and to otherwise distribute, products complying with the
+  Technical Report, in all cases subject to the conditions set forth
+  in this notice and any relevant patent and other intellectual
+  property rights of third parties (which may include members of
+  Broadband Forum).  This license grant does not include the right to
+  sublicense, modify or create derivative works based upon the
+  Technical Report except to the extent this Technical Report includes
+  text implementable in computer code, in which case your right under
+  this License to create and modify derivative works is limited to
+  modifying and creating derivative works of such code.  For the
+  avoidance of doubt, except as qualified by the preceding sentence,
+  products implementing this Technical Report are not deemed to be
+  derivative works of the Technical Report.
+
+#### NO WARRANTIES
+
+  THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER,
+  AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY
+  DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT
+  THE IMPLEMENTER'S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY
+  OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO
+  ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,
+  DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT.
+
+#### THIRD PARTY RIGHTS
+
+  Without limiting the generality of Section 2 above, BROADBAND FORUM
+  ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC
+  ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY
+  RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION
+  OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY
+  SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM
+  TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS,
+  OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED.
+
+  The text of this notice must be included in all copies of this
+  Technical Report.
+
+## Revision History
+
+### Release 1.0
+
+* First release of this test plan, containing test cases for basic compliance
+with TR-369/USP.
+
+## Editors
+
+| Name  | Company | Email | Role |
+| ------ | :-----: | :---: | :--- |
+| Jason Walls | QA Cafe, LLC | jason@qacafe.com | Editor
+
+## Work Area Directors
+
+| Name  | Company | Email | Role |
+| ------ | :-----: | :---: | :--- |
+| Jason Walls | QA Cafe, LLC | jason@qacafe.com | Broadband User Services Work Area Director
+| John Blackford | Arris | john.blackford@arris.com | Broadband User Services Work Area Director
+
+# Introduction
+
+## Executive Summary
 
 Testing is crucial to promoting the interoperability and adoption of
 standards. To meet this, the Broadband Forum regularly produces test
@@ -12,12 +101,12 @@ and test metrics to validate Agent and implementations of the
 [User Services Platform (USP)](https://usp.technology),
 published as BBF TR-369.
 
-# 2. Purpose
+## Purpose
 
 This purpose of this document is to provide a definitive guide for validating
 the compliance of USP Agents in accordance with the specification.
 
-# 3. Scope
+## Scope
 
 The tests defined below are intended to validate the specific
 requirements outlined in the USP specification, as well as those
@@ -25,9 +114,9 @@ requirements defined in the Device:2 Data Model for USP Agents for
 objects, parameters, commands, and events necessary for the operation of
 USP.
 
-# 4. Test Setup
+# Test Setup
 
-## 4.1 Test Equipment
+## Test Equipment
 
 There are a number of components necessary to the implementation of this
 test suite.
@@ -53,14 +142,14 @@ the Traffic Generator and the Endpoint Under Test (EUT). Steps SHOULD be
 taken to unsure that the underlying network does not interfere with the
 test procedures or test metrics.
 
-## 4.2 Test Setup and Execution
+## Test Setup and Execution
 
 
-### 4.2.1 Basic Test Setup
+### Basic Test Setup
 
 ![Figure 1](./figure-1.png)
 
-### 4.2.1 Mandatory vs. Conditional Mandatory Tests
+### Mandatory vs. Conditional Mandatory Tests
 
 USP contains both required and optional functionality. To ensure that
 all different classes of device can exercise this test suite, tests are
@@ -74,11 +163,11 @@ Tests that are conditional mandatory and have a particular parameter,
 command, event, or profile requirement, a different subject can be
 substituted that meets the needs of the test. For example, if an EUT
 does not support the Reboot:1 profile, another synchronous operation can
-be substituted for tests 5.1.61 and 5.1.62.
+be substituted for tests 1.61 and 1.62.
 
-### 4.2.2 Endpoint Requirements and Metadata Collection
+### Endpoint Requirements and Metadata Collection
 
-#### 4.2.2.1 Required Profiles
+#### Required Profiles
 
 The Device:2 Data Model for USP Agents outlines several profiles that
 contain data model objects, parameters, commands, and events necessary
@@ -92,7 +181,7 @@ a USP Agent MUST implement, at minimum, the following profiles:
 Conditional mandatory tests may require the implementation of additional
 profiles.
 
-##### 4.2.2.1.1 Additional Test Cases Required by Profile and Option Support
+##### Additional Test Cases Required by Profile and Option Support
 
 Those seeking to utilize this test plan can use the following feature IDs to
 specify their support for conditional mandatory test cases.
@@ -100,37 +189,37 @@ specify their support for conditional mandatory test cases.
 
 | Feature ID | Feature name | Test Cases | Notes |
 | :-------- | :-------------- | :--------- | :---- |
-| 1 | At least one command | 5.1.61, 5.1.62 | |
-| 2 | At least one command with input arguments | 5.1.63 | |
-| 3 | At least one asynchronous command | 5.1.64, 5.1.65 | |
-| 4 | Subscription.{i}.NotifExpiration parameter |  5.1.56 | An extension to the Subscription:1 profile |
-| 5 | Controller:1 profile | 5.1.59 | |
-| 7 | Controller:1 profile (writeable) | 5.9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
-| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 5.1.60 | |
-| 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 5.1.64, 5.1.65, 5.9.1 | |
-| 10 | Reboot:1 profile | 5.1.61, 5.1.62, 5.9.10 | |
-| 11 | TraceRoute:1 profile | 5.1.64, 5.1.65 | |
-| 12 | ControllerTrust:1 profile | 5.2.9, 5.2.10 | |
-| 13 | ControllerTrust:1 profile (writeable) | 5.2.4, 5.2.11, 5.2.12, 5.2.13, 5.2.14, 5.2.15, 5.2.16, 5.2.17, 5.2.18, 5.2.19, 5.2.20, 5.2.21, 5.2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
-| 14 | Self-signed controller certificates | 5.2.5 | |
-| 15 | TLS at the MTP Layer | 5.4.1 | |
-| 16 | CoAP Message Transport | 5.5.* | |
-| 17 | STOMP Message Transport | 5.6.* | Excludes 5.6.8 unless option 18 is supported |
-| 18 | STOMPHeartbeat:1 profile | 5.6.8 | |
-| 19 | WebSocket MTP | 5.7.* | Excludes 5.7.3 unless option 20 is supported |
-| 20 | TR-369 requirement R-WS.6 | 5.7.3 | |
-| 21 | Discovery via DHCP Options | 5.8.1, 5.8.2, 5.8.3 | |
-| 22 | Discovery via mDNS | 5.8.4, 5.8.5, 5.8.7 | |
-| 23 | Integrity protection at the USP layer | 5.3.2, 5.3.3, 5.3.4, 5.3.5, 5.3.6, 5.3.7 | |
-| 24 | USP session context | 5.3.8, 5.3.9, 5.3.10, 5.3.11, 5.3.12, 5.3.13, 5.3.14 | |
-| 25 | Device.LocalAgent.AddCertificate() | 5.9.2 | |
-| 26 | Firmware:1 profile | 5.9.3, 5.9.6, 5.9.7 | |
-| 27 | Firmware:1 profile (Activate) | 5.9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
-| 28 | Device.LocalAgent.Request.{i}.Cancel() | 5.9.8 | Applies only if option 26 is supported |
+| 1 | At least one command | 1.61, 1.62 | |
+| 2 | At least one command with input arguments | 1.63 | |
+| 3 | At least one asynchronous command | 1.64, 1.65 | |
+| 4 | Subscription.{i}.NotifExpiration parameter |  1.56 | An extension to the Subscription:1 profile |
+| 5 | Controller:1 profile | 1.59 | |
+| 7 | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
+| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60 | |
+| 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.64, 1.65, 9.1 | |
+| 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
+| 11 | TraceRoute:1 profile | 1.64, 1.65 | |
+| 12 | ControllerTrust:1 profile | 2.9, 2.10 | |
+| 13 | ControllerTrust:1 profile (writeable) | 2.4, 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
+| 14 | Self-signed controller certificates | 2.5 | |
+| 15 | TLS at the MTP Layer | 4.1 | |
+| 16 | CoAP MTP | 5.*, 8.5 | |
+| 17 | STOMP MTP | 6.* | Excludes 6.8 unless option 18 is supported |
+| 18 | STOMPHeartbeat:1 profile | 6.8 | |
+| 19 | WebSocket MTP | 7.* | Excludes 7.3 unless option 20 is supported |
+| 20 | TR-369 requirement R-WS.6 | 7.3 | |
+| 21 | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
+| 22 | Discovery via mDNS | 8.4, 8.5, 8.6 | |
+| 23 | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
+| 24 | USP session context | 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14 | |
+| 25 | Device.LocalAgent.AddCertificate() | 9.2 | |
+| 26 | Firmware:1 profile | 9.3, 9.6, 9.7 | |
+| 27 | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
+| 28 | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
+| 29 | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
+| 30 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 
-
-
-#### 4.2.2.2 Elements Specified in the Test Procedure
+#### Elements Specified in the Test Procedure
 
 Many of the mandatory and conditional mandatory tests specify the objects,
 parameters, or operations to be used for the test. If the specific elements
@@ -138,7 +227,7 @@ are not supported by the EUT, other elements that will satisfy the test criteria
 MAY be used instead. If so, the test report MUST include the alternate elements
 used.
 
-#### 4.2.2.3 Required EUT Information and Resources
+#### Required EUT Information and Resources
 
 In order to be able to perform the tests and create a report of the
 results, the following must be provided concerning the Endpoint Under
@@ -150,7 +239,7 @@ Test:
 4. If the service elements specified in the tests are not supported, provide a
 list of alternate elements used in the testing.
 
-### 4.2.3 Clean-Up Procedures
+### Clean-Up Procedures
 
 A number of tests that make changes to the EUT have procedures that are
 not part of the validation portion of the test case. These procedures
@@ -160,7 +249,7 @@ the next. The most obvious example is using the Delete message to remove
 any objects that were added as part of the procedure, but the clean-up
 procedure may include any number of steps.
 
-## 4.3 Universal Test Metrics
+## Universal Test Metrics
 
 Due to the nature of performative testing of protocol messages, certain
 requirements in the specification are effectively tested every time.
@@ -183,7 +272,7 @@ requirements must still be met by endpoint implementations.
 4.  Path Names in messages originating from the EUT use instance number
     addressing (R-MSG.3).
 
-## 4.4 Notes about test case descriptions
+## Notes about test case descriptions
 
 Each of the test cases below have the following sections:
 
@@ -204,7 +293,7 @@ to perform the test.
 **Test Metrics** - The metrics indicate the required behavior that must
 be observed to consider the test passed.
 
-### 4.4.1 Use of examples
+### Use of examples
 
 The test setup, procedure, and metrics in each test case may contain
 examples of the data to be sent to or received from the EUT. In these

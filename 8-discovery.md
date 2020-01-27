@@ -1,6 +1,6 @@
-## 5.8 Discovery Test Cases
+## 8 Discovery Test Cases
 
-### 5.8.1 DHCP Discovery - Agent Request Requirements
+### 8.1 DHCP Discovery - Agent Request Requirements
 
 #### Purpose
 
@@ -20,14 +20,14 @@ Conditional Mandatory (supports discovery via DHCP Options)
 #### Test Procedure
 
 1. Reboot the EUT.
-2. Wait for the EUT to requets an address via DHCP.
+2. Wait for the EUT to request an address via DHCP.
 
 #### Test Metrics
 
 1. The EUT includes a Vendor Class option with Enterprise Number 3561
    and vendor-class-data "usp" in the DHCP request.
 
-### 5.8.2 DHCP Discovery - Agent handling of recieved options
+### 8.2 DHCP Discovery - Agent handling of received options
 
 #### Purpose
 
@@ -73,7 +73,7 @@ body {
 1. The `ProvisioningCode` parameter found in the GetReponse matches the provisioning
    code configured on the DHCP server.
 
-### 5.8.3 DHCP Discovery - FQDN Leads to DNS Query
+### 8.3 DHCP Discovery - FQDN Leads to DNS Query
 
 #### Purpose
 
@@ -102,7 +102,7 @@ Conditional Mandatory (supports discovery via DHCP Options)
 1. After the EUT receives a FQDN in the DHCP Offer, the EUT uses
    DNS to retrive additional information about the controller.
 
-### 5.8.4 mDNS
+### 8.4 mDNS
 
 #### Purpose
 
@@ -111,17 +111,20 @@ mDNS.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports discovery via mDNS)
+Conditional Mandatory (supports discovery via mDNS, supports the Reboot:1 profile)
 
 #### Test Setup
 
 1. Ensure the EUT has mDNS enabled.
 2. Ensure the controller exists on the same network as the EUT.
+3. Ensure that the EUT has the Controller's URL, which contains ".local." is
+preconfigured on the EUT.
+4. Ensure that a Subscription exists for the Boot! event on the EUT with the
+test Controller as the Recipient.
 
 #### Test Procedure
 
-1. Configure the DHCP server to provide a controller URL with a FQDN
-   containing ".local.".
+1. Reboot the EUT.
 2. Wait for the EUT to send a mDNS request for the FQDN.
 3. Allow the controller to respond to the mDNS request.
 
@@ -130,21 +133,24 @@ Conditional Mandatory (supports discovery via mDNS)
 1. After the EUT receieves a FQDN via DHCP containing ".local."
    the EUT uses mDNS to resolve it.
 
-### 5.8.5 mDNS and Message Transfer Protocols
+### 8.5 mDNS and Message Transfer Protocols
 
 #### Purpose
 
 The purpose of this test is to ensure the EUT correctly advertises
-the MTPs it supports.
+the MTP it supports. This use case is exclusive to CoAP, so this test case
+only applies to CoAP based Endpoints.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports discovery via mDNS)
+Conditional Mandatory (supports discovery via mDNS, supports CoAP)
 
 #### Test Setup
 
 1. Ensure the EUT has mDNS enabled.
-2. Ensure the controller exists on the same network as the EUT.
+2. Ensure the Controller exists on the same network as the EUT.
+3. For STOMP connections, ensure the Agent has an active connection to a STOMP
+broker.
 
 #### Test Procedure
 
@@ -155,68 +161,9 @@ Conditional Mandatory (supports discovery via mDNS)
 #### Test Metrics
 
 1. The EUT sends an unsolicated multicast DNS response containing
-   in the anwser section a record for each supported MTP.
+   in the answer section a record for each supported MTP.
 
-### 5.8.6 DNS - Resolving non-local endpoints
-
-#### Purpose
-
-The purpose of this test is to ensure the EUT uses DNS to resolve
-FQDN when the domain is not applicable for resolution via mDNS.
-
-#### Functionality Tags
-
-Mandatory
-
-#### Test Setup
-
-1. Ensure the DHCP server providing an address to the EUT is configured to
-   provide a FQDN for a controller that does not contain ".local.".
-2. Ensure the EUT is configured to discover controllers via DHCP.
-3. Ensure the DHCP server is configured to provide a DNS server.
-
-#### Test Procedure
-
-1. Reboot the EUT.
-2. Allow the EUT to acquire an address.
-3. Wait for the EUT to send a DNS query for the FQDN acquired during DHCP controller
-   discovery.
-
-#### Test Metrics
-
-1. After the EUT receives a FQDN via DHCP controller discovery, it uses DNS to
-   resolve the FQDN.
-
-
-### 5.8.7 DNS - Unknown Resource Path
-
-#### Purpose
-
-The purpose of this test is to ensure the EUT used DNS-SD information about a
-controller when the resource path is not known.
-
-#### Functionallity Tags
-
-Mandatory
-
-#### Test Setup
-
-1. Configure the DHCP server to provide a FQDN that the EUT has never seen before.
-2. Ensure the EUT is configured to discover controllers via DHCP.
-
-#### Test Procedure
-
-1. Reboot the EUT.
-2. Allow the EUT to acquire an address via DHCP.
-3. Wait for the EUT to use DNS to resolve the FQDN.
-4. Wait for the EUT to request DNS-SD information.
-
-#### Test Metrics
-
-1. The EUT requests uses a DNS service discovery mechanism to
-   request additional information about the controller.
-
-### 5.8.8 DNS - DNS Record Requirements
+### 8.6 DNS - DNS Record Requirements
 
 #### Purpose
 
@@ -241,3 +188,27 @@ Conditional Mandatory (supports discovery via mDNS)
 1. The EUT sends a multicast mDNS advertisement containing a TXT record
    for every supported MTP.
 2. Every TXT record in the mDNS advertisement has a "path" and "name" attribute.
+
+### 8.7 mDNS request response
+
+#### Purpose
+
+The purpose of this test is to ensure the EUT will respond to mDNS requests.
+
+#### Functionality Tags
+
+Conditional Mandatory (supports discovery via mDNS)
+
+#### Test Setup
+
+1. Ensure that the EUT is configured to listen for mDNS requests.
+
+#### Test Procedure
+
+1. Reboot the EUT.
+2. Send an mDNS query to the multicast domain that includes the EUT.
+3. Wait for an mDNS response from the EUT.
+
+#### Test Metrics
+
+1. The EUT responds to the mDNS query with the proper information.
