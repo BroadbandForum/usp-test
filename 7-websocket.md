@@ -89,45 +89,23 @@ body {
 
 #### Purpose
 
-The purpose of this test is to ensure an EUT can accept
-the establishment of a WebSocket session from a USP controller.
+This test has been DEPRECATED as of version 1.0.1 of this test plan.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)
+N/A
 
 #### Test Setup
 
-1. Ensure the EUT is configured to use WebSockets.
-2. Configure the controller to block new WebSocket connections from
-   the EUT.
+N/A
 
 #### Test Procedure
 
-1. Reboot the EUT.
-2. Open a WebSocket connection to the EUT from the controller.
-3. Send a Get message to the EUT with the following structure:
-
-```
-header {
-    msg_id: "<msg_id>"
-    msg_type: GET
-}
-body {
-    request {
-        get {
-            param_paths: Device.DeviceInfo.
-        }
-    }
-}
-```
-
-4. Wait for a GetResponse from the EUT.
+N/A
 
 #### Test Metrics
 
-1. The EUT allows a WebSocket connection from the controller.
-2. The EUT sends a GetResponse.
+N/A
 
 ### 7.4 Closing a WebSocket Connection
 
