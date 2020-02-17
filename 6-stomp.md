@@ -283,7 +283,8 @@ body {
 
 2. Reboot the EUT.
 3. Wait for the EUT to reconnect to the STOMP server.
-4. Send a Get message to the EUT with the following structure:
+4. Allow the STOMP server to send a CONNECTED frame that does NOT include the subscribe-dest field.
+5. Send a Get message to the EUT with the following structure:
 
 ```
 header {
@@ -299,7 +300,7 @@ body {
 }
 ```
 
-5. Wait for a GetResponse from the EUT.
+6. Wait for a GetResponse from the EUT.
 
 #### Test Metrics
 
@@ -359,8 +360,7 @@ body {
 
 #### Test Metrics
 
-1. The EUT terminates the STOMP session after the STOMP server sends
-   a CONNECTION to the EUT.
+1. The EUT terminates the STOMP session by sending a DISCONNECT frame after the STOMP server sends a CONNECTED frame to the EUT.
 
 ### 6.8 Use of STOMP heartbeat mechanism
 
