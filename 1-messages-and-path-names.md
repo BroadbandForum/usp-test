@@ -5263,8 +5263,8 @@ body {
 #### Test Metrics
 
 1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element doesn't contain
-   any parameters, events, or params.
+2. None of the req\_obj\_results elements contain
+   any commands, events, or params.
 
 
 ### 1.75 GetSupportedDM using multiple objects, first\_level\_only true, all options
