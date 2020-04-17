@@ -1,75 +1,40 @@
-# WT-469 - Conformance Test Plan for User Services Platform Agents
+# TR-469 - Conformance Test Plan for User Services Platform Agents
 
-**Issue 1**
+**Issue 1 Corrigendum 1**
 
 You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TR-469.pdf)**.
 
-## Legal Notice
+## Notice
 
-  The Broadband Forum is a non-profit corporation organized to create
-  guidelines for broadband network system development and deployment.
-  This Technical Report has been approved by members of the Forum.
-  This Technical Report is subject to change.  This Technical Report
-  is copyrighted by the Broadband Forum, and all rights are reserved.
-  Portions of this Technical Report may be copyrighted by Broadband
-  Forum members.
+The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment.  This Technical Report has been approved by members of the Forum.  This Technical Report is subject to change.  This Technical Report is owned and copyrighted by the Broadband Forum, and all rights are reserved.  Portions of this Technical Report may be owned and/or copyrighted by Broadband Forum members.
 
-### Intellectual Property
+## Intellectual Property
 
-  Recipients of this Technical Report are requested to submit, with
-  their comments, notification of any relevant patent claims or other
-  intellectual property rights of which they may be aware that might
-  be infringed by any implementation of this Technical Report, or use
-  of any software code normatively referenced in this Technical Report,
-  and to provide supporting documentation.
+Recipients of this Technical Report are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Technical Report, or use of any software code normatively referenced in this Technical Report, and to provide supporting documentation.
 
-### Terms of Use
+## Terms of Use
 
-#### License
+1.  License
 
-  Broadband Forum hereby grants you the right, without charge, on a
-  perpetual, non-exclusive and worldwide basis, to utilize the Technical
-  Report for the purpose of developing, making, having made, using,
-  marketing, importing, offering to sell or license, and selling or
-  licensing, and to otherwise distribute, products complying with the
-  Technical Report, in all cases subject to the conditions set forth
-  in this notice and any relevant patent and other intellectual
-  property rights of third parties (which may include members of
-  Broadband Forum).  This license grant does not include the right to
-  sublicense, modify or create derivative works based upon the
-  Technical Report except to the extent this Technical Report includes
-  text implementable in computer code, in which case your right under
-  this License to create and modify derivative works is limited to
-  modifying and creating derivative works of such code.  For the
-  avoidance of doubt, except as qualified by the preceding sentence,
-  products implementing this Technical Report are not deemed to be
-  derivative works of the Technical Report.
+Broadband Forum hereby grants you the right, without charge, on a perpetual, non-exclusive and worldwide basis, to utilize the Technical Report for the purpose of developing, making, having made, using, marketing, importing, offering to sell or license, and selling or licensing, and to otherwise distribute, products complying with the Technical Report, in all cases subject to the conditions set forth in this notice and any relevant patent and other intellectual property rights of third parties (which may include members of Broadband Forum).  This license grant does not include the right to sublicense, modify or create derivative works based upon the Technical Report except to the extent this Technical Report includes text implementable in computer code, in which case your right under this License to create and modify derivative works is limited to modifying and creating derivative works of such code.  For the avoidance of doubt, except as qualified by the preceding sentence, products implementing this Technical Report are not deemed to be derivative works of the Technical Report.
 
-#### NO WARRANTIES
+2. NO WARRANTIES
 
-  THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER,
-  AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY
-  DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT
-  THE IMPLEMENTER'S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY
-  OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO
-  ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,
-  DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT.
+THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER'S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER, OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL, AND INDIRECT DAMAGES.
 
-#### THIRD PARTY RIGHTS
+3. THIRD PARTY RIGHTS
 
-  Without limiting the generality of Section 2 above, BROADBAND FORUM
-  ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC
-  ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY
-  RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION
-  OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY
-  SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM
-  TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS,
-  OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED.
+Without limiting the generality of Section 2 above, BROADBAND FORUM ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS, OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED. 
 
-  The text of this notice must be included in all copies of this
-  Technical Report.
+All copies of this Technical Report (or any portion hereof) must include the notices, legends, and other provisions set forth on this page.
 
 ## Revision History
+
+### Release 1.0.1
+
+* Deprecated test 7.3
+* Added flag to the features list to indicate which features are "not-in-force" and not yet available for certification
+* Various procedure and metric fixes
 
 ### Release 1.0
 
@@ -186,6 +151,8 @@ profiles.
 Those seeking to utilize this test plan can use the following feature IDs to
 specify their support for conditional mandatory test cases.
 
+*Note: Features marked with an asterisk ` * ` have not yet been validated for use in the Broadband Forum USP Agent Certification Program. These tests may be performed in accordance with this test plan, but are not available for certification as of the publication date of this document.*
+
 
 | Feature ID | Feature name | Test Cases | Notes |
 | :-------- | :-------------- | :--------- | :---- |
@@ -194,30 +161,31 @@ specify their support for conditional mandatory test cases.
 | 3 | At least one asynchronous command | 1.64, 1.65 | |
 | 4 | Subscription.{i}.NotifExpiration parameter |  1.56 | An extension to the Subscription:1 profile |
 | 5 | Controller:1 profile | 1.59 | |
-| 7 | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
+| 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
+| 7* | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
 | 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60 | |
 | 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.64, 1.65, 9.1 | |
 | 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
-| 11 | TraceRoute:1 profile | 1.64, 1.65 | |
-| 12 | ControllerTrust:1 profile | 2.9, 2.10 | |
-| 13 | ControllerTrust:1 profile (writeable) | 2.4, 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
-| 14 | Self-signed controller certificates | 2.5 | |
-| 15 | TLS at the MTP Layer | 4.1 | |
+| 11* | TraceRoute:1 profile | 1.64, 1.65 | |
+| 12* | ControllerTrust:1 profile | 2.9, 2.10 | |
+| 13* | ControllerTrust:1 profile (writeable) | 2.4, 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
+| 14* | Self-signed controller certificates | 2.5 | |
+| 15* | TLS at the MTP Layer | 4.1 | |
 | 16 | CoAP MTP | 5.*, 8.5 | |
 | 17 | STOMP MTP | 6.* | Excludes 6.8 unless option 18 is supported |
 | 18 | STOMPHeartbeat:1 profile | 6.8 | |
 | 19 | WebSocket MTP | 7.* | Excludes 7.3 unless option 20 is supported |
-| 20 | TR-369 requirement R-WS.6 | 7.3 | |
-| 21 | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
-| 22 | Discovery via mDNS | 8.4, 8.5, 8.6 | |
-| 23 | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
-| 24 | USP session context | 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14 | |
-| 25 | Device.LocalAgent.AddCertificate() | 9.2 | |
-| 26 | Firmware:1 profile | 9.3, 9.6, 9.7 | |
-| 27 | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
-| 28 | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
-| 29 | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
-| 30 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
+| 20* | TR-369 requirement R-WS.6 | 7.3 | |
+| 21* | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
+| 22* | Discovery via mDNS | 8.4, 8.5, 8.6 | |
+| 23* | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
+| 24* | USP session context | 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14 | |
+| 25* | Device.LocalAgent.AddCertificate() | 9.2 | |
+| 26* | Firmware:1 profile | 9.3, 9.6, 9.7 | |
+| 27* | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
+| 28* | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
+| 29* | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
+
 
 #### Elements Specified in the Test Procedure
 

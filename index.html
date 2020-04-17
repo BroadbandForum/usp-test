@@ -1,13 +1,29 @@
-<h1>Broadband Forum Technical Report 469 (TR-469)
-<h2>Conformance Test Plan for USP Agents</h2>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>TR-469 - Conformance Test Plan For USP Agents</title>
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
 <nav id="TOC" role="doc-toc">
 <ul>
-<li><a href="#wt-469---conformance-test-plan-for-user-services-platform-agents">WT-469 - Conformance Test Plan for User Services Platform Agents</a><ul>
-<li><a href="#legal-notice">Legal Notice</a><ul>
+<li><a href="#tr-469---conformance-test-plan-for-user-services-platform-agents">TR-469 - Conformance Test Plan for User Services Platform Agents</a><ul>
+<li><a href="#notice">Notice</a></li>
 <li><a href="#intellectual-property">Intellectual Property</a></li>
 <li><a href="#terms-of-use">Terms of Use</a></li>
-</ul></li>
 <li><a href="#revision-history">Revision History</a><ul>
+<li><a href="#release-1.0.1">Release 1.0.1</a></li>
 <li><a href="#release-1.0">Release 1.0</a></li>
 </ul></li>
 <li><a href="#editors">Editors</a></li>
@@ -216,22 +232,34 @@
 </ul></li>
 </ul>
 </nav>
-<h1 id="wt-469---conformance-test-plan-for-user-services-platform-agents">WT-469 - Conformance Test Plan for User Services Platform Agents</h1>
-<p><strong>Issue 1</strong></p>
+<h1 id="tr-469---conformance-test-plan-for-user-services-platform-agents">TR-469 - Conformance Test Plan for User Services Platform Agents</h1>
+<p><strong>Issue 1 Corrigendum 1</strong></p>
 <p>You can find a pdf version of this document <strong><a href="https://www.broadband-forum.org/technical/download/TR-469.pdf">here</a></strong>.</p>
-<h2 id="legal-notice">Legal Notice</h2>
-<p>The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment. This Technical Report has been approved by members of the Forum. This Technical Report is subject to change. This Technical Report is copyrighted by the Broadband Forum, and all rights are reserved. Portions of this Technical Report may be copyrighted by Broadband Forum members.</p>
-<h3 id="intellectual-property">Intellectual Property</h3>
+<h2 id="notice">Notice</h2>
+<p>The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment. This Technical Report has been approved by members of the Forum. This Technical Report is subject to change. This Technical Report is owned and copyrighted by the Broadband Forum, and all rights are reserved. Portions of this Technical Report may be owned and/or copyrighted by Broadband Forum members.</p>
+<h2 id="intellectual-property">Intellectual Property</h2>
 <p>Recipients of this Technical Report are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Technical Report, or use of any software code normatively referenced in this Technical Report, and to provide supporting documentation.</p>
-<h3 id="terms-of-use">Terms of Use</h3>
-<h4 id="license">License</h4>
+<h2 id="terms-of-use">Terms of Use</h2>
+<ol type="1">
+<li>License</li>
+</ol>
 <p>Broadband Forum hereby grants you the right, without charge, on a perpetual, non-exclusive and worldwide basis, to utilize the Technical Report for the purpose of developing, making, having made, using, marketing, importing, offering to sell or license, and selling or licensing, and to otherwise distribute, products complying with the Technical Report, in all cases subject to the conditions set forth in this notice and any relevant patent and other intellectual property rights of third parties (which may include members of Broadband Forum). This license grant does not include the right to sublicense, modify or create derivative works based upon the Technical Report except to the extent this Technical Report includes text implementable in computer code, in which case your right under this License to create and modify derivative works is limited to modifying and creating derivative works of such code. For the avoidance of doubt, except as qualified by the preceding sentence, products implementing this Technical Report are not deemed to be derivative works of the Technical Report.</p>
-<h4 id="no-warranties">NO WARRANTIES</h4>
-<p>THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT THE IMPLEMENTER’S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT.</p>
-<h4 id="third-party-rights">THIRD PARTY RIGHTS</h4>
+<ol start="2" type="1">
+<li>NO WARRANTIES</li>
+</ol>
+<p>THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER’S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER, OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL, AND INDIRECT DAMAGES.</p>
+<ol start="3" type="1">
+<li>THIRD PARTY RIGHTS</li>
+</ol>
 <p>Without limiting the generality of Section 2 above, BROADBAND FORUM ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS, OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED.</p>
-<p>The text of this notice must be included in all copies of this Technical Report.</p>
+<p>All copies of this Technical Report (or any portion hereof) must include the notices, legends, and other provisions set forth on this page.</p>
 <h2 id="revision-history">Revision History</h2>
+<h3 id="release-1.0.1">Release 1.0.1</h3>
+<ul>
+<li>Deprecated test 7.3</li>
+<li>Added flag to the features list to indicate which features are “not-in-force” and not yet available for certification</li>
+<li>Various procedure and metric fixes</li>
+</ul>
 <h3 id="release-1.0">Release 1.0</h3>
 <ul>
 <li>First release of this test plan, containing test cases for basic compliance with TR-369/USP.</li>
@@ -317,6 +345,7 @@
 <p>Conditional mandatory tests may require the implementation of additional profiles.</p>
 <h5 id="additional-test-cases-required-by-profile-and-option-support">Additional Test Cases Required by Profile and Option Support</h5>
 <p>Those seeking to utilize this test plan can use the following feature IDs to specify their support for conditional mandatory test cases.</p>
+<p><em>Note: Features marked with an asterisk <code>*</code> have not yet been validated for use in the Broadband Forum USP Agent Certification Program. These tests may be performed in accordance with this test plan, but are not available for certification as of the publication date of this document.</em></p>
 <table>
 <colgroup>
 <col style="width: 23%" />
@@ -364,148 +393,148 @@
 <td style="text-align: left;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">7</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">Device.LocalAgent.Subscription.{i}.TimeToLive</td>
+<td style="text-align: left;">1.55</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7*</td>
 <td style="text-align: left;">Controller:1 profile (writeable)</td>
 <td style="text-align: left;">9.9</td>
 <td style="text-align: left;">EUT allows the creation of Device.LocalAgent.Controller.{i}. objects</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">8</td>
 <td style="text-align: left;">Device.LocalAgent.Controller.{i}.SendOnBoardRequest()</td>
 <td style="text-align: left;">1.60</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">9</td>
 <td style="text-align: left;">Device.LocalAgent.Controller.{i}.ScheduleTimer()</td>
 <td style="text-align: left;">1.64, 1.65, 9.1</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">10</td>
 <td style="text-align: left;">Reboot:1 profile</td>
 <td style="text-align: left;">1.61, 1.62, 9.10</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">11</td>
+<tr class="odd">
+<td style="text-align: left;">11*</td>
 <td style="text-align: left;">TraceRoute:1 profile</td>
 <td style="text-align: left;">1.64, 1.65</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">12</td>
+<tr class="even">
+<td style="text-align: left;">12*</td>
 <td style="text-align: left;">ControllerTrust:1 profile</td>
 <td style="text-align: left;">2.9, 2.10</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">13</td>
+<tr class="odd">
+<td style="text-align: left;">13*</td>
 <td style="text-align: left;">ControllerTrust:1 profile (writeable)</td>
 <td style="text-align: left;">2.4, 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22</td>
 <td style="text-align: left;">Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">14</td>
+<tr class="even">
+<td style="text-align: left;">14*</td>
 <td style="text-align: left;">Self-signed controller certificates</td>
 <td style="text-align: left;">2.5</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">15</td>
+<tr class="odd">
+<td style="text-align: left;">15*</td>
 <td style="text-align: left;">TLS at the MTP Layer</td>
 <td style="text-align: left;">4.1</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">16</td>
 <td style="text-align: left;">CoAP MTP</td>
 <td style="text-align: left;">5.*, 8.5</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">17</td>
 <td style="text-align: left;">STOMP MTP</td>
 <td style="text-align: left;">6.*</td>
 <td style="text-align: left;">Excludes 6.8 unless option 18 is supported</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">18</td>
 <td style="text-align: left;">STOMPHeartbeat:1 profile</td>
 <td style="text-align: left;">6.8</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">19</td>
 <td style="text-align: left;">WebSocket MTP</td>
 <td style="text-align: left;">7.*</td>
 <td style="text-align: left;">Excludes 7.3 unless option 20 is supported</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">20</td>
+<tr class="even">
+<td style="text-align: left;">20*</td>
 <td style="text-align: left;">TR-369 requirement R-WS.6</td>
 <td style="text-align: left;">7.3</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">21</td>
+<tr class="odd">
+<td style="text-align: left;">21*</td>
 <td style="text-align: left;">Discovery via DHCP Options</td>
 <td style="text-align: left;">8.1, 8.2, 8.3</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">22</td>
+<tr class="even">
+<td style="text-align: left;">22*</td>
 <td style="text-align: left;">Discovery via mDNS</td>
 <td style="text-align: left;">8.4, 8.5, 8.6</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">23</td>
+<tr class="odd">
+<td style="text-align: left;">23*</td>
 <td style="text-align: left;">Secure Message Exchange (TLS for USP Record Integrity)</td>
 <td style="text-align: left;">3.2, 3.3, 3.4, 3.5, 3.6, 3.7</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">24</td>
+<tr class="even">
+<td style="text-align: left;">24*</td>
 <td style="text-align: left;">USP session context</td>
 <td style="text-align: left;">3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">25</td>
+<tr class="odd">
+<td style="text-align: left;">25*</td>
 <td style="text-align: left;">Device.LocalAgent.AddCertificate()</td>
 <td style="text-align: left;">9.2</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">26</td>
+<tr class="even">
+<td style="text-align: left;">26*</td>
 <td style="text-align: left;">Firmware:1 profile</td>
 <td style="text-align: left;">9.3, 9.6, 9.7</td>
 <td style="text-align: left;"></td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">27</td>
+<tr class="odd">
+<td style="text-align: left;">27*</td>
 <td style="text-align: left;">Firmware:1 profile (Activate)</td>
 <td style="text-align: left;">9.4</td>
 <td style="text-align: left;">Supports Firmware:1 profile and additionally supports the Activate() operation</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">28</td>
+<tr class="even">
+<td style="text-align: left;">28*</td>
 <td style="text-align: left;">Device.LocalAgent.Request.{i}.Cancel()</td>
 <td style="text-align: left;">9.8</td>
 <td style="text-align: left;">Applies only if option 26 is supported</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">29</td>
+<tr class="odd">
+<td style="text-align: left;">29*</td>
 <td style="text-align: left;">UntrustedRole disabled</td>
 <td style="text-align: left;">2.3</td>
 <td style="text-align: left;">The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">30</td>
-<td style="text-align: left;">Device.LocalAgent.Subscription.{i}.TimeToLive</td>
-<td style="text-align: left;">1.55</td>
-<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -756,7 +785,7 @@ body {
 <h4 id="test-metrics-2">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT sends an Error message.</p></li>
-<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.Subscription.”, and an err_code of 7010, “Unsupported Parameter”.</p></li>
+<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.Subscription.{i}.InvalidParameter”, and an err_code of 7010, “Unsupported Parameter”.</p></li>
 </ol>
 <h3 id="add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</h3>
 <h4 id="purpose-4">Purpose</h4>
@@ -807,7 +836,7 @@ body {
 <h4 id="test-metrics-3">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT sends an Error message.</p></li>
-<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.InvalidObject.”, and an err_code of 7016, “Object does not exist”.</p></li>
+<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.InvalidObject.”, and an err_code of 7026, “Invalid path”.</p></li>
 </ol>
 <h3 id="add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</h3>
 <h4 id="purpose-5">Purpose</h4>
@@ -982,7 +1011,7 @@ body {
 <h4 id="test-metrics-5">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT sends an Error message.</p></li>
-<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.InvalidObject.”, and an err_code of 7016, “Object does not exist”.</p></li>
+<li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.InvalidObject.”, and an err_code of 7026, “Invalid path”.</p></li>
 </ol>
 <h3 id="add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</h3>
 <h4 id="purpose-7">Purpose</h4>
@@ -1223,7 +1252,6 @@ body {
 <ol type="1">
 <li><p>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</p></li>
 <li><p>If the EUT has a limit on the number of instances of the Subscription object, ensure that the number of existing Subscription object instances is less than the maximum supported.</p></li>
-<li><p>Obtain the unique key values of the Device.LocalAgent. object that correlates with the that equates to the source of the test USP messages.</p></li>
 </ol>
 <h4 id="test-procedure-9">Test Procedure</h4>
 <ol type="1">
@@ -1342,7 +1370,7 @@ body {
 <h4 id="test-metrics-10">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</h3>
@@ -1399,7 +1427,7 @@ body {
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
 <li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.<instance
-number>.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+number>.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</h3>
@@ -1464,7 +1492,7 @@ body {
 <h4 id="test-metrics-12">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains two UpdatedObjectResults that each have an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The SetResp contains two UpdatedObjectResults that each have an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element for each object.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</h3>
@@ -1624,7 +1652,7 @@ body {
 <li><p>The EUT’s sends a SetResp.</p></li>
 <li><p>The SetResp contains two UpdatedObjectResults.</p>
 <ol type="a">
-<li><p>The first UpdatedObjectResult has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdatedInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The first UpdatedObjectResult has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdatedInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The second UpdatedObjectResult has an OperationStatus that is an element of type OperationFailure. The OperationFailure contains an err_code of “7020”, “Object could not be updated”, and a single UpdatedInstanceFailure element. The UpdatedInstanceFailure has an affected_path with a value of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.”, and a single ParameterError element.</p></li>
 <li><p>The ParameterError has a param element with a value of “NotifRetry”, an err_code of “7010”, “Unsupported parameter”</p></li>
 </ol></li>
@@ -1692,7 +1720,7 @@ body {
 <li><p>The SetResp contains a single UpdatedObjectResult with an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdatedInstanceResult element.</p>
 <ol type="a">
 <li><p>The UpdatedInstanceResult affected_path is equal to “Device.LocalAgent.Subscription.<instance number>.”.</p></li>
-<li><p>The UpdatedInstanceResult has a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The UpdatedInstanceResult has a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The UpdatedInstanceResult has a single ParameterError element, with the “param” field set to “InvalidParameter”, and an err_code of “7010”, “Unsupported parameter”.</p></li>
 </ol></li>
 <li><p>The retrieved value of NotifRetry matches the value set in the param_settings element.</p></li>
@@ -1721,7 +1749,7 @@ body {
     set {
       allow_partial: false
       update_objs {
-        obj_path: &quot;Device.LocalAgent.Subscription.&lt;instance identifier from test setup&gt;.&quot;
+        obj_path: &quot;Device.LocalAgent.Subscription.&lt;unique key instance identifier from test setup&gt;.&quot;
 
         param_settings {
          param: &quot;NotifRetry&quot;
@@ -1752,7 +1780,7 @@ body {
 <h4 id="test-metrics-17">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</h3>
@@ -1810,7 +1838,7 @@ body {
 <h4 id="test-metrics-18">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains two UpdatedObjectResults that each have an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The SetResp contains two UpdatedObjectResults that each have an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element for each object.</p></li>
 </ol>
 <h3 id="set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</h3>
@@ -1957,7 +1985,7 @@ body {
 <h4 id="test-metrics-21">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key and “true” as the value.</p></li>
+<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-invalid-path">1.23 Set message with invalid path</h3>
@@ -2070,8 +2098,7 @@ body {
 </ol>
 <h4 id="test-metrics-24">Test Metrics</h4>
 <ol type="1">
-<li><p>The EUT’s sends an Error message.</p></li>
-<li><p>The Error contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.”, and an err_code of 7016, “Object does not exist”.</p></li>
+<li>The EUT sends a DeleteResponse containing an empty oper_success element.</li>
 </ol>
 <h3 id="delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</h3>
 <h4 id="purpose-26">Purpose</h4>
@@ -2218,8 +2245,7 @@ body {
 </ol>
 <h4 id="test-metrics-28">Test Metrics</h4>
 <ol type="1">
-<li><p>The EUT’s sends a DeleteResp.</p></li>
-<li><p>The DeleteResp contains a single deleted_obj_result message with a requested_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.” and an oper_failure element, with err_code “7016”, “Object does not exist”.</p></li>
+<li>The EUT sends a DeleteResponse containing an empty oper_success element.</li>
 </ol>
 <h3 id="delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</h3>
 <h4 id="purpose-30">Purpose</h4>
@@ -2334,7 +2360,7 @@ body {
 <h4 id="test-metrics-31">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a DeleteResp.</p></li>
-<li><p>The DeleteResp contains two deleted_obj_results elements, one with an oper_success element, containing an affected_path element with the value Device.LocalAgent.Subscription.&lt;instance identifier&gt;.“, and the other with an oper_failure element containing an err_code of”7016“,”Object does not exist".</p></li>
+<li><p>The DeleteResp contains two deleted_obj_results elements, each with an empty oper_success element.</p></li>
 </ol>
 <h3 id="delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</h3>
 <h4 id="purpose-33">Purpose</h4>
@@ -2540,7 +2566,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-37">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains two req_path_results elements. The requested_path_results have no errors. Each contains a single resolved_path_results element. One resolved_path_result element contains a requested_path equal to “Device.LocalAgent.EndpointID”, a single resolved_path equal to “Device.LocalAgent.”, and a single result_params element with a key of “EndpointID” and a value equal to the EUT’s EndpointID. The other resolved_path_result element contains a requested_path equal to “Device.LocalAgent.Subscription..Enable”, a single resolved_path equal to “Device.LocalAgent.Subscription..”, and a single result_params element with a key of “Enable” with a valid value.</p></li>
+<li><p>The GetResp contains two req_path_results elements. The requested_path_results have no errors. Each contains a single resolved_path_results element. One resolved_path_result element contains a requested_path equal to “Device.LocalAgent.EndpointID”, a single resolved_path equal to “Device.LocalAgent.”, and a single result_params element with a key of “EndpointID” and a value equal to the EUT’s EndpointID. The other resolved_path_result element contains a requested_path equal to “Device.LocalAgent.Subscription.Enable”, a single resolved_path equal to “Device.LocalAgent.Subscription.”, and a single result_params element with a key of “Enable” with a valid value.</p></li>
 </ol>
 <h3 id="get-message-with-object-path">1.39 Get message with object path</h3>
 <h4 id="purpose-39">Purpose</h4>
@@ -2602,7 +2628,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-39">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription..”, and a single resolved_path_results element, with a resolved_path of “Device.LocalAgent.Subscription..”, and a number result_params elements contain keys and values of the parameters of “Device.LocalAgent.Subscription..”.</p></li>
+<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription.”, and a single resolved_path_results element, with a resolved_path of “Device.LocalAgent.Subscription.”, and a number result_params elements contain keys and values of the parameters of “Device.LocalAgent.Subscription.”.</p></li>
 <li><p>The keys of all result_params elements are relative paths.</p></li>
 </ol>
 <h3 id="get-message-with-invalid-parameter">1.41 Get message with invalid parameter</h3>
@@ -2633,7 +2659,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-40">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains a single req_path_results element. The requested_path_results has a requested_path equal to “Device.LocalAgent.InvalidParameter”, and an err_code of “7010”, “Unsupported Parameter”.</p></li>
+<li><p>The GetResp contains a single req_path_results element. The requested_path_results has a requested_path equal to “Device.LocalAgent.InvalidParameter”, and an err_code of “7026”, “Invalid path”.</p></li>
 </ol>
 <h3 id="get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</h3>
 <h4 id="purpose-42">Purpose</h4>
@@ -2664,7 +2690,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-41">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains two req_path_results elements. One requested_path_results has no errors, and contains a single resolved_path_results element. The resolved_path_results element contains a requested_path equal to “Device.LocalAgent.EndpointID”, a single resolved_path equal to “Device.LocalAgent.”, and a single result_params element with a key of “EndpointID” and a value equal to the EUT’s EndpointID. The other requested_path_results has a requested_path equal to “Device.LocalAgent.InvalidParameter”, and an err_code of “7010”, “Unsupported Parameter”.</p></li>
+<li><p>The GetResp contains two req_path_results elements. One requested_path_results has no errors, and contains a single resolved_path_results element. The resolved_path_results element contains a requested_path equal to “Device.LocalAgent.EndpointID”, a single resolved_path equal to “Device.LocalAgent.”, and a single result_params element with a key of “EndpointID” and a value equal to the EUT’s EndpointID. The other requested_path_results has a requested_path equal to “Device.LocalAgent.InvalidParameter”, and an err_code of “7026”, “Invalid path”.</p></li>
 </ol>
 <h3 id="get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</h3>
 <h4 id="purpose-43">Purpose</h4>
@@ -2695,7 +2721,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-42">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription..Enable”, and a single resolved_path_results element, with a resolved_path of “Device.LocalAgent.Subscription..”, and a result_params element contain with a key of “Enable” and a valid value.</p></li>
+<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription.Enable”, and a single resolved_path_results element, with a resolved_path of “Device.LocalAgent.Subscription.”, and a result_params element contain with a key of “Enable” and a valid value.</p></li>
 </ol>
 <h3 id="get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</h3>
 <h4 id="purpose-44">Purpose</h4>
@@ -2726,7 +2752,7 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <h4 id="test-metrics-43">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a GetResp.</p></li>
-<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription.*.Enable”, and at least two resolved_path_results elements, each with a resolved_path of “Device.LocalAgent.Subscription..”, and a result_params element contain with a key of “Enable” and a valid value.</p></li>
+<li><p>The GetResp contains a single req_path_results element. The requested_path_results has no errors, has a requested_path equal to “Device.LocalAgent.Subscription.*.Enable”, and at least two resolved_path_results elements, each with a resolved_path of “Device.LocalAgent.Subscription.”, and a result_params element contain with a key of “Enable” and a valid value.</p></li>
 </ol>
 <h3 id="get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</h3>
 <h4 id="purpose-45">Purpose</h4>
@@ -4182,7 +4208,7 @@ body {
 <h4 id="test-metrics-73">Test Metrics</h4>
 <ol type="1">
 <li>The EUT sends a GetSupportedDMResp.</li>
-<li>Every req_obj_results element doesn’t contain any parameters, events, or params.</li>
+<li>None of the req_obj_results elements contain any commands, events, or params.</li>
 </ol>
 <h3 id="getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</h3>
 <h4 id="purpose-75">Purpose</h4>
@@ -4685,10 +4711,13 @@ body {
 <p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
 <h4 id="test-setup-90">Test Setup</h4>
 <ol type="1">
-<li><p>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</p></li>
-<li><p>Ensure the Controller used for testing has an assigned Role that is writable.</p></li>
-<li><p>Ensure there is one or more Subscription object that can be deleted. #### Test Procedure</p></li>
-<li><p>Send an Add message to the EUT with the following structure:</p></li>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is one or more Subscription object that can be deleted.</li>
+</ol>
+<h4 id="test-procedure-87">Test Procedure</h4>
+<ol type="1">
+<li>Send an Add message to the EUT with the following structure:</li>
 </ol>
 <pre><code>header {
     msg_id: &quot;&lt;msg_id&gt;&quot;
@@ -4749,7 +4778,7 @@ body {
 <li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
 <li>Ensure there is one or more Subscription object that can be deleted.</li>
 </ol>
-<h4 id="test-procedure-87">Test Procedure</h4>
+<h4 id="test-procedure-88">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -4812,7 +4841,7 @@ body {
 <li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
 <li>Ensure there is one or more Subscription object that can be edited.</li>
 </ol>
-<h4 id="test-procedure-88">Test Procedure</h4>
+<h4 id="test-procedure-89">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -5244,7 +5273,7 @@ body {
 <li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
 <li>Ensure there is at least one BootParameter configured.</li>
 </ol>
-<h4 id="test-procedure-89">Test Procedure</h4>
+<h4 id="test-procedure-90">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -5329,7 +5358,7 @@ body {
 <li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
 <li>Ensure there is at least one BootParameter configured.</li>
 </ol>
-<h4 id="test-procedure-90">Test Procedure</h4>
+<h4 id="test-procedure-91">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -5393,7 +5422,7 @@ body {
 <li>Ensure the EUT is configured to not use a session context.</li>
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 </ol>
-<h4 id="test-procedure-91">Test Procedure</h4>
+<h4 id="test-procedure-92">Test Procedure</h4>
 <ol type="1">
 <li>Send a malformed USP Record to the EUT.</li>
 </ol>
@@ -5411,7 +5440,7 @@ body {
 <li>Ensure the relevant equipment are configured to NOT provide integrity protection at the MTP layer.</li>
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 </ol>
-<h4 id="test-procedure-92">Test Procedure</h4>
+<h4 id="test-procedure-93">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with a <code>payload_security</code> of PLAINTEXT.</li>
 </ol>
@@ -5428,7 +5457,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 </ol>
-<h4 id="test-procedure-93">Test Procedure</h4>
+<h4 id="test-procedure-94">Test Procedure</h4>
 <ol type="1">
 <li>Send a TLS “client hello” to the EUT to begin a session context as described in “<a href="https://usp.technology/specification/e2e-message-exchange/">End to End Message Exchange</a>” in TR-369 with an invalid mac_signature.</li>
 </ol>
@@ -5445,7 +5474,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT and controller are configured to secure the USP record payload with TLS.</li>
 </ol>
-<h4 id="test-procedure-94">Test Procedure</h4>
+<h4 id="test-procedure-95">Test Procedure</h4>
 <ol type="1">
 <li>Start a E2E session with the EUT using TLS to secure the payload.</li>
 <li>Send a Get message to the EUT with the following structure:</li>
@@ -5476,7 +5505,7 @@ body {
 <li>Configure the controller to use TLS12 as a <code>payload_security</code>.</li>
 <li>Ensure <code>PeriodicNotifInterval</code> is 60, and the controller used for testing is subscribed to Periodic Event Notification.</li>
 </ol>
-<h4 id="test-procedure-95">Test Procedure</h4>
+<h4 id="test-procedure-96">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -5513,7 +5542,7 @@ body {
 <ol type="1">
 <li>Ensure both the EUT and the controller are configured to use TLS payload security.</li>
 </ol>
-<h4 id="test-procedure-96">Test Procedure</h4>
+<h4 id="test-procedure-97">Test Procedure</h4>
 <ol type="1">
 <li>Establish a E2E session with the EUT.</li>
 <li>Send a request to renegotiate TLS in place of the payload.</li>
@@ -5546,7 +5575,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT and controller are configured to use TLS payload security.</li>
 </ol>
-<h4 id="test-procedure-97">Test Procedure</h4>
+<h4 id="test-procedure-98">Test Procedure</h4>
 <ol type="1">
 <li>Configure the controller to provide a X.509 certificate with a <code>subjectAltName</code> that does not match the controller’s USP endpoint ID.</li>
 <li>Attempt to start a session with the EUT and send a Get message with the following structure:</li>
@@ -5578,7 +5607,7 @@ body {
 <li>Ensure the EUT and controller have the nessesary information to establish a connection and exchange USP messages.</li>
 <li>Ensure at the start of the test there is no existing session context between the EUT and controller.</li>
 </ol>
-<h4 id="test-procedure-98">Test Procedure</h4>
+<h4 id="test-procedure-99">Test Procedure</h4>
 <ol type="1">
 <li>Start a session context with the EUT and send a Get message with the following structure:</li>
 </ol>
@@ -5606,7 +5635,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT and controller have the nessesary information to establish a session and exchange USP messages.</li>
 </ol>
-<h4 id="test-procedure-99">Test Procedure</h4>
+<h4 id="test-procedure-100">Test Procedure</h4>
 <ol type="1">
 <li>Start a session with the EUT using a session context.</li>
 <li>Send a Get message to the EUT for <code>Device.DeviceInfo.</code> using a USP Record with the following structure:</li>
@@ -5637,7 +5666,7 @@ body {
 <li>Ensure the EUT and controller have the nessesary information required to start a session and exchange USP records.</li>
 <li>Ensure the controller is subscribed to Periodic! event.</li>
 </ol>
-<h4 id="test-procedure-100">Test Procedure</h4>
+<h4 id="test-procedure-101">Test Procedure</h4>
 <ol type="1">
 <li>Send a Set message to the EUT with the following structure:</li>
 </ol>
@@ -5723,7 +5752,7 @@ body {
 <li>Ensure the EUT and controller have the nessesary information to start a session and exchange USP messages.</li>
 <li>Ensure the controller is not subscribed to any events on the EUT.</li>
 </ol>
-<h4 id="test-procedure-101">Test Procedure</h4>
+<h4 id="test-procedure-102">Test Procedure</h4>
 <ol type="1">
 <li>Start a session with the EUT.</li>
 <li>Send a Get message to the EUT with the expected <code>sequence_id</code> and <code>expected_id</code> for <code>Device.DeviceInfo.ModelNumber</code>.</li>
@@ -5781,7 +5810,7 @@ body {
 <li>Ensure the EUT and controller have the nessesary information to start a session and exchange USP messages.</li>
 <li>Ensure the EUT and controller have the nessesary information to secure the USP record payload using TLS.</li>
 </ol>
-<h4 id="test-procedure-102">Test Procedure</h4>
+<h4 id="test-procedure-103">Test Procedure</h4>
 <ol type="1">
 <li>Starts a session with the EUT using <code>payload_security</code> TLS12.</li>
 <li>After the session is established, send the following Get message for any valid parameter using <code>payload_security</code> PLAINTEXT and a plaintext.</li>
@@ -5800,7 +5829,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT and controller have the nessesary information to start a session and exchange USP messages.</li>
 </ol>
-<h4 id="test-procedure-103">Test Procedure</h4>
+<h4 id="test-procedure-104">Test Procedure</h4>
 <ol type="1">
 <li>Send a Set message to the EUT with the following structure:</li>
 </ol>
@@ -5844,7 +5873,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT and controller have the nessesary information to start session and exchange USP messages.</li>
 </ol>
-<h4 id="test-procedure-104">Test Procedure</h4>
+<h4 id="test-procedure-105">Test Procedure</h4>
 <ol type="1">
 <li>Start a session with the EUT.</li>
 <li>Send a Get message to the EUT requesting a parameter that is known to exist.</li>
@@ -5866,7 +5895,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>Configure a secondary Controller outside the network boundary of the EUT.</li>
 </ol>
-<h4 id="test-procedure-105">Test Procedure</h4>
+<h4 id="test-procedure-106">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -5961,7 +5990,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-106">Test Procedure</h4>
+<h4 id="test-procedure-107">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -5994,7 +6023,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-107">Test Procedure</h4>
+<h4 id="test-procedure-108">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -6026,7 +6055,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-108">Test Procedure</h4>
+<h4 id="test-procedure-109">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -6055,7 +6084,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-109">Test Procedure</h4>
+<h4 id="test-procedure-110">Test Procedure</h4>
 <ol type="1">
 <li>Configure the to not send 2.04 Changed responses to CoAP messages</li>
 <li>Send a Get message to the EUT with the following structure:</li>
@@ -6091,7 +6120,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 <li>The EUT the Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-110">Test Procedure</h4>
+<h4 id="test-procedure-111">Test Procedure</h4>
 <ol type="1">
 <li>Send a USP record to the EUT using a CoAP message with method code <code>0x06</code>.</li>
 <li>Wait up to 60 seconds for the EUT to send a CoAP response.</li>
@@ -6111,7 +6140,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-111">Test Procedure</h4>
+<h4 id="test-procedure-112">Test Procedure</h4>
 <ol type="1">
 <li>Send a USP record to the EUT using a CoAP message with Content-Format option <code>0x113a</code>.</li>
 <li>Wait up to 60 second for the EUT to respond.</li>
@@ -6131,7 +6160,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 <li>The EUT and Controller are configured to communicate over CoAP.</li>
 </ol>
-<h4 id="test-procedure-112">Test Procedure</h4>
+<h4 id="test-procedure-113">Test Procedure</h4>
 <ol type="1">
 <li>Send a malformed USP record to the EUT in a CoAP message.</li>
 <li>Wait up to 60 seconds for the EUT to send a CoAP reply.</li>
@@ -6152,7 +6181,7 @@ body {
 <li>The EUT and Controller are configured to communicate over CoAP using DTLS.</li>
 <li>The EUT and Controller have the necessary information about one another to establish an encrypted channel of communication.</li>
 </ol>
-<h4 id="test-procedure-113">Test Procedure</h4>
+<h4 id="test-procedure-114">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -6185,7 +6214,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP records to each other.</li>
 </ol>
-<h4 id="test-procedure-114">Test Procedure</h4>
+<h4 id="test-procedure-115">Test Procedure</h4>
 <ol type="1">
 <li>Send a GetSupportedDM message to the EUT with the following structure:</li>
 </ol>
@@ -6222,7 +6251,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT is configured to use a STOMP server that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-115">Test Procedure</h4>
+<h4 id="test-procedure-116">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to reconnect to the STOMP server and subscribe to a destination.</li>
@@ -6240,7 +6269,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT is configured to use a STOMP server that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-116">Test Procedure</h4>
+<h4 id="test-procedure-117">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure</li>
 </ol>
@@ -6288,7 +6317,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT is configured to use a STOMP server that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-117">Test Procedure</h4>
+<h4 id="test-procedure-118">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -6321,7 +6350,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT is configured to use a STOMP server that is part of the test environment.</li>
 </ol>
-<h4 id="test-procedure-118">Test Procedure</h4>
+<h4 id="test-procedure-119">Test Procedure</h4>
 <ol type="1">
 <li>Configure the STOMP server to send an unused destination via the <code>subscribe-dest</code> header in the CONNECTED frames.</li>
 <li>Reboot the EUT.</li>
@@ -6356,7 +6385,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT is configured to use a STOMP server that is part of the test environment.</li>
 </ol>
-<h4 id="test-procedure-119">Test Procedure</h4>
+<h4 id="test-procedure-120">Test Procedure</h4>
 <ol type="1">
 <li>Send a Set message to the EUT with the following structure:</li>
 </ol>
@@ -6382,6 +6411,7 @@ body {
 <ol start="2" type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to reconnect to the STOMP server.</li>
+<li>Allow the STOMP server to send a CONNECTED frame that does NOT include the subscribe-dest field.</li>
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
 <pre><code>header {
@@ -6395,7 +6425,7 @@ body {
         }
     }
 }</code></pre>
-<ol start="5" type="1">
+<ol start="6" type="1">
 <li>Wait for a GetResponse from the EUT.</li>
 </ol>
 <h4 id="test-metrics-128">Test Metrics</h4>
@@ -6413,7 +6443,7 @@ body {
 <li>The EUT is configured to use a STOMP server which exists in the test environment.</li>
 <li>Configure the STOMP server to not provide a <code>subscribe-dest</code> header in the CONNECTED frame.</li>
 </ol>
-<h4 id="test-procedure-120">Test Procedure</h4>
+<h4 id="test-procedure-121">Test Procedure</h4>
 <ol type="1">
 <li>Send a Set message to the EUT with the following structure:</li>
 </ol>
@@ -6444,7 +6474,7 @@ body {
 </ol>
 <h4 id="test-metrics-129">Test Metrics</h4>
 <ol type="1">
-<li>The EUT terminates the STOMP session after the STOMP server sends a CONNECTION to the EUT.</li>
+<li>The EUT terminates the STOMP session by sending a DISCONNECT frame after the STOMP server sends a CONNECTED frame to the EUT.</li>
 </ol>
 <h3 id="use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</h3>
 <h4 id="purpose-129">Purpose</h4>
@@ -6508,7 +6538,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT is configured to use a STOMP server that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-121">Test Procedure</h4>
+<h4 id="test-procedure-122">Test Procedure</h4>
 <ol type="1">
 <li>Send a malformed USP record to the EUT.</li>
 <li>Wait 60 seconds for the EUT to send a response.</li>
@@ -6527,7 +6557,7 @@ body {
 <li>Ensure the EUT is configured to use a STOMP server that exists in the test environment.</li>
 <li>Ensure the STOMP server is configured to not provide a destination via the <code>subscribe-dest</code> header.</li>
 </ol>
-<h4 id="test-procedure-122">Test Procedure</h4>
+<h4 id="test-procedure-123">Test Procedure</h4>
 <ol type="1">
 <li>Send a Set message to the EUT with the following structure:</li>
 </ol>
@@ -6567,7 +6597,7 @@ body {
 <li>Ensure the EUT is configured to the use a STOMP server that exists in the test environment.</li>
 <li>Ensure the EUT and STOMP server are configured with the appropriate certificates to communicate over TLS.</li>
 </ol>
-<h4 id="test-procedure-123">Test Procedure</h4>
+<h4 id="test-procedure-124">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT</li>
 <li>Wait for the EUT to reconnect to the STOMP server</li>
@@ -6601,7 +6631,7 @@ body {
 <ol type="1">
 <li>Ensure the EUT is configured to use WebSocket and to communicate to the controller that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-124">Test Procedure</h4>
+<h4 id="test-procedure-125">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to reconnect to the controller.</li>
@@ -6630,12 +6660,12 @@ body {
 <h4 id="purpose-134">Purpose</h4>
 <p>The purpose of this test is to ensure the EUT maintains only one WebSocket connection to a controller at a time.</p>
 <h4 id="functionality-tags-54">Functionality Tags</h4>
-<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+<p>Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)</p>
 <h4 id="test-setup-135">Test Setup</h4>
 <ol type="1">
 <li>Ensure the EUT is configured to use WebSocket and to comminucate to the controller that exists in the test environment.</li>
 </ol>
-<h4 id="test-procedure-125">Test Procedure</h4>
+<h4 id="test-procedure-126">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT using the following structure:</li>
 </ol>
@@ -6660,39 +6690,15 @@ body {
 </ol>
 <h3 id="agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</h3>
 <h4 id="purpose-135">Purpose</h4>
-<p>The purpose of this test is to ensure an EUT can accept the establishment of a WebSocket session from a USP controller.</p>
+<p>This test has been DEPRECATED as of version 1.0.1 of this test plan.</p>
 <h4 id="functionality-tags-55">Functionality Tags</h4>
-<p>Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)</p>
+<p>N/A</p>
 <h4 id="test-setup-136">Test Setup</h4>
-<ol type="1">
-<li>Ensure the EUT is configured to use WebSockets.</li>
-<li>Configure the controller to block new WebSocket connections from the EUT.</li>
-</ol>
-<h4 id="test-procedure-126">Test Procedure</h4>
-<ol type="1">
-<li>Reboot the EUT.</li>
-<li>Open a WebSocket connection to the EUT from the controller.</li>
-<li>Send a Get message to the EUT with the following structure:</li>
-</ol>
-<pre><code>header {
-    msg_id: &quot;&lt;msg_id&gt;&quot;
-    msg_type: GET
-}
-body {
-    request {
-        get {
-            param_paths: Device.DeviceInfo.
-        }
-    }
-}</code></pre>
-<ol start="4" type="1">
-<li>Wait for a GetResponse from the EUT.</li>
-</ol>
+<p>N/A</p>
+<h4 id="test-procedure-127">Test Procedure</h4>
+<p>N/A</p>
 <h4 id="test-metrics-137">Test Metrics</h4>
-<ol type="1">
-<li>The EUT allows a WebSocket connection from the controller.</li>
-<li>The EUT sends a GetResponse.</li>
-</ol>
+<p>N/A</p>
 <h3 id="closing-a-websocket-connection">7.4 Closing a WebSocket Connection</h3>
 <h4 id="purpose-136">Purpose</h4>
 <p>The purpose of this test is to ensure the EUT correctly implements the procedure to close a WebSocket connection.</p>
@@ -6703,7 +6709,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket.</li>
 <li>Ensure there is an active WebSocket connection between the EUT and the controller that was initiated by the EUT.</li>
 </ol>
-<h4 id="test-procedure-127">Test Procedure</h4>
+<h4 id="test-procedure-128">Test Procedure</h4>
 <ol type="1">
 <li>Send a <code>Close</code> WebSocket control frame to the EUT.</li>
 <li>Wait for the EUT to close the underlying TCP session.</li>
@@ -6722,7 +6728,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket.</li>
 <li>Configure the controller to reject WebSocket connections from the EUT.</li>
 </ol>
-<h4 id="test-procedure-128">Test Procedure</h4>
+<h4 id="test-procedure-129">Test Procedure</h4>
 <ol type="1">
 <li>Configure he controller to not include the <code>Sec-WebSocket-Protocol</code> when opening new WebSocket connections.</li>
 <li>Reboot the EUT</li>
@@ -6742,7 +6748,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket</li>
 <li>Ensure there is an active WebSocket connection between the EUT and controller.</li>
 </ol>
-<h4 id="test-procedure-129">Test Procedure</h4>
+<h4 id="test-procedure-130">Test Procedure</h4>
 <ol type="1">
 <li>Send a malformed USP record to the EUT.</li>
 </ol>
@@ -6760,7 +6766,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket</li>
 <li>Ensure there is an active WebSocket session between the EUT and the Controller.</li>
 </ol>
-<h4 id="test-procedure-130">Test Procedure</h4>
+<h4 id="test-procedure-131">Test Procedure</h4>
 <ol type="1">
 <li>Send a <code>Ping</code> control frame to the EUT.</li>
 <li>Wait up to 60 seconds for a <code>Pong</code> control frame from the EUT.</li>
@@ -6781,7 +6787,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket.</li>
 <li>Ensure there is an active WebSocket connection between the EUT and controller.</li>
 </ol>
-<h4 id="test-procedure-131">Test Procedure</h4>
+<h4 id="test-procedure-132">Test Procedure</h4>
 <ol type="1">
 <li>Send a Get message to the EUT with the following structure:</li>
 </ol>
@@ -6818,7 +6824,7 @@ body {
 <li>Ensure the EUT is configured to use WebSocket.</li>
 <li>Ensure the EUT and controller both have the required certificates to secure a websocket connection.</li>
 </ol>
-<h4 id="test-procedure-132">Test Procedure</h4>
+<h4 id="test-procedure-133">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to connect to the controller.</li>
@@ -6854,7 +6860,7 @@ body {
 <li>Ensure the EUT is configured to request controller DHCP information.</li>
 <li>Ensure the EUT is configured to acquire an address via DHCP.</li>
 </ol>
-<h4 id="test-procedure-133">Test Procedure</h4>
+<h4 id="test-procedure-134">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to request an address via DHCP.</li>
@@ -6874,7 +6880,7 @@ body {
 <li>Ensure the EUT is configured to acquire an address via DHCP.</li>
 <li>Ensure the EUT’s <code>ProvisioningCode</code> parameter is set to a value other than that which will be set during the test procedure.</li>
 </ol>
-<h4 id="test-procedure-134">Test Procedure</h4>
+<h4 id="test-procedure-135">Test Procedure</h4>
 <ol type="1">
 <li>Configure the DHCP server to provide a null terminated provisioning code.</li>
 <li>Reboot the EUT.</li>
@@ -6909,7 +6915,7 @@ body {
 <li>Ensure the EUT is configured to request controller information via DHCP.</li>
 <li>Ensure the EUT is configured to acquire an address via DHCP.</li>
 </ol>
-<h4 id="test-procedure-135">Test Procedure</h4>
+<h4 id="test-procedure-136">Test Procedure</h4>
 <ol type="1">
 <li>Configure the DHCP server to provide a controller URL with a FQDN.</li>
 <li>Reboot the EUT.</li>
@@ -6933,7 +6939,7 @@ body {
 <li>Ensure that the EUT has the Controller’s URL, which contains “.local.” is preconfigured on the EUT.</li>
 <li>Ensure that a Subscription exists for the Boot! event on the EUT with the test Controller as the Recipient.</li>
 </ol>
-<h4 id="test-procedure-136">Test Procedure</h4>
+<h4 id="test-procedure-137">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to send a mDNS request for the FQDN.</li>
@@ -6954,7 +6960,7 @@ body {
 <li>Ensure the Controller exists on the same network as the EUT.</li>
 <li>For STOMP connections, ensure the Agent has an active connection to a STOMP broker.</li>
 </ol>
-<h4 id="test-procedure-137">Test Procedure</h4>
+<h4 id="test-procedure-138">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to acquire an address.</li>
@@ -6973,7 +6979,7 @@ body {
 <ol type="1">
 <li>Ensure mDNS is enabled on the EUT.</li>
 </ol>
-<h4 id="test-procedure-138">Test Procedure</h4>
+<h4 id="test-procedure-139">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Wait for the EUT to acquire a new address.</li>
@@ -6993,7 +6999,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT is configured to listen for mDNS requests.</li>
 </ol>
-<h4 id="test-procedure-139">Test Procedure</h4>
+<h4 id="test-procedure-140">Test Procedure</h4>
 <ol type="1">
 <li>Reboot the EUT.</li>
 <li>Send an mDNS query to the multicast domain that includes the EUT.</li>
@@ -7013,7 +7019,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 </ol>
-<h4 id="test-procedure-140">Test Procedure</h4>
+<h4 id="test-procedure-141">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7049,7 +7055,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>Have an alternate certificate that the EUT hasn’t seen.</li>
 </ol>
-<h4 id="test-procedure-141">Test Procedure</h4>
+<h4 id="test-procedure-142">Test Procedure</h4>
 <ol type="1">
 <li><p>Send an Operate message to the EUT with the following structure:</p>
 <pre><code>header {
@@ -7114,7 +7120,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>Ensure that the EUT has a Subscription to the TransferComplete! and Boot! events with the recipient being the instance used for testing.</li>
 </ol>
-<h4 id="test-procedure-142">Test Procedure</h4>
+<h4 id="test-procedure-143">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7169,7 +7175,7 @@ body {
 <li>Ensure the EUT has a FirmwareImage instance containing inactive firmware.</li>
 <li>Ensure the EUT has a Subscription instance for Boot! with the used for testing set as the Recipient.</li>
 </ol>
-<h4 id="test-procedure-143">Test Procedure</h4>
+<h4 id="test-procedure-144">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7221,7 +7227,7 @@ body {
 <li>Ensure the EUT has a FirmwareImage instance containing inactive firmware.</li>
 <li>Ensure the EUT has a Subscription to the Boot! event with the Controller used for testing set as the Recipient.</li>
 </ol>
-<h4 id="test-procedure-144">Test Procedure</h4>
+<h4 id="test-procedure-145">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7273,7 +7279,7 @@ body {
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 <li>Ensure that the EUT has a Subscription to the TransferComplete! event with the recipient being the instance used for testing.</li>
 </ol>
-<h4 id="test-procedure-145">Test Procedure</h4>
+<h4 id="test-procedure-146">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure using an invalid checksum:</li>
 </ol>
@@ -7326,7 +7332,7 @@ body {
 <li>Ensure the EUT has a Subscription to the Boot! event and the Controller used for testing is set as the Recipient.</li>
 <li>Record the number of firmware banks the EUT supports.</li>
 </ol>
-<h4 id="test-procedure-146">Test Procedure</h4>
+<h4 id="test-procedure-147">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7364,7 +7370,7 @@ body {
 <li>Ensure the EUT has inactive firmware in one of FirmwareImage slots.</li>
 <li>Ensure the EUT has a subscription to the Boot! event with the Controller used for testing set as the Recipient.</li>
 </ol>
-<h4 id="test-procedure-147">Test Procedure</h4>
+<h4 id="test-procedure-148">Test Procedure</h4>
 <ol type="1">
 <li>Send an Operate message to the EUT with the following structure:</li>
 </ol>
@@ -7432,7 +7438,7 @@ body {
 <li>A valid certificate instance is configured on the EUT</li>
 <li>A secondary Controller is configured and ready to communicate with another endpoint.</li>
 </ol>
-<h4 id="test-procedure-148">Test Procedure</h4>
+<h4 id="test-procedure-149">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure.</li>
 </ol>
@@ -7527,7 +7533,7 @@ body {
 <ol type="1">
 <li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
 </ol>
-<h4 id="test-procedure-149">Test Procedure</h4>
+<h4 id="test-procedure-150">Test Procedure</h4>
 <ol type="1">
 <li>Send an Add message to the EUT with the following structure:</li>
 </ol>
@@ -7594,3 +7600,5 @@ body {
 <ol type="1">
 <li>After step 2 the EUT sends a Notify message with an event element containing a ParameterMap argument with Device.LocalAgent.BootFirmwareImage</li>
 </ol>
+</body>
+</html>

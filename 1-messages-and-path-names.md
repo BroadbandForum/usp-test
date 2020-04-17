@@ -309,8 +309,7 @@ Mandatory
 
 2.  The Error message contains an err_code of 7004, "Invalid
     arguments", with the param_errs element containing a single error
-    with a param_path of "Device.LocalAgent.Subscription.", and an
-    err_code of 7010, "Unsupported Parameter".
+    with a param_path of "Device.LocalAgent.Subscription.{i}.InvalidParameter", and an err_code of 7010, "Unsupported Parameter".
 
 ### 1.4 Add message with allow partial false, single invalid object
 
@@ -380,7 +379,7 @@ Mandatory
 2.  The Error message contains an err_code of 7004, "Invalid
     arguments", with the param_errs element containing a single error
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
-    err_code of 7016, "Object does not exist".
+    err_code of 7026, "Invalid path".
 
 ### 1.5 Add message with allow partial false, multiple objects
 
@@ -612,7 +611,7 @@ Mandatory
 2.  The Error message contains an err_code of 7004, "Invalid
     arguments", with the param_errs element containing a single error
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
-    err_code of 7016, "Object does not exist".
+    err_code of 7026, "Invalid path".
 
 ### 1.7 Add message with allow partial false, multiple objects, required parameters fail in single object
 
@@ -936,10 +935,6 @@ Mandatory
     Subscription object, ensure that the number of existing Subscription
     object instances is less than the maximum supported.
 
-3.  Obtain the unique key values of the Device.LocalAgent.
-    object that correlates with the  that equates to the
-    source of the test USP messages.
-
 #### Test Procedure
 
 1.  Send an Add message to the EUT with the following structure:
@@ -1108,7 +1103,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element.
@@ -1191,7 +1186,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.<instance
     number>.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element.
@@ -1283,7 +1278,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
@@ -1506,7 +1501,7 @@ Mandatory
         a single UpdatedInstanceResult, with the affected_path equal to
         "Device.LocalAgent.Subscription.&lt;instance number&gt;.", and a
         single entry in the updated_params map containing "NotifRetry"
-        as the key and "true" as the value.
+        as the key.
 
     b.  The second UpdatedObjectResult has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
@@ -1609,8 +1604,7 @@ Mandatory
         "Device.LocalAgent.Subscription.<instance number>.".
 
     b.  The UpdatedInstanceResult has a single entry in the
-        updated_params map containing "NotifRetry" as the key and
-        "true" as the value.
+        updated_params map containing "NotifRetry" as the key.
 
     c.  The UpdatedInstanceResult has a single ParameterError element,
         with the "param" field set to "InvalidParameter", and an
@@ -1654,7 +1648,7 @@ Mandatory
           set {
             allow_partial: false
             update_objs {
-              obj_path: "Device.LocalAgent.Subscription.<instance identifier from test setup>."
+              obj_path: "Device.LocalAgent.Subscription.<unique key instance identifier from test setup>."
 
               param_settings {
                param: "NotifRetry"
@@ -1696,7 +1690,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element.
@@ -1780,7 +1774,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
@@ -1994,7 +1988,7 @@ Mandatory
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key and "true" as the value.
+    containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element.
@@ -2158,12 +2152,7 @@ structure:
 
 #### Test Metrics
 
-1. The EUT's sends an Error message.
-
-2. The Error contains an err_code of 7004, "Invalid
-arguments", with the param_errs element containing a single error with
-a param_path of "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.", and an err_code of
-7016, "Object does not exist".
+1. The EUT sends a DeleteResponse containing an empty oper_success element.
 
 ### 1.26 Delete message with allow partial false, invalid object
 
@@ -2378,11 +2367,7 @@ structure:
 
 #### Test Metrics
 
-1. The EUT's sends a DeleteResp.
-
-2. The DeleteResp contains a single deleted_obj_result
-message with a requested_path of "Device.LocalAgent.Subscription.&lt;instance identifier&gt;." and an oper_failure element, with
-err_code "7016", "Object does not exist".
+1. The EUT sends a DeleteResponse containing an empty oper_success element.
 
 ### 1.30 Delete message with allow partial true, invalid object
 
@@ -2549,10 +2534,7 @@ structure:
 1. The EUT's sends a DeleteResp.
 
 2. The DeleteResp contains two deleted_obj_results elements,
-one with an oper_success element, containing an affected_path element
-with the value Device.LocalAgent.Subscription.&lt;instance
-identifier&gt;.", and the other with an oper_failure
-element containing an err_code of "7016", "Object does not exist".
+each with an empty oper_success element.
 
 ### 1.33 Delete message with unique key addressing
 
@@ -2893,8 +2875,8 @@ contains a requested_path equal to "Device.LocalAgent.EndpointID", a
 single resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "EndpointID" and a value equal to
 the EUT's EndpointID. The other resolved_path_result element contains
-a requested_path equal to "Device.LocalAgent.Subscription..Enable", a
-single resolved_path equal to "Device.LocalAgent.Subscription..", and a
+a requested_path equal to "Device.LocalAgent.Subscription.Enable", a
+single resolved_path equal to "Device.LocalAgent.Subscription.", and a
 single result_params element with a key of "Enable" with a valid value.
 
 ### 1.39 Get message with object path
@@ -2995,11 +2977,11 @@ EUT, and its instance identifier is known by the traffic generator.
 
 2. The GetResp contains a single req_path_results element.
 The requested_path_results has no errors, has a requested_path equal
-to "Device.LocalAgent.Subscription..", and a single
+to "Device.LocalAgent.Subscription.", and a single
 resolved_path_results element, with a resolved_path of
-"Device.LocalAgent.Subscription..", and a number result_params elements
+"Device.LocalAgent.Subscription.", and a number result_params elements
 contain keys and values of the parameters of
-"Device.LocalAgent.Subscription..".
+"Device.LocalAgent.Subscription.".
 
 3. The keys of all result_params elements are relative paths.
 
@@ -3046,8 +3028,8 @@ information to send and receive USP Records to each other.
 
 2. The GetResp contains a single req_path_results element.
 The requested_path_results has a requested_path equal to
-"Device.LocalAgent.InvalidParameter", and an err_code of "7010",
-"Unsupported Parameter".
+"Device.LocalAgent.InvalidParameter", and an err_code of "7026",
+"Invalid path".
 
 ### 1.42 Get message with invalid parameter and valid parameter
 
@@ -3099,7 +3081,7 @@ single resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "EndpointID" and a value equal to
 the EUT's EndpointID. The other requested_path_results has a
 requested_path equal to "Device.LocalAgent.InvalidParameter", and an
-err_code of "7010", "Unsupported Parameter".
+err_code of "7026", "Invalid path".
 
 ### 1.43 Get message using unique key addressing
 
@@ -3148,9 +3130,9 @@ generator.
 
 2. The GetResp contains a single req_path_results element.
 The requested_path_results has no errors, has a requested_path equal
-to "Device.LocalAgent.Subscription..Enable", and a single
+to "Device.LocalAgent.Subscription.Enable", and a single
 resolved_path_results element, with a resolved_path of
-"Device.LocalAgent.Subscription..", and a result_params element contain
+"Device.LocalAgent.Subscription.", and a result_params element contain
 with a key of "Enable" and a valid value.
 
 ### 1.44 Get message using wildcard search path on full parameter
@@ -3202,7 +3184,7 @@ EUT.
 The requested_path_results has no errors, has a requested_path equal
 to "Device.LocalAgent.Subscription.&ast;.Enable", and at least two
 resolved_path_results elements, each with a resolved_path of
-"Device.LocalAgent.Subscription..", and a result_params element contain
+"Device.LocalAgent.Subscription.", and a result_params element contain
 with a key of "Enable" and a valid value.
 
 ### 1.45 Get message using wildcard search path on object path
@@ -5281,8 +5263,8 @@ body {
 #### Test Metrics
 
 1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element doesn't contain
-   any parameters, events, or params.
+2. None of the req\_obj\_results elements contain
+   any commands, events, or params.
 
 
 ### 1.75 GetSupportedDM using multiple objects, first\_level\_only true, all options
