@@ -1408,8 +1408,8 @@ body {
 <h4 id="test-metrics-11">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.<instance
-number>.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
+<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance
+number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</h3>
@@ -1701,7 +1701,7 @@ body {
 <li><p>The EUT’s sends a SetResp.</p></li>
 <li><p>The SetResp contains a single UpdatedObjectResult with an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdatedInstanceResult element.</p>
 <ol type="a">
-<li><p>The UpdatedInstanceResult affected_path is equal to “Device.LocalAgent.Subscription.<instance number>.”.</p></li>
+<li><p>The UpdatedInstanceResult affected_path is equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”.</p></li>
 <li><p>The UpdatedInstanceResult has a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The UpdatedInstanceResult has a single ParameterError element, with the “param” field set to “InvalidParameter”, and an err_code of “7010”, “Unsupported parameter”.</p></li>
 </ol></li>
@@ -2427,7 +2427,7 @@ body {
 <ol type="1">
 <li><p>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</p></li>
 <li><p>Ensure that the instance identifier of the object that represents the traffic generator is known by the traffic generator.</p></li>
-<li><p>Ensure that at least two Device.LocalAgent.Controller.<instance identifier>.BootParameter. objects exist on the EUT. At least one of these BootParameter objects has a value of “false” for its “Enable” parameter, and at least one of these BootParameter objects has a value of “true” for its “Enable” parameter.</p></li>
+<li><p>Ensure that at least two Device.LocalAgent.Controller.&lt;instance identifier&gt;.BootParameter. objects exist on the EUT. At least one of these BootParameter objects has a value of “false” for its “Enable” parameter, and at least one of these BootParameter objects has a value of “true” for its “Enable” parameter.</p></li>
 </ol>
 <h4 id="test-procedure-34">Test Procedure</h4>
 <ol type="1">
@@ -2453,8 +2453,8 @@ body {
 <h4 id="test-metrics-34">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a DeleteResp.</p></li>
-<li><p>The DeleteResp contains a single deleted_obj_results element, with a requested path equal to “Device.LocalAgent.Controller.<instance
-identifier>.BootParameter.[Enable=="true"]” and an oper_success element with the affected_path elements equal to the path names of the successfully Deleted objects.</p></li>
+<li><p>The DeleteResp contains a single deleted_obj_results element, with a requested path equal to “Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.BootParameter.[Enable=="true"]” and an oper_success element with the affected_path elements equal to the path names of the successfully Deleted objects.</p></li>
 <li><p>The BootParameter whose Enable parameter was equal to “false” was not deleted.</p></li>
 </ol>
 <h3 id="get-message-with-full-parameter-path">1.36 Get message with full parameter path</h3>
@@ -2975,8 +2975,8 @@ identifier>.BootParameter.[Enable=="true"]” and an oper_success element with 
 <ol type="1">
 <li><p>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</p></li>
 <li><p>Ensure that the traffic generator has learned the instance identifier of the Device.LocalAgent.Controller. object that represents the Controller simulated by the traffic generator.</p></li>
-<li><p>Set the Device.LocalAgent.Controller.<instance
-identifier>.ProvisioningCode to an arbitrary value that is not “TestValue52”.</p></li>
+<li><p>Set the Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.ProvisioningCode to an arbitrary value that is not “TestValue52”.</p></li>
 </ol>
 <h4 id="test-procedure-51">Test Procedure</h4>
 <ol type="1">
@@ -3043,8 +3043,8 @@ body {
 <h4 id="test-metrics-51">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT sends a successful AddResp.</p></li>
-<li><p>The EUT sends a Notify message with a subscription_id field equal to “Notify52”, and an event element of value_change with a param_path of “Device.LocalAgent.Controller.<instance
-identifier>.ProvisioningCode” and a param_value of “TestValue52”.</p></li>
+<li><p>The EUT sends a Notify message with a subscription_id field equal to “Notify52”, and an event element of value_change with a param_path of “Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.ProvisioningCode” and a param_value of “TestValue52”.</p></li>
 </ol>
 <h3 id="notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</h3>
 <h4 id="purpose-53">Purpose</h4>
@@ -3055,8 +3055,8 @@ identifier>.ProvisioningCode” and a param_value of “TestValue52”.</p></li>
 <ol type="1">
 <li><p>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</p></li>
 <li><p>Ensure that the traffic generator has learned the instance identifier of the Device.LocalAgent.Controller. object that represents the Controller simulated by the traffic generator.</p></li>
-<li><p>Set the Device.LocalAgent.Controller.<instance
-identifier>.ProvisioningCode to an arbitrary value that is not “TestValue53”.</p></li>
+<li><p>Set the Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.ProvisioningCode to an arbitrary value that is not “TestValue53”.</p></li>
 </ol>
 <h4 id="test-procedure-52">Test Procedure</h4>
 <ol type="1">
@@ -3822,7 +3822,7 @@ body {
 <h4 id="test-metrics-62">Test Metrics</h4>
 <ol type="1">
 <li>The EUT sends an OperateResp message with a single operation_results element containing an executed_command of “Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()” and a req_output_args element containing an empty output_args element.</li>
-<li>The EUT sends a Notify message containing a Event message with obj_path of “Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()”.</li>
+<li>The EUT sends a Notify message containing a Event message with obj_path of “Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()”.</li>
 </ol>
 <h3 id="asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</h3>
 <h4 id="purpose-64">Purpose</h4>
@@ -4088,7 +4088,7 @@ body {
 }</code></pre>
 <h4 id="test-metrics-70">Test Metrics</h4>
 <ol type="1">
-<li>The EUT sends a GetInstancesResp with at least one req_path_results element containing a Device.LocalAgent.Controller.<Controller instance>.BootParameter. instance.</li>
+<li>The EUT sends a GetInstancesResp with at least one req_path_results element containing a Device.LocalAgent.Controller.&lt;Controller instance&gt;.BootParameter. instance.</li>
 </ol>
 <h3 id="getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</h3>
 <h4 id="purpose-72">Purpose</h4>
