@@ -1601,7 +1601,7 @@ Mandatory
     OperationSuccess contains a single UpdatedInstanceResult element.
 
     a.  The UpdatedInstanceResult affected_path is equal to
-        "Device.LocalAgent.Subscription.<instance number>.".
+        "Device.LocalAgent.Subscription.&lt;instance number&gt;.".
 
     b.  The UpdatedInstanceResult has a single entry in the
         updated_params map containing "NotifRetry" as the key.
@@ -2674,7 +2674,7 @@ information to send and receive USP Records to each other.
 that represents the traffic generator is known by the traffic generator.
 
 3. Ensure that at least two
-Device.LocalAgent.Controller.<instance identifier>.BootParameter.
+Device.LocalAgent.Controller.&lt;instance identifier&gt;.BootParameter.
 objects exist on the EUT. At least one of these BootParameter objects
 has a value of "false" for its "Enable" parameter, and at least one of
 these BootParameter objects has a value of "true" for its "Enable"
@@ -2712,8 +2712,8 @@ structure:
 
 2. The DeleteResp contains a single deleted_obj_results
 element, with a requested path equal to
-"Device.LocalAgent.Controller.<instance
-identifier>.BootParameter.[Enable=="true"]" and an oper_success
+"Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.BootParameter.[Enable=="true"]" and an oper_success
 element with the affected_path elements equal to the path names of the
 successfully Deleted objects.
 
@@ -3629,8 +3629,8 @@ information to send and receive USP Records to each other.
 identifier of the Device.LocalAgent.Controller. object that represents
 the Controller simulated by the traffic generator.
 
-3. Set the Device.LocalAgent.Controller.<instance
-identifier>.ProvisioningCode to an arbitrary value that is not
+3. Set the Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.ProvisioningCode to an arbitrary value that is not
 "TestValue52".
 
 #### Test Procedure
@@ -3711,8 +3711,8 @@ identifier>.ProvisioningCode to an arbitrary value that is not
 
 2.  The EUT sends a Notify message with a subscription_id field equal
     to "Notify52", and an event element of value_change with a
-    param_path of "Device.LocalAgent.Controller.<instance
-    identifier>.ProvisioningCode" and a param_value of
+    param_path of "Device.LocalAgent.Controller.&lt;instance
+    identifier&gt;.ProvisioningCode" and a param_value of
     "TestValue52".
 
 ### 1.53 Notify - Subscription Deletion Using Value Change
@@ -3735,8 +3735,8 @@ information to send and receive USP Records to each other.
 identifier of the Device.LocalAgent.Controller. object that represents
 the Controller simulated by the traffic generator.
 
-3. Set the Device.LocalAgent.Controller.<instance
-identifier>.ProvisioningCode to an arbitrary value that is not
+3. Set the Device.LocalAgent.Controller.&lt;instance
+identifier&gt;.ProvisioningCode to an arbitrary value that is not
 "TestValue53".
 
 #### Test Procedure
@@ -4742,10 +4742,10 @@ body {
 
 1. The EUT sends an OperateResp message with a single operation\_results element
    containing an executed\_command of
-   "Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()" and a
+   "Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()" and a
    req\_output\_args element containing an empty output\_args element.
 2. The EUT sends a Notify message containing a Event message with obj\_path of
-   "Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()".
+   "Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()".
 
 
 ### 1.64 Asynchronous operation with send_resp true
