@@ -3821,7 +3821,7 @@ body {
 </ol>
 <h4 id="test-metrics-62">Test Metrics</h4>
 <ol type="1">
-<li>The EUT sends an OperateResp message with a single operation_results element containing an executed_command of “Device.LocalAgent.Controller.<Controller instance>.ScheduleTimer()” and a req_output_args element containing an empty output_args element.</li>
+<li>The EUT sends an OperateResp message with a single operation_results element containing an executed_command of “Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()” and a req_output_args element containing an empty output_args element.</li>
 <li>The EUT sends a Notify message containing a Event message with obj_path of “Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()”.</li>
 </ol>
 <h3 id="asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</h3>
