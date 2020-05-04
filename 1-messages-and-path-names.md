@@ -771,8 +771,7 @@ Mandatory
 
 2.  The AddResp contains a single CreatedObjectResult that has an
     OperationStatus that is an element of type OperationFailure. The
-    OperationFailure element contains an err_code of "7017", "Object
-    could not be created".
+    OperationFailure element contains an err_code of "7011", "Invalid type".
 
 ### 1.9 Add message with allow partial true, required parameters fail, multiple objects
 
@@ -1505,7 +1504,7 @@ Mandatory
 
     b.  The second UpdatedObjectResult has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7020", "Object could not be updated", and a
+        an err_code of "7021", "Required parameter failed", and a
         single UpdatedInstanceFailure element. The
         UpdatedInstanceFailure has an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.",
@@ -1837,7 +1836,7 @@ Mandatory
 1.  The EUT's sends an Error.
 
 2.  The Error contains err_code "7004", "Invalid Arguments", and at
-    least two ParamError elements. The ParameError elements contains a
+    least one ParamError element. The ParameError elements contains a
     param_path of "Device.LocalAgent.Subscription.&lt;instance
     identifier of relevant object&gt;.InvalidParameter" and an err_code
     of "7010", "Unsupported Parameter".
@@ -1903,7 +1902,7 @@ Mandatory
 
     a.  The UpdatedObjectResults have an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7020", "Object could not be updated", and a
+        an err_code of "7021", "Required parameter failed", and a
         single UpdatedInstanceFailure element. The
         UpdatedInstanceFailure has an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.",
@@ -2533,8 +2532,8 @@ structure:
 
 1. The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains two deleted_obj_results elements,
-each with an empty oper_success element.
+2. The DeleteResp contains two deleted_obj_results elements. One contains an
+oper_success element with an affected_paths element listing "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.", and the other with an empty oper_success element.
 
 ### 1.33 Delete message with unique key addressing
 
