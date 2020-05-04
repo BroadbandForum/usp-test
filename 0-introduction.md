@@ -30,6 +30,15 @@ All copies of this Technical Report (or any portion hereof) must include the not
 
 ## Revision History
 
+### Release 1.0.2
+
+* Fixed tests 1.16 and 1.21 to use the correct error codes
+* Fixed test 1.20 to only check for at least one erro.
+* Fixed test 4.1 to include "OnBoardRequest()" as a conditional requirement.
+* Fixed test 1.32 to use new DeleteResp logic.
+* Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM first_level_only logic.
+* Fixed error code metric of test 1.8.
+
 ### Release 1.0.1
 
 * Deprecated test 7.3
