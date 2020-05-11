@@ -2147,7 +2147,7 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an Error message.
+2. Allow the EUT to send an DeleteResponse.
 
 #### Test Metrics
 
@@ -5213,10 +5213,9 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element contains parameters,
-   events, and commands of only the specified object.
-
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified object and each immediate child object.
+2. Only the req\_obj\_results element of the object specified in obj\_paths contains parameters, events, and commands.
 
 
 ### 1.74 GetSupportedDM using a single object, first\_level\_only true, no options
@@ -5261,7 +5260,8 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified object and each immediate child object.
 2. None of the req\_obj\_results elements contain
    any commands, events, or params.
 
@@ -5311,9 +5311,10 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element contains parameters,
-   events, and commands of only the specified objects.
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified objects and each immediate child object.
+2. Only the req\_obj\_results element of the object specified in obj\_paths
+contains parameters, events, and commands.
 
 
 ### 1.76 GetSupportedDM on root object, all options
