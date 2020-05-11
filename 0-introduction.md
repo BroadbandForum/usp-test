@@ -33,7 +33,7 @@ All copies of this Technical Report (or any portion hereof) must include the not
 ### Release 1.0.2
 
 * Fixed tests 1.16 and 1.21 to use the correct error codes
-* Fixed test 1.20 to only check for at least one erro.
+* Fixed test 1.20 to only check for at least one error.
 * Fixed test 4.1 to include "OnBoardRequest()" as a conditional requirement.
 * Fixed test 1.32 to use new DeleteResp logic.
 * Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM first_level_only logic.
@@ -173,7 +173,7 @@ specify their support for conditional mandatory test cases.
 | 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 | 7* | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
 | 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 4.1 | |
-| 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.64, 1.65, 9.1 | |
+| 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.63, 9.1 | |
 | 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
 | 11* | TraceRoute:1 profile | 1.64, 1.65 | |
 | 12* | ControllerTrust:1 profile | 2.9, 2.10 | |
@@ -186,11 +186,11 @@ specify their support for conditional mandatory test cases.
 | 19 | WebSocket MTP | 7.* | Excludes 7.3 unless option 20 is supported |
 | 20* | TR-369 requirement R-WS.6 | 7.3 | |
 | 21* | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
-| 22* | Discovery via mDNS | 8.4, 8.5, 8.6 | |
+| 22* | Discovery via mDNS | 8.4, 8.5, 8.6, 8.7 | |
 | 23* | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
-| 24* | USP session context | 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14 | |
+| 24* | USP session context | 2.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14, 3.15 | |
 | 25* | Device.LocalAgent.AddCertificate() | 9.2 | |
-| 26* | Firmware:1 profile | 9.3, 9.6, 9.7 | |
+| 26* | Firmware:1 profile | 9.3, 9.5, 9.6, 9.7 | |
 | 27* | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
 | 28* | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
 | 29* | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
