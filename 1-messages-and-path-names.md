@@ -3501,10 +3501,11 @@ Mandatory
 1. Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
+2. Ensure that at least three Subscription objects exist on the
 EUT. At least one of these Subscription objects should have a value of
-"10" for its NotifExpiration parameter, and at least one with a value of
-"20" for its NotifExpiration parameter.
+"10" for its NotifExpiration parameter, at least one with a value of
+"20" for its NotifExpiration parameter, and at least one with a value of "5"
+for its NotifExpiration parameter.
 
 #### Test Procedure
 
@@ -3562,10 +3563,11 @@ Mandatory
 1. Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
+2. Ensure that at least three Subscription objects exist on the
 EUT. At least one of these Subscription objects should have a value of
-"10" for its NotifExpiration parameter, and at least one with a value of
-"5" for its NotifExpiration parameter.
+"10" for its NotifExpiration parameter, at least one with a value of
+"20" for its NotifExpiration parameter, and at least one with a value of "5"
+for its NotifExpiration parameter.
 
 #### Test Procedure
 
@@ -4895,7 +4897,7 @@ body {
    containing a requested\_path of Device.LocalAgent.Controller. and at least
    one cur\_insts element.
 2. All instantiated\_obj\_path elements in the GetInstancesResp only contain
-   Device.LocalAgent. instances.
+   Device.LocalAgent.Controller. instances.
 
 
 ### 1.67 GetInstances using a single object, first\_level\_only false
