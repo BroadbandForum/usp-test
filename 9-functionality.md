@@ -549,7 +549,7 @@ manual adding of a new Controller.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports Controller:1 profile with the ability to create instances of the Device.LocalAgent.Controller. object)
+Conditional Mandatory (supports Controller:1 profile with the ability to create instances of the Device.LocalAgent.Controller. object, supports SendOnBoardRequest())
 
 #### Test Setup
 
@@ -662,7 +662,7 @@ event and correctly includes the configured BootParameters.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports Reboot:1 profile)
+Conditional Mandatory (supports Reboot:1 profile, supports Device.DeviceInfo.BootFirmwareImage)
 
 #### Test Setup
 
@@ -739,4 +739,4 @@ body {
 #### Test Metrics
 
 1. After step 2 the EUT sends a Notify message with an event element
-   containing a ParameterMap argument with Device.LocalAgent.BootFirmwareImage
+   containing a ParameterMap argument with Device.DeviceInfo.BootFirmwareImage

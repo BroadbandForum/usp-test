@@ -172,7 +172,7 @@ specify their support for conditional mandatory test cases.
 | 5 | Controller:1 profile | 1.59 | |
 | 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 | 7* | Controller:1 profile (writeable) | 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
-| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 4.1 | |
+| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 4.1, 9.9 | |
 | 9 | Device.LocalAgent.Controller.{i}.ScheduleTimer() | 1.63, 9.1 | |
 | 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
 | 11* | TraceRoute:1 profile | 1.64, 1.65 | |
@@ -191,9 +191,10 @@ specify their support for conditional mandatory test cases.
 | 24* | USP session context | 2.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14, 3.15 | |
 | 25* | Device.LocalAgent.AddCertificate() | 9.2 | |
 | 26* | Firmware:1 profile | 9.3, 9.5, 9.6, 9.7 | |
-| 27* | Firmware:1 profile (Activate) | 9.4 | Supports Firmware:1 profile and additionally supports the Activate() operation |
+| 27* | Firmware:1 profile (Activate) | 9.4, 9.5 | Supports Firmware:1 profile and additionally supports the Activate() operation |
 | 28* | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
 | 29* | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
+| 30 | Device.DeviceInfo.BootFirmwareImage | 9.10 | |
 
 
 #### Elements Specified in the Test Procedure
