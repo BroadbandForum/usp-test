@@ -1,38 +1,37 @@
-# TR-469 - Conformance Test Plan for User Services Platform Agents
+# TP-469 - Conformance Test Plan for User Services Platform Agents
 
 **Issue 1 Corrigendum 1**
 
-You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TR-469.pdf)**.
+You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TP-469.pdf)**.
 
-## Notice
+### Notice
 
-The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment.  This Technical Report has been approved by members of the Forum.  This Technical Report is subject to change.  This Technical Report is owned and copyrighted by the Broadband Forum, and all rights are reserved.  Portions of this Technical Report may be owned and/or copyrighted by Broadband Forum members.
+The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment.  This Test Plan is owned and copyrighted by the Broadband Forum, and portions of this Test Plan may be owned and/or copyrighted by Broadband Forum members.
 
-## Intellectual Property
+### Intellectual Property
 
-Recipients of this Technical Report are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Technical Report, or use of any software code normatively referenced in this Technical Report, and to provide supporting documentation.
+Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Test Plan, and to provide supporting documentation.
 
-## Terms of Use
+### Terms of Use
 
-1.  License
+Recipients of this document may use it (a) for internal review and study purposes, (b) to provide to the Broadband Forum the comments and notification requested in the preceding paragraph, and (c) if the Recipient is a Broadband Forum member, to implement the Test Plan in a product or service made commercially available.  Any other use of this Test Plan is expressly prohibited without the prior written consent of the Broadband Forum.
 
-Broadband Forum hereby grants you the right, without charge, on a perpetual, non-exclusive and worldwide basis, to utilize the Technical Report for the purpose of developing, making, having made, using, marketing, importing, offering to sell or license, and selling or licensing, and to otherwise distribute, products complying with the Technical Report, in all cases subject to the conditions set forth in this notice and any relevant patent and other intellectual property rights of third parties (which may include members of Broadband Forum).  This license grant does not include the right to sublicense, modify or create derivative works based upon the Technical Report except to the extent this Technical Report includes text implementable in computer code, in which case your right under this License to create and modify derivative works is limited to modifying and creating derivative works of such code.  For the avoidance of doubt, except as qualified by the preceding sentence, products implementing this Technical Report are not deemed to be derivative works of the Technical Report.
+THIS TEST PLAN IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TEST PLAN SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER'S OWN RISK, AND NEITHER THE FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TEST PLAN, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL AND INDIRECT DAMAGES.
 
-2. NO WARRANTIES
+All copies of this Test Plan (or any portion hereof) must include the notices, legends and other provisions set forth on this page.
 
-THIS TECHNICAL REPORT IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TECHNICAL REPORT SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER'S OWN RISK, AND NEITHER THE BROADBAND FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER, OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TECHNICAL REPORT, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL, AND INDIRECT DAMAGES.
+©2020, The Broadband Forum. All rights reserved. This Broadband Forum document (OD-472) specifies the Test Plan on which is based the USP Agent Certification Program for User Services Platform (TR-369) products. Through an open selection process, the Broadband Forum entered into an agreement with one or more independent Test Agencies to offer commercial testing services against this Test Plan and to confirm results to the Broadband Forum in connection with the Forum's delivery of USP Agent Certification. Offering Certification testing services against this Test Plan is reserved to the Test Agencies duly authorized by the Broadband Forum. Broadband Forum members can independently test against OD-472, but may only produce limited reports which only detail where a given product has failed a test case
 
-3. THIRD PARTY RIGHTS
-
-Without limiting the generality of Section 2 above, BROADBAND FORUM ASSUMES NO RESPONSIBILITY TO COMPILE, CONFIRM, UPDATE OR MAKE PUBLIC ANY THIRD PARTY ASSERTIONS OF PATENT OR OTHER INTELLECTUAL PROPERTY RIGHTS THAT MIGHT NOW OR IN THE FUTURE BE INFRINGED BY AN IMPLEMENTATION OF THE TECHNICAL REPORT IN ITS CURRENT, OR IN ANY FUTURE FORM. IF ANY SUCH RIGHTS ARE DESCRIBED ON THE TECHNICAL REPORT, BROADBAND FORUM TAKES NO POSITION AS TO THE VALIDITY OR INVALIDITY OF SUCH ASSERTIONS, OR THAT ALL SUCH ASSERTIONS THAT HAVE OR MAY BE MADE ARE SO LISTED.
-
-All copies of this Technical Report (or any portion hereof) must include the notices, legends, and other provisions set forth on this page.
+*NOTE: The right to display a Broadband Forum Certification Logo may only be granted by the Broadband Forum, and that right is available only to Broadband Forum members that have successfully passed certification testing by a duly authorized Test Agency. Further details on the Broadband Forum Certification Programs can be found at http://www.broadband-forum.org*
 
 ## Revision History
 
 ### Release 1.0.2
 
-* Fixed tests 1.16 and 1.21 to use the correct error codes
+* Updated features and requirements.
+* Altered test setup of 1.50 to include three objects.
+* Fixed metrics of 1.25 to use new DeleteResp logic.
+* Fixed tests 1.16 and 1.21 to use the correct error codes.
 * Fixed test 1.20 to only check for at least one error.
 * Fixed test 4.1 to include "OnBoardRequest()" as a conditional requirement.
 * Fixed test 1.32 to use new DeleteResp logic.
