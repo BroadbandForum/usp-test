@@ -906,7 +906,10 @@ Mandatory
 
     a.  The first CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
 
-    b.  The second CreateObjectResult is an element of type OperationFailure. The OperationFailure element contains an err_code of "7017", "Object could not be created".
+    b.  The second CreateObjectResult is an element of type
+    OperationFailure. The OperationFailure element contains an err_code of
+    "7010" ("Unsupported parameter"), "7017" ("Object could not be created"),
+    or "7026" ("Invalid path").
 
 3.  The EUT creates the first Subcription object, and does not create
     the second Subscription object.
@@ -923,7 +926,7 @@ Add message when the  uses unique key addressing.
 
 #### Functionality Tag
 
-Mandatory
+Conditional Mandatory (Product supports at least one nested multi-instance object)
 
 #### Test Setup
 
@@ -2139,7 +2142,7 @@ structure:
          delete {
            allow_partial: false
            obj_paths {
-             "Device.LocalAgent.Subscription.<invalid instance
+             "Device.LocalAgent.Subscription.<non-existant instance
              identifier>."
            }
          }
@@ -2147,11 +2150,11 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an DeleteResponse.
+2. Allow the EUT to send an DeleteResp.
 
 #### Test Metrics
 
-1. The EUT sends a DeleteResponse containing an empty oper_success element.
+1. The EUT sends a DeleteResp containing an empty oper_success element.
 
 ### 1.26 Delete message with allow partial false, invalid object
 
@@ -4791,16 +4794,17 @@ body {
 }
 ```
 
-2. Allow the EUT to send a OperateResponse message with a req\_object\_path
+2. Allow the EUT to send an Operate Response message with a req\_object\_path
    which matches the command sent in the Operate message
-3. Allow the EUT to send a Notify message with an inner OperationComplete message
-   with a obj\_path element matching the command sent in the OperateMessage.
+3. Allow the EUT to send a Notify message with an inner OperationComplete
+message with a obj\_path element matching the command sent in the Operate
+Message.
 
 #### Test Metrics
 
 1. The EUT sends an OperateResp message with a single operation\_results element
    containing an executed\_command of "Device.IP.Diagnostics.TraceRoute()" and a
-   req\_output\_args element containing an empty output\_args element.
+   req\_obj\_path field containing a path name to the Request object created by the EUT.
 2. The EUT sends a Notify message containing a OperationComplete message with
    obj\_path of "Device.IP.Diagnostics.TraceRoute()".
 
@@ -4990,7 +4994,7 @@ body {
 2. Both req\_path\_results and each having at least one cur\_insts element.
 
 
-### 1.69 GetInstances with root object
+### *1.69 GetInstances with root object*
 
 #### Purpose
 
@@ -4999,7 +5003,7 @@ a GetInstances message on the root object.
 
 #### Functionality Tag
 
-Mandatory
+Not-in-force (This test is declared not-in-force for this version of the test plan).
 
 #### Test Setup
 
@@ -5394,7 +5398,7 @@ header {
 body {
     request {
         get_supported_dm {
-            obj_paths:"Device.LocalAgent.UnsupportedObject"
+            obj_paths:"Device.LocalAgent.UnsupportedObject."
             first_level_only: false
             return_commands: true
             return_events: true

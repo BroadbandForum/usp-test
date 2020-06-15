@@ -131,7 +131,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 #### Test Metrics
 
-1. The EUT closes the underlying TCP session after step 1.
+1. The EUT sends a WebSocket Close frame.
 
 ### 7.5 Rejection of Session Establishment
 

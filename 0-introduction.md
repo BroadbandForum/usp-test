@@ -20,7 +20,7 @@ THIS TEST PLAN IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICUL
 
 All copies of this Test Plan (or any portion hereof) must include the notices, legends and other provisions set forth on this page.
 
-©2020, The Broadband Forum. All rights reserved. This Broadband Forum document (OD-472) specifies the Test Plan on which is based the USP Agent Certification Program for User Services Platform (TR-369) products. Through an open selection process, the Broadband Forum entered into an agreement with one or more independent Test Agencies to offer commercial testing services against this Test Plan and to confirm results to the Broadband Forum in connection with the Forum's delivery of USP Agent Certification. Offering Certification testing services against this Test Plan is reserved to the Test Agencies duly authorized by the Broadband Forum. Broadband Forum members can independently test against OD-472, but may only produce limited reports which only detail where a given product has failed a test case
+©2020, The Broadband Forum. All rights reserved. This Broadband Forum document (TP-469) specifies the Test Plan on which is based the USP Agent Certification Program for User Services Platform (TR-369) products. Through an open selection process, the Broadband Forum entered into an agreement with one or more independent Test Agencies to offer commercial testing services against this Test Plan and to confirm results to the Broadband Forum in connection with the Forum's delivery of USP Agent Certification. Offering Certification testing services against this Test Plan is reserved to the Test Agencies duly authorized by the Broadband Forum. Broadband Forum members can independently test against OD-472, but may only produce limited reports which only detail where a given product has failed a test case
 
 *NOTE: The right to display a Broadband Forum Certification Logo may only be granted by the Broadband Forum, and that right is available only to Broadband Forum members that have successfully passed certification testing by a duly authorized Test Agency. Further details on the Broadband Forum Certification Programs can be found at http://www.broadband-forum.org*
 
@@ -28,6 +28,7 @@ All copies of this Test Plan (or any portion hereof) must include the notices, l
 
 ### Release 1.0.2
 
+* Both mandatory and conditional mandatory tests can use alternate objects or parameters if available.
 * Updated features and requirements.
 * Altered test setup of 1.50 to include three objects.
 * Fixed metrics of 1.25 to use new DeleteResp logic.
@@ -132,8 +133,12 @@ Conditional Mandatory tests MUST be passed by an EUT that implements the
 feature outlined in the test case. This is indicated in each individual
 test case under the "Functionality Tag".
 
-Tests that are conditional mandatory and have a particular parameter,
-command, event, or profile requirement, a different subject can be
+Tests marked as "Not-in-force" in the functionality tag can be ignored for this version of the test plan.
+
+#### Alternate parameters, objects, commands, and events in test procedures
+
+For tests that make use of particular parameter, object,
+command, event to validate the test metrics, a different subject can be
 substituted that meets the needs of the test. For example, if an EUT
 does not support the Reboot:1 profile, another synchronous operation can
 be substituted for tests 1.61 and 1.62.
@@ -187,13 +192,14 @@ specify their support for conditional mandatory test cases.
 | 21* | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
 | 22* | Discovery via mDNS | 8.4, 8.5, 8.6, 8.7 | |
 | 23* | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
-| 24* | USP session context | 2.7, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14, 3.15 | |
+| 24* | USP session context | 2.6, 2.7, 2.8, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14, 3.15 | |
 | 25* | Device.LocalAgent.AddCertificate() | 9.2 | |
 | 26* | Firmware:1 profile | 9.3, 9.5, 9.6, 9.7 | |
 | 27* | Firmware:1 profile (Activate) | 9.4, 9.5 | Supports Firmware:1 profile and additionally supports the Activate() operation |
 | 28* | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
 | 29* | UntrustedRole disabled | 2.3 | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
 | 30 | Device.DeviceInfo.BootFirmwareImage | 9.10 | |
+| 31 | The product supports least one nested multi-instance object | 1.10 | |
 
 
 #### Elements Specified in the Test Procedure
