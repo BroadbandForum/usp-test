@@ -318,7 +318,7 @@ session when no destination id configured.
 
 #### Functionality Tags
 
-Conditionally Mandatory (Implements STOMP)
+Not-in-force (This test is declared not-in-force for this version of the test plan)
 
 #### Test Setup
 
