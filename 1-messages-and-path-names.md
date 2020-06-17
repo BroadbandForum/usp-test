@@ -771,8 +771,7 @@ Mandatory
 
 2.  The AddResp contains a single CreatedObjectResult that has an
     OperationStatus that is an element of type OperationFailure. The
-    OperationFailure element contains an err_code of "7017", "Object
-    could not be created".
+    OperationFailure element contains an err_code of "7011", "Invalid type".
 
 ### 1.9 Add message with allow partial true, required parameters fail, multiple objects
 
@@ -907,7 +906,10 @@ Mandatory
 
     a.  The first CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
 
-    b.  The second CreateObjectResult is an element of type OperationFailure. The OperationFailure element contains an err_code of "7017", "Object could not be created".
+    b.  The second CreateObjectResult is an element of type
+    OperationFailure. The OperationFailure element contains an err_code of
+    "7010" ("Unsupported parameter"), "7017" ("Object could not be created"),
+    or "7026" ("Invalid path").
 
 3.  The EUT creates the first Subcription object, and does not create
     the second Subscription object.
@@ -924,7 +926,7 @@ Add message when the  uses unique key addressing.
 
 #### Functionality Tag
 
-Mandatory
+Conditional Mandatory (Product supports at least one nested multi-instance object)
 
 #### Test Setup
 
@@ -1505,7 +1507,7 @@ Mandatory
 
     b.  The second UpdatedObjectResult has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7020", "Object could not be updated", and a
+        an err_code of "7021", "Required parameter failed", and a
         single UpdatedInstanceFailure element. The
         UpdatedInstanceFailure has an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.",
@@ -1903,7 +1905,7 @@ Mandatory
 
     a.  The UpdatedObjectResults have an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7020", "Object could not be updated", and a
+        an err_code of "7021", "Required parameter failed", and a
         single UpdatedInstanceFailure element. The
         UpdatedInstanceFailure has an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.",
@@ -2140,7 +2142,7 @@ structure:
          delete {
            allow_partial: false
            obj_paths {
-             "Device.LocalAgent.Subscription.<invalid instance
+             "Device.LocalAgent.Subscription.<non-existant instance
              identifier>."
            }
          }
@@ -2148,11 +2150,11 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an Error message.
+2. Allow the EUT to send an DeleteResp.
 
 #### Test Metrics
 
-1. The EUT sends a DeleteResponse containing an empty oper_success element.
+1. The EUT sends a DeleteResp containing an empty oper_success element.
 
 ### 1.26 Delete message with allow partial false, invalid object
 
@@ -2533,8 +2535,8 @@ structure:
 
 1. The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains two deleted_obj_results elements,
-each with an empty oper_success element.
+2. The DeleteResp contains two deleted_obj_results elements. One contains an
+oper_success element with an affected_paths element listing "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.", and the other with an empty oper_success element.
 
 ### 1.33 Delete message with unique key addressing
 
@@ -3502,10 +3504,11 @@ Mandatory
 1. Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
+2. Ensure that at least three Subscription objects exist on the
 EUT. At least one of these Subscription objects should have a value of
-"10" for its NotifExpiration parameter, and at least one with a value of
-"20" for its NotifExpiration parameter.
+"10" for its NotifExpiration parameter, at least one with a value of
+"20" for its NotifExpiration parameter, and at least one with a value of "5"
+for its NotifExpiration parameter.
 
 #### Test Procedure
 
@@ -3563,10 +3566,11 @@ Mandatory
 1. Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
+2. Ensure that at least three Subscription objects exist on the
 EUT. At least one of these Subscription objects should have a value of
-"10" for its NotifExpiration parameter, and at least one with a value of
-"5" for its NotifExpiration parameter.
+"10" for its NotifExpiration parameter, at least one with a value of
+"20" for its NotifExpiration parameter, and at least one with a value of "5"
+for its NotifExpiration parameter.
 
 #### Test Procedure
 
@@ -4790,16 +4794,17 @@ body {
 }
 ```
 
-2. Allow the EUT to send a OperateResponse message with a req\_object\_path
+2. Allow the EUT to send an Operate Response message with a req\_object\_path
    which matches the command sent in the Operate message
-3. Allow the EUT to send a Notify message with an inner OperationComplete message
-   with a obj\_path element matching the command sent in the OperateMessage.
+3. Allow the EUT to send a Notify message with an inner OperationComplete
+message with a obj\_path element matching the command sent in the Operate
+Message.
 
 #### Test Metrics
 
 1. The EUT sends an OperateResp message with a single operation\_results element
    containing an executed\_command of "Device.IP.Diagnostics.TraceRoute()" and a
-   req\_output\_args element containing an empty output\_args element.
+   req\_obj\_path field containing a path name to the Request object created by the EUT.
 2. The EUT sends a Notify message containing a OperationComplete message with
    obj\_path of "Device.IP.Diagnostics.TraceRoute()".
 
@@ -4896,7 +4901,7 @@ body {
    containing a requested\_path of Device.LocalAgent.Controller. and at least
    one cur\_insts element.
 2. All instantiated\_obj\_path elements in the GetInstancesResp only contain
-   Device.LocalAgent. instances.
+   Device.LocalAgent.Controller. instances.
 
 
 ### 1.67 GetInstances using a single object, first\_level\_only false
@@ -4989,7 +4994,7 @@ body {
 2. Both req\_path\_results and each having at least one cur\_insts element.
 
 
-### 1.69 GetInstances with root object
+### *1.69 GetInstances with root object*
 
 #### Purpose
 
@@ -4998,7 +5003,7 @@ a GetInstances message on the root object.
 
 #### Functionality Tag
 
-Mandatory
+Not-in-force (This test is declared not-in-force for this version of the test plan).
 
 #### Test Setup
 
@@ -5214,10 +5219,9 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element contains parameters,
-   events, and commands of only the specified object.
-
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified object and each immediate child object.
+2. Only the req\_obj\_results element of the object specified in obj\_paths contains parameters, events, and commands.
 
 
 ### 1.74 GetSupportedDM using a single object, first\_level\_only true, no options
@@ -5262,7 +5266,8 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified object and each immediate child object.
 2. None of the req\_obj\_results elements contain
    any commands, events, or params.
 
@@ -5312,9 +5317,10 @@ body {
 
 #### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp.
-2. Every req\_obj\_results element contains parameters,
-   events, and commands of only the specified objects.
+1. The EUT sends a GetSupportedDMResp containing req\_object\_results elements
+for the specified objects and each immediate child object.
+2. Only the req\_obj\_results element of the object specified in obj\_paths
+contains parameters, events, and commands.
 
 
 ### 1.76 GetSupportedDM on root object, all options
@@ -5392,7 +5398,7 @@ header {
 body {
     request {
         get_supported_dm {
-            obj_paths:"Device.LocalAgent.UnsupportedObject"
+            obj_paths:"Device.LocalAgent.UnsupportedObject."
             first_level_only: false
             return_commands: true
             return_events: true

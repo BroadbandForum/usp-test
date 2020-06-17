@@ -77,13 +77,13 @@ body {
 }
 ```
 
-2. Open a second WebSocket connection to the EUT
-3. Attempt to send the same message from step 1 over the second WebSocket connection
+2. Attempt to open a second WebSocket connection to the EUT.
+3. Send the Get message outlined in step 1 over the new connection.
 
 #### Test Metrics
 
-1. After the second WebSocket connection is opened the EUT closes either
-   the first or second WebSocket connection.
+1. Either the first WebSocket connection closes when the second is opened, or
+the second connection is rejected.
 
 ### 7.3 Agent session acceptance from Controller
 
@@ -131,7 +131,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 #### Test Metrics
 
-1. The EUT closes the underlying TCP session after step 1.
+1. The EUT sends a WebSocket Close frame.
 
 ### 7.5 Rejection of Session Establishment
 

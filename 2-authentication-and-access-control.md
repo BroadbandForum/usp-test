@@ -188,7 +188,7 @@ if it cannot obtain an absolute time.
 
 #### Functionality Tags
 
-Mandatory
+Conditional Mandatory (Supports USP Session Context)
 
 #### Test Setup
 
@@ -229,7 +229,7 @@ the signature field is invalid.
 
 #### Functionality Tags
 
-Mandatory
+Conditional Mandatory (Supports USP Session Context)
 
 #### Test Setup
 
@@ -253,7 +253,7 @@ an Endpoint's TLS certificate is invalid.
 
 #### Functionality Tags
 
-Mandatory
+Conditional Mandatory (Supports USP Session Context)
 
 #### Test Setup
 
@@ -263,7 +263,7 @@ Mandatory
 
 #### Test Procedure
 
-1. Send a Get message to the EUT with an expire TLS certificate.
+1. Send a Get message to the EUT with an expired TLS certificate.
 
 #### Test Metrics
 

@@ -9,7 +9,7 @@ to secure communication at the MTP layer.
 
 #### Functionality Tags
 
-Conditional Mandatory (supports encryption at the MTP layer)
+Conditional Mandatory (supports encryption at the MTP layer,  Device.LocalAgent.Controller.{i}.SendOnBoardRequest())
 
 #### Test Setup
 
