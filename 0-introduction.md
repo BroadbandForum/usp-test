@@ -1,6 +1,6 @@
 # TP-469 - Conformance Test Plan for User Services Platform Agents
 
-**Issue 1 Corrigendum 1**
+**Issue 1 Corrigendum 2**
 
 You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TP-469.pdf)**.
 
