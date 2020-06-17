@@ -1341,7 +1341,7 @@ Mandatory
 1.  The EUT's sends an Error.
 
 2.  The Error contains err_code "7004", "Invalid Arguments", and a
-    single ParamError element. The ParameError element contains a
+    single ParamError element. The ParamError element contains a
     param_path of "Device.LocalAgent.Subscription.&lt;instance
     identifier&gt;.InvalidParameter" and an err_code of "7010",
     "Unsupported Parameter".
@@ -1410,7 +1410,7 @@ Mandatory
 1.  The EUT's sends an Error.
 
 2.  The Error contains err_code "7004", "Invalid Arguments", and a
-    single ParamError element. The ParameError element contains a
+    single ParamError element. The ParamError element contains a
     param_path of "Device.LocalAgent.Subscription.&lt;instance
     identifier&gt;.InvalidParameter" and an err_code of "7010",
     "Unsupported Parameter".
@@ -1839,7 +1839,7 @@ Mandatory
 1.  The EUT's sends an Error.
 
 2.  The Error contains err_code "7004", "Invalid Arguments", and at
-    least one ParamError element. The ParameError elements contains a
+    least two ParamError elements. The ParamError elements contains a
     param_path of "Device.LocalAgent.Subscription.&lt;instance
     identifier of relevant object&gt;.InvalidParameter" and an err_code
     of "7010", "Unsupported Parameter".
