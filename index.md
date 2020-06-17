@@ -1537,7 +1537,7 @@ body {
 <h4 id="test-metrics-13">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends an Error.</p></li>
-<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and a single ParamError element. The ParameError element contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
+<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and a single ParamError element. The ParamError element contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</h3>
 <h4 id="purpose-15">Purpose</h4>
@@ -1587,7 +1587,7 @@ body {
 <h4 id="test-metrics-14">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends an Error.</p></li>
-<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and a single ParamError element. The ParameError element contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
+<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and a single ParamError element. The ParamError element contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</h3>
 <h4 id="purpose-16">Purpose</h4>
@@ -1885,7 +1885,7 @@ body {
 <h4 id="test-metrics-19">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends an Error.</p></li>
-<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and at least one ParamError element. The ParameError elements contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier of relevant object&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
+<li><p>The Error contains err_code “7004”, “Invalid Arguments”, and at least two ParamError elements. The ParamError elements contains a param_path of “Device.LocalAgent.Subscription.&lt;instance identifier of relevant object&gt;.InvalidParameter” and an err_code of “7010”, “Unsupported Parameter”.</p></li>
 </ol>
 <h3 id="set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</h3>
 <h4 id="purpose-21">Purpose</h4>
