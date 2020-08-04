@@ -1,8 +1,10 @@
+# About BBF.369 Certification
+
+This test plan is used to validate USP Agent implementations for the [BBF.369 USP Agent Certification Program](https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification). Companies looking to certify their products, or to acquire certified products, can find full details on the program, approved test tools and labs, and the list of certified products [here](https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification).
+
 # TP-469 - Conformance Test Plan for User Services Platform Agents
 
 **Issue 1 Corrigendum 2**
-
-You can find a pdf version of this document **[here](https://www.broadband-forum.org/technical/download/TP-469.pdf)**.
 
 ### Notice
 
