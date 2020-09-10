@@ -55,7 +55,7 @@ body {
         Device.STOMP.Connection.{i}.Port
         Device.STOMP.Connection.{i}.VirtualHost
         Device.STOMP.Connection.{i}.ServerRetryInitialInterval
-        Device.STOMP.Connection.{i}.ServerRetryInitialMultiplier
+        Device.STOMP.Connection.{i}.ServerRetryIntervalMultiplier
         Device.STOMP.Connection.{i}.ServerRetryMaxInterval
 
 ### 6.2 STOMP session establishment
