@@ -908,7 +908,7 @@ Mandatory
 
     b.  The other CreateObjectResult is an element of type
     OperationFailure. The OperationFailure element contains an err_code of
-    "7010" ("Unsupported parameter"), "7017" ("Object could not be created"),
+    "7010" ("Unsupported Parameter"), "7017" ("Object could not be created"),
     or "7026" ("Invalid Path").
 
 3.  The EUT creates the first Subcription object, and does not create
@@ -1514,7 +1514,7 @@ Mandatory
         and a single ParameterError element.
 
     c.  The ParameterError has a param element with a value of
-        "NotifRetry", an err_code of "7010", "Unsupported parameter"
+        "NotifRetry", an err_code of "7010", "Unsupported Parameter"
 
 3.  The retrieved value matches the value set in the param_settings
     element for the first object.
@@ -1610,7 +1610,7 @@ Mandatory
 
     c.  The UpdatedInstanceResult has a single ParameterError element,
         with the "param" field set to "InvalidParameter", and an
-        err_code of "7010", "Unsupported parameter".
+        err_code of "7010", "Unsupported Parameter".
 
 3.  The retrieved value of NotifRetry matches the value set in the
     param_settings element.
@@ -1771,12 +1771,12 @@ Mandatory
 
 1.  The EUT's sends a SetResp.
 
-2.  The SetResp contains two UpdatedObjectResults that each have an
+2.  The SetResp contains an UpdatedObjectResults element that has an
     OperationStatus that is an element of type OperationSuccess. The
-    OperationSuccess contains a single UpdateInstanceResult, with the
+    OperationSuccess contains a two UpdateInstanceResults, each with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
-    number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key.
+    number&gt;." of the respective instance, and a single entry in the
+    updated_params map containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
@@ -2727,7 +2727,7 @@ successfully Deleted objects.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when a
 single full parameter path is specified.
 
@@ -2776,7 +2776,7 @@ the EUT's EndpointID.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when
 multiple full parameter paths are specified within the same object.
 
@@ -2830,7 +2830,7 @@ value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when
 multiple full parameter paths are specified within multiple objects.
 
@@ -2886,7 +2886,7 @@ single result_params element with a key of "Enable" with a valid value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when an
 object path is specified.
 
@@ -2938,7 +2938,7 @@ the keys and values of each sub-object's parameters.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when a path
 to an object instance is specified.
 
@@ -3037,7 +3037,7 @@ The requested_path_results has a requested_path equal to
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when both a
 valid and invalid parameter are requested.
 
@@ -3089,7 +3089,7 @@ err_code of "7026", "Invalid Path".
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses unique key addressing.
 
@@ -3141,7 +3141,7 @@ with a key of "Enable" and a valid value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a wildcard to retrieve a single parameter from
 multiple objects.
@@ -3193,7 +3193,7 @@ with a key of "Enable" and a valid value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a wildcard to retrieve all parameters from multiple
 object instances.
@@ -3248,7 +3248,7 @@ Subscription object.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that match a particular value.
@@ -3308,7 +3308,7 @@ objects whose Enable parameter is "false".
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that do not match a particular value.
@@ -3368,7 +3368,7 @@ objects whose Enable parameter is "false".
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are greater than a particular value.
@@ -3429,7 +3429,7 @@ objects whose NotifExpiration parameter is equal to or less than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are less than a particular value.
@@ -3490,7 +3490,7 @@ objects whose NotifExpiration parameter is equal to or greater than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are greater than or equal to a particular value.
@@ -3552,7 +3552,7 @@ objects whose NotifExpiration parameter is less than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are less than or equal to a particular value.

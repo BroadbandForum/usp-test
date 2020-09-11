@@ -1261,7 +1261,7 @@ body {
 <li><p>The AddResp contains two CreatedObjectResults.</p>
 <ol type="a">
 <li><p>One CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.</p></li>
-<li><p>The other CreateObjectResult is an element of type OperationFailure. The OperationFailure element contains an err_code of “7010” (“Unsupported parameter”), “7017” (“Object could not be created”), or “7026” (“Invalid Path”).</p></li>
+<li><p>The other CreateObjectResult is an element of type OperationFailure. The OperationFailure element contains an err_code of “7010” (“Unsupported Parameter”), “7017” (“Object could not be created”), or “7026” (“Invalid Path”).</p></li>
 </ol></li>
 <li><p>The EUT creates the first Subcription object, and does not create the second Subscription object.</p></li>
 <li><p>The Subscription object’s values match the values set in the param_settings element.</p></li>
@@ -1677,7 +1677,7 @@ body {
 <ol type="a">
 <li><p>The first UpdatedObjectResult has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdatedInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The second UpdatedObjectResult has an OperationStatus that is an element of type OperationFailure. The OperationFailure contains an err_code of “7021”, “Required parameter failed”, and a single UpdatedInstanceFailure element. The UpdatedInstanceFailure has an affected_path with a value of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.”, and a single ParameterError element.</p></li>
-<li><p>The ParameterError has a param element with a value of “NotifRetry”, an err_code of “7010”, “Unsupported parameter”</p></li>
+<li><p>The ParameterError has a param element with a value of “NotifRetry”, an err_code of “7010”, “Unsupported Parameter”</p></li>
 </ol></li>
 <li><p>The retrieved value matches the value set in the param_settings element for the first object.</p></li>
 </ol>
@@ -1744,7 +1744,7 @@ body {
 <ol type="a">
 <li><p>The UpdatedInstanceResult affected_path is equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”.</p></li>
 <li><p>The UpdatedInstanceResult has a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
-<li><p>The UpdatedInstanceResult has a single ParameterError element, with the “param” field set to “InvalidParameter”, and an err_code of “7010”, “Unsupported parameter”.</p></li>
+<li><p>The UpdatedInstanceResult has a single ParameterError element, with the “param” field set to “InvalidParameter”, and an err_code of “7010”, “Unsupported Parameter”.</p></li>
 </ol></li>
 <li><p>The retrieved value of NotifRetry matches the value set in the param_settings element.</p></li>
 </ol>
