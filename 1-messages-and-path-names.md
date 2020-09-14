@@ -702,7 +702,7 @@ Mandatory
     "Device.LocalAgent.Subscription.{i}.InvalidParameter", and an
     err_code of 7010, "Unsupported Parameter".
 
-### 1.8 Add message with allow partial true, required parameters fail, invalid value, single object
+### 1.8 Add message with allow partial true, required parameters fail, invalid type, single object
 
 #### Purpose
 
@@ -771,7 +771,7 @@ Mandatory
 
 2.  The AddResp contains a single CreatedObjectResult that has an
     OperationStatus that is an element of type OperationFailure. The
-    OperationFailure element contains an err_code of "7012", "Invalid Value".
+    OperationFailure element contains an err_code of "7011", "Invalid Type".
 
 ### 1.9 Add message with allow partial true, required parameters fail, multiple objects
 
@@ -1773,7 +1773,7 @@ Mandatory
 
 2.  The SetResp contains an UpdatedObjectResults element that has an
     OperationStatus that is an element of type OperationSuccess. The
-    OperationSuccess contains a two UpdateInstanceResults, each with the
+    OperationSuccess contains at least two UpdateInstanceResults, each with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
     number&gt;." of the respective instance, and a single entry in the
     updated_params map containing "NotifRetry" as the key.
@@ -1906,7 +1906,7 @@ Mandatory
     a.  The UpdatedObjectResults has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
         an err_code of "7021", "Required Parameter Failed", and a
-        two UpdatedInstanceFailure elements. The
+        at least two UpdatedInstanceFailure elements. The
         UpdatedInstanceFailures each have an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;." for the
         respective failed instance,
@@ -2992,7 +2992,7 @@ contain keys and values of the parameters of
 
 #### Purpose
 
-The purpose of this test is to ensure the can properly handle a Get message when
+The purpose of this test is to ensure the Controller can properly handle a Get message when
 a single invalid parameter is requested.
 
 #### Functionality Tag
