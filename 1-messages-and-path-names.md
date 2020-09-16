@@ -1905,7 +1905,7 @@ Mandatory
 
     a.  The UpdatedObjectResults has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7021", "Required Parameter Failed", and a
+        an err_code of "7021", "Required Parameter Failed", and
         at least two UpdatedInstanceFailure elements. The
         UpdatedInstanceFailures each have an affected_path with a value of
         "Device.LocalAgent.Subscription.&lt;instance identifier&gt;." for the
@@ -1919,7 +1919,7 @@ Mandatory
 #### Purpose
 
 The purpose of this test is to validate that the EUT properly handles a
-Set message when the  uses a search path.
+Set message when the Controller uses a search path.
 
 #### Functionality Tag
 
@@ -2992,8 +2992,7 @@ contain keys and values of the parameters of
 
 #### Purpose
 
-The purpose of this test is to ensure the Controller can properly handle a Get message when
-a single invalid parameter is requested.
+The purpose of this test is to ensure the Agent can properly handle a Get message when a single invalid parameter is requested.
 
 #### Functionality Tag
 
