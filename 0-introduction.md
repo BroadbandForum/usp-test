@@ -4,7 +4,7 @@ This test plan is used to validate USP Agent implementations for the [BBF.369 US
 
 # TP-469 - Conformance Test Plan for User Services Platform Agents
 
-**Issue 1 Corrigendum 2**
+**Issue 1 Corrigendum 3**
 
 ### Notice
 
@@ -27,6 +27,19 @@ All copies of this Test Plan (or any portion hereof) must include the notices, l
 *NOTE: The right to display a Broadband Forum Certification Logo may only be granted by the Broadband Forum, and that right is available only to Broadband Forum members that have successfully passed certification testing by a duly authorized Test Agency. Further details on the Broadband Forum Certification Programs can be found at http://www.broadband-forum.org*
 
 ## Revision History
+
+### Release 1.0.3
+
+* The metrics of test 1.9 now do not imply order.
+* Test 1.22 metric now requires "at least one" element rather than a "single"
+  element.
+* Renamed test 1.23.
+* Fixed the metric of test 1.38 to include the instance identifier of the path.
+* Reworded the purpose of test 1.41.
+* Clarified the test setup of tests 1.66 and 1.67.
+* Fixed a typo in test 6.1 metrics (ServerRetryInitialMultiplier to
+  ServerRetryIntervalMultiplier).
+* Fixes other typographical errors.
 
 ### Release 1.0.2
 

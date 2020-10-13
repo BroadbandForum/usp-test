@@ -308,7 +308,7 @@ Mandatory
 1.  The EUT sends an Error message.
 
 2.  The Error message contains an err_code of 7004, "Invalid
-    arguments", with the param_errs element containing a single error
+    Arguments", with the param_errs element containing a single error
     with a param_path of "Device.LocalAgent.Subscription.{i}.InvalidParameter", and an err_code of 7010, "Unsupported Parameter".
 
 ### 1.4 Add message with allow partial false, single invalid object
@@ -377,9 +377,9 @@ Mandatory
 1.  The EUT sends an Error message.
 
 2.  The Error message contains an err_code of 7004, "Invalid
-    arguments", with the param_errs element containing a single error
+    Arguments", with the param_errs element containing a single error
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
-    err_code of 7026, "Invalid path".
+    err_code of 7026, "Invalid Path".
 
 ### 1.5 Add message with allow partial false, multiple objects
 
@@ -609,9 +609,9 @@ Mandatory
 1.  The EUT sends an Error message.
 
 2.  The Error message contains an err_code of 7004, "Invalid
-    arguments", with the param_errs element containing a single error
+    Arguments", with the param_errs element containing a single error
     with a param_path of "Device.LocalAgent.InvalidObject.", and an
-    err_code of 7026, "Invalid path".
+    err_code of 7026, "Invalid Path".
 
 ### 1.7 Add message with allow partial false, multiple objects, required parameters fail in single object
 
@@ -702,7 +702,7 @@ Mandatory
     "Device.LocalAgent.Subscription.{i}.InvalidParameter", and an
     err_code of 7010, "Unsupported Parameter".
 
-### 1.8 Add message with allow partial true, required parameters fail, invalid value, single object
+### 1.8 Add message with allow partial true, required parameters fail, invalid type, single object
 
 #### Purpose
 
@@ -771,7 +771,7 @@ Mandatory
 
 2.  The AddResp contains a single CreatedObjectResult that has an
     OperationStatus that is an element of type OperationFailure. The
-    OperationFailure element contains an err_code of "7011", "Invalid type".
+    OperationFailure element contains an err_code of "7011", "Invalid Type".
 
 ### 1.9 Add message with allow partial true, required parameters fail, multiple objects
 
@@ -904,12 +904,12 @@ Mandatory
 
 2.  The AddResp contains two CreatedObjectResults.
 
-    a.  The first CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
+    a.  One CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
 
-    b.  The second CreateObjectResult is an element of type
+    b.  The other CreateObjectResult is an element of type
     OperationFailure. The OperationFailure element contains an err_code of
-    "7010" ("Unsupported parameter"), "7017" ("Object could not be created"),
-    or "7026" ("Invalid path").
+    "7010" ("Unsupported Parameter"), "7017" ("Object could not be created"),
+    or "7026" ("Invalid Path").
 
 3.  The EUT creates the first Subcription object, and does not create
     the second Subscription object.
@@ -1514,7 +1514,7 @@ Mandatory
         and a single ParameterError element.
 
     c.  The ParameterError has a param element with a value of
-        "NotifRetry", an err_code of "7010", "Unsupported parameter"
+        "NotifRetry", an err_code of "7010", "Unsupported Parameter"
 
 3.  The retrieved value matches the value set in the param_settings
     element for the first object.
@@ -1610,7 +1610,7 @@ Mandatory
 
     c.  The UpdatedInstanceResult has a single ParameterError element,
         with the "param" field set to "InvalidParameter", and an
-        err_code of "7010", "Unsupported parameter".
+        err_code of "7010", "Unsupported Parameter".
 
 3.  The retrieved value of NotifRetry matches the value set in the
     param_settings element.
@@ -1771,12 +1771,12 @@ Mandatory
 
 1.  The EUT's sends a SetResp.
 
-2.  The SetResp contains two UpdatedObjectResults that each have an
+2.  The SetResp contains an UpdatedObjectResults element that has an
     OperationStatus that is an element of type OperationSuccess. The
-    OperationSuccess contains a single UpdateInstanceResult, with the
+    OperationSuccess contains at least two UpdateInstanceResults, each with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
-    number&gt;.", and a single entry in the updated_params map
-    containing "NotifRetry" as the key.
+    number&gt;." of the respective instance, and a single entry in the
+    updated_params map containing "NotifRetry" as the key.
 
 3.  The retrieved value matches the value set in the param_settings
     element for each object.
@@ -1901,24 +1901,25 @@ Mandatory
 
 1.  The EUT's sends a SetResp.
 
-2.  The SetResp contains at least two UpdatedObjectResults.
+2.  The SetResp contains an UpdatedObjectResults element.
 
-    a.  The UpdatedObjectResults have an OperationStatus that is an
+    a.  The UpdatedObjectResults has an OperationStatus that is an
         element of type OperationFailure. The OperationFailure contains
-        an err_code of "7021", "Required parameter failed", and a
-        single UpdatedInstanceFailure element. The
-        UpdatedInstanceFailure has an affected_path with a value of
-        "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.",
+        an err_code of "7021", "Required Parameter Failed", and
+        at least two UpdatedInstanceFailure elements. The
+        UpdatedInstanceFailures each have an affected_path with a value of
+        "Device.LocalAgent.Subscription.&lt;instance identifier&gt;." for the
+        respective failed instance,
         and a single ParameterError element. The ParameterError has a
         param element with a value of "InvalidParameter", and an
-        err_code of "7010", "Unsupported parameter"
+        err_code of "7010", "Unsupported Parameter"
 
 ### 1.22 Set message with search expression search path
 
 #### Purpose
 
 The purpose of this test is to validate that the EUT properly handles a
-Set message when the  uses a search path.
+Set message when the Controller uses a search path.
 
 #### Functionality Tag
 
@@ -1985,7 +1986,7 @@ Mandatory
 
 1.  The EUT's sends a SetResp.
 
-2.  The SetResp contains a single UpdatedObjectResult that has an
+2.  The SetResp contains at least one UpdatedObjectResult that has an
     OperationStatus that is an element of type OperationSuccess. The
     OperationSuccess contains a single UpdateInstanceResult, with the
     affected_path equal to "Device.LocalAgent.Subscription.&lt;instance
@@ -1995,12 +1996,12 @@ Mandatory
 3.  The retrieved value matches the value set in the param_settings
     element.
 
-### 1.23 Set message with invalid path
+### 1.23 Set message with path that matches no objects
 
 #### Purpose
 
 The purpose of this test is to validate that the EUT properly handles a
-Set message when the requested path is invalid.
+Set message when the requested path does not match any objects.
 
 #### Functionality Tag
 
@@ -2726,7 +2727,7 @@ successfully Deleted objects.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when a
 single full parameter path is specified.
 
@@ -2775,7 +2776,7 @@ the EUT's EndpointID.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when
 multiple full parameter paths are specified within the same object.
 
@@ -2829,7 +2830,7 @@ value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when
 multiple full parameter paths are specified within multiple objects.
 
@@ -2877,15 +2878,15 @@ contains a requested_path equal to "Device.LocalAgent.EndpointID", a
 single resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "EndpointID" and a value equal to
 the EUT's EndpointID. The other resolved_path_result element contains
-a requested_path equal to "Device.LocalAgent.Subscription.Enable", a
-single resolved_path equal to "Device.LocalAgent.Subscription.", and a
+a requested_path equal to "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.Enable", a
+single resolved_path equal to "Device.LocalAgent.Subscription.&lt;instance identifier&gt;.", and a
 single result_params element with a key of "Enable" with a valid value.
 
 ### 1.39 Get message with object path
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when an
 object path is specified.
 
@@ -2937,7 +2938,7 @@ the keys and values of each sub-object's parameters.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when a path
 to an object instance is specified.
 
@@ -2991,9 +2992,7 @@ contain keys and values of the parameters of
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
-values of parameters in the Agent's Instantiated Data Model when a
-single invalid parameter is requested.
+The purpose of this test is to ensure the Agent can properly handle a Get message when a single invalid parameter is requested.
 
 #### Functionality Tag
 
@@ -3031,13 +3030,13 @@ information to send and receive USP Records to each other.
 2. The GetResp contains a single req_path_results element.
 The requested_path_results has a requested_path equal to
 "Device.LocalAgent.InvalidParameter", and an err_code of "7026",
-"Invalid path".
+"Invalid Path".
 
 ### 1.42 Get message with invalid parameter and valid parameter
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when both a
 valid and invalid parameter are requested.
 
@@ -3083,13 +3082,13 @@ single resolved_path equal to "Device.LocalAgent.", and a single
 result_params element with a key of "EndpointID" and a value equal to
 the EUT's EndpointID. The other requested_path_results has a
 requested_path equal to "Device.LocalAgent.InvalidParameter", and an
-err_code of "7026", "Invalid path".
+err_code of "7026", "Invalid Path".
 
 ### 1.43 Get message using unique key addressing
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses unique key addressing.
 
@@ -3141,7 +3140,7 @@ with a key of "Enable" and a valid value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a wildcard to retrieve a single parameter from
 multiple objects.
@@ -3193,7 +3192,7 @@ with a key of "Enable" and a valid value.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a wildcard to retrieve all parameters from multiple
 object instances.
@@ -3248,7 +3247,7 @@ Subscription object.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that match a particular value.
@@ -3308,7 +3307,7 @@ objects whose Enable parameter is "false".
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that do not match a particular value.
@@ -3368,7 +3367,7 @@ objects whose Enable parameter is "false".
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are greater than a particular value.
@@ -3429,7 +3428,7 @@ objects whose NotifExpiration parameter is equal to or less than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are less than a particular value.
@@ -3490,7 +3489,7 @@ objects whose NotifExpiration parameter is equal to or greater than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are greater than or equal to a particular value.
@@ -3552,7 +3551,7 @@ objects whose NotifExpiration parameter is less than 10.
 
 #### Purpose
 
-The purpose of this test is to ensure the  can retrieve the
+The purpose of this test is to ensure the Controller can retrieve the
 values of parameters in the Agent's Instantiated Data Model when the
 requested path uses a search path to retrieve objects that that
 parameters that are less than or equal to a particular value.
@@ -4874,6 +4873,7 @@ Mandatory
 
 1. Ensure that the EUT and test equipment have the necessary information to
    send and receive USP Records to each other.
+2. Ensure that the Agent has at least one entry in the Device.LocalAgent.Controller.{i}. table and supports at least one multi-instance sub-object (e.g., .MTP.{i}., etc.)
 
 #### Test Procedure
 
@@ -4919,6 +4919,7 @@ Mandatory
 
 1. Ensure that the EUT and test equipment have the necessary information to
    send and receive USP Records to each other.
+2. Ensure that the Agent has at least one entry in the Device.LocalAgent.Controller.{i}. table and supports at least one multi-instance sub-object (e.g., .MTP.{i}., etc.)
 
 #### Test Procedure
 
