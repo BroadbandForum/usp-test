@@ -1,13 +1,3 @@
-<head>
-  <title>TP-469 Conformance Test Plan for USP Agents</title>
-  <style>
-      code{white-space: pre-wrap;}
-      span.smallcaps{font-variant: small-caps;}
-      span.underline{text-decoration: underline;}
-      div.column{display: inline-block; vertical-align: top; width: 50%;}
-  </style>
-</head>
-<body>
 <h1 id="about-bbf.369-certification">About BBF.369 Certification</h1>
 <p>This test plan is used to validate USP Agent implementations for the <a href="https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification">BBF.369 USP Agent Certification Program</a>. Companies looking to certify their products, or to acquire certified products, can find full details on the program, approved test tools and labs, and the list of certified products <a href="https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification">here</a>.</p>
 <h1 id="tp-469---conformance-test-plan-for-user-services-platform-agents">TP-469 - Conformance Test Plan for User Services Platform Agents</h1>
@@ -7621,4 +7611,3 @@ body {
 <ol type="1">
 <li>After step 2 the EUT sends a Notify message with an event element containing a ParameterMap argument with Device.DeviceInfo.BootFirmwareImage</li>
 </ol>
-</body>
