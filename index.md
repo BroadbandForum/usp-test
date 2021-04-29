@@ -1457,8 +1457,8 @@ body {
 <h4 id="test-metrics-11">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.<instance
-number>.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
+<li><p>The SetResp contains a single UpdatedObjectResult that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance
+number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element.</p></li>
 </ol>
 <h3 id="set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</h3>
@@ -4135,7 +4135,7 @@ body {
 }</code></pre>
 <h4 id="test-metrics-70">Test Metrics</h4>
 <ol type="1">
-<li>The EUT sends a GetInstancesResp with at least one req_path_results element containing a Device.LocalAgent.Controller.<Controller instance>.BootParameter. instance.</li>
+<li>The EUT sends a GetInstancesResp with at least one req_path_results element containing a Device.LocalAgent.Controller.&lt;Controller instance&gt;.BootParameter. instance.</li>
 </ol>
 <h3 id="getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</h3>
 <h4 id="purpose-72">Purpose</h4>
