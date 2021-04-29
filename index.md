@@ -15,6 +15,11 @@
 
 <nav id="TOC" role="doc-toc">
 <ul>
+<li><a href="#about-bbf.369-certification">About BBF.369 Certification</a></li>
+<li><a href="#tp-469---conformance-test-plan-for-user-services-platform-agents">TP-469 - Conformance Test Plan for User Services Platform Agents</a><ul>
+<li><a href="#notice">Notice</a></li>
+<li><a href="#intellectual-property">Intellectual Property</a></li>
+<li><a href="#terms-of-use">Terms of Use</a></li>
 <li><a href="#revision-history">Revision History</a><ul>
 <li><a href="#release-1.0.3">Release 1.0.3</a></li>
 <li><a href="#release-1.0.2">Release 1.0.2</a></li>
@@ -51,7 +56,7 @@
 <li><a href="#add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
 <li><a href="#add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
 <li><a href="#add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
-<li><a href="#add-message-with-allow-partial-true-required-parameters-fail-invalid-value-single-object">1.8 Add message with allow partial true, required parameters fail, invalid value, single object</a></li>
+<li><a href="#add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
 <li><a href="#add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
 <li><a href="#add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
 <li><a href="#set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
@@ -227,7 +232,20 @@
 </ul></li>
 </ul>
 </nav>
-
+<h1 id="about-bbf.369-certification">About BBF.369 Certification</h1>
+<p>This test plan is used to validate USP Agent implementations for the <a href="https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification">BBF.369 USP Agent Certification Program</a>. Companies looking to certify their products, or to acquire certified products, can find full details on the program, approved test tools and labs, and the list of certified products <a href="https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification">here</a>.</p>
+<h1 id="tp-469---conformance-test-plan-for-user-services-platform-agents">TP-469 - Conformance Test Plan for User Services Platform Agents</h1>
+<p><strong>Issue 1 Corrigendum 3</strong></p>
+<h3 id="notice">Notice</h3>
+<p>The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment. This Test Plan is owned and copyrighted by the Broadband Forum, and portions of this Test Plan may be owned and/or copyrighted by Broadband Forum members.</p>
+<h3 id="intellectual-property">Intellectual Property</h3>
+<p>Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Test Plan, and to provide supporting documentation.</p>
+<h3 id="terms-of-use">Terms of Use</h3>
+<p>Recipients of this document may use it (a) for internal review and study purposes, (b) to provide to the Broadband Forum the comments and notification requested in the preceding paragraph, and (c) if the Recipient is a Broadband Forum member, to implement the Test Plan in a product or service made commercially available. Any other use of this Test Plan is expressly prohibited without the prior written consent of the Broadband Forum.</p>
+<p>THIS TEST PLAN IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TEST PLAN SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER’S OWN RISK, AND NEITHER THE FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TEST PLAN, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL AND INDIRECT DAMAGES.</p>
+<p>All copies of this Test Plan (or any portion hereof) must include the notices, legends and other provisions set forth on this page.</p>
+<p>©2020, The Broadband Forum. All rights reserved. This Broadband Forum document (TP-469) specifies the Test Plan on which is based the USP Agent Certification Program for User Services Platform (TR-369) products. Through an open selection process, the Broadband Forum entered into an agreement with one or more independent Test Agencies to offer commercial testing services against this Test Plan and to confirm results to the Broadband Forum in connection with the Forum’s delivery of USP Agent Certification. Offering Certification testing services against this Test Plan is reserved to the Test Agencies duly authorized by the Broadband Forum. Broadband Forum members can independently test against OD-472, but may only produce limited reports which only detail where a given product has failed a test case</p>
+<p><em>NOTE: The right to display a Broadband Forum Certification Logo may only be granted by the Broadband Forum, and that right is available only to Broadband Forum members that have successfully passed certification testing by a duly authorized Test Agency. Further details on the Broadband Forum Certification Programs can be found at http://www.broadband-forum.org</em></p>
 <h2 id="revision-history">Revision History</h2>
 <h3 id="release-1.0.3">Release 1.0.3</h3>
 <ul>
@@ -1095,7 +1113,7 @@ body {
 <li><p>The EUT sends an Error message.</p></li>
 <li><p>The Error message contains an err_code of 7004, “Invalid arguments”, with the param_errs element containing a single error with a param_path of “Device.LocalAgent.Subscription.{i}.InvalidParameter”, and an err_code of 7010, “Unsupported Parameter”.</p></li>
 </ol>
-<h3 id="add-message-with-allow-partial-true-required-parameters-fail-invalid-value-single-object">1.8 Add message with allow partial true, required parameters fail, invalid value, single object</h3>
+<h3 id="add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</h3>
 <h4 id="purpose-8">Purpose</h4>
 <p>The purpose of this test is to validate that the EUT properly handles an Add message when the allow_partial element is set to true, and at least one required parameter fails (with an invalid value) in a single object.</p>
 <h4 id="functionality-tag-7">Functionality Tag</h4>
@@ -1146,7 +1164,7 @@ body {
 <h4 id="test-metrics-7">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT sends an AddResp message.</p></li>
-<li><p>The AddResp contains a single CreatedObjectResult that has an OperationStatus that is an element of type OperationFailure. The OperationFailure element contains an err_code of “7012”, “Invalid Value”.</p></li>
+<li><p>The AddResp contains a single CreatedObjectResult that has an OperationStatus that is an element of type OperationFailure. The OperationFailure element contains an err_code of “7011”, “Invalid Type”.</p></li>
 </ol>
 <h3 id="add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</h3>
 <h4 id="purpose-9">Purpose</h4>
@@ -1851,7 +1869,7 @@ body {
 <h4 id="test-metrics-18">Test Metrics</h4>
 <ol type="1">
 <li><p>The EUT’s sends a SetResp.</p></li>
-<li><p>The SetResp contains two UpdatedObjectResults that each have an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains a single UpdateInstanceResult, with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.”, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
+<li><p>The SetResp contains an UpdatedObjectResults element that has an OperationStatus that is an element of type OperationSuccess. The OperationSuccess contains at least two UpdateInstanceResults, each with the affected_path equal to “Device.LocalAgent.Subscription.&lt;instance number&gt;.” of the respective instance, and a single entry in the updated_params map containing “NotifRetry” as the key.</p></li>
 <li><p>The retrieved value matches the value set in the param_settings element for each object.</p></li>
 </ol>
 <h3 id="set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</h3>
@@ -1942,12 +1960,12 @@ body {
 <li><p>The EUT’s sends a SetResp.</p></li>
 <li><p>The SetResp contains an UpdatedObjectResults element.</p>
 <ol type="a">
-<li>The UpdatedObjectResults has an OperationStatus that is an element of type OperationFailure. The OperationFailure contains an err_code of “7021”, “Required Parameter Failed”, and a two UpdatedInstanceFailure elements. The UpdatedInstanceFailures each have an affected_path with a value of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.” for the respective failed instance, and a single ParameterError element. The ParameterError has a param element with a value of “InvalidParameter”, and an err_code of “7010”, “Unsupported Parameter”</li>
+<li>The UpdatedObjectResults has an OperationStatus that is an element of type OperationFailure. The OperationFailure contains an err_code of “7021”, “Required Parameter Failed”, and at least two UpdatedInstanceFailure elements. The UpdatedInstanceFailures each have an affected_path with a value of “Device.LocalAgent.Subscription.&lt;instance identifier&gt;.” for the respective failed instance, and a single ParameterError element. The ParameterError has a param element with a value of “InvalidParameter”, and an err_code of “7010”, “Unsupported Parameter”</li>
 </ol></li>
 </ol>
 <h3 id="set-message-with-search-expression-search-path">1.22 Set message with search expression search path</h3>
 <h4 id="purpose-22">Purpose</h4>
-<p>The purpose of this test is to validate that the EUT properly handles a Set message when the uses a search path.</p>
+<p>The purpose of this test is to validate that the EUT properly handles a Set message when the Controller uses a search path.</p>
 <h4 id="functionality-tag-21">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-22">Test Setup</h4>
@@ -2489,7 +2507,7 @@ body {
 </ol>
 <h3 id="get-message-with-full-parameter-path">1.36 Get message with full parameter path</h3>
 <h4 id="purpose-36">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when a single full parameter path is specified.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when a single full parameter path is specified.</p>
 <h4 id="functionality-tag-35">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-36">Test Setup</h4>
@@ -2519,7 +2537,7 @@ body {
 </ol>
 <h3 id="get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</h3>
 <h4 id="purpose-37">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when multiple full parameter paths are specified within the same object.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when multiple full parameter paths are specified within the same object.</p>
 <h4 id="functionality-tag-36">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-37">Test Setup</h4>
@@ -2550,7 +2568,7 @@ body {
 </ol>
 <h3 id="get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</h3>
 <h4 id="purpose-38">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when multiple full parameter paths are specified within multiple objects.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when multiple full parameter paths are specified within multiple objects.</p>
 <h4 id="functionality-tag-37">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-38">Test Setup</h4>
@@ -2582,7 +2600,7 @@ body {
 </ol>
 <h3 id="get-message-with-object-path">1.39 Get message with object path</h3>
 <h4 id="purpose-39">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when an object path is specified.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when an object path is specified.</p>
 <h4 id="functionality-tag-38">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-39">Test Setup</h4>
@@ -2613,7 +2631,7 @@ body {
 </ol>
 <h3 id="get-message-with-object-instance-path">1.40 Get message with object instance path</h3>
 <h4 id="purpose-40">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when a path to an object instance is specified.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when a path to an object instance is specified.</p>
 <h4 id="functionality-tag-39">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-40">Test Setup</h4>
@@ -2645,7 +2663,7 @@ body {
 </ol>
 <h3 id="get-message-with-invalid-parameter">1.41 Get message with invalid parameter</h3>
 <h4 id="purpose-41">Purpose</h4>
-<p>The purpose of this test is to ensure the can properly handle a Get message when a single invalid parameter is requested.</p>
+<p>The purpose of this test is to ensure the Agent can properly handle a Get message when a single invalid parameter is requested.</p>
 <h4 id="functionality-tag-40">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-41">Test Setup</h4>
@@ -2675,7 +2693,7 @@ body {
 </ol>
 <h3 id="get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</h3>
 <h4 id="purpose-42">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when both a valid and invalid parameter are requested.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when both a valid and invalid parameter are requested.</p>
 <h4 id="functionality-tag-41">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-42">Test Setup</h4>
@@ -2706,7 +2724,7 @@ body {
 </ol>
 <h3 id="get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</h3>
 <h4 id="purpose-43">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses unique key addressing.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses unique key addressing.</p>
 <h4 id="functionality-tag-42">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-43">Test Setup</h4>
@@ -2737,7 +2755,7 @@ body {
 </ol>
 <h3 id="get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</h3>
 <h4 id="purpose-44">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a wildcard to retrieve a single parameter from multiple objects.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a wildcard to retrieve a single parameter from multiple objects.</p>
 <h4 id="functionality-tag-43">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-44">Test Setup</h4>
@@ -2768,7 +2786,7 @@ body {
 </ol>
 <h3 id="get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</h3>
 <h4 id="purpose-45">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a wildcard to retrieve all parameters from multiple object instances.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a wildcard to retrieve all parameters from multiple object instances.</p>
 <h4 id="functionality-tag-44">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-45">Test Setup</h4>
@@ -2800,7 +2818,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</h3>
 <h4 id="purpose-46">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that match a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that match a particular value.</p>
 <h4 id="functionality-tag-45">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-46">Test Setup</h4>
@@ -2833,7 +2851,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-non-equivelance">1.47 Get message using search expression search path (non-equivelance)</h3>
 <h4 id="purpose-47">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that do not match a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that do not match a particular value.</p>
 <h4 id="functionality-tag-46">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-47">Test Setup</h4>
@@ -2866,7 +2884,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</h3>
 <h4 id="purpose-48">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are greater than a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are greater than a particular value.</p>
 <h4 id="functionality-tag-47">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-48">Test Setup</h4>
@@ -2899,7 +2917,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</h3>
 <h4 id="purpose-49">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are less than a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are less than a particular value.</p>
 <h4 id="functionality-tag-48">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-49">Test Setup</h4>
@@ -2932,7 +2950,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</h3>
 <h4 id="purpose-50">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are greater than or equal to a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are greater than or equal to a particular value.</p>
 <h4 id="functionality-tag-49">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-50">Test Setup</h4>
@@ -2965,7 +2983,7 @@ body {
 </ol>
 <h3 id="get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</h3>
 <h4 id="purpose-51">Purpose</h4>
-<p>The purpose of this test is to ensure the can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are less than or equal to a particular value.</p>
+<p>The purpose of this test is to ensure the Controller can retrieve the values of parameters in the Agent’s Instantiated Data Model when the requested path uses a search path to retrieve objects that that parameters that are less than or equal to a particular value.</p>
 <h4 id="functionality-tag-50">Functionality Tag</h4>
 <p>Mandatory</p>
 <h4 id="test-setup-51">Test Setup</h4>
