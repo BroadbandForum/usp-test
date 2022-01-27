@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<!-- BBF GitHub Pages pandoc template; modified from default.html template -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="generator" content="pandoc"/>
+  <meta name="description" content="USP – The User Services Platform: Conformance Test Plan for User Services Platform Agents"/>
+  <meta name="theme-color" content="#157878"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <title>BBF – 9 Functionality Test Cases</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="github.css"/>
+  <link rel="stylesheet" href="extra.css"/>
+  <link rel="stylesheet" href="toc.css"/>
+  <link rel="stylesheet" href="release.css"/>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- XXX header includes are included just before the ToC (below) -->
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">
+      <a href="index.html" style="text-decoration: none; color: white;">
+        <img src="bbflogo-bw.png"/><br>
+        The User Services Platform
+      </a>
+    </h1>
+    <h2 class="project-tagline">Conformance Test Plan for User Services Platform Agents</h2>
+    <p></p>
+    <p></p>
+    <div class="project-buttons">
+      <a class="btn" href="index.htm" title="TP-469 Single-file HTML">HTML</a>
+      <a class="btn" href="index.pdf" title="TP-469 PDF">PDF</a>
+      <a class="btn" href="https://usp.technology" title="usp.technology">Home</a>
+    </div>
+  </section>
+
+  <section class="main-content">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+<nav id="TOCFULL">
+<ul>
+  <li><a href="00-index-contents.html#contents">Cover Page</a></li>
+  <ul>
+    <li><a href="00-index-contents.html#sec:executive-summary">Executive Summary</a></li>
+    <li><a href="00-index-contents.html#sec:purpose">Purpose</a></li>
+    <li><a href="00-index-contents.html#sec:scope">Scope</a></li>
+  </ul>
+  <li><a href="01-index-test-setup.html#sec:test-setup">Test Setup</a></li>
+  <ul>
+    <li><a href="01-index-test-setup.html#sec:test-equipment">Test Equipment</a></li>
+    <li><a href="01-index-test-setup.html#sec:test-setup-and-execution">Test Setup and Execution</a></li>
+    <li><a href="01-index-test-setup.html#sec:universal-test-metrics">Universal Test Metrics</a></li>
+    <li><a href="01-index-test-setup.html#sec:notes-about-test-case-descriptions">Notes about test case descriptions</a></li>
+  </ul>
+  <li><a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a></li>
+  <ul>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-single-object-required-parameters-succeed">1.2 Add message with allow partial true, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-fail">1.3 Add message with allow partial false, single object, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-non-required-parameter-fails-multiple-parameters">1.17 Set message with allow partial true, non-required parameter fails, multiple parameters</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-unique-key-addressing-in-path">1.18 Set message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-search-expression-search-path">1.22 Set message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-path-that-matches-no-objects">1.23 Set message with path that matches no objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-valid-object-instance">1.24 Delete message with allow partial false, valid object instance</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-object-instance-doesnt-exist">1.25 Delete message with allow partial false, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects">1.27 Delete message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects-invalid-object">1.28 Delete message with allow partial false, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-object-instance-doesnt-exist">1.29 Delete message with allow partial true, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-invalid-object">1.31 Delete message with allow partial true, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-object-doesnt-exist">1.32 Delete message with allow partial true, multiple objects, object doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-wildcard-search-path-valid-objects">1.34 Delete message with wildcard search path, valid objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-search-path">1.35 Delete message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-full-parameter-path">1.36 Get message with full parameter path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-path">1.39 Get message with object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-instance-path">1.40 Get message with object instance path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter">1.41 Get message with invalid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-non-equivalence">1.47 Get message using search expression search path (non-equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-creation-using-value-change">1.52 Notify - Subscription creation using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-using-value-change">1.54 Notification Retry using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:subscription-expiration-using-value-change">1.55 Subscription Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-expiration-using-value-change">1.56 Notification Retry Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectcreation-notification">1.57 ObjectCreation Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectdeletion-notification">1.58 ObjectDeletion Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:event-notification-using-periodic">1.59 Event Notification using Periodic!</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:onboardrequest-notification">1.60 OnBoardRequest Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-true">1.61 Operate message using Reboot() with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-false">1.62 Operate message using Reboot() with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments-deprecated-by-1.79">1.63 Operate message using input arguments (DEPRECATED by 1.79)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-false">1.65 Asynchronous operation with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-true">1.66 GetInstances using a single object, first_level_only true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-false">1.67 GetInstances using a single object, first_level_only false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-multiple-objects">1.68 GetInstances with multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:deleted"><em>1.69 DELETED</em></a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-wildcard-search-path">1.70 GetInstances with wildcard search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-search-expression-search-path">1.71 GetInstances with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options">1.73 GetSupportedDM using a single object, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options">1.74 GetSupportedDM using a single object, first_level_only true, no options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-root-object-all-options">1.76 GetSupportedDM on root object, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-unsupported-object">1.77 GetSupportedDM on unsupported object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:removal-of-subscriptions-that-have-no-associated-controller">1.78 Removal of subscriptions that have no associated controller</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments">1.79 Operate message using input arguments</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupportedprotocol">1.80 GetSupportedProtocol</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:automatic-unique-key-generation">1.81 Automatic unique key generation</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unmatched-search-expression">1.82 Get message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-message-with-unmatched-search-expression">1.83 GetInstances message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification---subscription-using-search-paths">1.84 Notification - Subscription using search paths</a></li>
+  </ul>
+  <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a></li>
+  <ul>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time">2.6 Connecting without absolute time</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role">2.10 Adding a Role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters</a></li>
+  </ul>
+  <li><a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a></li>
+  <ul>
+    <li><a href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context">3.1 Bad request outside a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity">3.2 Agent Verifies Non-Payload Field Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context">3.3 Agent rejects invalid signature starting a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP Record Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls">3.5 Failure to Establish TLS</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6 Agent does not accept TLS renegotiation for E2E message exchange</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context">3.8 Establishing a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of a Record out of a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:session-context-expiration">3.10 Session Context Expiration</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID and Expected ID</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records">3.12 Preservation of USP Records</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13 Agent Rejects Records with Different Payload Security than the Established Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id">3.14 Use of retransmit_id</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records">3.15 Handling Duplicate Records</a></li>
+  </ul>
+  <li><a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a></li>
+  <ul>
+    <li><a href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer</a></li>
+  </ul>
+  <li><a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a></li>
+  <ul>
+    <li><a href="06-index-coap-test-cases.html#sec:mapping-a-usp-record-to-a-coap-message">5.1 Mapping a USP Record to a CoAP message</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:usp-records-that-exceed-coap-message-size">5.2 USP Records that exceed CoAP message size</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:successful-coap-exchange">5.3 Successful CoAP exchange</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---timeout">5.4 Failed CoAP exchange - timeout</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-method">5.5 Failed CoAP Exchange - Invalid Method</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-content-format">5.6 Failed CoAP Exchange - Invalid Content-Format</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-usp-record">5.7 Failed CoAP Exchange - Invalid USP Record</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:use-of-dtls">5.8 Use of DTLS</a></li>
+  </ul>
+  <li><a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a></li>
+  <ul>
+    <li><a href="07-index-stomp-test-cases.html#sec:support-of-required-profiles">6.1 Support of Required Profiles</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-session-establishment">6.2 STOMP session establishment</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-connection-retry">6.3 STOMP Connection Retry</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-tls">6.11 STOMP - Use of TLS</a></li>
+  </ul>
+  <li><a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a></li>
+  <ul>
+    <li><a href="08-index-websocket-test-cases.html#sec:session-establishment">7.1 Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-only-one-session">7.2 Use of only one session</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket-session-retry">7.8 WebSocket Session Retry</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-tls">7.9 Use of TLS</a></li>
+  </ul>
+  <li><a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a></li>
+  <ul>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements">8.1 DHCP Discovery - Agent Request Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options">8.2 DHCP Discovery - Agent handling of received options</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery - FQDN Leads to DNS Query</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns">8.4 mDNS</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message Transfer Protocols</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements">8.6 DNS - DNS Record Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-request-response">8.7 mDNS request response</a></li>
+  </ul>
+  <li><a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a></li>
+  <ul>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event">9.11 Use of the Timer! Event</a></li>
+  </ul>
+  <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a></li>
+  <ul>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-json">10.1 Use BulkData collection using HTTP and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-json">10.2 Use BulkData collection using HTTPS and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-csv">10.3 Use BulkData collection using HTTP and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-csv">10.4 Use BulkData collection using HTTPS and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-uri-parameters">10.5 Use BulkData collection using HTTP with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-with-uri-parameters">10.6 Use BulkData collection using HTTPS with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulkdata-collection-retry-mechanism-over-http">10.7 BulkData collection retry mechanism over HTTP</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-wildcard-parameter">10.8 Use BulkData collection using HTTP with wildcard parameter</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-object-path">10.9 Use BulkData collection using HTTP with Object Path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event">10.10 Use BulkData collection Push event</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-wildcard-path">10.11 Use BulkData collection Push event with Wildcard path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-object-path">10.12 Use BulkData collection Push event with Object path</a></li>
+  </ul>
+</ul>
+</nav>
+
+    <header id="title-block-header">
+      <h1 class="title" id="sec:functionality-test-cases">9 Functionality Test Cases<a href="#sec:functionality-test-cases" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
+    </header>
+    <nav id="_TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11) <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate() <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:use-of-the-timer-event">9.11 Use of the Timer! Event <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+</ul>
+    </nav>
+<h2 id="sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11) <a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-154">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-154" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the Timer! event can be configured, and the EUT correctly triggers the event.</p>
+<h3 id="sec:functionality-tags-71">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-71" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.ScheduleTimer() command)</p>
+<h3 id="sec:test-setup-156">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-156" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-147">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-147" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.LocalAgent.Controller.&lt;Controller ID&gt;.ScheduleTimer()&#39;
+            input_args {
+                key: &#39;DelaySeconds&#39;
+                value: &#39;60&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a Notification.</p></li>
+</ol>
+<h3 id="sec:test-metrics-157">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-157" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an OperateResponse with ScheduleTimer() in the executed_command element.</li>
+<li>The EUT sends a Notify message with an event element containing Timer!</li>
+</ol>
+<h2 id="sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate() <a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-155">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-155" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the AddCertificate() operation on the EUT functions correctly.</p>
+<h3 id="sec:functionality-tags-72">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-72" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Device.LocalAgent.AddCertificate() command)</p>
+<h3 id="sec:test-setups">Test Setups <a href="10-index-functionality-test-cases.html#sec:test-setups" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Have an alternate certificate that the EUT hasn’t seen.</li>
+</ol>
+<h3 id="sec:test-procedure-148">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-148" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.LocalAgent.AddCertificate()&#39;
+            send_resp: true
+            input_args {
+                key: &#39;Alias&#39;
+                value: &#39;addedCert&#39;
+            }
+            input_args {
+                key: &#39;Certificate&#39;
+                value: &#39;&lt;new certificate&gt;&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Reconfigure the Controller to use the new certificate.</p></li>
+<li><p>Reestablish a connection to the EUT.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Certificate.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.LocalAgent.Certificate.&lt;cert instance&gt;.Delete()&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-158">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-158" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an OperateResponse after step 1.</li>
+<li>The EUT accepts the connection after the Controller has been reconfigured to use the new certificate.</li>
+<li>The EUT returns a GetResponse after step 4 which contains an instance with an Alias which matches the certificate added in step 1.</li>
+<li>The EUT sends an OperateResponse after step 5.</li>
+</ol>
+<h2 id="sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled <a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-156">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-156" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can download firmware and automatically activate it using the AutoActivate parameter.</p>
+<h3 id="sec:functionality-tags-73">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-73" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Firmware:1 profile)</p>
+<h3 id="sec:test-setup-157">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-157" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure that the EUT has a Subscription to the TransferComplete! and Boot! events with the recipient being the instance used for testing.</li>
+</ol>
+<h3 id="sec:test-procedure-149">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-149" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command:  &#39;Device.DeviceInfo.FirmwareImage.&lt;inactive instance&gt;.Download()&#39;
+            input_args {
+                key: &#39;AutoActivate&#39;
+                value: &#39;true&#39;
+            }
+            input_args {
+                key: &#39;URL&#39;
+                value: &#39;&lt;firmware URL&gt;&#39;
+            }
+            input_args {
+                key: &#39;Username&#39;
+                value: &#39;&lt;optional username&gt;&#39;
+            }
+            input_args {
+                key: &#39;Password&#39;
+                value:&#39;&lt;optional password&gt;&#39;
+            }
+            input_args {
+                key: &#39;FileSize&#39;
+                value: &#39;&lt;file size&gt;&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a Notification</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-159">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-159" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a Notify message after step 1 containing a oper_complete element with a command_name of Download()</li>
+<li>The EUT sends a Notify message with a TransferComplete! event.</li>
+<li>The EUT sends a Notify message with a Boot! event, with the FirmwareUpdated argument set to true.</li>
+<li>The EUT sends a GetResponse message after step 3 which shows that <code>Device.DeviceInfo.ActiveFirmwareImage</code> matches the FirmwareImage instance on which the Download() operation was called; also that <code>Device.DeviceInfo.SoftwareVersion</code> matches the expected version.</li>
+</ol>
+<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate <a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-157">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-157" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can activate a firmware image when a TimeWindow object is used with Immediately mode.</p>
+<h3 id="sec:functionality-tags-74">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-74" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Firmware:1 profile with Activate() operation)</p>
+<h3 id="sec:test-setup-158">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-158" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the EUT has a FirmwareImage instance containing inactive firmware.</li>
+<li>Ensure the EUT has a Subscription instance for Boot! with the used for testing set as the Recipient.</li>
+</ol>
+<h3 id="sec:test-procedure-150">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-150" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &quot;Device.DeviceInfo.FirmwareImage.&lt;instance&gt;.Activate()&quot;
+            input_args: {
+                key: &#39;TimeWindow.1.Start&#39;
+                value: &#39;1&#39;
+            }
+            input_args: {
+                key: &#39;TimeWindow.1.End&#39;
+                value: &#39;100&#39;
+            }
+            input_args: {
+                key: &#39;TimeWindow.1.Mode&#39;
+                value: &#39;Immediately&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for Notify message from the EUT.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.SoftwareVersion&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-160">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-160" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a Notify message within 5 seconds with an OperationComplete element with a command_name of Activate().</li>
+<li>The EUT sends a Notify message with a Boot! event and a FirmwareUpdated argument set to true.</li>
+<li>The EUT responds to the Get message with a GetResponse containing a SoftwareVersion element with the expected software version.</li>
+</ol>
+<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime <a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-158">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-158" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The pupose of this test is to ensure the EUT can activate a firmware image when a TimeWindow instance used with the AnyTime mode.</p>
+<h3 id="sec:functionality-tags-75">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-75" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditonally Mandatory (implements Firmware:1 and Activate() operation)</p>
+<h3 id="sec:test-setup-159">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-159" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the EUT has a FirmwareImage instance containing inactive firmware.</li>
+<li>Ensure the EUT has a Subscription to the Boot! event with the Controller used for testing set as the Recipient.</li>
+</ol>
+<h3 id="sec:test-procedure-151">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-151" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.DeviceInfo.FirmwareImage.&lt;inactive instance&gt;.Activate()&#39;
+            input_args: {
+                key: &#39;TimeWindow.1.Start&#39;
+                value: &#39;0&#39;
+            }
+            input_args: {
+                key: &#39;TimeWindow.1.End&#39;
+                value: &#39;120&#39;
+            }
+            input_args: {
+                key: &#39;TimeWindow.1.Mode&#39;
+                value: &#39;AnyTime&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a Notify message from the EUT.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.SoftwareVersion&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-161">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-161" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a Notify message within 2 minutes after step 1.</li>
+<li>The Notify message has a OperationComplete element.</li>
+<li>The EUT sends a Notify message with a Boot! event and a FirmwareUpdated argument set to true.</li>
+<li>The EUT sends a GetResponse after step 3 with a SoftwareVersion parameter that matches the expected version.</li>
+</ol>
+<h2 id="sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware <a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-159">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-159" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can validate the integrity of downloaded firmware.</p>
+<h3 id="sec:functionality-tags-76">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-76" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Firmware:1 profile)</p>
+<h3 id="sec:test-setup-160">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-160" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure that the EUT has a Subscription to the TransferComplete! event with the recipient being the instance used for testing.</li>
+</ol>
+<h3 id="sec:test-procedure-152">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-152" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure using an invalid checksum:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.DeviceInfo.FirmwareImage.&lt;inactive slot&gt;.Download()&#39;
+            input_args {
+                key: &#39;URL&#39;
+                value: &#39;&lt;firmware URL&gt;&#39;
+            }
+            input_args {
+                key: &#39;CheckSumAlgorithm&#39;
+                value: &#39;SHA-1&#39;
+            }
+            input_args {
+                key: &#39;CheckSum&#39;
+                value: &#39;&lt;invalid checksum&gt;&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a Notify message from the EUT.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.FirmwareImage.&lt;previously used instance&gt;.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-162">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-162" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a Notify message with an OperationComplete element.</li>
+<li>The ETU sends a Notify message with a TransferComplete! event.</li>
+<li>The EUT sends a Get response with a Status parameter of ValidationFailed.</li>
+</ol>
+<h2 id="sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank <a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-160">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-160" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT is capable downloading and installing new firmware for EUTs that may support only the active firmware bank.</p>
+<h3 id="sec:functionality-tags-77">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-77" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Firmware:1 profile)</p>
+<h3 id="sec:test-setup-161">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-161" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure that the EUT has a Subscription to the TransferComplete! event with the recipient being the instance used for testing.</li>
+<li>Ensure the EUT has a Subscription to the Boot! event and the Controller used for testing is set as the Recipient.</li>
+<li>Record the number of firmware banks the EUT supports.</li>
+</ol>
+<h3 id="sec:test-procedure-153">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-153" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.DeviceInfo.FirmwareImage.&lt;active firmware slot&gt;.Download()&#39;
+            input_args {
+                key: &#39;URL&#39;
+                value: &#39;&lt;firmware URL&gt;&#39;
+            }
+            input_args {
+                key: &#39;AutoActivate&#39;
+                value: &#39;true&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a Notify message from the EUT.</p></li>
+</ol>
+<h3 id="sec:test-metrics-163">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-163" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a Notify message with an OperationComplete, if the EUT supports multiple firmware banks the OperationComplete may contain an error indicating that downloading to an active firmware slot is not allowed.</li>
+<li>If an OperationComplete Notification is sent without an error, the EUT sends a Notify message with a Boot! event and a FirmwareUpdated argument set to true.</li>
+</ol>
+<h2 id="sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command <a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-161">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-161" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can correctly cancel a Download() operation.</p>
+<h3 id="sec:functionality-tags-78">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-78" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Firmware:1 profile and Device.LocalAgent.Request.{i}.Cancel() operation)</p>
+<h3 id="sec:test-setup-162">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-162" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the EUT has inactive firmware in one of FirmwareImage slots.</li>
+<li>Ensure the EUT has a subscription to the Boot! event with the Controller used for testing set as the Recipient.</li>
+</ol>
+<h3 id="sec:test-procedure-154">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-154" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.DeviceInfo.FirmwareImage.&lt;valid instance&gt;.Activate()&#39;
+            input_args {
+                key: &#39;TimeWindow.1.Start&#39;
+                value: &#39;120&#39;
+            }
+            input_args {
+                key: &#39;TimeWindow.1.End&#39;
+                value: &#39;500&#39;
+            }
+            input_args {
+                key: &#39;TimeWindow.1.Mode&#39;
+                value: &#39;AnyTime&#39;
+            }
+            send_resp: true
+        }
+    }
+}</code></pre></li>
+<li><p>Send an message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.LocalAgent.Request.&lt;returned in step 1&gt;.Cancel()&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait up to 500 seconds for a Boot! event from the EUT.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Request.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-164">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-164" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a OperationResponse after step 1 with a executed_command element of Activate() and a req_obj_path referencing an entry in the Device.LocalAgent.Request table.</li>
+<li>The EUT never sends a Boot! event.</li>
+<li>In the GetResponse from the EUT after step 4, the Request instance is either non-existent or the Status parameter of the relevant request is either Cancelled or Cancelling.</li>
+</ol>
+<h2 id="sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest <a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-162">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-162" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can handle the manual adding of a new Controller.</p>
+<h3 id="sec:functionality-tags-79">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-79" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Controller:1 profile with the ability to create instances of the Device.LocalAgent.Controller. object, supports SendOnBoardRequest())</p>
+<h3 id="sec:test-setup-163">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-163" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>A valid role instance is configured on the EUT for use with the new certificate.</li>
+<li>A valid certificate instance is configured on the EUT</li>
+<li>A secondary Controller is configured and ready to communicate with another endpoint.</li>
+</ol>
+<h3 id="sec:test-procedure-155">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-155" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure.</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.Controller.&#39;
+                param_settings {
+                        param: &#39;Alias&#39;
+                        value: &#39;usp-111-Controller&#39;
+                    }
+                param_settings {
+                        param: &#39;EndpointID&#39;
+                        value: &#39;&lt;new Controller endpoint ID&gt;&#39;
+                    }
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;AssignedRole&#39;
+                        value: &#39;&lt;valid role instance&gt;&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+          create_objs {
+            obj_path: &#39;Device.LocalAgent.Controller.&lt;new Controller instance&gt;.MTP.&#39;
+            param_settings: {
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
+            param_settings: {
+                    param: &#39;Protocol&#39;
+                    value: &#39;&lt;supported MTP&gt;&#39;
+                }
+           }
+              #  .
+              #  .
+              #  &lt;further parameters to configure supported MTP&gt;
+              #  .
+              #  .
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.LocalAgent.Controller.&lt;new instance&gt;.SendOnBoardRequest()&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Allow the secondary Controller to receive the OnBoardRequest() and send a NotifyResponse.</p></li>
+</ol>
+<h3 id="sec:test-metrics-165">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-165" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT is able to start a session with the secondary Controller.</li>
+<li>The EUT sends a Notify message to the secondary Controller containing an OnBoardRequest element.</li>
+</ol>
+<h2 id="sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters <a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-163">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-163" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly triggers the Boot! event and correctly includes the configured BootParameters.</p>
+<h3 id="sec:functionality-tags-80">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-80" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Reboot:1 profile, supports Device.DeviceInfo.BootFirmwareImage)</p>
+<h3 id="sec:test-setup-164">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-164" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-156">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-156" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            create_objs {
+                    obj_path: &#39;Device.LocalAgent.Subscription.&#39;
+                    param_settings {
+                            param: &#39;NotifType&#39;
+                            value: &#39;Event&#39;
+                        }
+                    param_settings {
+                            param: &#39;ReferenceList&#39;
+                            value: &#39;Device.Boot!&#39;
+                        }
+                    param_settings {
+                            param: &#39;Enable&#39;
+                            value: &#39;true&#39;
+                        }
+                }
+            create_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;Controller instance&gt;.BootParameter.&#39;
+                    param_settings {
+                            param: &#39;Enable&#39;
+                            value: &#39;true&#39;
+                        }
+                    param_settings {
+                            param: &#39;ParameterName&#39;
+                            value: &#39;Device.DeviceInfo.BootFirmwareImage&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.Reboot()&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a Notify message from the EUT.</p></li>
+</ol>
+<h3 id="sec:test-metrics-166">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-166" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After step 2 the EUT sends a Notify message with an event element containing a ParameterMap argument with Device.DeviceInfo.BootFirmwareImage</li>
+</ol>
+<h2 id="sec:use-of-the-timer-event">9.11 Use of the Timer! Event <a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-164">Purpose <a href="10-index-functionality-test-cases.html#sec:purpose-164" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the Timer! event can be configured, and the EUT correctly triggers the event.</p>
+<h3 id="sec:functionality-tags-81">Functionality Tags <a href="10-index-functionality-test-cases.html#sec:functionality-tags-81" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Device.ScheduleTimer() command)</p>
+<h3 id="sec:test-setup-165">Test Setup <a href="10-index-functionality-test-cases.html#sec:test-setup-165" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure that a Subscription object exists on the EUT with NotifType OperationComplete on Device.ScheduleTimer().</li>
+</ol>
+<h3 id="sec:test-procedure-157">Test Procedure <a href="10-index-functionality-test-cases.html#sec:test-procedure-157" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.ScheduleTimer()&#39;
+            input_args {
+                key: &#39;DelaySeconds&#39;
+                value: &#39;60&#39;
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a Notification.</p></li>
+</ol>
+<h3 id="sec:test-metrics-167">Test Metrics <a href="10-index-functionality-test-cases.html#sec:test-metrics-167" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an OperateResponse with ScheduleTimer() in the executed_command element.</li>
+<li>The EUT sends an OperationComplete Notify message with an event element containing ScheduleTimer().</li>
+</ol>
+    <div style="clear: both;"/>
+    <footer class="site-footer">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+      <span class="site-footer-owner">
+        USP is developed and maintained
+        by <a href="https://www.broadband-forum.org">The Broadband Forum</a>.
+        &copy; The Broadband Forum 2022</a>. All Rights Reserved.
+      </span>
+      <span class="site-footer-credits">
+        This page was generated by <a href="https://pandoc.org">pandoc</a>
+        and <a href="https://pages.github.com">GitHub Pages</a>.
+        View the <a href="https://github.com/BroadbandForum/usp-test">specification source on GitHub</a>.
+        <span class="release"/>
+      </span>
+    </footer>
+  </section>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!-- <h1 class="display-none" id="sec:general-mtp-test-cases">4 General MTP Test Cases<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1> -->
+
+<h2 id="sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-118">Purpose<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:purpose-118" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can use X.509 certificates
+to secure communication at the MTP layer.</p>
+
+<h3 id="sec:functionality-tags-35">Functionality Tags<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:functionality-tags-35" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Mandatory</p>
+
+<h3 id="sec:test-setup-121">Test Setup<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:test-setup-121" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send
+and receive USP Records to each other.</li>
+<li>Ensure that the use of MTP layer encryption is enabled on the EUT.</li>
+</ol>
+
+<h3 id="sec:test-procedure-112">Test Procedure<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:test-procedure-112" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Send a GetSupportedProtocol message to the EUT with the following structure:</li>
+</ol>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET_SUPPORTED_PROTO
+}
+body {
+    request {
+        get_supported_protocol {
+            controller_supported_protocol_versions: '&lt;comma separated list of test controller versions&gt;'
+        }
+    }
+}</code></pre>
+
+<h3 id="sec:test-metrics-120">Test Metrics<a class="headerlink" href="05-index-general-mtp-test-cases.html#sec:test-metrics-120" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT processes the certificate and establishes a secure TLS connection at the MTP layer.</li>
+</ol>
+

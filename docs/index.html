@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<!-- BBF GitHub Pages pandoc template; modified from default.html template -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="generator" content="pandoc"/>
+  <meta name="description" content="USP – The User Services Platform: Conformance Test Plan for User Services Platform Agents"/>
+  <meta name="theme-color" content="#157878"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <title>BBF – USP – The User Services Platform</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="github.css"/>
+  <link rel="stylesheet" href="extra.css"/>
+  <link rel="stylesheet" href="toc.css"/>
+  <link rel="stylesheet" href="release.css"/>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- XXX header includes are included just before the ToC (below) -->
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">
+      <a href="index.html" style="text-decoration: none; color: white;">
+        <img src="bbflogo-bw.png"/><br>
+        The User Services Platform
+      </a>
+    </h1>
+    <h2 class="project-tagline">Conformance Test Plan for User Services Platform Agents</h2>
+    <p></p>
+    <p></p>
+    <div class="project-buttons">
+      <a class="btn" href="index.htm" title="TP-469 Single-file HTML">HTML</a>
+      <a class="btn" href="index.pdf" title="TP-469 PDF">PDF</a>
+      <a class="btn" href="https://usp.technology" title="usp.technology">Home</a>
+    </div>
+  </section>
+
+  <section class="main-content">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+<nav id="TOCFULL">
+<ul>
+  <li><a href="00-index-contents.html#contents">Cover Page</a></li>
+  <ul>
+    <li><a href="00-index-contents.html#sec:executive-summary">Executive Summary</a></li>
+    <li><a href="00-index-contents.html#sec:purpose">Purpose</a></li>
+    <li><a href="00-index-contents.html#sec:scope">Scope</a></li>
+  </ul>
+  <li><a href="01-index-test-setup.html#sec:test-setup">Test Setup</a></li>
+  <ul>
+    <li><a href="01-index-test-setup.html#sec:test-equipment">Test Equipment</a></li>
+    <li><a href="01-index-test-setup.html#sec:test-setup-and-execution">Test Setup and Execution</a></li>
+    <li><a href="01-index-test-setup.html#sec:universal-test-metrics">Universal Test Metrics</a></li>
+    <li><a href="01-index-test-setup.html#sec:notes-about-test-case-descriptions">Notes about test case descriptions</a></li>
+  </ul>
+  <li><a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a></li>
+  <ul>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-single-object-required-parameters-succeed">1.2 Add message with allow partial true, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-fail">1.3 Add message with allow partial false, single object, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-non-required-parameter-fails-multiple-parameters">1.17 Set message with allow partial true, non-required parameter fails, multiple parameters</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-unique-key-addressing-in-path">1.18 Set message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-search-expression-search-path">1.22 Set message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-path-that-matches-no-objects">1.23 Set message with path that matches no objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-valid-object-instance">1.24 Delete message with allow partial false, valid object instance</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-object-instance-doesnt-exist">1.25 Delete message with allow partial false, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects">1.27 Delete message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects-invalid-object">1.28 Delete message with allow partial false, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-object-instance-doesnt-exist">1.29 Delete message with allow partial true, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-invalid-object">1.31 Delete message with allow partial true, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-object-doesnt-exist">1.32 Delete message with allow partial true, multiple objects, object doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-wildcard-search-path-valid-objects">1.34 Delete message with wildcard search path, valid objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-search-path">1.35 Delete message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-full-parameter-path">1.36 Get message with full parameter path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-path">1.39 Get message with object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-instance-path">1.40 Get message with object instance path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter">1.41 Get message with invalid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-non-equivalence">1.47 Get message using search expression search path (non-equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-creation-using-value-change">1.52 Notify - Subscription creation using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-using-value-change">1.54 Notification Retry using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:subscription-expiration-using-value-change">1.55 Subscription Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-expiration-using-value-change">1.56 Notification Retry Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectcreation-notification">1.57 ObjectCreation Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectdeletion-notification">1.58 ObjectDeletion Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:event-notification-using-periodic">1.59 Event Notification using Periodic!</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:onboardrequest-notification">1.60 OnBoardRequest Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-true">1.61 Operate message using Reboot() with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-false">1.62 Operate message using Reboot() with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments-deprecated-by-1.79">1.63 Operate message using input arguments (DEPRECATED by 1.79)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-false">1.65 Asynchronous operation with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-true">1.66 GetInstances using a single object, first_level_only true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-false">1.67 GetInstances using a single object, first_level_only false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-multiple-objects">1.68 GetInstances with multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:deleted"><em>1.69 DELETED</em></a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-wildcard-search-path">1.70 GetInstances with wildcard search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-search-expression-search-path">1.71 GetInstances with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options">1.73 GetSupportedDM using a single object, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options">1.74 GetSupportedDM using a single object, first_level_only true, no options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-root-object-all-options">1.76 GetSupportedDM on root object, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-unsupported-object">1.77 GetSupportedDM on unsupported object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:removal-of-subscriptions-that-have-no-associated-controller">1.78 Removal of subscriptions that have no associated controller</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments">1.79 Operate message using input arguments</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupportedprotocol">1.80 GetSupportedProtocol</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:automatic-unique-key-generation">1.81 Automatic unique key generation</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unmatched-search-expression">1.82 Get message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-message-with-unmatched-search-expression">1.83 GetInstances message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification---subscription-using-search-paths">1.84 Notification - Subscription using search paths</a></li>
+  </ul>
+  <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a></li>
+  <ul>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time">2.6 Connecting without absolute time</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role">2.10 Adding a Role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters</a></li>
+  </ul>
+  <li><a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a></li>
+  <ul>
+    <li><a href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context">3.1 Bad request outside a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity">3.2 Agent Verifies Non-Payload Field Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context">3.3 Agent rejects invalid signature starting a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP Record Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls">3.5 Failure to Establish TLS</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6 Agent does not accept TLS renegotiation for E2E message exchange</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context">3.8 Establishing a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of a Record out of a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:session-context-expiration">3.10 Session Context Expiration</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID and Expected ID</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records">3.12 Preservation of USP Records</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13 Agent Rejects Records with Different Payload Security than the Established Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id">3.14 Use of retransmit_id</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records">3.15 Handling Duplicate Records</a></li>
+  </ul>
+  <li><a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a></li>
+  <ul>
+    <li><a href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer</a></li>
+  </ul>
+  <li><a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a></li>
+  <ul>
+    <li><a href="06-index-coap-test-cases.html#sec:mapping-a-usp-record-to-a-coap-message">5.1 Mapping a USP Record to a CoAP message</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:usp-records-that-exceed-coap-message-size">5.2 USP Records that exceed CoAP message size</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:successful-coap-exchange">5.3 Successful CoAP exchange</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---timeout">5.4 Failed CoAP exchange - timeout</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-method">5.5 Failed CoAP Exchange - Invalid Method</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-content-format">5.6 Failed CoAP Exchange - Invalid Content-Format</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-usp-record">5.7 Failed CoAP Exchange - Invalid USP Record</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:use-of-dtls">5.8 Use of DTLS</a></li>
+  </ul>
+  <li><a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a></li>
+  <ul>
+    <li><a href="07-index-stomp-test-cases.html#sec:support-of-required-profiles">6.1 Support of Required Profiles</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-session-establishment">6.2 STOMP session establishment</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-connection-retry">6.3 STOMP Connection Retry</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-tls">6.11 STOMP - Use of TLS</a></li>
+  </ul>
+  <li><a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a></li>
+  <ul>
+    <li><a href="08-index-websocket-test-cases.html#sec:session-establishment">7.1 Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-only-one-session">7.2 Use of only one session</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket-session-retry">7.8 WebSocket Session Retry</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-tls">7.9 Use of TLS</a></li>
+  </ul>
+  <li><a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a></li>
+  <ul>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements">8.1 DHCP Discovery - Agent Request Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options">8.2 DHCP Discovery - Agent handling of received options</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery - FQDN Leads to DNS Query</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns">8.4 mDNS</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message Transfer Protocols</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements">8.6 DNS - DNS Record Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-request-response">8.7 mDNS request response</a></li>
+  </ul>
+  <li><a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a></li>
+  <ul>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event">9.11 Use of the Timer! Event</a></li>
+  </ul>
+  <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a></li>
+  <ul>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-json">10.1 Use BulkData collection using HTTP and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-json">10.2 Use BulkData collection using HTTPS and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-csv">10.3 Use BulkData collection using HTTP and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-csv">10.4 Use BulkData collection using HTTPS and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-uri-parameters">10.5 Use BulkData collection using HTTP with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-with-uri-parameters">10.6 Use BulkData collection using HTTPS with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulkdata-collection-retry-mechanism-over-http">10.7 BulkData collection retry mechanism over HTTP</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-wildcard-parameter">10.8 Use BulkData collection using HTTP with wildcard parameter</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-object-path">10.9 Use BulkData collection using HTTP with Object Path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event">10.10 Use BulkData collection Push event</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-wildcard-path">10.11 Use BulkData collection Push event with Wildcard path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-object-path">10.12 Use BulkData collection Push event with Object path</a></li>
+  </ul>
+</ul>
+</nav>
+
+    <header id="title-block-header">
+      <h1 class="title">TP-469 – Conformance Test Plan for User Services Platform Agents</h1>
+      <p class="subtitle">Issue: 1 Amendment 1 <span class="release"></span></p>
+      <p class="date">Issue Date: January 2022</p>
+    </header>
+  <h3 class="unnumbered unlisted" id="table-of-contents">Table of Contents<a class="headerlink" href="11-index-bulk-data-collection-test-cases.html#table-of-contents" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <nav>
+  <ul>
+    <ul>
+      <li><a href="00-index-contents.html#sec:executive-summary">Executive Summary</a></li>
+      <li><a href="00-index-contents.html#sec:purpose">Purpose</a></li>
+      <li><a href="00-index-contents.html#sec:scope">Scope</a></li>
+    </ul>
+    <li><a href="01-index-test-setup.html#sec:test-setup">Test Setup</a></li>
+    <ul>
+      <li><a href="01-index-test-setup.html#sec:test-equipment">Test Equipment</a></li>
+      <li><a href="01-index-test-setup.html#sec:test-setup-and-execution">Test Setup and Execution</a></li>
+      <li><a href="01-index-test-setup.html#sec:universal-test-metrics">Universal Test Metrics</a></li>
+      <li><a href="01-index-test-setup.html#sec:notes-about-test-case-descriptions">Notes about test case descriptions</a></li>
+    </ul>
+    <li><a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a></li>
+    <ul>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-single-object-required-parameters-succeed">1.2 Add message with allow partial true, single object, required parameters succeed</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-fail">1.3 Add message with allow partial false, single object, required parameters fail</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-non-required-parameter-fails-multiple-parameters">1.17 Set message with allow partial true, non-required parameter fails, multiple parameters</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-unique-key-addressing-in-path">1.18 Set message with unique key addressing in path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-search-expression-search-path">1.22 Set message with search expression search path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-path-that-matches-no-objects">1.23 Set message with path that matches no objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-valid-object-instance">1.24 Delete message with allow partial false, valid object instance</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-object-instance-doesnt-exist">1.25 Delete message with allow partial false, object instance doesn’t exist</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects">1.27 Delete message with allow partial false, multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects-invalid-object">1.28 Delete message with allow partial false, multiple objects, invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-object-instance-doesnt-exist">1.29 Delete message with allow partial true, object instance doesn’t exist</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-invalid-object">1.31 Delete message with allow partial true, multiple objects, invalid object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-object-doesnt-exist">1.32 Delete message with allow partial true, multiple objects, object doesn’t exist</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-wildcard-search-path-valid-objects">1.34 Delete message with wildcard search path, valid objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-search-path">1.35 Delete message with search expression search path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-full-parameter-path">1.36 Get message with full parameter path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-path">1.39 Get message with object path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-instance-path">1.40 Get message with object instance path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter">1.41 Get message with invalid parameter</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-non-equivalence">1.47 Get message using search expression search path (non-equivalence)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-creation-using-value-change">1.52 Notify - Subscription creation using Value Change</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-using-value-change">1.54 Notification Retry using Value Change</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:subscription-expiration-using-value-change">1.55 Subscription Expiration using Value Change</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-expiration-using-value-change">1.56 Notification Retry Expiration using Value Change</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:objectcreation-notification">1.57 ObjectCreation Notification</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:objectdeletion-notification">1.58 ObjectDeletion Notification</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:event-notification-using-periodic">1.59 Event Notification using Periodic!</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:onboardrequest-notification">1.60 OnBoardRequest Notification</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-true">1.61 Operate message using Reboot() with send_resp true</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-false">1.62 Operate message using Reboot() with send_resp false</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments-deprecated-by-1.79">1.63 Operate message using input arguments (DEPRECATED by 1.79)</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-false">1.65 Asynchronous operation with send_resp false</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-true">1.66 GetInstances using a single object, first_level_only true</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-false">1.67 GetInstances using a single object, first_level_only false</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-multiple-objects">1.68 GetInstances with multiple objects</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:deleted"><em>1.69 DELETED</em></a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-wildcard-search-path">1.70 GetInstances with wildcard search path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-search-expression-search-path">1.71 GetInstances with search expression search path</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options">1.73 GetSupportedDM using a single object, first_level_only true, all options</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options">1.74 GetSupportedDM using a single object, first_level_only true, no options</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-root-object-all-options">1.76 GetSupportedDM on root object, all options</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-unsupported-object">1.77 GetSupportedDM on unsupported object</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:removal-of-subscriptions-that-have-no-associated-controller">1.78 Removal of subscriptions that have no associated controller</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments">1.79 Operate message using input arguments</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getsupportedprotocol">1.80 GetSupportedProtocol</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:automatic-unique-key-generation">1.81 Automatic unique key generation</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unmatched-search-expression">1.82 Get message with unmatched search expression</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:getinstances-message-with-unmatched-search-expression">1.83 GetInstances message with unmatched search expression</a></li>
+      <li><a href="02-index-messages-and-path-names.html#sec:notification---subscription-using-search-paths">1.84 Notification - Subscription using search paths</a></li>
+    </ul>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a></li>
+    <ul>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time">2.6 Connecting without absolute time</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role">2.10 Adding a Role</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions</a></li>
+      <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters</a></li>
+    </ul>
+    <li><a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a></li>
+    <ul>
+      <li><a href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context">3.1 Bad request outside a session context</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity">3.2 Agent Verifies Non-Payload Field Integrity</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context">3.3 Agent rejects invalid signature starting a session context</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP Record Integrity</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls">3.5 Failure to Establish TLS</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6 Agent does not accept TLS renegotiation for E2E message exchange</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context">3.8 Establishing a Session Context</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of a Record out of a Session Context</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:session-context-expiration">3.10 Session Context Expiration</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID and Expected ID</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records">3.12 Preservation of USP Records</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13 Agent Rejects Records with Different Payload Security than the Established Context</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id">3.14 Use of retransmit_id</a></li>
+      <li><a href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records">3.15 Handling Duplicate Records</a></li>
+    </ul>
+    <li><a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a></li>
+    <ul>
+      <li><a href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer</a></li>
+    </ul>
+    <li><a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a></li>
+    <ul>
+      <li><a href="06-index-coap-test-cases.html#sec:mapping-a-usp-record-to-a-coap-message">5.1 Mapping a USP Record to a CoAP message</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:usp-records-that-exceed-coap-message-size">5.2 USP Records that exceed CoAP message size</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:successful-coap-exchange">5.3 Successful CoAP exchange</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---timeout">5.4 Failed CoAP exchange - timeout</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-method">5.5 Failed CoAP Exchange - Invalid Method</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-content-format">5.6 Failed CoAP Exchange - Invalid Content-Format</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-usp-record">5.7 Failed CoAP Exchange - Invalid USP Record</a></li>
+      <li><a href="06-index-coap-test-cases.html#sec:use-of-dtls">5.8 Use of DTLS</a></li>
+    </ul>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a></li>
+    <ul>
+      <li><a href="07-index-stomp-test-cases.html#sec:support-of-required-profiles">6.1 Support of Required Profiles</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp-session-establishment">6.2 STOMP session establishment</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp-connection-retry">6.3 STOMP Connection Retry</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed</a></li>
+      <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-tls">6.11 STOMP - Use of TLS</a></li>
+    </ul>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a></li>
+    <ul>
+      <li><a href="08-index-websocket-test-cases.html#sec:session-establishment">7.1 Session Establishment</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:use-of-only-one-session">7.2 Use of only one session</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:websocket-session-retry">7.8 WebSocket Session Retry</a></li>
+      <li><a href="08-index-websocket-test-cases.html#sec:use-of-tls">7.9 Use of TLS</a></li>
+    </ul>
+    <li><a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a></li>
+    <ul>
+      <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements">8.1 DHCP Discovery - Agent Request Requirements</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options">8.2 DHCP Discovery - Agent handling of received options</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery - FQDN Leads to DNS Query</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:mdns">8.4 mDNS</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message Transfer Protocols</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements">8.6 DNS - DNS Record Requirements</a></li>
+      <li><a href="09-index-discovery-test-cases.html#sec:mdns-request-response">8.7 mDNS request response</a></li>
+    </ul>
+    <li><a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a></li>
+    <ul>
+      <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters</a></li>
+      <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event">9.11 Use of the Timer! Event</a></li>
+    </ul>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a></li>
+    <ul>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-json">10.1 Use BulkData collection using HTTP and JSON</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-json">10.2 Use BulkData collection using HTTPS and JSON</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-csv">10.3 Use BulkData collection using HTTP and CSV</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-csv">10.4 Use BulkData collection using HTTPS and CSV</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-uri-parameters">10.5 Use BulkData collection using HTTP with URI Parameters</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-with-uri-parameters">10.6 Use BulkData collection using HTTPS with URI Parameters</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulkdata-collection-retry-mechanism-over-http">10.7 BulkData collection retry mechanism over HTTP</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-wildcard-parameter">10.8 Use BulkData collection using HTTP with wildcard parameter</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-object-path">10.9 Use BulkData collection using HTTP with Object Path</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event">10.10 Use BulkData collection Push event</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-wildcard-path">10.11 Use BulkData collection Push event with Wildcard path</a></li>
+      <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-object-path">10.12 Use BulkData collection Push event with Object path</a></li>
+    </ul>
+  </ul>
+  </nav>
+
+  <h3 class="unnumbered unlisted" id="list-of-figures">List of Figures<a class="headerlink" href="11-index-bulk-data-collection-test-cases.html#list-of-figures" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <ol>
+  <li><a href='01-index-test-setup.html#fig:basic-test-setup' title=''>Basic Test Setup</a></li>
+  </ol>
+
+  <h3 class="unnumbered unlisted" id="list-of-tables">List of Tables<a class="headerlink" href="11-index-bulk-data-collection-test-cases.html#list-of-tables" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <ol>
+
+  </ol>
+
+  <h3 class="unnumbered unlisted new-page" id="sec:notice">Notice<a class="headerlink" href="00-index-contents.html#sec:notice" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <p>The Broadband Forum is a non-profit corporation organized to create guidelines for broadband network system development and deployment. This Test Plan is owned and copyrighted by the Broadband Forum, and portions of this Test Plan may be owned and/or copyrighted by Broadband Forum members.</p>
+
+  <h3 class="unnumbered unlisted" id="sec:intellectual-property">Intellectual Property<a class="headerlink" href="00-index-contents.html#sec:intellectual-property" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <p>Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims or other intellectual property rights of which they may be aware that might be infringed by any implementation of this Test Plan, and to provide supporting documentation.</p>
+
+  <h3 class="unnumbered unlisted" id="sec:terms-of-use">Terms of Use<a class="headerlink" href="00-index-contents.html#sec:terms-of-use" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <p>Recipients of this document may use it (a) for internal review and study purposes, (b) to provide to the Broadband Forum the comments and notification requested in the preceding paragraph, and (c) if the Recipient is a Broadband Forum member, to implement the Test Plan in a product or service made commercially available. Any other use of this Test Plan is expressly prohibited without the prior written consent of the Broadband Forum.</p>
+
+  <p>THIS TEST PLAN IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT AND ANY IMPLIED WARRANTIES ARE EXPRESSLY DISCLAIMED. ANY USE OF THIS TEST PLAN SHALL BE MADE ENTIRELY AT THE USER’S OR IMPLEMENTER’S OWN RISK, AND NEITHER THE FORUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY USER, IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER, DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS TEST PLAN, INCLUDING BUT NOT LIMITED TO, ANY CONSEQUENTIAL, SPECIAL, PUNITIVE, INCIDENTAL AND INDIRECT DAMAGES.</p>
+
+  <p>All copies of this Test Plan (or any portion hereof) must include the notices, legends and other provisions set forth on this page.</p>
+
+  <div class="note">
+  <p>© 2022, The Broadband Forum. All rights reserved. This Broadband Forum document (TP-469) specifies the Test Plan on which is based the &lt;BBF.NNN&gt; Certification Program for &lt;type of product&gt; products. Through an open selection process, the Broadband Forum entered into an agreement with one or more independent Test Agencies to offer commercial testing services against this Test Plan and to confirm results to the Broadband Forum in connection with the Forum’s delivery of &lt;BBF.NNN&gt; Certification. Offering Certification testing services against this Test Plan is reserved to the Test Agencies duly authorized by the Broadband Forum. Broadband Forum members can independently test against TP-469, but may only produce limited reports which only detail where a given product has failed a test case.</p>
+
+  <p>NOTE: The right to display a Broadband Forum Certification Logo may only be granted by the Broadband Forum, and that right is available only to Broadband Forum members that have successfully passed certification testing by a duly authorized Test Agency. Further details on the Broadband Forum Certification Programs can be found at <a href='http://www.broadband-forum.org' title=''>http://www.broadband-forum.org</a>.</p></div>
+
+  <div bbfTable="bbfRevisionHistory">
+  </div>
+
+  <h3 class="unnumbered unlisted new-page" id="sec:bbfissue-history-1">Issue History<a class="headerlink" href="00-index-contents.html#sec:bbfissue-history-1" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <div bbfTable="uspRevisionHistory">
+  <table>
+  <col width="17%" />
+  <col width="81%" />
+  <tr class="header">
+  <th align="left">Issue Number</th>
+  <th align="left">Changes</th>
+  </tr>
+  <tr class="odd">
+  <td align="left">Release 1.0</td>
+  <td align="left"><ul>
+  <li>First release of this test plan, containing test cases for basic
+  compliance with TR-369/USP.</li>
+  </ul></td>
+  </tr>
+  <tr class="even">
+  <td align="left">Release 1.0.1</td>
+  <td align="left"><ul>
+  <li>Deprecated test 7.3</li>
+  <li>Added flag to the features list to indicate which features are
+  &ldquo;not-in-force&rdquo; and not yet available for certification</li>
+  <li>Various procedure and metric fixes</li>
+  </ul></td>
+  </tr>
+  <tr class="odd">
+  <td align="left">Release 1.0.2</td>
+  <td align="left"><ul>
+  <li>Both mandatory and conditional mandatory tests can use alternate objects or parameters if available</li>
+  <li>Updated features and requirements</li>
+  <li>Altered test setup of 1.50 to include three objects</li>
+  <li>Fixed metrics of 1.25 to use new DeleteResp logic</li>
+  <li>Fixed tests 1.16 and 1.21 to use the correct error codes</li>
+  <li>Fixed test 1.20 to only check for at least one error</li>
+  <li>Fixed test 4.1 to include &ldquo;OnBoardRequest()&rdquo; as a conditional requirement</li>
+  <li>Fixed test 1.32 to use new DeleteResp logic</li>
+  <li>Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM first_level_only logic</li>
+  <li>Fixed error code metric of test 1.8</li>
+  </ul></td>
+  </tr>
+  <tr class="even">
+  <td align="left">Release 1.0.3</td>
+  <td align="left"><ul>
+  <li>The metrics of test 1.9 now do not imply order</li>
+  <li>Test 1.22 metric now requires &ldquo;at least one&rdquo; element rather than a &ldquo;single&rdquo; element</li>
+  <li>Renamed test 1.23</li>
+  <li>Fixed the metric of test 1.38 to include the instance identifier of the path</li>
+  <li>Reworded the purpose of test 1.41</li>
+  <li>Clarified the test setup of tests 1.66 and 1.67</li>
+  <li>Fixed a typo in test 6.1 metrics (ServerRetryInitialMultiplier to ServerRetryIntervalMultiplier)</li>
+  <li>Fixes other typographical errors</li>
+  </ul></td>
+  </tr>
+  <tr class="odd">
+  <td align="left">Release 1.1</td>
+  <td align="left"><ul>
+  <li>Adds test 1.78 Removal of subscriptions that have no associated controller</li>
+  <li>Adds test 1.80 GetSupportedProtocol</li>
+  <li>Adds language reinforcing required tests based on supported features</li>
+  <li>Adds test case 1.81 to test automatic unique key generation by the Agent</li>
+  <li>Adds negative test metrics to several Set and Delete tests to validate that operations did not occur upon error (1.7, 1.8, 1.14, 1.15, 1.20, 1.24, 1.27, 1.28, 1.31, 1.32, 1.33, 1.34, 1.35)</li>
+  <li>Adds section 10 for bulk data collection tests</li>
+  <li>Adds tests 1.82 and 1.83 to validate Get and GetInstances using expressions that match zero objects</li>
+  <li>Adds test 1.84 to exercise the use of search paths in Subscriptions</li>
+  <li>Defines deprecation for tests</li>
+  <li>Deprecates test 1.63 in favor of test 1.79</li>
+  <li>Deprecates test 9.1 in favor of test 9.11</li>
+  <li>Deprecates tests 2.3, 2.4, and 2.5</li>
+  <li>Completely deletes test 1.69</li>
+  <li>Updates functionality tag on test 1.71 to &ldquo;supports at least one multi-instance object&rdquo;</li>
+  <li>Clarifies the definition of an empty oper_success element in test 1.32</li>
+  <li>Rewrites test 2.20 to accomplish its original intent</li>
+  <li>Changes test 3.6 to check that an Agent does not accept TLS renegotiation</li>
+  <li>Changes test 2.15 and 2.16 to use &ldquo;Enable&rdquo; rather than &ldquo;Alias&rdquo; as a test parameter</li>
+  <li>Simplifies test 4.1</li>
+  <li>Various typographical fixes, some in test procedure path names</li>
+  <li>Normalizes all protobuf examples in test procedures</li>
+  <li>Fixes test 2.20 to use the correct permissions</li>
+  <li>Fixes test 1.47 to use the correct operator</li>
+  <li>Eases the requirements of test 9.7 for implementation flexibility</li>
+  <li>Removes the concept of &ldquo;not-in-force&rdquo; test cases and features</li>
+  <li>Updates tests 1.59, 1.84 to use allow_partial false”</li>
+  <li>Allows tests 1.3, 1.7, 1.8, 1.21 to use only an invalid parameter value (not an invalid parameter) and accept 7012 as an acceptable error code</li>
+  </ul></td>
+  </tr>
+  </table></div>
+
+  <p>Comments or questions about this Broadband Forum Test Plan should be
+  directed to <a href='mailto:info@broadband-forum.org' title='' class="email">info@broadband-forum.org</a>.</p>
+
+  <div bbfList="bbfEditors">
+  </div>
+
+  <h3 class="unnumbered unlisted" id="sec:editors-1">Editors<a class="headerlink" href="00-index-contents.html#sec:editors-1" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <div bbfTable="uspEditors">
+  <table>
+  <col width="22%" />
+  <col width="16%" />
+  <col width="25%" />
+  <col width="35%" />
+  <tr class="header">
+  <th align="left">Name</th>
+  <th align="left">Company</th>
+  <th align="left">Email</th>
+  <th align="left">Role</th>
+  </tr>
+  <tr class="odd">
+  <td align="left">Jason Walls</td>
+  <td align="left">QA Cafe, LLC</td>
+  <td align="left">jason@qacafe.com</td>
+  <td align="left">Editor</td>
+  </tr>
+  </table></div>
+
+  <div bbfList="bbfWADs">
+  </div>
+
+  <h3 class="unnumbered unlisted" id="sec:bbfworkarea-work-area-directors-1"> Work Area Directors<a class="headerlink" href="00-index-contents.html#sec:bbfworkarea-work-area-directors-1" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+  <div bbfTable="uspWADs">
+  <table>
+  <col width="22%" />
+  <col width="16%" />
+  <col width="25%" />
+  <col width="35%" />
+  <tr class="header">
+  <th align="left">Name</th>
+  <th align="left">Company</th>
+  <th align="left">Email</th>
+  <th align="left">Role</th>
+  </tr>
+  <tr class="odd">
+  <td align="left">Jason Walls</td>
+  <td align="left">QA Cafe, LLC</td>
+  <td align="left">jason@qacafe.com</td>
+  <td align="left">Broadband User Services Work Area Director</td>
+  </tr>
+  <tr class="even">
+  <td align="left">John Blackford</td>
+  <td align="left">CommScope</td>
+  <td align="left">john.blackford@commscope.com</td>
+  <td align="left">Broadband User Services Work Area Director</td>
+  </tr>
+  </table></div>
+
+  <div bbfList="bbfPSLs">
+  </div>
+
+  <div bbfTable="uspPSLs">
+  </div>
+
+  <div bbfTable="uspAcknowledgments">
+  </div>
+
+  <div bbfTable="uspRevisionHistory">
+  </div>
+
+  <div bbfTable="uspEditors">
+  </div>
+
+  <div bbfTable="uspWADs">
+  </div>
+
+  <h2 id="sec:executive-summary">Executive Summary<a class="headerlink" href="00-index-contents.html#sec:executive-summary" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+  <p>Testing is crucial to promoting the interoperability and adoption of
+  standards. To meet this, the Broadband Forum regularly produces test
+  suites that validate the conformance of implementations of their
+  standards. This specification defines the test setup, test procedures,
+  and test metrics to validate Agent and implementations of the
+  <a href='https://usp.technology' title=''>User Services Platform (USP)</a>,
+  published as BBF TR-369.</p>
+
+  <p>This test plan is used to validate USP Agent implementations for the
+  <a href='https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification' title=''>BBF.369 USP Agent Certification Program</a>. Companies
+  looking to certify their products, or to acquire certified products, can find
+  full details on the program, approved test tools and labs, and the list of
+  certified products
+  <a href='https://www.broadband-forum.org/testing-and-certification-programs/bbf-369-usp-certification' title=''>here</a>.</p>
+
+  <h2 id="sec:purpose">Purpose<a class="headerlink" href="00-index-contents.html#sec:purpose" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+  <p>This purpose of this document is to provide a definitive guide for validating
+  the compliance of USP Agents in accordance with the specification.</p>
+
+  <h2 id="sec:scope">Scope<a class="headerlink" href="00-index-contents.html#sec:scope" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+  <p>The tests defined below are intended to validate the specific
+  requirements outlined in the USP specification, as well as those
+  requirements defined in the Device:2 Data Model for USP Agents for
+  objects, parameters, commands, and events necessary for the operation of
+  USP.</p>
+
+
+    <div style="clear: both;"/>
+    <footer class="site-footer">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+      <span class="site-footer-owner">
+        USP is developed and maintained
+        by <a href="https://www.broadband-forum.org">The Broadband Forum</a>.
+        &copy; The Broadband Forum 2022</a>. All Rights Reserved.
+      </span>
+      <span class="site-footer-credits">
+        This page was generated by <a href="https://pandoc.org">pandoc</a>
+        and <a href="https://pages.github.com">GitHub Pages</a>.
+        View the <a href="https://github.com/BroadbandForum/usp-test">specification source on GitHub</a>.
+        <span class="release"/>
+      </span>
+    </footer>
+  </section>
+</body>
+</html>

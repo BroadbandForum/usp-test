@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<!-- BBF GitHub Pages pandoc template; modified from default.html template -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="generator" content="pandoc"/>
+  <meta name="description" content="USP – The User Services Platform: Conformance Test Plan for User Services Platform Agents"/>
+  <meta name="theme-color" content="#157878"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <title>BBF – 2 Authentication and Access Control Test Cases</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="github.css"/>
+  <link rel="stylesheet" href="extra.css"/>
+  <link rel="stylesheet" href="toc.css"/>
+  <link rel="stylesheet" href="release.css"/>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- XXX header includes are included just before the ToC (below) -->
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">
+      <a href="index.html" style="text-decoration: none; color: white;">
+        <img src="bbflogo-bw.png"/><br>
+        The User Services Platform
+      </a>
+    </h1>
+    <h2 class="project-tagline">Conformance Test Plan for User Services Platform Agents</h2>
+    <p></p>
+    <p></p>
+    <div class="project-buttons">
+      <a class="btn" href="index.htm" title="TP-469 Single-file HTML">HTML</a>
+      <a class="btn" href="index.pdf" title="TP-469 PDF">PDF</a>
+      <a class="btn" href="https://usp.technology" title="usp.technology">Home</a>
+    </div>
+  </section>
+
+  <section class="main-content">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+<nav id="TOCFULL">
+<ul>
+  <li><a href="00-index-contents.html#contents">Cover Page</a></li>
+  <ul>
+    <li><a href="00-index-contents.html#sec:executive-summary">Executive Summary</a></li>
+    <li><a href="00-index-contents.html#sec:purpose">Purpose</a></li>
+    <li><a href="00-index-contents.html#sec:scope">Scope</a></li>
+  </ul>
+  <li><a href="01-index-test-setup.html#sec:test-setup">Test Setup</a></li>
+  <ul>
+    <li><a href="01-index-test-setup.html#sec:test-equipment">Test Equipment</a></li>
+    <li><a href="01-index-test-setup.html#sec:test-setup-and-execution">Test Setup and Execution</a></li>
+    <li><a href="01-index-test-setup.html#sec:universal-test-metrics">Universal Test Metrics</a></li>
+    <li><a href="01-index-test-setup.html#sec:notes-about-test-case-descriptions">Notes about test case descriptions</a></li>
+  </ul>
+  <li><a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a></li>
+  <ul>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-single-object-required-parameters-succeed">1.2 Add message with allow partial true, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-fail">1.3 Add message with allow partial false, single object, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-non-required-parameter-fails-multiple-parameters">1.17 Set message with allow partial true, non-required parameter fails, multiple parameters</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-unique-key-addressing-in-path">1.18 Set message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-search-expression-search-path">1.22 Set message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-path-that-matches-no-objects">1.23 Set message with path that matches no objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-valid-object-instance">1.24 Delete message with allow partial false, valid object instance</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-object-instance-doesnt-exist">1.25 Delete message with allow partial false, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects">1.27 Delete message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects-invalid-object">1.28 Delete message with allow partial false, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-object-instance-doesnt-exist">1.29 Delete message with allow partial true, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-invalid-object">1.31 Delete message with allow partial true, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-object-doesnt-exist">1.32 Delete message with allow partial true, multiple objects, object doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-wildcard-search-path-valid-objects">1.34 Delete message with wildcard search path, valid objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-search-path">1.35 Delete message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-full-parameter-path">1.36 Get message with full parameter path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-path">1.39 Get message with object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-instance-path">1.40 Get message with object instance path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter">1.41 Get message with invalid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-non-equivalence">1.47 Get message using search expression search path (non-equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-creation-using-value-change">1.52 Notify - Subscription creation using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-using-value-change">1.54 Notification Retry using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:subscription-expiration-using-value-change">1.55 Subscription Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-expiration-using-value-change">1.56 Notification Retry Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectcreation-notification">1.57 ObjectCreation Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectdeletion-notification">1.58 ObjectDeletion Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:event-notification-using-periodic">1.59 Event Notification using Periodic!</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:onboardrequest-notification">1.60 OnBoardRequest Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-true">1.61 Operate message using Reboot() with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-false">1.62 Operate message using Reboot() with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments-deprecated-by-1.79">1.63 Operate message using input arguments (DEPRECATED by 1.79)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-false">1.65 Asynchronous operation with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-true">1.66 GetInstances using a single object, first_level_only true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-false">1.67 GetInstances using a single object, first_level_only false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-multiple-objects">1.68 GetInstances with multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:deleted"><em>1.69 DELETED</em></a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-wildcard-search-path">1.70 GetInstances with wildcard search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-search-expression-search-path">1.71 GetInstances with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options">1.73 GetSupportedDM using a single object, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options">1.74 GetSupportedDM using a single object, first_level_only true, no options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-root-object-all-options">1.76 GetSupportedDM on root object, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-unsupported-object">1.77 GetSupportedDM on unsupported object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:removal-of-subscriptions-that-have-no-associated-controller">1.78 Removal of subscriptions that have no associated controller</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments">1.79 Operate message using input arguments</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupportedprotocol">1.80 GetSupportedProtocol</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:automatic-unique-key-generation">1.81 Automatic unique key generation</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unmatched-search-expression">1.82 Get message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-message-with-unmatched-search-expression">1.83 GetInstances message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification---subscription-using-search-paths">1.84 Notification - Subscription using search paths</a></li>
+  </ul>
+  <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a></li>
+  <ul>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time">2.6 Connecting without absolute time</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role">2.10 Adding a Role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters</a></li>
+  </ul>
+  <li><a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a></li>
+  <ul>
+    <li><a href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context">3.1 Bad request outside a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity">3.2 Agent Verifies Non-Payload Field Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context">3.3 Agent rejects invalid signature starting a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP Record Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls">3.5 Failure to Establish TLS</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6 Agent does not accept TLS renegotiation for E2E message exchange</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context">3.8 Establishing a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of a Record out of a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:session-context-expiration">3.10 Session Context Expiration</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID and Expected ID</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records">3.12 Preservation of USP Records</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13 Agent Rejects Records with Different Payload Security than the Established Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id">3.14 Use of retransmit_id</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records">3.15 Handling Duplicate Records</a></li>
+  </ul>
+  <li><a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a></li>
+  <ul>
+    <li><a href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer</a></li>
+  </ul>
+  <li><a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a></li>
+  <ul>
+    <li><a href="06-index-coap-test-cases.html#sec:mapping-a-usp-record-to-a-coap-message">5.1 Mapping a USP Record to a CoAP message</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:usp-records-that-exceed-coap-message-size">5.2 USP Records that exceed CoAP message size</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:successful-coap-exchange">5.3 Successful CoAP exchange</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---timeout">5.4 Failed CoAP exchange - timeout</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-method">5.5 Failed CoAP Exchange - Invalid Method</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-content-format">5.6 Failed CoAP Exchange - Invalid Content-Format</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:failed-coap-exchange---invalid-usp-record">5.7 Failed CoAP Exchange - Invalid USP Record</a></li>
+    <li><a href="06-index-coap-test-cases.html#sec:use-of-dtls">5.8 Use of DTLS</a></li>
+  </ul>
+  <li><a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a></li>
+  <ul>
+    <li><a href="07-index-stomp-test-cases.html#sec:support-of-required-profiles">6.1 Support of Required Profiles</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-session-establishment">6.2 STOMP session establishment</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-connection-retry">6.3 STOMP Connection Retry</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-tls">6.11 STOMP - Use of TLS</a></li>
+  </ul>
+  <li><a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a></li>
+  <ul>
+    <li><a href="08-index-websocket-test-cases.html#sec:session-establishment">7.1 Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-only-one-session">7.2 Use of only one session</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket-session-retry">7.8 WebSocket Session Retry</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-tls">7.9 Use of TLS</a></li>
+  </ul>
+  <li><a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a></li>
+  <ul>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements">8.1 DHCP Discovery - Agent Request Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options">8.2 DHCP Discovery - Agent handling of received options</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery - FQDN Leads to DNS Query</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns">8.4 mDNS</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message Transfer Protocols</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements">8.6 DNS - DNS Record Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-request-response">8.7 mDNS request response</a></li>
+  </ul>
+  <li><a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a></li>
+  <ul>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event">9.11 Use of the Timer! Event</a></li>
+  </ul>
+  <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a></li>
+  <ul>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-json">10.1 Use BulkData collection using HTTP and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-json">10.2 Use BulkData collection using HTTPS and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-csv">10.3 Use BulkData collection using HTTP and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-csv">10.4 Use BulkData collection using HTTPS and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-uri-parameters">10.5 Use BulkData collection using HTTP with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-with-uri-parameters">10.6 Use BulkData collection using HTTPS with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulkdata-collection-retry-mechanism-over-http">10.7 BulkData collection retry mechanism over HTTP</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-wildcard-parameter">10.8 Use BulkData collection using HTTP with wildcard parameter</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-object-path">10.9 Use BulkData collection using HTTP with Object Path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event">10.10 Use BulkData collection Push event</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-wildcard-path">10.11 Use BulkData collection Push event with Wildcard path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-object-path">10.12 Use BulkData collection Push event with Object path</a></li>
+  </ul>
+</ul>
+</nav>
+
+    <header id="title-block-header">
+      <h1 class="title" id="sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases<a href="#sec:authentication-and-access-control-test-cases" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
+    </header>
+    <nav id="_TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:connecting-without-absolute-time">2.6 Connecting without absolute time <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:adding-a-role">2.10 Adding a Role <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+<li><a href="#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters <span><img src="permalink.png" style="width:0.8em" /></span></a></li>
+</ul>
+    </nav>
+<h2 id="sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-82">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-82" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT does not respond to a USP message when the from_id is the EUT’s endpoint ID.</p>
+<h3 id="sec:functionality-tag-83">Functionality Tag <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tag-83" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Mandatory</p>
+<h3 id="sec:test-setup-84">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-84" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-steps">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a message to the EUT with the following record structure:</p>
+<pre data-filter="pbv" type="Record"><code>    to_id: &#39;&lt;EUT_ID&gt;&#39;
+    from_id: &#39;&lt;EUT_ID&gt;&#39;
+
+    session_context {
+        # ...
+    }</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-83">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-83" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT does not respond to the message.</li>
+</ol>
+<h2 id="sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-83">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-83" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT does not respond to a USP message when the USP record doesn’t contain a the EUT’s to_id.</p>
+<h3 id="sec:functionality-tags-1">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-1" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Mandatory</p>
+<h3 id="sec:test-setup-85">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-85" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-steps-1">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-1" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a message to the EUT with the following record structure:</p>
+<pre data-filter="pbv" type="Record"><code>    to_id: &#39;&lt;invalid ID&gt;&#39;
+    from_id: &#39;&lt;EUT_ID&gt;&#39;
+
+    # ...</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-84">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-84" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT does not respond to the USP message.</li>
+</ol>
+<h2 id="sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-84">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-84" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure that the EUT doesn’t process a USP message when the EUT does not possess the Controller’s certificate information.</p>
+<h3 id="sec:functionality-tags-2">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-2" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Deprecated</p>
+<h3 id="sec:test-setup-86">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-86" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Simulate a second Controller whose credentials are signed by an untrusted certificate authority.</li>
+<li>Ensure that the UntrustedRole feature is either unsupported or disabled in the EUT.</li>
+</ol>
+<h3 id="sec:test-procedure-83">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-83" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message from the second simulated Controller to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-85">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-85" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT does not respond to the Get message.</li>
+</ol>
+<h2 id="sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-85">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-85" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure that the EUT rejects a message from an Endpoint ID that doesn’t match the subjectAltName in the provided certificate.</p>
+<h3 id="sec:functionality-tags-3">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-3" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Deprecated</p>
+<h3 id="sec:test-setup-87">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-87" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-84">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-84" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send a Get message to the EUT using a certificate with a subjectAltName that does not match the Controller’s Endpoint ID.</li>
+</ol>
+<h3 id="sec:test-metrics-86">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-86" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT does not respond to the Get message.</li>
+</ol>
+<h2 id="sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-86">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-86" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can handle self-signed certificates.</p>
+<h3 id="sec:functionality-tags-4">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-4" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Deprecated</p>
+<h3 id="sec:test-setup-88">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-88" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the is configured to use a self-signed certificate and Endpoint ID that the EUT has not seen.</li>
+</ol>
+<h3 id="sec:test-procedure-85">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-85" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT using a self-signed cert with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-87">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-87" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT responds to the Get with a GetResponse containing a Device.LocalAgent.ControllerTrust.{i}.Alias parameter.</li>
+</ol>
+<h2 id="sec:connecting-without-absolute-time">2.6 Connecting without absolute time <a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-87">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-87" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can communicate with a Controller if it cannot obtain an absolute time.</p>
+<h3 id="sec:functionality-tags-5">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-5" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (Supports USP Session Context)</p>
+<h3 id="sec:test-setup-89">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-89" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT is booted into a test environment where it cannot resolve absolute time.</li>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller is configured to use an expired certificate.</li>
+</ol>
+<h3 id="sec:test-procedure-86">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-86" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header{
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-88">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-88" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT responds to the Get message with a GetReponse, ignoring the expired dates on the certificate.</li>
+</ol>
+<h2 id="sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-88">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-88" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT will ignore a USP record when the signature field is invalid.</p>
+<h3 id="sec:functionality-tags-6">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-6" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (Supports USP Session Context)</p>
+<h3 id="sec:test-setup-90">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-90" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-87">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-87" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send a Get message to the EUT with an invalid signature value.</li>
+</ol>
+<h3 id="sec:test-metrics-89">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-89" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT does not respond to the Get message.</li>
+</ol>
+<h2 id="sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate <a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-89">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-89" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT rejects TLS connections when an Endpoint’s TLS certificate is invalid.</p>
+<h3 id="sec:functionality-tags-7">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-7" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (Supports USP Session Context)</p>
+<h3 id="sec:test-setup-91">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-91" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure that the EUT has obtained an absolute time reference.</li>
+</ol>
+<h3 id="sec:test-procedure-88">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-88" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send a Get message to the EUT with an expired TLS certificate.</li>
+</ol>
+<h3 id="sec:test-metrics-90">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-90" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT doesn’t respond to the Get message.</li>
+</ol>
+<h2 id="sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role <a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-90">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-90" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly assigns new a Role of Untrusted.</p>
+<h3 id="sec:functionality-tags-8">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-8" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile)</p>
+<h3 id="sec:test-setup-92">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-92" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-89">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-89" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Using a secondary Controller, connect to the EUT and send an Get message.</p></li>
+<li><p>Using the primary trusted Controller send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Controller.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-91">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-91" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the <code>Device.LocalAgent.Controller.&lt;secondary Controller instance&gt;.AssignedRole</code> matches the value of <code>Device.LocalAgent.ControllerTrust.UntrustedRole</code>.</li>
+</ol>
+<h2 id="sec:adding-a-role">2.10 Adding a Role <a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-91">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-91" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure that the Add message can be used to add new Roles to the EUT’s data model.</p>
+<h3 id="sec:functionality-tags-9">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-9" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile)</p>
+<h3 id="sec:test-setup-93">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-93" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-90">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-90" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&#39;
+                param_settings {
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
+                param_settings {
+                    param: &#39;Name&#39;
+                    value: &#39;Trusted&#39;
+                }
+            }
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-92">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-92" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT correctly sent an AddResponse with a new Role instance.</li>
+</ol>
+<h2 id="sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-92">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-92" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to allow the creation of a particular object.</p>
+<h3 id="sec:functionality-tags-10">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-10" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-94">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-94" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-procedure-91">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-91" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&#39;
+                    }
+                param_settings {
+                        param: &#39;Obj&#39;
+                        value: &#39;rw--&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.Subscription.&#39;
+            }
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-93">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-93" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.Subscription. object in step 2.</li>
+</ol>
+<h2 id="sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-93">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-93" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to restrict the creation of a particular object.</p>
+<h3 id="sec:functionality-tags-11">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-11" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-95">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-95" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-procedure-92">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-92" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send an Add message to the EUT with the following structure:</li>
+</ol>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&#39;
+                    }
+                param_settings {
+                        param: &#39;Obj&#39;
+                        value: &#39;r---&#39;
+                    }
+            }
+        }
+    }
+}</code></pre>
+<ol>
+<li>Send an Add message to the EUT with the following structure:</li>
+</ol>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.Subscription.&#39;
+            }
+        }
+    }
+}</code></pre>
+<h3 id="sec:test-metrics-94">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-94" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an Error containing type 7006 - Permission Denied.</li>
+</ol>
+<h2 id="sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-94">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-94" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to allow the deletion of a particular object.</p>
+<h3 id="sec:functionality-tags-12">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-12" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-96">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-96" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is one or more Subscription object that can be deleted.</li>
+</ol>
+<h3 id="sec:test-procedure-93">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-93" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&#39;
+                    }
+                param_settings {
+                        param: &#39;InstantiatedObj&#39;
+                        value: &#39;rw--&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Delete message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: DELETE
+}
+body {
+    request {
+        delete {
+            allow_partial: false
+            obj_paths: &#39;Device.LocalAgent.Subscription.&lt;subscription to delete&gt;&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-95">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-95" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an DeleteResponse with a oper_success element containing the Device.LocalAgent.Subscription. object in step 2.</li>
+</ol>
+<h2 id="sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-95">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-95" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to restrict the deletion of a particular object.</p>
+<h3 id="sec:functionality-tags-13">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-13" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-97">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-97" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is one or more Subscription object that can be deleted.</li>
+</ol>
+<h3 id="sec:test-procedure-94">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-94" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&#39;
+                    }
+                param_settings {
+                        param: &#39;InstantiatedObj&#39;
+                        value: &#39;r---&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Delete message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: DELETE
+}
+body {
+    request {
+        delete {
+            allow_partial: false
+            obj_paths: &#39;Device.LocalAgent.Subscription.&lt;subscription to delete&gt;&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-96">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-96" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an Error containing type 7006 - Permission Denied.</li>
+</ol>
+<h2 id="sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-96">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-96" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to allow the update of a particular object.</p>
+<h3 id="sec:functionality-tags-14">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-14" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-98">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-98" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is one or more Subscription object that can be edited.</li>
+</ol>
+<h3 id="sec:test-procedure-95">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-95" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;rw--&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            allow_partial: false
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                    param_settings {
+                            param: &#39;Enable&#39;
+                            value: &#39;&lt;negation of previous value&gt;&#39;
+                            required: true
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-97">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-97" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends a SetResponse with a oper_success element containing Device.LocalAgent.Subscription.{i}.Enable in step 2.</li>
+</ol>
+<h2 id="sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-97">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-97" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to restrict the update of a particular object.</p>
+<h3 id="sec:functionality-tags-15">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-15" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-99">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-99" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is one or more Subscription object that can be edited.</li>
+</ol>
+<h3 id="sec:test-steps-2">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-2" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;r---&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            allow_partial: false
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                    param_settings {
+                            param: &#39;Enable&#39;
+                            value: &#39;&lt;negation of previous value&gt;&#39;
+                            required: true
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-98">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-98" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an Error containing type 7006 - Permission Denied.</li>
+</ol>
+<h2 id="sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-98">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-98" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to allow the invocation of commands on a particular object.</p>
+<h3 id="sec:functionality-tags-16">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-16" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-100">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-100" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-steps-3">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-3" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.Reboot()&#39;
+                    }
+                param_settings {
+                        param: &#39;CommandEvent&#39;
+                        value: &#39;r-x-&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.Reboot()&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-99">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-99" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an OperateResponse with a req_output_args element in step 2.</li>
+</ol>
+<h2 id="sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-99">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-99" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to restrict the invocation of commands on a particular object.</p>
+<h3 id="sec:functionality-tags-17">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-17" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-101">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-101" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-steps-4">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-4" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.Reboot()&#39;
+                    }
+                param_settings {
+                        param: &#39;CommandEvent&#39;
+                        value: &#39;r---&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.Reboot()&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-100">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-100" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with a oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an Error containing type 7006 - Permission Denied.</li>
+</ol>
+<h2 id="sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-100">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-100" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to allow a Controller to subscribe to the ValueChange notification of a particular parameter.</p>
+<h3 id="sec:functionality-tags-18">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-18" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-102">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-102" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-steps-5">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-5" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;rw-n&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.Subscription.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;NotifType&#39;
+                        value: &#39;ValueChange&#39;
+                    }
+                param_settings {
+                        param: &#39;ReferenceList&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                    }
+            }
+        }
+    }
+  }</code></pre></li>
+<li><p>Send a Set message to the EUT, setting <code>Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval</code> to a new value.</p></li>
+<li><p>Wait for a Notification from the EUT.</p></li>
+</ol>
+<h3 id="sec:test-metrics-101">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-101" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with an oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an AddResponse with an oper_success element containing a new Device.LocalAgent.Subscription. object in step 2.</li>
+<li>The EUT sends a SetResponse with an oper_success element with the path <code>Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval</code>.</li>
+<li>The EUT sends a Notify message with a value_change element pointing to <code>Device.LocalAgent.Controller.&lt;Controller instance&gt;.PeriodicNotifInterval</code>.</li>
+</ol>
+<h2 id="sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-101">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-101" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT adheres to permissions set to restrict a Controller from subscribing to the ValueChange notification of a particular parameter.</p>
+<h3 id="sec:functionality-tags-19">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-19" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-103">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-103" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+</ol>
+<h3 id="sec:test-steps-6">Test Steps <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-steps-6" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;rw--&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.Subscription.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;NotifType&#39;
+                        value: &#39;ValueChange&#39;
+                    }
+                param_settings {
+                        param: &#39;ReferenceList&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT, setting <code>Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval</code> to a new value.</p></li>
+<li><p>Wait 30 seconds.</p></li>
+</ol>
+<h3 id="sec:test-metrics-102">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-102" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse with an oper_success element containing a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.</li>
+<li>The EUT sends an AddResponse with an oper_success element containing a new Device.LocalAgent.Subscription. object in step 2.</li>
+<li>The EUT sends a SetResponse with an oper_success element with the path <code>Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval</code>.</li>
+<li>The EUT does not send a Notify message with a value_change element pointing to <code>Device.LocalAgent.Controller.&lt;Controller instance&gt;.PeriodicNotifInterval</code>.</li>
+</ol>
+<h2 id="sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions <a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-102">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-102" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT allows for the creation of Permission instances, and when Permissions overlap the EUT behaves correctly.</p>
+<h3 id="sec:functionality-tags-20">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-20" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-104">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-104" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is at least one BootParameter configured.</li>
+</ol>
+<h3 id="sec:test-procedure-96">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-96" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.&lt;Controller id&gt;.Role.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;----&#39;
+                    }
+            }
+            create_objs {
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.&lt;Controller id&gt;.Role.Permission.&#39;
+                param_settings {
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
+                param_settings {
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
+                    }
+                param_settings {
+                        param: &#39;Param&#39;
+                        value: &#39;rw--&#39;
+                    }
+                param_settings {
+                        param: &#39;Order&#39;
+                        value: &#39;1&#39;
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-103">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-103" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse message after step 1. The message contains two oper_success elements, one for each added permission.</li>
+<li>The EUT sends a GetResponse with a result_params element containing parameters of the specified BootParameter instance.</li>
+</ol>
+<h2 id="sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters <a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-103">Purpose <a href="03-index-authentication-and-access-control-test-cases.html#sec:purpose-103" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly returns parameters that are readable while ignoring parameters that do not have read permissions.</p>
+<h3 id="sec:functionality-tags-21">Functionality Tags <a href="03-index-authentication-and-access-control-test-cases.html#sec:functionality-tags-21" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the ControllerTrust:1 profile with at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)</p>
+<h3 id="sec:test-setup-105">Test Setup <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-setup-105" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send and receive USP Records to each other.</li>
+<li>Ensure the Controller used for testing has an assigned Role that is writable.</li>
+<li>Ensure there is at least one BootParameter configured.</li>
+</ol>
+<h3 id="sec:test-procedure-97">Test Procedure <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-procedure-97" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+            allow_partial: false
+            create_objs {
+                    obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller trust instance&gt;.Permission.&#39;
+                    param_settings {
+                            param: &#39;Enable&#39;
+                            value: &#39;true&#39;
+                        }
+                    param_settings {
+                            param: &#39;Targets&#39;
+                            value: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.ParameterName&#39;
+                        }
+                    param_settings {
+                            param: &#39;Param&#39;
+                            value: &#39;----&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-104">Test Metrics <a href="03-index-authentication-and-access-control-test-cases.html#sec:test-metrics-104" class="headerlink" title="Permalink to this header"><img src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an AddResponse message after step 1. The message contains a oper_success element for the added Permission.</li>
+<li>The EUT sends a GetResponse with a result_params element containing parameters of the specified BootParameter instance, with the exception of the ParameterName parameter.</li>
+</ol>
+    <div style="clear: both;"/>
+    <footer class="site-footer">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases.html#sec:coap-test-cases">5 CoAP Test Cases</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+</p>
+</nav>
+
+      <span class="site-footer-owner">
+        USP is developed and maintained
+        by <a href="https://www.broadband-forum.org">The Broadband Forum</a>.
+        &copy; The Broadband Forum 2022</a>. All Rights Reserved.
+      </span>
+      <span class="site-footer-credits">
+        This page was generated by <a href="https://pandoc.org">pandoc</a>
+        and <a href="https://pages.github.com">GitHub Pages</a>.
+        View the <a href="https://github.com/BroadbandForum/usp-test">specification source on GitHub</a>.
+        <span class="release"/>
+      </span>
+    </footer>
+  </section>
+</body>
+</html>

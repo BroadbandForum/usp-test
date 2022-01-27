@@ -1,0 +1,179 @@
+PYTHONDIR: './../../install/python/'
+analyticstag: ''
+author: []
+autoSectionLabels: true
+bbfCertProductType: '<strong>&lt;type of product&gt;</strong>'
+bbfCertProgram: '<strong>&lt;BBF.NNN&gt;</strong>'
+bbfContrib: ''
+bbfEditorsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="editors">Editors<a class="headerlink" href="#editors" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  optional: true
+bbfIssue: Issue
+bbfMonth: January
+bbfNumber: 'TP-469'
+bbfPSLsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="bbfprojectstream-project-stream-leaders"> Project Stream Leader(s)<a class="headerlink" href="#bbfprojectstream-project-stream-leaders" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  optional: true
+bbfProjectStream: ''
+bbfRevisionHistorySpec: 
+  after: '<p>Comments or questions about this Broadband Forum Test Plan should be directed to <a href=''mailto:info@broadband-forum.org'' title='''' class="email">info@broadband-forum.org</a>.</p>'
+  before: '<h3 class="unnumbered unlisted new-page" id="bbfissue-history">Issue History<a class="headerlink" href="#bbfissue-history" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  headers: 
+    - 'Issue Number!!!'
+    - 'Approval Date!!!!'
+    - 'Publication Date!'
+    - 'Issue Editor!!!!!'
+    - 'Changes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+  labels: 
+    - number
+    - approval
+    - publication
+    - editors
+    - changes
+  optional: true
+bbfStatus: ''
+bbfTitle: 'Conformance Test Plan for User Services Platform Agents'
+bbfType: 'Test Plan'
+bbfVersion: '1 Amendment 1'
+bbfWADsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="bbfworkarea-work-area-directors"> Work Area Director(s)<a class="headerlink" href="#bbfworkarea-work-area-directors" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  optional: true
+bbfWorkArea: ''
+bbfYear: 2022
+bibliography: 
+  - 'tr-069-biblio-csl.json'
+  - 'extra-ietf-biblio-csl.json'
+  - 'extra-w3c-biblio-csl.json'
+  - 'extra-misc-biblio-csl.json'
+buttons: 
+  - label: HTML
+    title: 'TP-469 Single-file HTML'
+    url: 'index.htm'
+  - label: PDF
+    title: 'TP-469 PDF'
+    url: 'index.pdf'
+  - label: Home
+    title: 'usp.technology'
+    url: 'https://usp.technology'
+citation-style: './../../install/pandoc/csl/bbf.csl'
+code-block-filters: 
+  pbv: 
+    args: 
+      from: '!attributes.from'
+      import: 
+        - 'usp.usp_record_1_2_pb2'
+        - 'usp.usp_msg_1_2_pb2'
+      path: './../../install/python/'
+      to: '!classes.protobuf|json|yaml'
+      type: '!attributes.type'
+    prog: 'protobuf-verify.py'
+copydate: 2022
+date: 'Issue Date: January 2022'
+description: 'USP – The User Services Platform: Conformance Test Plan for User Services Platform Agents'
+doctitle: 'TP-469 – Conformance Test Plan for User Services Platform Agents'
+figPrefix: 
+  - Figure
+  - Figures
+ignore: true
+lastDelim: ' and '
+link-citations: true
+linkReferences: true
+lofTitle: '<h3 class="unnumbered unlisted" id="list-of-figures">List of Figures<a class="headerlink" href="#list-of-figures" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+lolTitle: '<h3 class="unnumbered unlisted" id="list-of-listings">List of Listings<a class="headerlink" href="#list-of-listings" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+lotTitle: '<h3 class="unnumbered unlisted" id="list-of-tables">List of Tables<a class="headerlink" href="#list-of-tables" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+nameInLink: true
+numberSections: false
+pairDelim: ' and '
+permalinkicon: '<img src=''permalink.png'' title='''' width="0.8em"/>'
+permalinkicon-url: 'permalink.png'
+permalinkicon-width: '0.8em'
+project: 'The User Services Platform'
+reference-section-title: References
+repodesc: 'specification source'
+reponame: 'usp-test'
+secPrefix: 
+  - Section
+  - Sections
+sectionsDepth: '-1'
+shortname: USP
+siteurl: 'index.html'
+status: ''
+subtitle: 'Issue: 1 Amendment 1  <span class="release"></span>'
+tagline: 'Conformance Test Plan for User Services Platform Agents'
+tblPrefix: 
+  - Table
+  - Tables
+theme-color: '#157878'
+title: 'USP – The User Services Platform'
+title-prefix: BBF
+toc-depth: 2
+tocTitle: '<h3 class="unnumbered unlisted" id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+uspAcknowledgmentsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="acknowledgments">Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>  <p>The following individuals are being acknowledged for their efforts in the testing and development of this specification.</p>'
+  headers: 
+    - 'Name!!!!!!!!!!!!!!!!!!'
+    - 'Company!!!!'
+    - 'Email!!!!!!!!!!'
+  optional: true
+uspEditors: 
+  company: 'QA Cafe, LLC'
+  email: 'jason@qacafe.com'
+  name: 'Jason Walls'
+  role: Editor
+uspEditorsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="editors-1">Editors<a class="headerlink" href="#editors-1" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  headers: 
+    - 'Name!!!!!!!!'
+    - 'Company!!'
+    - 'Email!!!!!!!!!'
+    - 'Role!!!!!!!!!!!!!!!'
+  optional: true
+uspMajor: 1
+uspMinor: 2
+uspPSLsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="bbfprojectstream-project-stream-leaders-1"> Project Stream Leaders<a class="headerlink" href="#bbfprojectstream-project-stream-leaders-1" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  headers: 
+    - 'Name!!!!!!!!'
+    - 'Company!!'
+    - 'Email!!!!!!!!!'
+    - 'Role!!!!!!!!!!!!!!!'
+  optional: true
+uspRevisionHistory: 
+  - changes: '<ul> <li>First release of this test plan, containing test cases for basic compliance with TR-369/USP.</li> </ul>'
+    number: 'Release 1.0'
+  - changes: '<ul> <li>Deprecated test 7.3</li> <li>Added flag to the features list to indicate which features are &ldquo;not-in-force&rdquo; and not yet available for certification</li> <li>Various procedure and metric fixes</li> </ul>'
+    number: 'Release 1.0.1'
+  - changes: '<ul> <li>Both mandatory and conditional mandatory tests can use alternate objects or parameters if available</li> <li>Updated features and requirements</li> <li>Altered test setup of 1.50 to include three objects</li> <li>Fixed metrics of 1.25 to use new DeleteResp logic</li> <li>Fixed tests 1.16 and 1.21 to use the correct error codes</li> <li>Fixed test 1.20 to only check for at least one error</li> <li>Fixed test 4.1 to include &ldquo;OnBoardRequest()&rdquo; as a conditional requirement</li> <li>Fixed test 1.32 to use new DeleteResp logic</li> <li>Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM first_level_only logic</li> <li>Fixed error code metric of test 1.8</li> </ul>'
+    number: 'Release 1.0.2'
+  - changes: '<ul> <li>The metrics of test 1.9 now do not imply order</li> <li>Test 1.22 metric now requires &ldquo;at least one&rdquo; element rather than a &ldquo;single&rdquo; element</li> <li>Renamed test 1.23</li> <li>Fixed the metric of test 1.38 to include the instance identifier of the path</li> <li>Reworded the purpose of test 1.41</li> <li>Clarified the test setup of tests 1.66 and 1.67</li> <li>Fixed a typo in test 6.1 metrics (ServerRetryInitialMultiplier to ServerRetryIntervalMultiplier)</li> <li>Fixes other typographical errors</li> </ul>'
+    number: 'Release 1.0.3'
+  - changes: '<ul> <li>Adds test 1.78 Removal of subscriptions that have no associated controller</li> <li>Adds test 1.80 GetSupportedProtocol</li> <li>Adds language reinforcing required tests based on supported features</li> <li>Adds test case 1.81 to test automatic unique key generation by the Agent</li> <li>Adds negative test metrics to several Set and Delete tests to validate that operations did not occur upon error (1.7, 1.8, 1.14, 1.15, 1.20, 1.24, 1.27, 1.28, 1.31, 1.32, 1.33, 1.34, 1.35)</li> <li>Adds section 10 for bulk data collection tests</li> <li>Adds tests 1.82 and 1.83 to validate Get and GetInstances using expressions that match zero objects</li> <li>Adds test 1.84 to exercise the use of search paths in Subscriptions</li> <li>Defines deprecation for tests</li> <li>Deprecates test 1.63 in favor of test 1.79</li> <li>Deprecates test 9.1 in favor of test 9.11</li> <li>Deprecates tests 2.3, 2.4, and 2.5</li> <li>Completely deletes test 1.69</li> <li>Updates functionality tag on test 1.71 to &ldquo;supports at least one multi-instance object&rdquo;</li> <li>Clarifies the definition of an empty oper_success element in test 1.32</li> <li>Rewrites test 2.20 to accomplish its original intent</li> <li>Changes test 3.6 to check that an Agent does not accept TLS renegotiation</li> <li>Changes test 2.15 and 2.16 to use &ldquo;Enable&rdquo; rather than &ldquo;Alias&rdquo; as a test parameter</li> <li>Simplifies test 4.1</li> <li>Various typographical fixes, some in test procedure path names</li> <li>Normalizes all protobuf examples in test procedures</li> <li>Fixes test 2.20 to use the correct permissions</li> <li>Fixes test 1.47 to use the correct operator</li> <li>Eases the requirements of test 9.7 for implementation flexibility</li> <li>Removes the concept of &ldquo;not-in-force&rdquo; test cases and features</li> <li>Updates tests 1.59, 1.84 to use allow_partial false”</li> <li>Allows tests 1.3, 1.7, 1.8, 1.21 to use only an invalid parameter value (not an invalid parameter) and accept 7012 as an acceptable error code</li> </ul>'
+    number: 'Release 1.1'
+uspRevisionHistorySpec: 
+  after: '<p>Comments or questions about this Broadband Forum Test Plan should be directed to <a href=''mailto:info@broadband-forum.org'' title='''' class="email">info@broadband-forum.org</a>.</p>'
+  before: '<h3 class="unnumbered unlisted new-page" id="bbfissue-history-1">Issue History<a class="headerlink" href="#bbfissue-history-1" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  headers: 
+    - 'Issue Number'
+    - 'Changes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
+  labels: 
+    - number
+    - changes
+  optional: true
+uspWADs: 
+  - company: 'QA Cafe, LLC'
+    email: 'jason@qacafe.com'
+    name: 'Jason Walls'
+    role: 'Broadband User Services Work Area Director'
+  - company: CommScope
+    email: 'john.blackford@commscope.com'
+    name: 'John Blackford'
+    role: 'Broadband User Services Work Area Director'
+uspWADsSpec: 
+  before: '<h3 class="unnumbered unlisted" id="bbfworkarea-work-area-directors-1"> Work Area Directors<a class="headerlink" href="#bbfworkarea-work-area-directors-1" title="Permalink to this header"> <img src=''permalink.png'' title='''' width="0.8em"/></a></h3>'
+  headers: 
+    - 'Name!!!!!!!!'
+    - 'Company!!'
+    - 'Email!!!!!!!!!'
+    - 'Role!!!!!!!!!!!!!!!'
+  optional: true
+version: ''
