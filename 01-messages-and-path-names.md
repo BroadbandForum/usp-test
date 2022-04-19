@@ -438,7 +438,8 @@ Mandatory
                }
               param_settings {
                  param: 'NotifType'
-                 value: 'ValueChange'}
+                 value: 'ValueChange'
+               }
               param_settings {
                  param: 'ReferenceList'
                  value: 'Device.LocalAgent.EndpointID'
@@ -477,21 +478,21 @@ Mandatory
 6.  Clean-up: Send a Delete message to the EUT with the following
     structure:
 
-  ```{filter=pbv type=Msg}
-  header {
-    msg_id: '<msg_id>'
-    msg_type: DELETE
-    }
-    body {
-      request {
-        delete {
-          allow_partial: false
-          obj_paths: 'Device.LocalAgent.Subscription.<instance identifier 1>.'
-          obj_paths: 'Device.LocalAgent.Subscription.<instance identifier 2>.'
+      ```{filter=pbv type=Msg}
+      header {
+      msg_id: '<msg_id>'
+      msg_type: DELETE
+      }
+      body {
+        request {
+          delete {
+            allow_partial: false
+            obj_paths: 'Device.LocalAgent.Subscription.<instance identifier 1>.'
+            obj_paths: 'Device.LocalAgent.Subscription.<instance identifier 2>.'
+          }
         }
       }
-    }
-  ```
+      ```
 
 7.  Allow the EUT to send a DeleteResp.
 
