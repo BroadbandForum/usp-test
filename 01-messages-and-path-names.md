@@ -520,7 +520,7 @@ Mandatory
 
 The purpose of this test is to validate that the EUT properly handles an
 Add message when the allow_partial element is set to false, multiple
-objects are attempted, and one of the objects are invalid.
+objects are attempted, and one of the objects is invalid.
 
 ### Functionality Tag
 
@@ -901,7 +901,7 @@ Mandatory
 
 2.  The AddResp contains two CreatedObjectResults.
 
-    a.  One CreateObjectResult is an element of type OperationSuccess. The OperationSuccess elements contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
+    a.  One CreateObjectResult is an element of type OperationSuccess. The OperationSuccess element contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
 
     b.  The other CreateObjectResult is an element of type
     OperationFailure. The OperationFailure element contains an err_code of
@@ -1321,7 +1321,7 @@ Mandatory
       }
       ```
 
-2.  Allow the EUT to send a Error.
+2.  Allow the EUT to send an Error.
 
 3. Send a Get message to the EUT with a request path of
    `Device.LocalAgent.Subscription.<instance identifier from test setup>.`.
@@ -1470,19 +1470,19 @@ Mandatory
 
 3.  Send a Get message to the EUT with the following structure:
 
-  ```{filter=pbv type=Msg}
-  header {
-    msg_id: '<msg_id>'
-    msg_type: GET
-  }
-  body {
-    request {
-      get {
-        param_paths: 'Device.LocalAgent.Subscription.<first instance identifier from test setup>.NotifRetry'
+      ```{filter=pbv type=Msg}
+      header {
+        msg_id: '<msg_id>'
+        msg_type: GET
       }
-    }
-  }
-  ```
+      body {
+        request {
+          get {
+            param_paths: 'Device.LocalAgent.Subscription.<first instance identifier from test setup>.NotifRetry'
+          }
+        }
+      }
+      ```
 
 4.  Allow the EUT to send a GetResp.
 
@@ -1508,7 +1508,7 @@ Mandatory
         and a single ParameterError element.
 
     c.  The ParameterError has a param element with a value of
-        'NotifRetry', an err_code of '7010', 'Unsupported Parameter'
+        'NotifRetry', an err_code of '7010', 'Unsupported Parameter'.
 
 3.  The retrieved value matches the value set in the param_settings
     element for the first object.
@@ -1655,19 +1655,19 @@ Mandatory
 
 3.  Send a Get message to the EUT with the following structure:
 
-  ```{filter=pbv type=Msg}
-  header {
-    msg_id: '<msg_id>'
-    msg_type: GET
-  }
-  body {
-    request {
-      get {
-        param_paths: 'Device.LocalAgent.Subscription.<instance identifier from test setup>.NotifRetry'
+      ```{filter=pbv type=Msg}
+      header {
+        msg_id: '<msg_id>'
+        msg_type: GET
       }
-    }
-  }
-  ```
+      body {
+        request {
+          get {
+            param_paths: 'Device.LocalAgent.Subscription.<instance identifier from test setup>.NotifRetry'
+          }
+        }
+      }
+      ```
 
 4.  Allow the EUT to send a GetResp.
 
@@ -1944,7 +1944,7 @@ Mandatory
 
 2.  Send a Get message to the EUT with the following structure:
 
-      ```
+      ```{filter=pbv type=Msg}
       header {
         msg_id: '<msg_id>'
         msg_type: GET
