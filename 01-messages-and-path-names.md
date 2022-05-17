@@ -2329,7 +2329,7 @@ structure:
 
 ### Test Metrics
 
-1. The EUT sends a DeleteResponse containing an empty oper_success element (i.e., `oper_success{}`).
+1. The EUT sends a DeleteResp containing an empty oper_success element.
 
 ## 1.30 Delete message with allow partial true, invalid object
 
