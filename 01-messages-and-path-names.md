@@ -2656,7 +2656,7 @@ Mandatory
 
 2.  Allow the EUT to send a DeleteResp.
 
-3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`.
 
 ### Test Metrics
 
