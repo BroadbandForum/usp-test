@@ -100,7 +100,7 @@ Mandatory
       }
       ```
 
-7.  Allow the EUT to send a DeleteResp
+7.  Allow the EUT to send a DeleteResp.
 
 ### Test Metrics
 
@@ -219,7 +219,7 @@ Mandatory
       }
       ```
 
-7.  Allow the EUT to send a DeleteResp
+7.  Allow the EUT to send a DeleteResp.
 
 ### Test Metrics
 
@@ -683,7 +683,7 @@ Mandatory
 
 2.  Allow the EUT to send an Error.
 
-3.  Send a Get message to the EUT with the request path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with the request path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
@@ -756,7 +756,7 @@ Mandatory
 
 2.  Allow the EUT to send an AddResp.
 
-3.  Send a Get message to the EUT with the request path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with the request path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
@@ -1323,8 +1323,8 @@ Mandatory
 
 2.  Allow the EUT to send a Error.
 
-3. Send a Get message to the EUT with a request path of
-   `Device.LocalAgent.Subscription.<instance identifier from test setup>.`.
+3.  Send a Get message to the EUT with a request path of
+    `Device.LocalAgent.Subscription.<instance identifier from test setup>.`.
 
 ### Test Metrics
 
@@ -1336,8 +1336,8 @@ Mandatory
     identifier&gt;.InvalidParameter' and an err_code of '7010',
     'Unsupported Parameter'.
 
-3. The GetResp contains a single Subscription instance that does not include
-   a `InvalidParameter` parameter.
+3.  The GetResp contains a single Subscription instance that does not include
+    a `InvalidParameter` parameter.
 
 ## 1.15 Set message with allow partial false, multiple objects, required parameters fail in single object
 
@@ -1395,7 +1395,7 @@ Mandatory
 
 2.  Allow the EUT to send an Error.
 
-3.  Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
@@ -1816,7 +1816,7 @@ Mandatory
 
 2.  Allow the EUT to send an Error.
 
-3.  Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
@@ -1886,14 +1886,14 @@ Mandatory
 
 2.  The SetResp contains an UpdatedObjectResults element.
 
-3. The UpdatedObjectResults has an OperationStatus that is an element of type
-OperationFailure. The OperationFailure contains an err_code of '7021',
-'Required Parameter Failed', and at least two UpdatedInstanceFailure elements.
-The UpdatedInstanceFailures each have an affected_path with a value of
-'Device.LocalAgent.Subscription.&lt;instance identifier&gt;.' for the
-respective failed instance, and a single ParameterError element. The
-ParameterError has a param element that indicates the Enable parameter, and an
-err_code of '7011' (Invalid Type), or '7012' (Invalid Value).
+3.  The UpdatedObjectResults has an OperationStatus that is an element of type
+    OperationFailure. The OperationFailure contains an err_code of '7021',
+    'Required Parameter Failed', and at least two UpdatedInstanceFailure elements.
+    The UpdatedInstanceFailures each have an affected_path with a value of
+    'Device.LocalAgent.Subscription.&lt;instance identifier&gt;.' for the
+    respective failed instance, and a single ParameterError element. The
+    ParameterError has a param element that indicates the Enable parameter, and an
+    err_code of '7011' (Invalid Type), or '7012' (Invalid Value).
 
 ## 1.22 Set message with search expression search path
 
@@ -1940,9 +1940,9 @@ Mandatory
       }
       ```
 
-1.  Allow the EUT to send a SetResp.
+2.  Allow the EUT to send a SetResp.
 
-2.  Send a Get message to the EUT with the following structure:
+3.  Send a Get message to the EUT with the following structure:
 
       ```
       header {
@@ -1958,7 +1958,7 @@ Mandatory
       }
       ```
 
-3.  Allow the EUT to send a GetResp.
+4.  Allow the EUT to send a GetResp.
 
 ### Test Metrics
 
@@ -2041,16 +2041,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
+1.  Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
+2.  Ensure that at least two Subscription objects exist on the
 EUT, and the instance identifiers are known by the traffic generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
       ```{filter=pbv type=Msg}
       header {
@@ -2067,20 +2067,20 @@ structure:
       }
       ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains a single deleted_obj_response with
-a requested_path equal to 'Device.LocalAgent.Subscription.&lt;instance
-identifier&gt;.' and an oper_success element, with one affected_path
-element equal to the path name of the Deleted object.
+2.  The DeleteResp contains a single deleted_obj_response with
+    a requested_path equal to 'Device.LocalAgent.Subscription.&lt;instance
+    identifier&gt;.' and an oper_success element, with one affected_path
+    element equal to the path name of the Deleted object.
 
-3. The GetResp does not contain the Subscription instance that was deleted.
+3.  The GetResp does not contain the Subscription instance that was deleted.
 
 ## 1.25 Delete message with allow partial false, object instance doesn't exist
 
@@ -2096,16 +2096,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
+1.  Ensure that the EUT and test equipment have the necessary
 information to send and receive USP Records to each other.
 
-2. Ensure that the traffic generator has learned any existing
+2.  Ensure that the traffic generator has learned any existing
 Subscription objects and their instance identifiers.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2122,11 +2122,11 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an DeleteResp.
+2.  Allow the EUT to send an DeleteResp.
 
 ### Test Metrics
 
-1. The EUT sends a DeleteResp containing an empty oper_success element.
+1.  The EUT sends a DeleteResp containing an empty oper_success element.
 
 ## 1.26 Delete message with allow partial false, invalid object
 
@@ -2142,13 +2142,13 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2165,16 +2165,16 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an Error message.
+2.  Allow the EUT to send an Error message.
 
 ### Test Metrics
 
-1. The EUT's sends an Error message.
+1.  The EUT's sends an Error message.
 
-2. The Error contains an err_code of 7004, 'Invalid
-arguments', with the param_errs element containing a single error with
-a param_path of 'Device.LocalAgent.InvalidObject.', and an err_code of
-7026, 'InvalidPath'.
+2.  The Error contains an err_code of 7004, 'Invalid
+    arguments', with the param_errs element containing a single error with
+    a param_path of 'Device.LocalAgent.InvalidObject.', and an err_code of
+    7026, 'InvalidPath'.
 
 ## 1.27 Delete message with allow partial false, multiple objects
 
@@ -2190,16 +2190,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
-EUT, and the instance identifiers are known by the traffic generator.
+2.  Ensure that at least two Subscription objects exist on the
+    EUT, and the instance identifiers are known by the traffic generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2217,20 +2217,20 @@ structure:
       }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains two deleted_obj_results, each with
-a requested_path equal to the obj_paths of the Delete message, and an
-oper_success element containing an affected_path element equal to the
-path name of the deleted object.
+2.  The DeleteResp contains two deleted_obj_results, each with
+    a requested_path equal to the obj_paths of the Delete message, and an
+    oper_success element containing an affected_path element equal to the
+    path name of the deleted object.
 
-3. The GetResp does not contain the deleted Subscription objects.
+3.  The GetResp does not contain the deleted Subscription objects.
 
 ## 1.28 Delete message with allow partial false, multiple objects, invalid object
 
@@ -2246,16 +2246,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that at least one Subscription object exists on the
-EUT, and the instance identifier is known by the traffic generator.
+2.  Ensure that at least one Subscription object exists on the
+    EUT, and the instance identifier is known by the traffic generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2273,20 +2273,20 @@ structure:
      }
     ```
 
-2. Allow the EUT to send an Error message.
+2.  Allow the EUT to send an Error message.
 
-3. Send a Get message to the EUT with a request path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a request path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1. The EUT's sends an Error message.
+1.  The EUT's sends an Error message.
 
-2. The Error contains an err_code of 7004, 'Invalid
-arguments', with the param_errs element containing a single error with
-a param_path of 'Device.LocalAgent.InvalidObject.', and an err_code of
-7026, 'InvalidPath'.
+2.  The Error contains an err_code of 7004, 'Invalid
+    arguments', with the param_errs element containing a single error with
+    a param_path of 'Device.LocalAgent.InvalidObject.', and an err_code of
+    7026, 'InvalidPath'.
 
-3. The GetResp contains the Subscription that was not deleted by step 1.
+3.  The GetResp contains the Subscription that was not deleted by step 1.
 
 ## 1.29 Delete message with allow partial true, object instance doesn't exist
 
@@ -2302,13 +2302,13 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2325,11 +2325,11 @@ structure:
      }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
 ### Test Metrics
 
-1. The EUT sends a DeleteResponse containing an empty oper_success element (i.e., `oper_success{}`).
+1.  The EUT sends a DeleteResponse containing an empty oper_success element (i.e., `oper_success{}`).
 
 ## 1.30 Delete message with allow partial true, invalid object
 
@@ -2345,13 +2345,13 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2368,15 +2368,15 @@ structure:
      }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains a single deleted_obj_result
-message with a requested_path of 'Device.LocalAgent.InvalidObject.' and an oper_failure element, with
-err_code '7026', 'Invalid Path'.
+2.  The DeleteResp contains a single deleted_obj_result
+    message with a requested_path of 'Device.LocalAgent.InvalidObject.' and an oper_failure element, with
+    err_code '7026', 'Invalid Path'.
 
 ## 1.31 Delete message with allow partial true, multiple objects, invalid object
 
@@ -2392,16 +2392,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that at least one Subscription object exists on the
-EUT, and the instance identifier is known by the traffic generator.
+2.  Ensure that at least one Subscription object exists on the
+    EUT, and the instance identifier is known by the traffic generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
      header {
@@ -2419,21 +2419,21 @@ structure:
      }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains two deleted_obj_results elements,
-one with an oper_success element, containing an affected_path element
-with the value Device.LocalAgent.Subscription.&lt;instance
-identifier&gt;.', and the other with an oper_failure element containing
-an err_code of '7026', 'InvalidPath'.
+2.  The DeleteResp contains two deleted_obj_results elements,
+    one with an oper_success element, containing an affected_path element
+    with the value Device.LocalAgent.Subscription.&lt;instance
+    identifier&gt;.', and the other with an oper_failure element containing
+    an err_code of '7026', 'InvalidPath'.
 
-3. The GetResp does not contain the Subscription instance deleted in step 1.
+3.  The GetResp does not contain the Subscription instance deleted in step 1.
 
 ## 1.32 Delete message with allow partial true, multiple objects, object doesn't exist
 
@@ -2450,16 +2450,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that at least one Subscription object exists on the
-EUT, and the instance identifier is known by the traffic generator.
+2.  Ensure that at least one Subscription object exists on the
+    EUT, and the instance identifier is known by the traffic generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
     header {
@@ -2477,18 +2477,18 @@ structure:
         }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of Device.LocalAgent.Subscription.
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains two deleted_obj_results elements. One contains an
-oper_success element with an affected_paths element listing 'Device.LocalAgent.Subscription.&lt;instance identifier&gt;.'. The second contains an empty oper_success element (i.e., `oper_success{}`).
+2.  The DeleteResp contains two deleted_obj_results elements. One contains an
+    oper_success element with an affected_paths element listing 'Device.LocalAgent.Subscription.&lt;instance identifier&gt;.'. The second contains an empty oper_success element (i.e., `oper_success{}`).
 
-3. The GetResp does not contain the Subscription instance deleted in step 1.
+3.  The GetResp does not contain the Subscription instance deleted in step 1.
 
 ## 1.33 Delete message with unique key addressing
 
@@ -2503,22 +2503,22 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Obtain the unique key values of the
-Device.LocalAgent. object that correlates with the
-that equates to the source of the test USP messages.
+2.  Obtain the unique key values of the
+    Device.LocalAgent. object that correlates with the
+    that equates to the source of the test USP messages.
 
-3. Ensure that at least one
-Device.LocalAgent.Controller.{i}.BootParameter. object exists on the
-EUT, and the instance identifier of the object is known by the traffic
-generator.
+3.  Ensure that at least one
+    Device.LocalAgent.Controller.{i}.BootParameter. object exists on the
+    EUT, and the instance identifier of the object is known by the traffic
+    generator.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
     header {
@@ -2535,22 +2535,22 @@ structure:
       }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains a single deleted_obj_result with a
-requested path equal to the path specified in the obj_path of the
-Delete message, containing an oper_success element, with one
-affected_path element equal to the path name of the Deleted object.
+2.  The DeleteResp contains a single deleted_obj_result with a
+    requested path equal to the path specified in the obj_path of the
+    Delete message, containing an oper_success element, with one
+    affected_path element equal to the path name of the Deleted object.
 
-3. The affected_path element uses instance number addressing.
+3.  The affected_path element uses instance number addressing.
 
-4. The GetResp does not contain the BootParameter deleted in step 1.
+4.  The GetResp does not contain the BootParameter deleted in step 1.
 
 ## 1.34 Delete message with wildcard search path, valid objects
 
@@ -2566,16 +2566,16 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that at least two Subscription objects exist on the
-EUT.
+2.  Ensure that at least two Subscription objects exist on the
+    EUT.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
     header {
@@ -2592,20 +2592,20 @@ structure:
       }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains a single deleted_obj_result with a
-requested path equal to 'Device.LocalAgent.Subscription.&ast;.' and an
-oper_success element  with one or more affected_path elements equal to
-the path names of the Deleted objects.
+2.  The DeleteResp contains a single deleted_obj_result with a
+    requested path equal to 'Device.LocalAgent.Subscription.&ast;.' and an
+    oper_success element  with one or more affected_path elements equal to
+    the path names of the Deleted objects.
 
-3. The GetResp does not contain any of the Subscription instances deleted in step 1.
+3.  The GetResp does not contain any of the Subscription instances deleted in step 1.
 
 ## 1.35 Delete message with search expression search path
 
@@ -2621,23 +2621,23 @@ Mandatory
 
 ### Test Setup
 
-1. Ensure that the EUT and test equipment have the necessary
-information to send and receive USP Records to each other.
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
 
-2. Ensure that the instance identifier of the Controller object
-that represents the traffic generator is known by the traffic generator.
+2.  Ensure that the instance identifier of the Controller object
+    that represents the traffic generator is known by the traffic generator.
 
-3. Ensure that at least two
-Device.LocalAgent.Controller.&lt;instance identifier&gt;.BootParameter.
-objects exist on the EUT. At least one of these BootParameter objects
-has a value of 'false' for its 'Enable' parameter, and at least one of
-these BootParameter objects has a value of 'true' for its 'Enable'
-parameter.
+3.  Ensure that at least two
+    Device.LocalAgent.Controller.&lt;instance identifier&gt;.BootParameter.
+    objects exist on the EUT. At least one of these BootParameter objects
+    has a value of 'false' for its 'Enable' parameter, and at least one of
+    these BootParameter objects has a value of 'true' for its 'Enable'
+    parameter.
 
 ### Test Procedure
 
-1. Send a Delete message to the EUT with the following
-structure:
+1.  Send a Delete message to the EUT with the following
+    structure:
 
     ```{filter=pbv type=Msg}
     header {
@@ -2654,25 +2654,25 @@ structure:
       }
     ```
 
-2. Allow the EUT to send a DeleteResp.
+2.  Allow the EUT to send a DeleteResp.
 
-3. Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`
+3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Controller.<instance ID>.BootParameter.`.
 
 ### Test Metrics
 
-1. The EUT's sends a DeleteResp.
+1.  The EUT's sends a DeleteResp.
 
-2. The DeleteResp contains a single deleted_obj_results
-element, with a requested path equal to
-'Device.LocalAgent.Controller.&lt;instance
-identifier&gt;.BootParameter.[Enable==true]' and an oper_success
-element with the affected_path elements equal to the path names of the
-successfully Deleted objects.
+2.  The DeleteResp contains a single deleted_obj_results
+    element, with a requested path equal to
+    'Device.LocalAgent.Controller.&lt;instance
+    identifier&gt;.BootParameter.[Enable==true]' and an oper_success
+    element with the affected_path elements equal to the path names of the
+    successfully Deleted objects.
 
-3. The BootParameter whose Enable parameter was equal to
-'false' was not deleted.
+3.  The BootParameter whose Enable parameter was equal to
+    'false' was not deleted.
 
-4. The GetResp does not contain any BootParameter instances where `Enable==true`.
+4.  The GetResp does not contain any BootParameter instances where `Enable==true`.
 
 ## 1.36 Get message with full parameter path
 
@@ -5575,17 +5575,17 @@ information to send and receive USP Records to each other.
 1. Send a Get message to the EUT with the following structure:
 
     ```{filter=pbv type=Msg}
-    header {
-      msg_id: '<msg_id>'
-      msg_type: GET
-    }
-    body {
-      request {
-        get {
+    header {
+      msg_id: '<msg_id>'
+      msg_type: GET
+    }
+    body {
+      request {
+        get {
           param_paths: 'Device.LocalAgent.Subscription.[Enable==true].'
-        }
-      }
-    }
+        }
+      }
+    }
     ```
 
 2. Allow the EUT to send a GetResp.
@@ -5622,17 +5622,17 @@ information to send and receive USP Records to each other.
 1. Send a GetInstances message to the EUT with the following structure:
 
     ```{filter=pbv type=Msg}
-    header {
-      msg_id: '<msg_id>'
-      msg_type: GET_INSTANCES
-    }
-    body {
-      request {
-        get_instances {
+    header {
+      msg_id: '<msg_id>'
+      msg_type: GET_INSTANCES
+    }
+    body {
+      request {
+        get_instances {
           obj_paths: 'Device.LocalAgent.Subscription.[Enable==true].'
-        }
-      }
-    }
+        }
+      }
+    }
     ```
 
 2. Allow the EUT to send a GetInstancesResp.
