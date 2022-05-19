@@ -3311,7 +3311,7 @@ Subscription object where the Enable parameter is 'true'.
 3. The keys of all result_params elements are relative paths.
 
 4. The EUT does not return any parameters from Subscription
-objects whose Enable parameter is 'false'.
+objects whose Enable parameter is 'true'.
 
 ## 1.48 Get message using search expression search path (exclusive greater comparison)
 
