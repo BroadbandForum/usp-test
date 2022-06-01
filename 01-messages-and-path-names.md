@@ -1321,7 +1321,7 @@ Mandatory
       }
       ```
 
-2.  Allow the EUT to send a Error.
+2.  Allow the EUT to send an Error.
 
 3. Send a Get message to the EUT with a request path of
    `Device.LocalAgent.Subscription.<instance identifier from test setup>.`.
@@ -4519,7 +4519,7 @@ Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.SendOnBoardRequ
 
 1.  The EUT sends a Notify message with (at minimum) a subscription_id
     field equal to 'Notify60', and an event element of on_board_req
-    with a obj_path of 'Device.LocalAgent.Controller.&lt;instance
+    with an obj_path of 'Device.LocalAgent.Controller.&lt;instance
     identifier of traffic generator&gt;.', and appropriate values for
     the oui, product_class, serial_number, and
     agent_supported_protocol_versions fields.
@@ -4665,7 +4665,7 @@ Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.ScheduleTimer()
    containing an executed\_command of
    'Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()' and a
    req\_output\_args element containing an empty output\_args element.
-2. The EUT sends a Notify message containing a Event message with obj\_path of
+2. The EUT sends a Notify message containing an Event message with obj\_path of
    'Device.LocalAgent.Controller.&lt;Controller instance&gt;.ScheduleTimer()'.
 
 
@@ -4714,7 +4714,7 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
 2. Allow the EUT to send an Operate Response message with a req\_object\_path
    which matches the command sent in the Operate message
 3. Allow the EUT to send a Notify message with an inner OperationComplete
-message with a obj\_path element matching the command sent in the Operate
+message with an obj\_path element matching the command sent in the Operate
 Message.
 
 ### Test Metrics
@@ -4722,7 +4722,7 @@ Message.
 1. The EUT sends an OperateResp message with a single operation\_results element
    containing an executed\_command of 'Device.IP.Diagnostics.TraceRoute()' and a
    req\_obj\_path field containing a path name to the Request object created by the EUT.
-2. The EUT sends a Notify message containing a OperationComplete message with
+2. The EUT sends a Notify message containing an OperationComplete message with
    obj\_path of 'Device.IP.Diagnostics.TraceRoute()'.
 
 ## 1.65 Asynchronous operation with send_resp false
@@ -4766,12 +4766,12 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
     }
     ```
 
-2. Allow the EUT to send a Notify message with an inner OperationComplete message with a obj\_path element matching the command sent in the OperateMessage.
+2. Allow the EUT to send a Notify message with an inner OperationComplete message with an obj\_path element matching the command sent in the OperateMessage.
 
 ### Test Metrics
 
 1. The EUT does not send an OperateResp message.
-2. The EUT sends a Notify message containing a OperationComplete message with
+2. The EUT sends a Notify message containing an OperationComplete message with
    obj\_path of 'Device.IP.Diagnostics.TraceRoute()'.
 
 ## 1.66 GetInstances using a single object, first\_level\_only true
@@ -5268,7 +5268,7 @@ body {
 ### Test Metrics
 
 1. The EUT returns a GetSupportedDMResp with a single req\_obj\_results
-   with a err_code of 7026.
+   with an err_code of 7026.
 
 ## 1.78 Removal of subscriptions that have no associated controller
 
