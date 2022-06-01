@@ -3564,8 +3564,8 @@ objects whose NotifExpiration parameter is greater than 10.
 ### Purpose
 
 The purpose of this test is to ensure that the Agent will create and
-acknowledge Subscriptions requested by the , and notifies the
- when the conditions of the subscription are triggered. This
+acknowledge Subscriptions requested by the Controller, and notifies the
+Controller when the conditions of the subscription are triggered. This
 test uses the ValueChange event to exercise these functions, validating
 the behavior of ValueChange in the process.
 
@@ -3628,7 +3628,7 @@ identifier&gt;.ProvisioningCode to an arbitrary value that is not
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send a Set message to the EUT with the following structure:
 
@@ -3867,7 +3867,7 @@ value (5).
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send a Set message to the EUT with the following structure:
 
@@ -3983,7 +3983,7 @@ identifier&gt;.ProvisioningCode to an arbitrary value that is not
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send a Set message to the EUT with the following structure:
 
@@ -4121,7 +4121,7 @@ value (5).
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send a Set message to the EUT with the following structure:
 
@@ -4226,7 +4226,7 @@ information to send and receive USP Records to each other.
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send an Add message to the EUT with the following structure:
 
@@ -4268,7 +4268,7 @@ information to send and receive USP Records to each other.
       }
     ```
 
-4.  Allow the EUT to send an AddResp
+4.  Allow the EUT to send an AddResp.
 
 5.  Allow the EUT to send a Notify message.
 
@@ -4347,7 +4347,7 @@ Mandatory
       }
     ```
 
-2.  Allow the EUT to send an AddResp
+2.  Allow the EUT to send an AddResp.
 
 3.  Send a Delete message to the EUT with the following structure:
 
@@ -5705,7 +5705,7 @@ Mandatory
    }
    ```
 
-2. Allow the EUT to send an AddResp
+2. Allow the EUT to send an AddResp.
 
 3. Send a Set message to the EUT with the following structure:
 
