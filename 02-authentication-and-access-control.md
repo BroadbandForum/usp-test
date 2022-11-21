@@ -5,7 +5,7 @@
 ### Purpose
 
 The purpose of this test is to ensure the EUT does not respond to a USP message
-when the from_id is the EUT's endpoint ID.
+when the `from_id` is the EUT endpoint ID.
 
 ### Functionality Tag
 
@@ -38,7 +38,7 @@ Mandatory
 ### Purpose
 
 The purpose of this test is to ensure the EUT does not respond to a USP message
-when the USP record doesn't contain a the EUT's to_id.
+when the USP record doesn't contain a the EUT `to_id`.
 
 ### Functionality Tags
 
@@ -112,8 +112,8 @@ the EUT.
 
 ### Purpose
 
-The purpose of this test is to ensure that the EUT rejects a message from an Endpoint ID
-that doesn't match the subjectAltName in the provided certificate.
+The purpose of this test is to ensure that the EUT rejects a message from an
+Endpoint ID that doesn't match the subjectAltName in the provided certificate.
 
 ### Functionality Tags
 
@@ -172,7 +172,7 @@ Deprecated
 ### Test Metrics
 
 1. The EUT responds to the Get with a GetResponse containing a
-   Device.LocalAgent.ControllerTrust.{i}.Alias parameter.
+   'Device.LocalAgent.ControllerTrust.{i}.Alias' parameter.
 
 ## 2.6 Connecting without absolute time
 
@@ -212,7 +212,7 @@ Conditional Mandatory (Supports USP Session Context)
 
 ### Test Metrics
 
-1. The EUT responds to the Get message with a GetReponse, ignoring the expired
+1. The EUT responds to the Get message with a GetResponse, ignoring the expired
    dates on the certificate.
 
 ## 2.7 Agent ignores unsigned or invalid Record signatures
@@ -310,7 +310,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile)
 ### Purpose
 
 The purpose of this test is to ensure that the Add message can be used to add
-new Roles to the EUT's data model.
+new Roles to the EUT data model.
 
 ### Functionality Tags
 
@@ -502,7 +502,7 @@ body {
 
 1. The EUT sends an AddResponse with a oper_success element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an Error containing type 7006 - Permission Denied.
+2. The EUT sends an Error containing type '7006' - Permission Denied.
 
 ## 2.13 Permissions - Object Deletion Allowed
 
@@ -574,9 +574,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an DeleteResponse with a oper_success element containing the
+2. The EUT sends an DeleteResponse with a `oper_success` element containing the
    Device.LocalAgent.Subscription. object in step 2.
 
 ## 2.14 Permissions - Object Deletion Not Allowed
@@ -649,9 +649,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an Error containing type 7006 - Permission Denied.
+2. The EUT sends an Error containing type '7006' - Permission Denied.
 
 ## 2.15 Permissions - Parameter Update Allowed
 
@@ -730,9 +730,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends a SetResponse with a oper_success element containing
+2. The EUT sends a SetResponse with a `oper_success` element containing
    Device.LocalAgent.Subscription.{i}.Enable in step 2.
 
 ## 2.16 Permissions - Parameter Update Not Allowed
@@ -812,9 +812,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an Error containing type 7006 - Permission Denied.
+2. The EUT sends an Error containing type '7006' - Permission Denied.
 
 ## 2.17 Permissions - Operation Allowed
 
@@ -866,7 +866,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
     }
     ```
 
-2. Send a Set message to the EUT with the following structure:
+2. Send an Operate message to the EUT with the following structure:
 
     ```{filter=pbv type=Msg}
     header {
@@ -877,6 +877,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
         request {
             operate {
                 command: 'Device.Reboot()'
+                send_resp: true
             }
         }
     }
@@ -884,9 +885,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an OperateResponse with a req_output_args element in step 2.
+2. The EUT sends an OperateResponse with a `req_output_args` element in step 2.
 
 ## 2.18 Permissions - Operation Not Allowed
 
@@ -956,9 +957,9 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with a oper_success element containing a
+1. The EUT sends an AddResponse with a `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an Error containing type 7006 - Permission Denied.
+2. The EUT sends an Error message containing an appropriate error code.
 
 ## 2.19 Permissions - Value Change Notification Allowed on Parameter
 
@@ -1043,20 +1044,20 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
     ```
 
 3. Send a Set message to the EUT, setting
-   `Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval` to a new value.
+   Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval to a new value.
 
 4. Wait for a Notification from the EUT.
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with an oper_success element containing a
+1. The EUT sends an AddResponse with an `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an AddResponse with an oper_success element containing a
+2. The EUT sends an AddResponse with an `oper_success` element containing a
    new Device.LocalAgent.Subscription. object in step 2.
-3. The EUT sends a SetResponse with an oper_success element with the path
-   `Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval`.
-4. The EUT sends a Notify message with a value_change element pointing to
-   `Device.LocalAgent.Controller.<Controller instance>.PeriodicNotifInterval`.
+3. The EUT sends a SetResponse with an `oper_success` element with the path
+   'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'.
+4. The EUT sends a Notify message with a `value_change` element pointing to
+   'Device.LocalAgent.Controller.<Controller instance>.PeriodicNotifInterval'.
 
 ## 2.20 Permissions - Value Change Notification Not Allowed on Parameter
 
@@ -1141,20 +1142,20 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
     ```
 
 3. Send a Set message to the EUT, setting
-   `Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval` to a new value.
+   Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval to a new value.
 
 4. Wait 30 seconds.
 
 ### Test Metrics
 
-1. The EUT sends an AddResponse with an oper_success element containing a
+1. The EUT sends an AddResponse with an `oper_success` element containing a
    new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in step 1.
-2. The EUT sends an AddResponse with an oper_success element containing a
+2. The EUT sends an AddResponse with an `oper_success` element containing a
    new Device.LocalAgent.Subscription. object in step 2.
-3. The EUT sends a SetResponse with an oper_success element with the path
-   `Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval`.
-4. The EUT does not send a Notify message with a value_change element pointing to
-   `Device.LocalAgent.Controller.<Controller instance>.PeriodicNotifInterval`.
+3. The EUT sends a SetResponse with an `oper_success` element with the path
+   'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'.
+4. The EUT does not send a Notify message with a value_change element pointing
+to 'Device.LocalAgent.Controller.<Controller instance>.PeriodicNotifInterval'.
 
 ## 2.21 Permissions - Overlapping Permissions
 
@@ -1246,8 +1247,8 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 ### Test Metrics
 
 1. The EUT sends an AddResponse message after step 1. The message contains
-   two oper_success elements, one for each added permission.
-2. The EUT sends a GetResponse with a result_params element containing
+   two `oper_success` elements, one for each added permission.
+2. The EUT sends a GetResponse with a `result_params` element containing
    parameters of the specified BootParameter instance.
 
 ## 2.22 Using Get when no read permissions are available on some parameters
@@ -1320,7 +1321,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
 ### Test Metrics
 
 1. The EUT sends an AddResponse message after step 1. The message contains
-   a oper_success element for the added Permission.
-2. The EUT sends a GetResponse with a result_params element containing
+   a `oper_success` element for the added Permission.
+2. The EUT sends a GetResponse with a `result_params` element containing
    parameters of the specified BootParameter instance, with the exception
-   of the ParameterName parameter.
+   of the 'ParameterName' parameter.

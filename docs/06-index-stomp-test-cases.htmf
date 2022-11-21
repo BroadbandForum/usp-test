@@ -1,0 +1,602 @@
+<!-- <h1 class="display-none" id="sec:stomp-test-cases">6 STOMP Test Cases<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-test-cases" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1> -->
+
+<h2 id="sec:support-of-required-profiles">6.1 Support of Required Profiles<a class="headerlink" href="06-index-stomp-test-cases.html#sec:support-of-required-profiles" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-135">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-135" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT supports the required STOMP
+profiles.</p>
+
+<h3 id="sec:functionality-tags-46">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-46" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-137">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-137" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary information to send
+and receive USP records to each other.</li>
+</ol>
+
+<h3 id="sec:test-procedure-128">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-128" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a GetSupportedDM message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET_SUPPORTED_DM
+}
+body {
+    request {
+        get_supported_dm {
+            obj_paths: 'Device.STOMP.'
+            obj_paths: 'Device.LocalAgent.'
+            return_params: true
+            first_level_only: false
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the GetSupportedDMResponse.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-136">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-136" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT sends a GetSupportedDMResponse.</li>
+<li>The GetSupportedDMResponse from the EUT contains the following parameters:
+* Device.LocalAgent.Controller.{i}.MTP.{i}.STOMP.Reference
+* Device.LocalAgent.Controller.{i}.MTP.{i}.STOMP.Destination
+* Device.STOMP.ConnectionNumberOfEntries
+* Device.STOMP.Connection.{i}.Alias
+* Device.STOMP.Connection.{i}.Enable
+* Device.STOMP.Connection.{i}.Status
+* Device.STOMP.Connection.{i}.Host
+* Device.STOMP.Connection.{i}.Port
+* Device.STOMP.Connection.{i}.VirtualHost
+* Device.STOMP.Connection.{i}.ServerRetryInitialInterval
+* Device.STOMP.Connection.{i}.ServerRetryIntervalMultiplier
+* Device.STOMP.Connection.{i}.ServerRetryMaxInterval</li>
+</ol>
+
+<h2 id="sec:stomp-session-establishment">6.2 STOMP session establishment<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-session-establishment" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-136">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-136" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can properly start a STOMP session.</p>
+
+<h3 id="sec:functionality-tags-47">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-47" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-138">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-138" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure that the EUT is configured to use a STOMP server that exists
+in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-129">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-129" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the STOMP server and subscribe to a destination.</li>
+</ol>
+
+<h3 id="sec:test-metrics-137">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-137" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT sends a STOMP frame to the STOMP server to initiate the STOMP session.</li>
+</ol>
+
+<h2 id="sec:stomp-connection-retry">6.3 STOMP Connection Retry<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-connection-retry" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-137">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-137" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT properly enters a retry state
+when it fails to connect to the STOMP server.</p>
+
+<h3 id="sec:functionality-tags-48">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-48" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-139">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-139" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure that the EUT is configured to use a STOMP server that exists
+in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-130">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-130" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Get message to the EUT with the following structure</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.STOMP.Connection.'
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Operate message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: 'Device.Reboot()'
+        }
+    }
+}</code></pre></li>
+<li><p>Disable the STOMP server.</p></li>
+<li><p>Allow the EUT to attempt to start a STOMP session with the STOMP
+server.</p></li>
+<li><p>Reenable the STOMP server after the EUT fails to connect to the STOMP
+server twice.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-138">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-138" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT retries connecting to the STOMP server within the
+<code>ServerRetryInitialInterval</code> of the connection instance.</li>
+<li>The EUT retries a second time in accordance with <code>ServerRetryInitialInterval</code>
+and <code>ServerRetryIntervalMultiplier</code>.</li>
+</ol>
+
+<h2 id="sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers<a class="headerlink" href="06-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-138">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-138" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can communicate over STOMP
+using the correct headers.</p>
+
+<h3 id="sec:functionality-tags-49">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-49" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-140">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-140" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure that the EUT is configured to use a STOMP server
+that exists in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-131">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-131" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo.'
+        }
+    }
+}</code></pre></li>
+<li><p>Allow the EUT to send a GetResponse.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-139">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-139" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>In the STOMP frame transporting the GetResponse the <code>content-length</code> header
+is present and contains the length of the included body of the message.</li>
+<li>In the STOMP frame transporting the GetResponse the <code>content-type</code>
+header is present and contains <code>application/vnd.bbf.usp.msg</code>.</li>
+<li>In the STOMP frame transporting the GetResponse the <code>reply-to-dest</code> header
+is present and contains the STOMP destination of the EUT.</li>
+</ol>
+
+<h2 id="sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-139">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-139" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correct subscribe to a
+destination found in the <code>subscribe-dest</code> header in a CONNECTED frame.</p>
+
+<h3 id="sec:functionality-tags-50">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-50" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-141">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-141" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use a STOMP server
+that is part of the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-132">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-132" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Configure the STOMP server to send an unused destination via the
+<code>subscribe-dest</code> header in the CONNECTED frames.</p></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Allow the EUT to reconnect to the STOMP server.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.LocalAgent.'
+        }
+    }
+}</code></pre></li>
+<li><p>Allow the EUT to respond to the Get message.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-140">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-140" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT subscribes to the destination configured in step 1.</li>
+<li>The STOMP frame containing the GetResponse has a <code>reply-to-dest</code>
+header which matches the destination configured in step 1.</li>
+</ol>
+
+<h2 id="sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-140">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-140" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can use the
+<code>Device.LocalAgent.MTP.{i}.STOMP.Destination</code> parameter to select a STOMP
+destination.</p>
+
+<h3 id="sec:functionality-tags-51">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-51" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-steps-7">Test Steps<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-steps-7" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use a STOMP server
+that is part of the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-133">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-133" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                obj_path: 'Device.LocalAgent.MTP.&lt;active MTP instance&gt;.STOMP.'
+                param_settings {
+                        param: 'Destination'
+                        value: '&lt;new unused destination&gt;'
+                    }
+            }
+        }
+    }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the STOMP server.</p></li>
+<li><p>Allow the STOMP server to send a CONNECTED frame that does NOT include the subscribe-dest field.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo.'
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a GetResponse from the EUT.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-141">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-141" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT subscribes to the destination configured in step 1.</li>
+<li>The STOMP frame containing the GetResponse has a <code>reply-to-dest</code>
+header which contains the STOMP destination configured in step 1.</li>
+</ol>
+
+<h2 id="sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-141">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-141" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT terminates a STOMP
+session when no destination id configured.</p>
+
+<h3 id="sec:functionality-tags-52">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-52" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-142">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-142" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT is configured to use a STOMP server which
+exists in the test environment.</li>
+<li>Configure the STOMP server to not provide a <code>subscribe-dest</code>
+header in the CONNECTED frame.</li>
+</ol>
+
+<h3 id="sec:test-procedure-134">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-134" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: 'Device.LocalAgent.MTP.&lt;active MTP instance&gt;.STOMP.'
+                    param_settings {
+                            param: 'Destination'
+                            value: ''
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to attempt to reconnect to the STOMP server.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-142">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-142" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT terminates the STOMP session after the STOMP server sends a CONNECTION to the EUT.</li>
+</ol>
+
+<h2 id="sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism<a class="headerlink" href="06-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-142">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-142" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can correctly implements
+the STOMP heartbeat mechanism and the relevant parameters in the data model.</p>
+
+<h3 id="sec:functionality-tags-53">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-53" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports STOMPHeartbeat:1 profile)</p>
+
+<h3 id="sec:test-setup-143">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-143" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT is configured to use a STOMP server which
+exists in the test environment.</li>
+<li>Ensure the STOMP server supports heartbeats.</li>
+</ol>
+
+<h3 id="sec:test-procedure-135">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-135" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: 'Device.STOMP.Connection.&lt;STOMP server in use&gt;.'
+                    param_settings {
+                            param: 'EnableHeartbeats'
+                            value: 'true'
+                        }
+                    param_settings {
+                            param: 'IncomingHeartbeat'
+                            value: '10000'
+                        }
+                    param_settings {
+                            param: 'OutgoingHeartbeat'
+                            value: '15000'
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the STOMP server.</p></li>
+<li><p>Wait for 60 seconds</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-143">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-143" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>In the STOMP frame sent to the STOMP server during step 2, the <code>heart-beat</code> header
+sent by the EUT contains &lsquo;15000, 10000&rsquo;.</li>
+<li>After the EUT is connected to the STOMP server, the EUT sends heartbeat messages
+every 15 seconds.</li>
+</ol>
+
+<h2 id="sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record<a class="headerlink" href="06-index-stomp-test-cases.html#sec:error-handling---unprocessed-record" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-143">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-143" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT will correctly
+send an ERROR STOMP frame when a malformed USP record is received.</p>
+
+<h3 id="sec:functionality-tags-54">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-54" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-144">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-144" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use a STOMP server that exists
+in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-136">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-136" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Send a malformed USP record to the EUT.</li>
+<li>Wait 60 seconds for the EUT to send a response.</li>
+</ol>
+
+<h3 id="sec:test-metrics-144">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-144" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT either ignores the malformed record or sends a USP Record Error.</li>
+</ol>
+
+<h2 id="sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed<a class="headerlink" href="06-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-144">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-144" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure that when the EUT destination is altered it
+properly unsubscribes and subscribes to the new destination.</p>
+
+<h3 id="sec:functionality-tags-55">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-55" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-145">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-145" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use a STOMP server that exists
+in the test environment.</li>
+<li>Ensure the STOMP server is configured to not provide a destination
+via the <code>subscribe-dest</code> header.</li>
+</ol>
+
+<h3 id="sec:test-procedure-137">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-137" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: 'Device.LocalAgent.MTP.&lt;active MTP instance&gt;.STOMP.'
+                    param_settings {
+                            param: 'Destination'
+                            value: '&lt;new destination&gt;'
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+</ol>
+
+<h3 id="sec:test-metrics-145">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-145" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>After the STOMP destination was changed the EUT sent an UNSUBSCRIBE message
+message to the STOMP server.</li>
+<li>After the EUT sent an UNSUBSCRIBE to the STOMP server it sent a SUBSCRIBE
+message with the new destination to the STOMP server.</li>
+</ol>
+
+<h2 id="sec:stomp---use-of-tls">6.11 STOMP - Use of TLS<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp---use-of-tls" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-145">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-145" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can establish secure STOMP
+communication via TLS.</p>
+
+<h3 id="sec:functionality-tags-56">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-56" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-146">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-146" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to the use a STOMP server that exists
+in the test environment.</li>
+<li>Ensure the EUT and STOMP server are configured with the appropriate
+certificates to communicate over TLS.</li>
+</ol>
+
+<h3 id="sec:test-procedure-138">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-138" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Reboot the EUT</p></li>
+<li><p>Wait for the EUT to reconnect to the STOMP server</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo'
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-146">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-146" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>All communication between the EUT and STOMP server after
+step 1 are encrypted using TLS</li>
+</ol>
+
+<h2 id="sec:stomp---use-of-connect-record">6.12 STOMP - Use of Connect Record<a class="headerlink" href="06-index-stomp-test-cases.html#sec:stomp---use-of-connect-record" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-146">Purpose<a class="headerlink" href="06-index-stomp-test-cases.html#sec:purpose-146" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correctly sends a Connect
+record after it has established a communications channel to the controller.</p>
+
+<h3 id="sec:functionality-tags-57">Functionality Tags<a class="headerlink" href="06-index-stomp-test-cases.html#sec:functionality-tags-57" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the STOMP MTP)</p>
+
+<h3 id="sec:test-setup-147">Test Setup<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-setup-147" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use a STOMP server that exists
+in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-139">Test Procedure<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-procedure-139" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the STOMP server.</li>
+</ol>
+
+<h3 id="sec:test-metrics-147">Test Metrics<a class="headerlink" href="06-index-stomp-test-cases.html#sec:test-metrics-147" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>After reconnecting to the STOMP server the EUT transmits a
+STOMPConnectRecord to the test controller within 30 seconds.</li>
+<li>The version in the received STOMPConnectRecord matches the expected
+version.</li>
+<li>The subscribed_destination string in the received STOMPConnectRecord
+matches the destination the EUT is subscribed to.</li>
+</ol>
+

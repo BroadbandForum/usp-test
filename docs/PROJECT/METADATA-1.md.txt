@@ -1,0 +1,153 @@
+<!-- do not edit! this file was created from PROJECT.yaml by project-parser.py -->
+
+### Issue History {.unnumbered .unlisted .new-page}
+
+::: {.list-table .usp-revision-history aligns=l,l widths=14,65} :::
+
+* - Issue Number
+  - Changes
+
+* - [Release 1.0][TP-469]
+  - * First release of this test plan, containing test cases for basic
+      compliance with TR-369/USP
+
+* - Release 1.0.1
+  - * Deprecated test 7.3
+    * Added flag to the features list to indicate which features are
+      "not-in-force" and not yet available for certification
+    * Various procedure and metric fixes
+
+* - [Release 1.0.2][TP-469 Corrigendum 2]
+  - * Both mandatory and conditional mandatory tests can use alternate
+      objects or parameters if available
+    * Updated features and requirements
+    * Altered test setup of 1.50 to include three objects
+    * Fixed metrics of 1.25 to use new DeleteResp logic
+    * Fixed tests 1.16 and 1.21 to use the correct error codes
+    * Fixed test 1.20 to only check for at least one error
+    * Fixed test 4.1 to include "OnBoardRequest()" as a conditional
+      requirement
+    * Fixed test 1.32 to use new DeleteResp logic
+    * Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM
+      first_level_only logic
+    * Fixed error code metric of test 1.8
+
+* - Release 1.0.3
+  - * The metrics of test 1.9 now do not imply order
+    * Test 1.22 metric now requires "at least one" element rather than a
+      "single" element
+    * Renamed test 1.23
+    * Fixed the metric of test 1.38 to include the instance identifier of
+      the path
+    * Reworded the purpose of test 1.41
+    * Clarified the test setup of tests 1.66 and 1.67
+    * Fixed a typo in test 6.1 metrics (ServerRetryInitialMultiplier to
+      ServerRetryIntervalMultiplier)
+    * Fixes other typographical errors
+
+* - [Release 1.1][TP-469 Amendment 1]
+  - * Adds test 1.78 Removal of subscriptions that have no associated
+      controller
+    * Adds test 1.80 GetSupportedProtocol
+    * Adds language reinforcing required tests based on supported features
+    * Adds test case 1.81 to test automatic unique key generation by the
+      Agent
+    * Adds negative test metrics to several Set and Delete tests to
+      validate that operations did not occur upon error (1.7, 1.8, 1.14,
+      1.15, 1.20, 1.24, 1.27, 1.28, 1.31, 1.32, 1.33, 1.34, 1.35)
+    * Adds section 10 for bulk data collection tests
+    * Adds tests 1.82 and 1.83 to validate Get and GetInstances using
+      expressions that match zero objects
+    * Adds test 1.84 to exercise the use of search paths in Subscriptions
+    * Defines deprecation for tests
+    * Deprecates test 1.63 in favor of test 1.79
+    * Deprecates test 9.1 in favor of test 9.11
+    * Deprecates tests 2.3, 2.4, and 2.5
+    * Completely deletes test 1.69
+    * Updates functionality tag on test 1.71 to "supports at least one
+      multi-instance object"
+    * Clarifies the definition of an empty oper_success element in test 1.32
+    * Rewrites test 2.20 to accomplish its original intent
+    * Changes test 3.6 to check that an Agent does not accept TLS
+      renegotiation
+    * Changes test 2.15 and 2.16 to use "Enable" rather than "Alias" as a
+      test parameter
+    * Simplifies test 4.1
+    * Various typographical fixes, some in test procedure path names
+    * Normalizes all protobuf examples in test procedures
+    * Fixes test 2.20 to use the correct permissions
+    * Fixes test 1.47 to use the correct operator
+    * Eases the requirements of test 9.7 for implementation flexibility
+    * Removes the concept of "not-in-force" test cases and features
+    * Updates tests 1.59, 1.84 to use allow_partial false"
+    * Allows tests 1.3, 1.7, 1.8, 1.21 to use only an invalid parameter
+      value (not an invalid parameter) and accept 7012 as an acceptable
+      error code
+
+* - [Release 1.2][TP-469 Amendment 2]
+  - * Deprecates COAP tests
+    * Adds MQTT test cases
+    * Adds tests 1.86, 1.87 to test Get with unmatched search path
+    * Adds new Connect Record test cases to STOMP and WebSocket sections
+    * Adds MQTT bulk data collection test cases
+    * Adds test 1.88 to check that unique keys are always treated as required
+    * Adds test 1.89 to exercise max_depth feature in Get
+    * Adds test 1.90 to check Delete with unmatched search path
+    * Adds test 1.91 to very an Agent ignores unknown arguments in a command
+    * Adds test 1.92 to test that operate uses default values when absent
+    * Updates test 1.23 metrics to require the return of an empty oper_success
+    * Updates GetSupportedDM test cases to check for new USP 1.2 fields
+    * Updates tests 1.3, 1.4, 1.6, 1.21 to include additional test metrics
+    * Updates tests 1.64 and 1.65 to check for correct command_key value
+    * Updates tests to account for requirement R-MTP.5 in USP 1.2
+    * Fixes metric in test 1.20 and 1.21 to allow for single failure
+    * Fixes test setup in 9.4, 9.5, 9.6
+    * Fixes test 8.5 to remove MTP specific language and require mDNS info
+    * Reverts metric in test 6.7
+    * Fixes test 1.47 test metrics for correct equivalence
+    * Set send_resp to true for several Operate tests where needed
+    * Various typographical fixes
+
+:::
+
+### %bbfWorkArea% Work Area Directors {.unnumbered .unlisted}
+
+::: {.list-table .usp-wads aligns=l,l,l,l widths=12,10,15,21} :::
+
+* - Name
+  - Company
+  - Email
+  - Role
+
+* - Jason Walls
+  - QA Cafe, LLC
+  - jason@qacafe.com
+  - Broadband User Services Work Area Director
+
+* - John Blackford
+  - CommScope
+  - john.blackford@commscope.com
+  - Broadband User Services Work Area Director
+
+:::
+
+### Editors {.unnumbered .unlisted}
+
+::: {.list-table .usp-editors aligns=l,l,l,l widths=12,10,15,21} :::
+
+* - Name
+  - Company
+  - Email
+  - Role
+
+* - Jason Walls
+  - QA Cafe, LLC
+  - jason@qacafe.com
+  - Editor
+
+:::
+
+[TP-469]: https://www.broadband-forum.org/download/TP-469.pdf
+[TP-469 Amendment 1]: https://www.broadband-forum.org/download/TP-469_Amendment-1.pdf
+[TP-469 Amendment 2]: https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf
+[TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf

@@ -42,7 +42,7 @@ Conditional Mandatory (supports the STOMP MTP)
 ### Test Metrics
 
 1. The EUT sends a GetSupportedDMResponse.
-2. The GetSupportedDMReponse from the EUT contains the following parameters:
+2. The GetSupportedDMResponse from the EUT contains the following parameters:
         * Device.LocalAgent.Controller.{i}.MTP.{i}.STOMP.Reference
         * Device.LocalAgent.Controller.{i}.MTP.{i}.STOMP.Destination
         * Device.STOMP.ConnectionNumberOfEntries
@@ -185,7 +185,7 @@ Conditional Mandatory (supports the STOMP MTP)
    is present and contains the length of the included body of the message.
 2. In the STOMP frame transporting the GetResponse the `content-type`
    header is present and contains `application/vnd.bbf.usp.msg`.
-3. In the STOMP frame transporting the GetReponse the `reply-to-dest` header
+3. In the STOMP frame transporting the GetResponse the `reply-to-dest` header
    is present and contains the STOMP destination of the EUT.
 
 
@@ -350,14 +350,14 @@ Conditional Mandatory (supports the STOMP MTP)
 
 ### Test Metrics
 
-1. The EUT terminates the STOMP session by sending a DISCONNECT frame after the STOMP server sends a CONNECTED frame to the EUT.
+1. The EUT terminates the STOMP session after the STOMP server sends a CONNECTION to the EUT.
 
 ## 6.8 Use of STOMP heartbeat mechanism
 
 ### Purpose
 
 The purpose of this test is to ensure the EUT can correctly implements
-the STOMP heartbeat mechanism and the relavent parameters in the data model.
+the STOMP heartbeat mechanism and the relevant parameters in the data model.
 
 ### Functionality Tags
 
@@ -369,7 +369,7 @@ Conditional Mandatory (supports STOMPHeartbeat:1 profile)
    exists in the test environment.
 2. Ensure the STOMP server supports heartbeats.
 
-### Test Metrics
+### Test Procedure
 
 1. Send a Set message to the EUT with the following structure:
 
@@ -435,13 +435,13 @@ Conditional Mandatory (supports the STOMP MTP)
 
 ### Test Metrics
 
-1. The EUT does not send a response to the malformed record.
+1. The EUT either ignores the malformed record or sends a USP Record Error.
 
 ## 6.10 Agent's STOMP destination is changed
 
 ### Purpose
 
-The purpose of this test is to ensure that when the EUT's destination is altered it
+The purpose of this test is to ensure that when the EUT destination is altered it
 properly unsubscribes and subscribes to the new destination.
 
 ### Functionality Tags
@@ -530,3 +530,33 @@ Conditional Mandatory (supports the STOMP MTP)
 
 1. All communication between the EUT and STOMP server after
    step 1 are encrypted using TLS
+
+## 6.12 STOMP - Use of Connect Record
+
+### Purpose
+
+The purpose of this test is to ensure the EUT correctly sends a Connect
+record after it has established a communications channel to the controller.
+
+### Functionality Tags
+
+Conditional Mandatory (supports the STOMP MTP)
+
+### Test Setup
+
+1. Ensure the EUT is configured to use a STOMP server that exists
+   in the test environment.
+
+### Test Procedure
+
+1. Reboot the EUT.
+2. Wait for the EUT to reconnect to the STOMP server.
+
+### Test Metrics
+
+1. After reconnecting to the STOMP server the EUT transmits a
+   STOMPConnectRecord to the test controller within 30 seconds.
+2. The version in the received STOMPConnectRecord matches the expected
+   version.
+3. The subscribed_destination string in the received STOMPConnectRecord
+   matches the destination the EUT is subscribed to.

@@ -42,9 +42,8 @@ Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.ScheduleTimer()
 
 ### Test Metrics
 
-1. The EUT sends an OperateResponse with ScheduleTimer() in the executed_command
-   element.
-2. The EUT sends a Notify message with an event element containing Timer!
+1. The EUT sends an OperateResponse with 'ScheduleTimer()' in the `executed_command` element.
+2. The EUT sends a Notify message with an `event` element containing Timer!
 
 ## 9.2 Use of Device.LocalAgent.AddCertificate()
 
@@ -148,8 +147,8 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 1. Ensure that the EUT and test equipment have the necessary information to send
    and receive USP Records to each other.
-2. Ensure that the EUT has a Subscription to the TransferComplete! and Boot! events with
-   the recipient being the  instance used for testing.
+2. Ensure that the EUT has a Subscription to the TransferComplete! and Boot!
+   events with the Recipient being the Controller instance used for testing.
 
 ### Test Procedure
 
@@ -208,15 +207,15 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 ### Test Metrics
 
-1. The EUT sends a Notify message after step 1 containing a oper_complete
-   element with a command_name of Download()
+1. The EUT sends a Notify message after step 1 containing a `oper_complete`
+   element with a `command_name` of 'Download()'
 2. The EUT sends a Notify message with a TransferComplete! event.
 3. The EUT sends a Notify message with a Boot! event, with the
-   FirmwareUpdated argument set to true.
+   'FirmwareUpdated' argument set to true.
 4. The EUT sends a GetResponse message after step 3 which shows that
-   `Device.DeviceInfo.ActiveFirmwareImage` matches the FirmwareImage instance
+   Device.DeviceInfo.ActiveFirmwareImage matches the FirmwareImage instance
    on which the Download() operation was called; also that
-   `Device.DeviceInfo.SoftwareVersion` matches the expected version.
+   Device.DeviceInfo.SoftwareVersion matches the expected version.
 
 ## 9.4 Upgrading the Agent's Firmware - Using TimeWindow, Immediate
 
@@ -234,8 +233,11 @@ Conditional Mandatory (supports Firmware:1 profile with Activate() operation)
 1. Ensure that the EUT and test equipment have the necessary information to send
    and receive USP Records to each other.
 2. Ensure the EUT has a FirmwareImage instance containing inactive firmware.
-3. Ensure the EUT has a Subscription instance for Boot! with the
+3. Ensure the EUT has a Subscription instance for Boot! with the Controller
    used for testing set as the Recipient.
+4. Ensure that the EUT has a Subscription instance for the OperationComplete
+notification with a NotifType equal to 'OperationComplete' and a ReferenceList that matches the path of the 'Activate()' command with the Controller
+used for testing set as the Recipient.
 
 ### Test Procedure
 
@@ -287,7 +289,7 @@ Conditional Mandatory (supports Firmware:1 profile with Activate() operation)
 ### Test Metrics
 
 1. The EUT sends a Notify message within 5 seconds with an
-   OperationComplete element with a command_name of Activate().
+   OperationComplete element with a `command_name` of 'Activate()'.
 2. The EUT sends a Notify message with a Boot! event and a
    FirmwareUpdated argument set to true.
 3. The EUT responds to the Get message with a GetResponse
@@ -298,12 +300,12 @@ Conditional Mandatory (supports Firmware:1 profile with Activate() operation)
 
 ### Purpose
 
-The pupose of this test is to ensure the EUT can activate a firmware image
+The purpose of this test is to ensure the EUT can activate a firmware image
 when a TimeWindow instance used with the AnyTime mode.
 
 ### Functionality Tags
 
-Conditonally Mandatory (implements Firmware:1 and Activate() operation)
+Conditionally Mandatory (implements Firmware:1 and Activate() operation)
 
 ### Test Setup
 
@@ -312,6 +314,10 @@ Conditonally Mandatory (implements Firmware:1 and Activate() operation)
 2. Ensure the EUT has a FirmwareImage instance containing inactive firmware.
 3. Ensure the EUT has a Subscription to the Boot! event with the Controller
    used for testing set as the Recipient.
+ 4. Ensure that the EUT has a Subscription instance for the OperationComplete
+ notification with a NotifType equal to 'OperationComplete' and a ReferenceList
+ that matches the path of the 'Activate()' command with the Controller
+ used for testing set as the Recipient.
 
 ### Test Procedure
 
@@ -385,8 +391,8 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 1. Ensure that the EUT and test equipment have the necessary information to send
    and receive USP Records to each other.
-2. Ensure that the EUT has a Subscription to the TransferComplete! event with
-   the recipient being the  instance used for testing.
+2. Ensure that the EUT has Subscriptions to the TransferComplete! event
+notification with the Controller used for testing set as the Recipient.
 
 ### Test Procedure
 
@@ -437,8 +443,7 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 ### Test Metrics
 
-1. The EUT sends a Notify message with an OperationComplete element.
-2. The ETU sends a Notify message with a TransferComplete! event.
+1. The EUT sends a Notify message with a TransferComplete! event.
 2. The EUT sends a Get response with a Status parameter of ValidationFailed.
 
 ## 9.7 Upgrading the Agent's Firmware - Download to Active Bank
@@ -583,8 +588,8 @@ Conditional Mandatory (supports Firmware:1 profile and Device.LocalAgent.Request
 
 ### Test Metrics
 
-1. The EUT sends a OperationResponse after step 1 with a executed_command
-   element of Activate() and a req_obj_path referencing an entry in the
+1. The EUT sends a OperationResponse after step 1 with a `executed_command`
+   element of 'Activate()' and a `req_obj_path` referencing an entry in the
    Device.LocalAgent.Request table.
 2. The EUT never sends a Boot! event.
 3. In the GetResponse from the EUT after step 4, the Request instance is
@@ -782,7 +787,7 @@ Conditional Mandatory (supports Reboot:1 profile, supports Device.DeviceInfo.Boo
 ### Test Metrics
 
 1. After step 2 the EUT sends a Notify message with an event element
-   containing a ParameterMap argument with Device.DeviceInfo.BootFirmwareImage
+   containing a ParameterMap argument with 'Device.DeviceInfo.BootFirmwareImage'
 
 ## 9.11 Use of the Timer! Event
 
@@ -815,6 +820,7 @@ Conditional Mandatory (supports Device.ScheduleTimer() command)
         request {
             operate {
                 command: 'Device.ScheduleTimer()'
+                send_resp: true
                 input_args {
                     key: 'DelaySeconds'
                     value: '60'

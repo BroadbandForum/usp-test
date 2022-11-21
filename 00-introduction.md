@@ -3,20 +3,7 @@
 uspMajor: 1
 uspMinor: 2
 
-# BBF-specific metadata; c.f. Word properties
-bbfNumber: TP-469
-bbfTitle: Conformance Test Plan for User Services Platform Agents
-bbfIssue: Issue
-bbfVersion: 1 Amendment 1
-bbfMonth: January
-bbfYear: 2022
-bbfType: Test Plan
-bbfStatus:
-bbfContrib:
-
 # information shown on each page header
-siteurl: index.html
-
 project: The User Services Platform
 
 tagline: '%bbfTitle%'
@@ -24,7 +11,6 @@ tagline: '%bbfTitle%'
 version: ''
 status: ''
 shortname: USP
-reponame: usp-test
 
 numberSections: false
 
@@ -53,106 +39,14 @@ buttons:
   title: usp.technology
   url: https://usp.technology
 
-uspRevisionHistory:
-- number: Release 1.0
-  changes: |
-      * First release of this test plan, containing test cases for basic
-        compliance with TR-369/USP.
-
-- number: Release 1.0.1
-  changes: |
-      * Deprecated test 7.3
-      * Added flag to the features list to indicate which features are
-        "not-in-force" and not yet available for certification
-      * Various procedure and metric fixes
-
-- number: Release 1.0.2
-  changes: |
-      * Both mandatory and conditional mandatory tests can use alternate objects or parameters if available
-      * Updated features and requirements
-      * Altered test setup of 1.50 to include three objects
-      * Fixed metrics of 1.25 to use new DeleteResp logic
-      * Fixed tests 1.16 and 1.21 to use the correct error codes
-      * Fixed test 1.20 to only check for at least one error
-      * Fixed test 4.1 to include "OnBoardRequest()" as a conditional requirement
-      * Fixed test 1.32 to use new DeleteResp logic
-      * Fixed tests 1.73, 1.74, 1.75 to use new GetSupportedDM first_level_only logic
-      * Fixed error code metric of test 1.8
-
-- number: Release 1.0.3
-  changes: |
-      * The metrics of test 1.9 now do not imply order
-      * Test 1.22 metric now requires "at least one" element rather than a "single" element
-      * Renamed test 1.23
-      * Fixed the metric of test 1.38 to include the instance identifier of the path
-      * Reworded the purpose of test 1.41
-      * Clarified the test setup of tests 1.66 and 1.67
-      * Fixed a typo in test 6.1 metrics (ServerRetryInitialMultiplier to ServerRetryIntervalMultiplier)
-      * Fixes other typographical errors
-
-- number: Release 1.1
-  changes: |
-      * Adds test 1.78 Removal of subscriptions that have no associated controller
-      * Adds test 1.80 GetSupportedProtocol
-      * Adds language reinforcing required tests based on supported features
-      * Adds test case 1.81 to test automatic unique key generation by the Agent
-      * Adds negative test metrics to several Set and Delete tests to validate that operations did not occur upon error (1.7, 1.8, 1.14, 1.15, 1.20, 1.24, 1.27, 1.28, 1.31, 1.32, 1.33, 1.34, 1.35)
-      * Adds section 10 for bulk data collection tests
-      * Adds tests 1.82 and 1.83 to validate Get and GetInstances using expressions that match zero objects
-      * Adds test 1.84 to exercise the use of search paths in Subscriptions
-      * Defines deprecation for tests
-      * Deprecates test 1.63 in favor of test 1.79
-      * Deprecates test 9.1 in favor of test 9.11
-      * Deprecates tests 2.3, 2.4, and 2.5
-      * Completely deletes test 1.69
-      * Updates functionality tag on test 1.71 to "supports at least one multi-instance object"
-      * Clarifies the definition of an empty oper_success element in test 1.32
-      * Rewrites test 2.20 to accomplish its original intent
-      * Changes test 3.6 to check that an Agent does not accept TLS renegotiation
-      * Changes test 2.15 and 2.16 to use "Enable" rather than "Alias" as a test parameter
-      * Simplifies test 4.1
-      * Various typographical fixes, some in test procedure path names
-      * Normalizes all protobuf examples in test procedures
-      * Fixes test 2.20 to use the correct permissions
-      * Fixes test 1.47 to use the correct operator
-      * Eases the requirements of test 9.7 for implementation flexibility
-      * Removes the concept of "not-in-force" test cases and features
-      * Updates tests 1.59, 1.84 to use allow_partial false"
-      * Allows tests 1.3, 1.7, 1.8, 1.21 to use only an invalid parameter value (not an invalid parameter) and accept 7012 as an acceptable error code
-
-uspEditors:
-- name: Jason Walls
-  company: QA Cafe, LLC
-  email: jason@qacafe.com
-  role: Editor
-
-uspWADs:
-- name: Jason Walls
-  company: QA Cafe, LLC
-  email: jason@qacafe.com
-  role: Broadband User Services Work Area Director
-- name: John Blackford
-  company: CommScope
-  email: john.blackford@commscope.com
-  role: Broadband User Services Work Area Director
-
 # end of metadata
 ---
 
 !include cover-page.md
 
-!include tp-notice.md
+!include %notice%-notice.md
 
-!include front-matter.md
-
-::: {bbfTable=uspRevisionHistory}
-:::
-
-::: {bbfTable=uspEditors}
-:::
-
-::: {bbfTable=uspWADs}
-:::
+!include METADATA-%bbfMajor%.md
 
 ## Executive Summary
 
@@ -275,14 +169,14 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 13 | ControllerTrust:1 profile (writeable) | 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
 | 14 | Self-signed controller certificates | TBD | |
 | 15 | TLS at the MTP Layer | 4.1 | |
-| 16 | CoAP MTP | 5.*, 8.5 | |
+| 16 | CoAP MTP (DEPRECATED)| 5.* | |
 | 17 | STOMP MTP | 6.* | Excludes 6.8 unless option 18 is supported |
 | 18 | STOMPHeartbeat:1 profile | 6.8 | |
 | 19 | WebSocket MTP | 7.* | Excludes 7.3 unless option 20 is supported |
 | 20 | TR-369 requirement R-WS.6 | 7.3 | |
 | 21 | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
 | 22 | Discovery via mDNS | 8.4, 8.5, 8.6, 8.7 | |
-| 23 | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7 | |
+| 23 | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.13 | |
 | 24 | USP session context | 2.6, 2.7, 2.8, 3.8, 3.9, 3.10, 3.11, 3.12, 3.13, 3.14, 3.15 | |
 | 25 | Device.LocalAgent.AddCertificate() | 9.2 | |
 | 26 | Firmware:1 profile | 9.3, 9.5, 9.6, 9.7 | |
@@ -290,10 +184,12 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 28 | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
 | 29 | UntrustedRole disabled | TBD | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
 | 30 | Device.DeviceInfo.BootFirmwareImage | 9.10 | |
-| 31 | The product supports least one nested multi-instance object | 1.10, 1.71 |
+| 31 | The product supports at least one nested multi-instance object | 1.10, 1.71, 1.83 |
 | 32 | HTTP bulk data collection with JSON encoding | 10.1, 10.2, 10.5, 10.6, 10.7, 10.8, 10.9 |
 | 33 | HTTP bulk data collection with CSV encoding | 10.3, 10.4, 10.5, 10.6, 10.7, 10.8, 10.9 |
 | 34 | Bulk data collection via the Push! Event | 10.10, 10.11, 10.12 |
+| 35 | MQTT MTP, version 3.1.1 | 11.* | Excludes 11.4, 11.7, 11.8, 11.10, & 11.15, MQTT 5.0 only tests |
+| 36 | MQTT MTP, version 5.0 | 11.* | |
 
 
 #### Elements Specified in the Test Procedure
@@ -376,5 +272,5 @@ The test setup, procedure, and metrics in each test case may contain
 examples of the data to be sent to or received from the EUT. In these
 examples, elements that are to be filled with a known value dependent on
 the protocol's behavior are indicated with greater-than/less-than
-brackets (&lt;for example&gt;), to indicate a variable. These examples
+brackets (<for example>), to indicate a variable. These examples
 should not be taken literally.

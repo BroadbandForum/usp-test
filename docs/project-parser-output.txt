@@ -1,0 +1,24 @@
+make[1]: Entering directory '/mnt/ebs/bamboo-agent-home-alpha/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
+rm -f ./docs/CNAME ./docs/index.htm ./docs/index.pdf ./docs/index.json ./docs/index.docx ./docs/index.pdf ./docs/index.md ./docs/watermark.txt ./docs/watermark.png ./docs/release.css ./docs/bbf.css ./docs/bbflogo-bw.png ./docs/bbflogo-reverse-dark.png ./docs/broadband-forum-logo.png ./docs/extra.css ./docs/github.css ./docs/missing.png ./docs/pencil.png ./docs/permalink.png ./docs/toc.css ./docs/watermark.css ./docs/./figure-1.png ./docs/index.htf ./docs/index.yml ./docs/97-index-metadata.yaml ./docs/index.yaml ./docs/index.htmf 
+rm -f ./docs/README.md ./docs/CHANGELOG.md ./docs/METADATA-1.yaml ./docs/METADATA-1.md ./docs/METADATA-1.mk  ./docs/PROJECT.yaml.outputs
+rm -f -r  ./docs/PROJECT
+make[1]: Leaving directory '/mnt/ebs/bamboo-agent-home-alpha/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
+make[1]: Entering directory '/mnt/ebs/bamboo-agent-home-alpha/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
+PYTHONPATH=./../../install/python/ ./../../install/bin/project-parser.py --outdir=./docs --loglevel=1 PROJECT.yaml >docs/PROJECT.yaml.outputs || true
+INFO:project-parser:created TP-469 project (valid)
+INFO:project-parser:validated projects
+INFO:project-parser:wrote ./docs/README.md
+INFO:project-parser:wrote ./docs/CHANGELOG.md
+INFO:project-parser:wrote ./docs/METADATA-1.yaml
+INFO:project-parser:wrote ./docs/METADATA-1.md
+INFO:project-parser:wrote ./docs/METADATA-1.mk
+cp -p PROJECT.yaml docs/PROJECT/PROJECT.yaml.txt
+cp -p ./docs/README.md docs/PROJECT/README.md.txt
+LUA_PATH=./../../install/pandoc/?.lua;; pandoc --strip-comments --data-dir=./../../install/pandoc/ --defaults=bbf-defaults.yaml --metadata-file=./../../install/pandoc/bbf-metadata.yaml --metadata=PYTHONDIR:./../../install/python/ --metadata=citation-style:./../../install/pandoc/csl/bbf.csl --resource-path=.:./docs:./docs/:./../../install/pandoc/css/:./../../install/pandoc/ --bibliography=tr-069-biblio-csl.json --bibliography=ansi-biblio-csl.json --bibliography=iso-biblio-csl.json --bibliography=w3c-biblio-csl.json --bibliography=3gpp-biblio-csl.json --bibliography=ieee-biblio-csl.json --bibliography=ietf-biblio-csl.json --bibliography=itu-biblio-csl.json --metadata-file=./docs/METADATA-1.yaml --css=bbf.css --css=extra.css --css=toc.css --css=release.css --standalone --template=default-template.html --lua-filter expand-macros.lua --lua-filter list-table.lua ./docs/README.md --output=docs/PROJECT/README.html
+cp -p ./docs/CHANGELOG.md docs/PROJECT/CHANGELOG.md.txt
+LUA_PATH=./../../install/pandoc/?.lua;; pandoc --strip-comments --data-dir=./../../install/pandoc/ --defaults=bbf-defaults.yaml --metadata-file=./../../install/pandoc/bbf-metadata.yaml --metadata=PYTHONDIR:./../../install/python/ --metadata=citation-style:./../../install/pandoc/csl/bbf.csl --resource-path=.:./docs:./docs/:./../../install/pandoc/css/:./../../install/pandoc/ --bibliography=tr-069-biblio-csl.json --bibliography=ansi-biblio-csl.json --bibliography=iso-biblio-csl.json --bibliography=w3c-biblio-csl.json --bibliography=3gpp-biblio-csl.json --bibliography=ieee-biblio-csl.json --bibliography=ietf-biblio-csl.json --bibliography=itu-biblio-csl.json --metadata-file=./docs/METADATA-1.yaml --css=bbf.css --css=extra.css --css=toc.css --css=release.css --standalone --template=default-template.html --lua-filter expand-macros.lua --lua-filter list-table.lua ./docs/CHANGELOG.md --output=docs/PROJECT/CHANGELOG.html
+cp -p ./docs/METADATA-1.yaml docs/PROJECT/METADATA-1.yaml.txt
+cp -p ./docs/METADATA-1.md docs/PROJECT/METADATA-1.md.txt
+LUA_PATH=./../../install/pandoc/?.lua;; pandoc --strip-comments --data-dir=./../../install/pandoc/ --defaults=bbf-defaults.yaml --metadata-file=./../../install/pandoc/bbf-metadata.yaml --metadata=PYTHONDIR:./../../install/python/ --metadata=citation-style:./../../install/pandoc/csl/bbf.csl --resource-path=.:./docs:./docs/:./../../install/pandoc/css/:./../../install/pandoc/ --bibliography=tr-069-biblio-csl.json --bibliography=ansi-biblio-csl.json --bibliography=iso-biblio-csl.json --bibliography=w3c-biblio-csl.json --bibliography=3gpp-biblio-csl.json --bibliography=ieee-biblio-csl.json --bibliography=ietf-biblio-csl.json --bibliography=itu-biblio-csl.json --metadata-file=./docs/METADATA-1.yaml --css=bbf.css --css=extra.css --css=toc.css --css=release.css --standalone --template=default-template.html --lua-filter expand-macros.lua --lua-filter list-table.lua ./docs/METADATA-1.md --output=docs/PROJECT/METADATA-1.html
+cp -p ./docs/METADATA-1.mk docs/PROJECT/METADATA-1.mk.txt
+make[1]: Leaving directory '/mnt/ebs/bamboo-agent-home-alpha/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'

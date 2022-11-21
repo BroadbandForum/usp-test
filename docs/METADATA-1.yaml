@@ -1,0 +1,24 @@
+# do not edit! this file was created from PROJECT.yaml by project-parser.py
+
+# BBF-specific metadata; cf. Word properties
+bbfNumber: TP-469
+bbfTitle: Conformance Test Plan for USP Agents
+bbfIssue: Issue
+bbfVersion: 1 Amendment 2
+bbfMonth: November
+bbfYear: 2022
+bbfType: ''
+bbfStatus: ''
+bbfContrib: ''
+bbfMajor: 1
+bbfMinor: 2
+bbfPatch: 0
+bbfDraft: ''
+bbfBuild: ''
+
+# other top-level variables
+notice: tp
+reponame: usp-test
+"tagline": ""
+bbfWorkArea: ''
+bbfProjectStream: ''

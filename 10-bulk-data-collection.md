@@ -119,9 +119,9 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The encoding of the BulkData transfer is JSON and is well formed (parseable).
+2. The encoding of the BulkData transfer is JSON and is well formed (parsable).
 3. The BulkData transfer contains the one parameter configured in step 4
-   and the name of the parameter matches the expected name "UpTime".
+   and the name of the parameter matches the expected name 'UpTime'.
 4. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are encoded as URI parameters in the request.
 
@@ -245,9 +245,9 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The encoding of the BulkData transfer is JSON and is well formed (parseable).
+2. The encoding of the BulkData transfer is JSON and is well formed (parsable).
 3. The BulkData transfer contains the one parameter configured in step 4
-   and the name of the parameter matches the expected name "UpTime".
+   and the name of the parameter matches the expected name 'UpTime'.
 4. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are encoded as URI parameters in the request.
 
@@ -371,9 +371,9 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The encoding of the BulkData transfer is CSV and is well formed (parseable).
+2. The encoding of the BulkData transfer is CSV and is well formed (parsable).
 3. The BulkData transfer contains the one parameter configured in step 4
-   and the name of the parameter matches the expected name "UpTime".
+   and the name of the parameter matches the expected name 'UpTime'.
 4. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are encoded as URI parameters in the request.
 
@@ -498,9 +498,9 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The encoding of the BulkData transfer is CSV and is well formed (parseable).
+2. The encoding of the BulkData transfer is CSV and is well formed (parsable).
 3. The BulkData transfer contains the one parameter configured in step 4
-   and the name of the parameter matches the expected name "UpTime".
+   and the name of the parameter matches the expected name 'UpTime'.
 4. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are encoded as URI parameters in the request.
 
@@ -652,8 +652,8 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The EUT includes the EUT's UpTime encoded into the URI using the
-   name "UpTime"
+2. The EUT includes the EUT UpTime encoded into the URI using the
+   name 'UpTime'
 3. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are also encoded as URI parameters in the request.
 
@@ -804,8 +804,8 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
-2. The EUT includes the EUT's UpTime encoded into the URI using the
-   name "UpTime"
+2. The EUT includes the EUT UpTime encoded into the URI using the
+   name 'UpTime'
 3. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
    Endpoint ID are also encoded as URI parameters in the request.
 
@@ -949,7 +949,7 @@ Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈ Device.BulkData.Proto
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfers
    to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`) seconds.
 2. The EUT retries sending the BulkData transfer 3 times with each time
-   occuring within the expected retry interval.
+   occurring within the expected retry interval.
 4. The EUT does not attempt to retry the BulkData transfer after receiving
    a positive response in step 9.
 3. Ensure the Manufacturer OUI, Product Class and Serial Number or the USP
@@ -1254,10 +1254,6 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
                    param: 'ReportingInterval'
                    value: 'max(60, Device.BulkData.MinReportingInterval)'
                }
-              param_settings {
-                   param: 'HTTP.URL'
-                   value: '<URL of http endpoint>'
-               }
             }
         }
       }
@@ -1361,9 +1357,9 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfer
    Push! events to the controller within 130 (`(ReportingInterval * 2) + 10`) seconds.
 2. The encoding of the Data parameter in the Push! notification is well
-   formed (parseable).
+   formed (parsable).
 3. The BulkData transfer contains the one parameter configured in step 4
-   and the name of the parameter matches the expected name "UpTime".
+   and the name of the parameter matches the expected name 'UpTime'.
 
 ## 10.11 Use BulkData collection Push event with Wildcard path
 
@@ -1409,10 +1405,6 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
               param_settings {
                    param: 'ReportingInterval'
                    value: 'max(60, Device.BulkData.MinReportingInterval)'
-               }
-              param_settings {
-                   param: 'HTTP.URL'
-                   value: '<URL of http endpoint>'
                }
             }
         }
@@ -1517,7 +1509,7 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfer
    Push! events to the controller within 130 (`(ReportingInterval * 2) + 10`) seconds.
 2. The encoding of the Data parameter in the Push! notification is well
-   formed (parseable).
+   formed (parsable).
 3. The BulkData transfer contains at least 2 parameters, one for each
    of the configured BootParameters and the name of the parameters match
    the expected name `Enabled\.[1-9][0-9]*\.[1-9][0-9]*`.
@@ -1564,10 +1556,6 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
               param_settings {
                    param: 'ReportingInterval'
                    value: 'max(60, Device.BulkData.MinReportingInterval)'
-               }
-              param_settings {
-                   param: 'HTTP.URL'
-                   value: '<URL of http endpoint>'
                }
             }
         }
@@ -1672,6 +1660,139 @@ Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈ Device.BulkD
 1. After enabling the BulkData profile the EUT sent 2 BulkData transfer
    Push! events to the controller within 130 (`(ReportingInterval * 2) + 10`) seconds.
 2. The encoding of the Data parameter in the Push! notification is well
-   formed (parseable).
+   formed (parsable).
 3. The BulkData transfer contains at parameters with names using the
    prefix "Controller".
+
+## 10.13 Use BulkData collection over MQTT
+
+### Purpose
+
+The purpose of this test is to verify that EUT supports BulkData collection
+via MQTT.
+
+### Functionality Tags
+
+Conditional Mandatory (supports BulkDataColl:1, "MQTT" ∈ Device.BulkData.Protocols)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary
+   information to send and receive USP Records to each other.
+2. Ensure a MQTT endpoint that is accessible by the EUT
+   is enabled in the test environment.
+3. Ensure there is a Device.MQTT.Client. entry in the EUT's
+   data model for the MQTT endpoint mentioned in step 2 of the
+   test setup.
+
+### Test Procedure
+
+1. Send an Add message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: ADD
+    }
+    body {
+      request {
+        add {
+          allow_partial: false
+          create_objs {
+              obj_path: 'Device.BulkData.Profile.'
+              param_settings {
+                   param: 'Protocol'
+                   value: 'MQTT'
+               }
+              param_settings {
+                   param: 'EncodingType'
+                   value: '<JSON or CSV>'
+               }
+              param_settings {
+                   param: 'ReportingInterval'
+                   value: 'max(60, Device.BulkData.MinReportingInterval)'
+               }
+              param_settings {
+                   param: 'MQTT.Reference'
+                   value: '<MQTT.Client instance from step 3 of test setup>'
+               }
+              param_settings {
+                   param: 'MQTT.PublishTopic'
+                   value: 'mqtt-bulkdata'
+               }
+            }
+        }
+      }
+    }
+    ```
+
+2. Allow the EUT to send an AddResponse
+3. Record the instance identifiers of the created objects as reported by the EUT.
+4. Send a Add message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: ADD
+    }
+    body {
+      request {
+        add {
+          allow_partial: false
+          create_objs {
+              obj_path: 'Device.BulkData.Profile.<instance identifier>.Parameter.'
+              param_settings {
+                   param: 'Name'
+                   value: 'UpTime'
+               }
+              param_settings {
+                   param: 'Reference'
+                   value: 'Device.DeviceInfo.UpTime'
+               }
+            }
+        }
+      }
+    }
+    ```
+
+5. Send a Set message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: SET
+    }
+    body {
+      request {
+        set {
+            allow_partial: false
+            update_objs {
+                obj_path: 'Device.BulkData.'
+                param_settings {
+                  param: 'Enable'
+                  value: 'true'
+                }
+              }
+            update_objs {
+                obj_path: 'Device.BulkData.Profile.<instance identifier>.'
+                param_settings {
+                  param: 'Enable'
+                  value: 'true'
+                }
+              }
+        }
+      }
+    }
+    ```
+
+6. Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
+
+### Test Metrics
+
+1. After enabling the BulkData profile the EUT published 2 BulkData transfers
+   to the MQTT server using using the configured topic within 130
+   (`(ReportingInterval * 2) + 10`) seconds.
+2. The encoding of the Data parameter in the MQTT frame notification is well
+   formed (parsable).
+3. The BulkData transfer contains the one parameter configured in step 4
+   and the name of the parameter matches the expected name 'UpTime'.

@@ -1,6 +1,6 @@
-# 5 CoAP Test Cases
+# 5 CoAP Test Cases (DEPRECATED)
 
-## 5.1 Mapping a USP Record to a CoAP message
+## 5.1 Mapping a USP Record to a CoAP message (DEPRECATED)
 
 ### Purpose
 
@@ -40,10 +40,9 @@ Conditional Mandatory (supports the CoAP MTP)
 ### Test Metrics
 
 1. The GetResponse is encapsulated in a CoAP message.
-2. The CoAP message used transport the GetResponse uses application/octet-stream
-   for Content-Format.
+2. The CoAP message used transport the GetResponse uses 'application/octet-stream' for `Content-Format`.
 
-## 5.2 USP Records that exceed CoAP message size
+## 5.2 USP Records that exceed CoAP message size (DEPRECATED)
 
 ### Purpose
 
@@ -85,7 +84,7 @@ Conditional Mandatory (supports the CoAP MTP)
 1. The EUT sends the GetResponse message using multiple
    block encapsulated CoAP messages.
 
-## 5.3 Successful CoAP exchange
+## 5.3 Successful CoAP exchange (DEPRECATED)
 
 ### Purpose
 
@@ -125,7 +124,7 @@ Conditional Mandatory (supports the CoAP MTP)
 1. After the transmission of the Get message the EUT sends a 2.04 Changed
    message.
 
-## 5.4 Failed CoAP exchange - timeout
+## 5.4 Failed CoAP exchange - timeout (DEPRECATED)
 
 ### Purpose
 
@@ -169,9 +168,9 @@ Conditional Mandatory (supports the CoAP MTP)
 ### Test Metrics
 
 1. The EUT attempts to retransmit the GetResponse message after
-   not receieving a 2.04 Changed from the Controller.
+   not receiving a 2.04 Changed from the Controller.
 
-## 5.5 Failed CoAP Exchange - Invalid Method
+## 5.5 Failed CoAP Exchange - Invalid Method (DEPRECATED)
 
 ### Purpose
 
@@ -196,9 +195,9 @@ Conditional Mandatory (supports the CoAP MTP)
 ### Test Metrics
 
 1. The EUT sends a reply to the CoAP message with an invalid method code.
-2. The EUT's CoAP response uses code `4.05` to indicate an invalid CoAP method.
+2. The EUT CoAP response uses code `4.05` to indicate an invalid CoAP method.
 
-## 5.6 Failed CoAP Exchange - Invalid Content-Format
+## 5.6 Failed CoAP Exchange - Invalid Content-Format (DEPRECATED)
 
 ### Purpose
 
@@ -223,9 +222,9 @@ Conditional Mandatory (supports the CoAP MTP)
 ### Test Metrics
 
 1. The EUT sends a reply to the CoAP message with an invalid Content-Format.
-2. The EUT's CoAP response uses code `4.15` to indicate an invalid Content-Format.
+2. The EUT CoAP response uses code `4.15` to indicate an invalid Content-Format.
 
-## 5.7 Failed CoAP Exchange - Invalid USP Record
+## 5.7 Failed CoAP Exchange - Invalid USP Record (DEPRECATED)
 
 ### Purpose
 
@@ -250,10 +249,10 @@ Conditional Mandatory (supports the CoAP MTP)
 ### Test Metrics
 
 1. The EUT sends a reply to the CoAP message with the malformed USP record.
-2. The EUT's CoAP response uses code `4.00` to indicate the USP record is
+2. The EUT CoAP response uses code `4.00` to indicate the USP record is
    invalid or not understandable.
 
-## 5.8 Use of DTLS
+## 5.8 Use of DTLS (DEPRECATED)
 
 ### Purpose
 
@@ -266,7 +265,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 ### Test Setup
 
-1. Ensure that the EUT and test equiment have the nessesary information to send
+1. Ensure that the EUT and test equipment have the necessary information to send
    and receive USP records to each other.
 2. The EUT and Controller are configured to communicate over CoAP using DTLS.
 3. The EUT and Controller have the necessary information about one another
@@ -290,7 +289,7 @@ Conditional Mandatory (supports the CoAP MTP)
     }
     ```
 
-2. Wait for the EUT to send a GetReponse.
+2. Wait for the EUT to send a GetResponse.
 
 ### Test Metrics
 

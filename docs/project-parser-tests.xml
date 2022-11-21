@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<testsuites disabled="0" errors="0" failures="0" tests="23" time="0.0">
+	<testsuite disabled="0" errors="0" failures="0" name="project-parser-py" skipped="0" tests="23" time="0">
+		<testcase name="already-defined"/>
+		<testcase name="cant-create-block-overlaps-with"/>
+		<testcase name="cant-set-to-span-overlaps-with"/>
+		<testcase name="date-invalid-value"/>
+		<testcase name="dependency-file-not-found"/>
+		<testcase name="depends-on-new-version"/>
+		<testcase name="expand-not-found"/>
+		<testcase name="expand-not-found-2"/>
+		<testcase name="invalid-keys"/>
+		<testcase name="invalid-keys-2"/>
+		<testcase name="invalid-resource-keys"/>
+		<testcase name="name-not-in-depends-on"/>
+		<testcase name="no-project-name-in"/>
+		<testcase name="no-tags-invalid-boolean-value"/>
+		<testcase name="project-parser"/>
+		<testcase name="revision-omits-minor-and-or-patch-versions"/>
+		<testcase name="status-invalid-value"/>
+		<testcase name="unknown-error"/>
+		<testcase name="unnecessary-dependency"/>
+		<testcase name="validation-failed"/>
+		<testcase name="version-not-found"/>
+		<testcase name="version-not-found-2"/>
+		<testcase name="versions-invalid-value"/>
+	</testsuite>
+</testsuites>
+

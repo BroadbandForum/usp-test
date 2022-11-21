@@ -42,7 +42,7 @@ Conditional Mandatory (supports discovery via DHCP Options)
 
 1. Ensure the EUT is configured to request controller DHCP information
 2. Ensure the EUT is configured to acquire an address via DHCP.
-3. Ensure the EUT's `ProvisioningCode` parameter is set to a value other than
+3. Ensure the EUT ProvisioningCode parameter is set to a value other than
 that which will be set during the test procedure.
 
 ### Test Procedure
@@ -70,14 +70,14 @@ that which will be set during the test procedure.
 
 ### Test Metrics
 
-1. The `ProvisioningCode` parameter found in the GetReponse matches the provisioning
+1. The ProvisioningCode parameter found in the GetResponse matches the provisioning
    code configured on the DHCP server.
 
 ## 8.3 DHCP Discovery - FQDN Leads to DNS Query
 
 ### Purpose
 
-The purpose of this test is to ensure the EUT correctly uses DNS to retrieve additonal
+The purpose of this test is to ensure the EUT correctly uses DNS to retrieve additional
 controller information upon receiving a FQDN of a controller.
 
 ### Functionality Tags
@@ -100,7 +100,7 @@ Conditional Mandatory (supports discovery via DHCP Options)
 ### Test Metrics
 
 1. After the EUT receives a FQDN in the DHCP Offer, the EUT uses
-   DNS to retrive additional information about the controller.
+   DNS to retrieve additional information about the controller.
 
 ## 8.4 mDNS
 
@@ -130,7 +130,7 @@ test Controller as the Recipient.
 
 ### Test Metrics
 
-1. After the EUT receieves a FQDN via DHCP containing ".local."
+1. After the EUT receives a FQDN via DHCP containing ".local."
    the EUT uses mDNS to resolve it.
 
 ## 8.5 mDNS and Message Transfer Protocols
@@ -138,19 +138,16 @@ test Controller as the Recipient.
 ### Purpose
 
 The purpose of this test is to ensure the EUT correctly advertises
-the MTP it supports. This use case is exclusive to CoAP, so this test case
-only applies to CoAP based Endpoints.
+the MTP it supports.
 
 ### Functionality Tags
 
-Conditional Mandatory (supports discovery via mDNS, supports CoAP)
+Conditional Mandatory (supports discovery via mDNS)
 
 ### Test Setup
 
 1. Ensure the EUT has mDNS enabled.
 2. Ensure the Controller exists on the same network as the EUT.
-3. For STOMP connections, ensure the Agent has an active connection to a STOMP
-broker.
 
 ### Test Procedure
 
@@ -160,8 +157,7 @@ broker.
 
 ### Test Metrics
 
-1. The EUT sends an unsolicated multicast DNS response containing
-   in the answer section a record for each supported MTP.
+1. The EUT sends an unsolicited multicast DNS response containing correct SRV and TXT records that convey the DNS-SD Service Instance Name for each supported MTP.
 
 ## 8.6 DNS - DNS Record Requirements
 

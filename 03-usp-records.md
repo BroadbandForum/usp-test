@@ -23,8 +23,7 @@ Mandatory
 
 ### Test Metrics
 
-1. After the EUT receives the malformed USP record, it exibits the expected
-   'bad request' behavior for the applicable MTP.
+1. The EUT either ignores the malformed record or sends a USP Record Error.
 
 ## 3.2 Agent Verifies Non-Payload Field Integrity
 
@@ -58,7 +57,7 @@ exhibits the expected 'bad request' behavior for the applicable MTP.
 ### Purpose
 
 The purpose of this test is to ensure the EUT handles an attempt to start
-a session context with an invalid mac_signature.
+a session context with an invalid `mac_signature`.
 
 ### Functionality Tags
 
@@ -73,7 +72,7 @@ a session context with an invalid mac_signature.
 
 1. Send a TLS 'client hello' to the EUT to begin a session context as described
 in '[End to End Message Exchange](https://usp.technology/specification/e2e-message-exchange/)'
-in TR-369 with an invalid mac_signature.
+in TR-369 with an invalid `mac_signature`.
 
 ### Test Metrics
 
@@ -137,7 +136,7 @@ TLS session used to encapsulate the payload cannot be established.
 ### Test Setup
 
 1. Configure the controller to use TLS12 as a `payload_security`.
-2. Ensure `PeriodicNotifInterval` is 60, and the controller used for
+2. Ensure `PeriodicNotifInterval` is '60', and the controller used for
    testing is subscribed to Periodic Event Notification.
 
 ### Test Procedure
@@ -174,7 +173,7 @@ TLS session used to encapsulate the payload cannot be established.
 1. After sending the client certificate to the EUT, the
    EUT sends a TLS alert, terminating the session.
 2. After step 5, the EUT waits before retrying the session in
-   accordance with the `SessionRetry` parameters found in step 1.
+   accordance with the 'SessionRetry' parameters found in step 1.
 
 ## 3.6 Agent does not accept TLS renegotiation for E2E message exchange
 
@@ -332,8 +331,8 @@ Conditional Mandatory (supports USP session context)
     Record {
           session_context {
             session_id: <new_session_id>
-            sequence_id:  <expected sequence_id>
-            expected_id:  <expected expected_id>
+            sequence_id:  1
+            expected_id:  1
             payload {
                 #  ...
               }
@@ -353,7 +352,7 @@ Conditional Mandatory (supports USP session context)
 The purpose of this test is to ensure the EUT correctly adheres to the
 `SessionExpiration` parameter.
 
-### Fuctionality Tags
+### Functionality Tags
 
 Conditional Mandatory (supports USP session context)
 
@@ -451,28 +450,27 @@ Conditional Mandatory (supports USP session context)
 
 ### Test Procedure
 
-1. Start a session with the EUT.
-2. Send a Get message to the EUT with the expected `sequence_id` and `expected_id`
-   for `Device.DeviceInfo.ModelNumber`.
-3. Send a Get message to the EUT with the `sequence_id` set to the expected value
-   plus 2 for `Device.DeviceInfo.SoftwareVersion`.
-4. Send a Get message to the EUT with the `sequence_id` set to 2 less than the
-   expected value for `Device.DeviceInfo.HardwareVersion`.
-5. Send a Get message to the EUT with the expected `sequence_id` and `expected_id`
-   for `Device.DeviceInfo.HardwareVersion`.
+1. Start a new session by sending a Get message to the EUT with `sequence_id`
+   and `expected_id` set to 1 for 'Device.DeviceInfo.ModelNumber'.
+2. Send a Get message to the EUT with the `sequence_id` and `expected_id` set to
+   4 for 'Device.DeviceInfo.SoftwareVersion'.
+3. Send a Get message to the EUT with the `sequence_id` and `expected_id` set to
+   2 for 'Device.DeviceInfo.HardwareVersion'.
+4. Send a Get message to the EUT with the `sequence_id` and `expected_id` set to
+   3 for 'Device.DeviceInfo.HardwareVersion'.
 
 ### Test Metrics
 
-1. After step 1 the EUT returns a GetResponse with a `sequence_id` that matches
-   the `expected_id` in the record that was sent.
-2. After step 3 the EUT returns a GetResponse with a `sequence_id` that matches
-   the `expected_id` in the record that was sent in step 4.
-4. The EUT never sends a GetResponse with a `sequence_id` that matches the
-   `expected_id` in the record sent in step 3.
-5. After step 5 the EUT returns a GetResponse with a `sequence_id` that matches
-   the `expected_id` in the record that was sent.
-6. After step 5 The EUT sends a GetResponse containing the parameter
-   `Device.DeviceInfo.SoftwareVersion`.
+1. After step 1, the EUT returns a GetResponse with a `sequence_id` of 1
+   containing the parameter 'Device.DeviceInfo.ModelNumber'.
+2. The EUT buffers the Get message sent in step 2 and does not immediately respond.
+3. After step 3, The EUT sends a GetResponse with a `sequence_id` of 2
+   containing the parameter 'Device.DeviceInfo.HardwareVersion'.
+4. After step 4, the EUT sends a GetResponse with a `sequence_id` of 3
+   containing the parameter 'Device.DeviceInfo.HardwareVersion'. The EUT then
+   sends a GetResponse for the buffered Get message from step 2 with a
+   `sequence_id` of 4 containing the parameter
+   'Device.DeviceInfo.SoftwareVersion'.
 
 ## 3.12 Preservation of USP Records
 
@@ -526,7 +524,7 @@ session context.
 
 ### Functionality Tags
 
-Conditional Mandatory (supports USP session context)
+Conditional Mandatory (supports Secure Message Exchange using TLS for USP Record Integrity)
 
 ### Test Setup
 
@@ -540,7 +538,7 @@ Conditional Mandatory (supports USP session context)
 1. Starts a session with the EUT using `payload_security` TLS12.
 2. After the session is established, send the following Get message
    for any valid parameter using `payload_security` PLAINTEXT and
-   a plaintext.
+   a plaintext payload.
 
 ### Test Metrics
 
@@ -589,8 +587,8 @@ Conditionality Mandatory (supports session context)
     ```
 
 2. Wait for a SetResponse
-3. Send a USP record with a `retransmit_id` set to the value of the `sequence_id` found in the
-   SetResponse in step 2.
+3. Send a USP record with a `retransmit_id` set to the value of the
+`sequence_id` found in the SetResponse in step 2.
 4. Repeat steps 2 and 3 twice more.
 
 ### Test Metrics

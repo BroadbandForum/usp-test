@@ -56,7 +56,7 @@ Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)
 
 ### Test Setup
 
-1. Ensure the EUT is configured to use WebSocket and to comminucate to the controller
+1. Ensure the EUT is configured to use WebSocket and to communicate to the controller
    that exists in the test environment.
 
 ### Test Procedure
@@ -152,7 +152,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 ### Test Procedure
 
-1. Configure he controller to not include the `Sec-WebSocket-Protocol`
+1. Configure the controller to not include the `Sec-WebSocket-Protocol`
    when opening new WebSocket connections.
 2. Reboot the EUT
 3. Attempt to start a WebSocket connection to the EUT.
@@ -167,7 +167,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 ### Purpose
 
 The purpose of this test is to ensure the EUT correctly closes
-the WebSocket connection when a malformed USP Record is receieved.
+the WebSocket connection when a malformed USP Record is received.
 
 ### Functionality Tags
 
@@ -217,7 +217,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. The EUT sends a `Pong` control frame in response to the
    `Ping` control frame.
 2. The EUT doesn't terminate the WebSocket connection after
-   recieving an unsolicited `Pong` control frame.
+   receiving an unsolicited `Pong` control frame.
 
 ## 7.8 WebSocket Session Retry
 
@@ -258,7 +258,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. Configure the controller to reject new WebSocket connections.
 2. Terminate the underlying TCP connection on the existing WebSocket connection.
 3. Wait for the EUT to attempt to establish a WebSocket connection.
-4. Configure the controlle to accept new WebSocket connections.
+4. Configure the controller to accept new WebSocket connections.
 5. Wait for the EUT to attempt to establish a WebSocket connection.
 
 ### Test Metrics
@@ -266,7 +266,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. The EUT attempts to start a new WebSocket connection in conformance
    with the `SessionRetryMinimumWaitInterval` parameter.
 2. The EUT makes a second attempt to start a new WebSocket connection
-   in confromance with the `SessionRetryMinimumWaitInterval` and
+   in conformance with the `SessionRetryMinimumWaitInterval` and
    `SessionRetryIntervalMultiplier` parameters.
 
 ## 7.9 Use of TLS
@@ -312,4 +312,29 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 1. The EUT starts a WebSocket connection with the controller
    using TLS.
-2. The EUT sends a GetReponse in step 4.
+2. The EUT sends a GetResponse in step 4.
+
+## 7.10 WebSocket - Use of Connect Record
+
+### Purpose
+
+The purpose of this test is to ensure the EUT correctly sends a Connect
+Record after it has established a WebSocket connection to the Controller.
+
+### Functionality Tags
+
+Conditional Mandatory (supports the WebSocket MTP)
+
+### Test Setup
+
+1. Ensure the EUT is configured to connect to the test controller using WebSocket.
+
+### Test Procedure
+
+1. Reboot the EUT.
+2. Wait for the EUT to reconnect to the test controller.
+
+### Test Metrics
+
+1. After reconnecting to the test controller the EUT transmits a
+   WebSocketConnectRecord to the test controller within 30 seconds.
