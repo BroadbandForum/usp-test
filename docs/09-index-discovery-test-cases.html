@@ -8,7 +8,7 @@
 Conformance Test Plan for USP Agents"/>
   <meta name="theme-color" content="#157878"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-  <title>BBF – Test Setup</title>
+  <title>BBF – 8 Discovery Test Cases</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -332,467 +332,351 @@ HTML">HTML</a>
 </nav>
 
     <header id="title-block-header">
-      <h1 class="title" id="sec:test-setup">Test
-Setup<a href="#sec:test-setup" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
+      <h1 class="title" id="sec:discovery-test-cases">8 Discovery Test
+Cases<a href="#sec:discovery-test-cases" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
     </header>
     <nav id="_TOC" role="doc-toc">
 <ul>
-<li><a href="#sec:test-equipment" id="toc-sec:test-equipment">Test
-Equipment <img src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:test-setup-and-execution"
-id="toc-sec:test-setup-and-execution">Test Setup and Execution <img
+<li><a href="#sec:dhcp-discovery---agent-request-requirements"
+id="toc-sec:dhcp-discovery---agent-request-requirements">8.1 DHCP
+Discovery - Agent Request Requirements <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:dhcp-discovery---agent-handling-of-received-options"
+id="toc-sec:dhcp-discovery---agent-handling-of-received-options">8.2
+DHCP Discovery - Agent handling of received options <img
 src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:universal-test-metrics"
-id="toc-sec:universal-test-metrics">Universal Test Metrics <img
+<li><a href="#sec:dhcp-discovery---fqdn-leads-to-dns-query"
+id="toc-sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery
+- FQDN Leads to DNS Query <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:mdns" id="toc-sec:mdns">8.4 mDNS <img
 src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:notes-about-test-case-descriptions"
-id="toc-sec:notes-about-test-case-descriptions">Notes about test case
-descriptions <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mdns-and-message-transfer-protocols"
+id="toc-sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message
+Transfer Protocols <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:dns---dns-record-requirements"
+id="toc-sec:dns---dns-record-requirements">8.6 DNS - DNS Record
+Requirements <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mdns-request-response"
+id="toc-sec:mdns-request-response">8.7 mDNS request response <img
+src="permalink.png" style="width:0.8em" /></a></li>
 </ul>
     </nav>
-<h2 id="sec:test-equipment">Test Equipment <a
-href="01-index-test-setup.html#sec:test-equipment" class="headerlink"
+<h2 id="sec:dhcp-discovery---agent-request-requirements">8.1 DHCP
+Discovery - Agent Request Requirements <a
+href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-157">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-157"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly requests
+controller information via DHCP. <em>Note: this test can be run over
+DHCPv4 or DHCPv6, depending on the deployment model of the EUT.</em></p>
+<h3 id="sec:functionality-tags-68">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-68"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via DHCP Options)</p>
+<h3 id="sec:test-setup-158">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-158"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to request controller DHCP
+information.</li>
+<li>Ensure the EUT is configured to acquire an address via DHCP.</li>
+</ol>
+<h3 id="sec:test-procedure-150">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-150"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to request an address via DHCP.</li>
+</ol>
+<h3 id="sec:test-metrics-158">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-158"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT includes a Vendor Class option with Enterprise Number 3561
+and vendor-class-data “usp” in the DHCP request.</li>
+</ol>
+<h2 id="sec:dhcp-discovery---agent-handling-of-received-options">8.2
+DHCP Discovery - Agent handling of received options <a
+href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-158">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-158"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can properly handle the
+USP options provided by a DHCP server.</p>
+<h3 id="sec:functionality-tags-69">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-69"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via DHCP Options)</p>
+<h3 id="sec:test-setup-159">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-159"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to request controller DHCP
+information</li>
+<li>Ensure the EUT is configured to acquire an address via DHCP.</li>
+<li>Ensure the EUT ProvisioningCode parameter is set to a value other
+than that which will be set during the test procedure.</li>
+</ol>
+<h3 id="sec:test-procedure-151">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-151"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Configure the DHCP server to provide a null terminated
+provisioning code.</p></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to request an address via DHCP.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Controller.&lt;test controller instance&gt;.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the GetResponse from the EUT.</p></li>
+</ol>
+<h3 id="sec:test-metrics-159">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-159"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The ProvisioningCode parameter found in the GetResponse matches the
+provisioning code configured on the DHCP server.</li>
+</ol>
+<h2 id="sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery
+- FQDN Leads to DNS Query <a
+href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-159">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-159"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly uses DNS to
+retrieve additional controller information upon receiving a FQDN of a
+controller.</p>
+<h3 id="sec:functionality-tags-70">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-70"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via DHCP Options)</p>
+<h3 id="sec:test-setup-160">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-160"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to request controller information via
+DHCP.</li>
+<li>Ensure the EUT is configured to acquire an address via DHCP.</li>
+</ol>
+<h3 id="sec:test-procedure-152">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-152"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Configure the DHCP server to provide a controller URL with a
+FQDN.</li>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to request an address.</li>
+<li>Wait for the EUT to query the DNS with the FQDN.</li>
+<li>Wait for the EUT to connect to the controller.</li>
+</ol>
+<h3 id="sec:test-metrics-160">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-160"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After the EUT receives a FQDN in the DHCP Offer, the EUT uses DNS to
+retrieve additional information about the controller.</li>
+</ol>
+<h2 id="sec:mdns">8.4 mDNS <a
+href="09-index-discovery-test-cases.html#sec:mdns" class="headerlink"
 title="Permalink to this header"><img src="permalink.png"
 style="width:0.8em" /></a></h2>
-<p>There are a number of components necessary to the implementation of
-this test suite.</p>
-<p><strong>Traffic Generator</strong> - One or more traffic generators
-are necessary in order to transmit the required traffic to execute the
-test procedures. Traffic generation can be done with script-able, real
-implementations of DHCP servers, mDNS endpoints, and USP endpoints (for
-example), or can be simulated through other means. For tests that
-exercise the presence of multiple Controllers or agents, the traffic
-generators can each represent a single endpoint, or multiple endpoints,
-depending on its capabilities, as long as the traffic can be
-differentiated by the Endpoint Under Test.</p>
-<p><strong>Analyzer</strong> - One or more traffic analyzers are
-necessary to confirm the receipt of messages and evaluate the test
-metrics outlined in the tests below. This analyzer may exist at the
-traffic generator source, in-line, or accessed through a replicated
-interface that will push traffic to the analyzer.</p>
-<p><strong>Test Network</strong> - The tests below require IP layer
-connectivity between the Traffic Generator and the Endpoint Under Test
-(EUT). Steps SHOULD be taken to unsure that the underlying network does
-not interfere with the test procedures or test metrics.</p>
-<h2 id="sec:test-setup-and-execution">Test Setup and Execution <a
-href="01-index-test-setup.html#sec:test-setup-and-execution"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h2>
-<h3 id="sec:basic-test-setup">Basic Test Setup <a
-href="01-index-test-setup.html#sec:basic-test-setup" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h3>
-<figure>
-<img src="././figure-1.png" id="fig:basic-test-setup"
-alt="Figure 1: Basic Test Setup " />
-<figcaption aria-hidden="true">Figure 1: Basic Test Setup <a
-href="01-index-test-setup.html#fig:basic-test-setup" class="headerlink"
-title="Permalink to this figure"><img src="permalink.png"
-style="width:0.8em" /></a></figcaption>
-</figure>
-<h3 id="sec:functionality-tags">Functionality Tags <a
-href="01-index-test-setup.html#sec:functionality-tags"
+<h3 id="sec:purpose-160">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-160"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<p>USP contains both required and optional functionality. To ensure that
-all different classes of device can exercise this test suite, tests are
-marked as “Mandatory”, “Conditional Mandatory”, or “Deprecated”. This is
-indicated in each individual test case under the “Functionality
-Tag”.</p>
-<p>Tests that are “Deprecated” represent tests that were removed or
-replaced with newer tests.</p>
-<h4
-id="sec:alternate-parameters-objects-commands-and-events-in-test-procedures">Alternate
-parameters, objects, commands, and events in test procedures <a
-href="01-index-test-setup.html#sec:alternate-parameters-objects-commands-and-events-in-test-procedures"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>For tests that make use of particular parameter, object, command,
-event to validate the test metrics, a different subject can be
-substituted that meets the needs of the test. For example, if an EUT
-does not support the Reboot:1 profile, another synchronous operation can
-be substituted for tests 1.61 and 1.62.</p>
-<h3 id="sec:endpoint-requirements-and-metadata-collection">Endpoint
-Requirements and Metadata Collection <a
-href="01-index-test-setup.html#sec:endpoint-requirements-and-metadata-collection"
+<p>The purpose of this test is to ensure the EUT correctly implements
+mDNS.</p>
+<h3 id="sec:functionality-tags-71">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-71"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<h4 id="sec:required-profiles">Required Profiles <a
-href="01-index-test-setup.html#sec:required-profiles" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h4>
-<p>The Device:2 Data Model for USP Agents outlines several profiles that
-contain data model objects, parameters, commands, and events necessary
-to the operation of USP. In order to be able to perform the tests below,
-a USP Agent MUST implement, at minimum, the following profiles:</p>
-<ul>
-<li><p>LocalAgent:1</p></li>
-<li><p>Subscriptions:1</p></li>
-</ul>
-<p>Conditional mandatory tests may require the implementation of
-additional profiles.</p>
-<h4 id="sec:test-cases-required-by-profile-and-option-support">Test
-Cases Required by Profile and Option Support <a
-href="01-index-test-setup.html#sec:test-cases-required-by-profile-and-option-support"
+<p>Conditional Mandatory (supports discovery via mDNS, supports the
+Reboot:1 profile)</p>
+<h3 id="sec:test-setup-161">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-161"
 class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>Those seeking to utilize this test plan can use the following feature
-IDs to specify their support for conditional mandatory test cases. Since
-the types of endpoints under test may vary widely in use cases and
-complexity, this list is meant to act as a guide to ensure that many
-kinds of products can achieve compliance. However, when determining
-which tests must be passed to achieve compliance, testers must know
-that:</p>
-<p><strong>An Endpoint Under Test (EUT) MUST complete all Mandatory test
-cases, and MUST complete all Conditional Mandatory test cases for ALL
-features supported by the EUT (see table below).</strong></p>
-<table>
-<colgroup>
-<col style="width: 23%" />
-<col style="width: 38%" />
-<col style="width: 26%" />
-<col style="width: 13%" />
-</colgroup>
-<thead>
-<tr class="header header">
-<th style="text-align: left;">Feature ID</th>
-<th style="text-align: left;">Feature name</th>
-<th style="text-align: left;">Test Cases</th>
-<th style="text-align: left;">Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">At least one command</td>
-<td style="text-align: left;">1.61, 1.62</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">At least one command with input
-arguments</td>
-<td style="text-align: left;">1.63</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">At least one asynchronous command</td>
-<td style="text-align: left;">1.64, 1.65</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Subscription.{i}.NotifExpiration
-parameter</td>
-<td style="text-align: left;">1.56</td>
-<td style="text-align: left;">An extension to the Subscription:1
-profile</td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Controller:1 profile</td>
-<td style="text-align: left;">1.59</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">6</td>
-<td
-style="text-align: left;">Device.LocalAgent.Subscription.{i}.TimeToLive</td>
-<td style="text-align: left;">1.55</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">Controller:1 profile (writeable)</td>
-<td style="text-align: left;">1.78, 9.9</td>
-<td style="text-align: left;">EUT allows the creation of
-Device.LocalAgent.Controller.{i}. objects</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">8</td>
-<td
-style="text-align: left;">Device.LocalAgent.Controller.{i}.SendOnBoardRequest()</td>
-<td style="text-align: left;">1.60, 4.1, 9.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">Device.ScheduleTimer()</td>
-<td style="text-align: left;">1.63, 1.79, 9.1</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">Reboot:1 profile</td>
-<td style="text-align: left;">1.61, 1.62, 9.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">11</td>
-<td style="text-align: left;">TraceRoute:1 profile</td>
-<td style="text-align: left;">1.64, 1.65</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">12</td>
-<td style="text-align: left;">ControllerTrust:1 profile</td>
-<td style="text-align: left;">2.9, 2.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">13</td>
-<td style="text-align: left;">ControllerTrust:1 profile (writeable)</td>
-<td style="text-align: left;">2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17,
-2.18, 2.19, 2.20, 2.21, 2.22</td>
-<td style="text-align: left;">Additionally supports at least one role
-that allows object creation, or supports writable parameters in
-Device.LocalAgent.ControllerTrust.{i}.Role.{i}.</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">14</td>
-<td style="text-align: left;">Self-signed controller certificates</td>
-<td style="text-align: left;">TBD</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">TLS at the MTP Layer</td>
-<td style="text-align: left;">4.1</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">16</td>
-<td style="text-align: left;">CoAP MTP (DEPRECATED)</td>
-<td style="text-align: left;">5.*</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">17</td>
-<td style="text-align: left;">STOMP MTP</td>
-<td style="text-align: left;">6.*</td>
-<td style="text-align: left;">Excludes 6.8 unless option 18 is
-supported</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">18</td>
-<td style="text-align: left;">STOMPHeartbeat:1 profile</td>
-<td style="text-align: left;">6.8</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">19</td>
-<td style="text-align: left;">WebSocket MTP</td>
-<td style="text-align: left;">7.*</td>
-<td style="text-align: left;">Excludes 7.3 unless option 20 is
-supported</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">20</td>
-<td style="text-align: left;">TR-369 requirement R-WS.6</td>
-<td style="text-align: left;">7.3</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">21</td>
-<td style="text-align: left;">Discovery via DHCP Options</td>
-<td style="text-align: left;">8.1, 8.2, 8.3</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">22</td>
-<td style="text-align: left;">Discovery via mDNS</td>
-<td style="text-align: left;">8.4, 8.5, 8.6, 8.7</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">23</td>
-<td style="text-align: left;">Secure Message Exchange (TLS for USP
-Record Integrity)</td>
-<td style="text-align: left;">3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.13</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">24</td>
-<td style="text-align: left;">USP session context</td>
-<td style="text-align: left;">2.6, 2.7, 2.8, 3.8, 3.9, 3.10, 3.11, 3.12,
-3.13, 3.14, 3.15</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">25</td>
-<td style="text-align: left;">Device.LocalAgent.AddCertificate()</td>
-<td style="text-align: left;">9.2</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">26</td>
-<td style="text-align: left;">Firmware:1 profile</td>
-<td style="text-align: left;">9.3, 9.5, 9.6, 9.7</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">27</td>
-<td style="text-align: left;">Firmware:1 profile (Activate)</td>
-<td style="text-align: left;">9.4, 9.5</td>
-<td style="text-align: left;">Supports Firmware:1 profile and
-additionally supports the Activate() operation</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">28</td>
-<td
-style="text-align: left;">Device.LocalAgent.Request.{i}.Cancel()</td>
-<td style="text-align: left;">9.8</td>
-<td style="text-align: left;">Applies only if option 26 is
-supported</td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">29</td>
-<td style="text-align: left;">UntrustedRole disabled</td>
-<td style="text-align: left;">TBD</td>
-<td style="text-align: left;">The use of UntrustedRole must be either
-unsupported, or capable of being disabled, to run this test</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">30</td>
-<td style="text-align: left;">Device.DeviceInfo.BootFirmwareImage</td>
-<td style="text-align: left;">9.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">31</td>
-<td style="text-align: left;">The product supports at least one nested
-multi-instance object</td>
-<td style="text-align: left;">1.10, 1.71, 1.83</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">32</td>
-<td style="text-align: left;">HTTP bulk data collection with JSON
-encoding</td>
-<td style="text-align: left;">10.1, 10.2, 10.5, 10.6, 10.7, 10.8,
-10.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">33</td>
-<td style="text-align: left;">HTTP bulk data collection with CSV
-encoding</td>
-<td style="text-align: left;">10.3, 10.4, 10.5, 10.6, 10.7, 10.8,
-10.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">34</td>
-<td style="text-align: left;">Bulk data collection via the Push!
-Event</td>
-<td style="text-align: left;">10.10, 10.11, 10.12</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">35</td>
-<td style="text-align: left;">MQTT MTP, version 3.1.1</td>
-<td style="text-align: left;">11.*</td>
-<td style="text-align: left;">Excludes 11.4, 11.7, 11.8, 11.10, &amp;
-11.15, MQTT 5.0 only tests</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">36</td>
-<td style="text-align: left;">MQTT MTP, version 5.0</td>
-<td style="text-align: left;">11.*</td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="sec:elements-specified-in-the-test-procedure">Elements Specified
-in the Test Procedure <a
-href="01-index-test-setup.html#sec:elements-specified-in-the-test-procedure"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>Many of the mandatory and conditional mandatory tests specify the
-objects, parameters, or operations to be used for the test. If the
-specific elements are not supported by the EUT, other elements that will
-satisfy the test criteria MAY be used instead. If so, the test report
-MUST include the alternate elements used.</p>
-<h4 id="sec:required-eut-information-and-resources">Required EUT
-Information and Resources <a
-href="01-index-test-setup.html#sec:required-eut-information-and-resources"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>In order to be able to perform the tests and create a report of the
-results, the following must be provided concerning the Endpoint Under
-Test:</p>
+src="permalink.png" style="width:0.8em" /></a></h3>
 <ol>
-<li>The software and/or firmware version of the EUT.</li>
-<li>The number of firmware banks available if the Firmware:1 profile is
-supported.</li>
-<li>A list of the feature IDs supported.</li>
-<li>If the service elements specified in the tests are not supported,
-provide a list of alternate elements used in the testing.</li>
+<li>Ensure the EUT has mDNS enabled.</li>
+<li>Ensure the controller exists on the same network as the EUT.</li>
+<li>Ensure that the EUT has the Controller’s URL, which contains
+“.local.” is preconfigured on the EUT.</li>
+<li>Ensure that a Subscription exists for the Boot! event on the EUT
+with the test Controller as the Recipient.</li>
 </ol>
-<h3 id="sec:clean-up-procedures">Clean-Up Procedures <a
-href="01-index-test-setup.html#sec:clean-up-procedures"
+<h3 id="sec:test-procedure-153">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-153"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<p>A number of tests that make changes to the EUT have procedures that
-are not part of the validation portion of the test case. These
-procedures are intended to “clean up” any changes that were made during
-the test to ensure that the EUT is in a relatively known state from one
-test case to the next. The most obvious example is using the Delete
-message to remove any objects that were added as part of the procedure,
-but the clean-up procedure may include any number of steps.</p>
-<h2 id="sec:universal-test-metrics">Universal Test Metrics <a
-href="01-index-test-setup.html#sec:universal-test-metrics"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h2>
-<p>Due to the nature of performative testing of protocol messages,
-certain requirements in the specification are effectively tested every
-time. Writing additional test cases for these metrics is unnecessary,
-but the requirements must still be met by endpoint implementations.</p>
 <ol>
-<li><p>The Endpoint ID of the Endpoint Under Test is valid (ARC.3,
-ARC.4, ARC.5, and the requirements outlined in the <a
-href="http://usp.technology/specification/architecture/#endpoint_identifier">authority-scheme
-table</a>).</p></li>
-<li><p>The USP records and USP messages of the Endpoint Under Test are
-valid according to the usp-record.proto and usp-msg.proto schemas
-(ENC.0, ENC.1).</p></li>
-<li><p>The Path Names and Search Paths used in messages sent by the
-Endpoint Under Test are valid according to <a
-href="http://usp.technology/specification/architecture/#data_model_path_grammar">Data
-Model Path Grammar</a> and TR-106 (ARC.7).</p></li>
-<li><p>Path Names in messages originating from the EUT use instance
-number addressing (R-MSG.3).</p></li>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to send a mDNS request for the FQDN.</li>
+<li>Allow the controller to respond to the mDNS request.</li>
 </ol>
-<h2 id="sec:notes-about-test-case-descriptions">Notes about test case
-descriptions <a
-href="01-index-test-setup.html#sec:notes-about-test-case-descriptions"
+<h3 id="sec:test-metrics-161">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-161"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After the EUT receives a FQDN via DHCP containing “.local.” the EUT
+uses mDNS to resolve it.</li>
+</ol>
+<h2 id="sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message
+Transfer Protocols <a
+href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h2>
-<p>Each of the test cases below have the following sections:</p>
-<p><strong>Purpose</strong> - The purpose describes the reasoning for
-the test case, based on the normative requirements defined in USP.</p>
-<p><strong>Functionality Tag</strong> - The functionality tag indicates
-whether the test is mandatory or conditional mandatory. If it is the
-latter, this section will list any additional Device:2 profiles
-necessary to the performance of the test case.</p>
-<p><strong>Test Setup</strong> - The test setup section indicates any
-special prior conditions that must be configured before performing the
-test.</p>
-<p><strong>Test Procedure</strong> - The procedure indicates the steps,
-in order, taken to perform the test.</p>
-<p><strong>Test Metrics</strong> - The metrics indicate the required
-behavior that must be observed to consider the test passed.</p>
-<h3 id="sec:use-of-examples">Use of examples <a
-href="01-index-test-setup.html#sec:use-of-examples" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h3>
-<p>The test setup, procedure, and metrics in each test case may contain
-examples of the data to be sent to or received from the EUT. In these
-examples, elements that are to be filled with a known value dependent on
-the protocol’s behavior are indicated with greater-than/less-than
-brackets (&lt;for example&gt;), to indicate a variable. These examples
-should not be taken literally.</p>
+<h3 id="sec:purpose-161">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-161"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly advertises
+the MTP it supports.</p>
+<h3 id="sec:functionality-tags-72">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-72"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via mDNS)</p>
+<h3 id="sec:test-setup-162">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-162"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT has mDNS enabled.</li>
+<li>Ensure the Controller exists on the same network as the EUT.</li>
+</ol>
+<h3 id="sec:test-procedure-154">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-154"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to acquire an address.</li>
+<li>Wait for the EUT to send an unsolicited mDNS response.</li>
+</ol>
+<h3 id="sec:test-metrics-162">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-162"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an unsolicited multicast DNS response containing
+correct SRV and TXT records that convey the DNS-SD Service Instance Name
+for each supported MTP.</li>
+</ol>
+<h2 id="sec:dns---dns-record-requirements">8.6 DNS - DNS Record
+Requirements <a
+href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-162">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-162"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT provides valid DNS-SD
+records.</p>
+<h3 id="sec:functionality-tags-73">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-73"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via mDNS)</p>
+<h3 id="sec:test-setup-163">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-163"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure mDNS is enabled on the EUT.</li>
+</ol>
+<h3 id="sec:test-procedure-155">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-155"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to acquire a new address.</li>
+<li>Wait for to the EUT to send a multicast mDNS advertisement.</li>
+</ol>
+<h3 id="sec:test-metrics-163">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-163"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a multicast mDNS advertisement containing a TXT record
+for every supported MTP.</li>
+<li>Every TXT record in the mDNS advertisement has a “path” and “name”
+attribute.</li>
+</ol>
+<h2 id="sec:mdns-request-response">8.7 mDNS request response <a
+href="09-index-discovery-test-cases.html#sec:mdns-request-response"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-163">Purpose <a
+href="09-index-discovery-test-cases.html#sec:purpose-163"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT will respond to mDNS
+requests.</p>
+<h3 id="sec:functionality-tags-74">Functionality Tags <a
+href="09-index-discovery-test-cases.html#sec:functionality-tags-74"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports discovery via mDNS)</p>
+<h3 id="sec:test-setup-164">Test Setup <a
+href="09-index-discovery-test-cases.html#sec:test-setup-164"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to listen for mDNS requests.</li>
+</ol>
+<h3 id="sec:test-procedure-156">Test Procedure <a
+href="09-index-discovery-test-cases.html#sec:test-procedure-156"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Send an mDNS query to the multicast domain that includes the
+EUT.</li>
+<li>Wait for an mDNS response from the EUT.</li>
+</ol>
+<h3 id="sec:test-metrics-164">Test Metrics <a
+href="09-index-discovery-test-cases.html#sec:test-metrics-164"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT responds to the mDNS query with the proper information.</li>
+</ol>
     <div style="clear: both;"/>
     <footer class="site-footer">
 <nav>

@@ -1,24 +1,24 @@
-<!-- <h1 class="display-none" id="sec:functionality-test-cases">9 Functionality Test Cases<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-test-cases" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1> -->
+<!-- <h1 class="display-none" id="sec:functionality-test-cases">9 Functionality Test Cases<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-test-cases" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1> -->
 
-<h2 id="sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)<a class="headerlink" href="09-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)<a class="headerlink" href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-164">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-164" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-164">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-164" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the Timer! event can
 be configured, and the EUT correctly triggers the event.</p>
 
-<h3 id="sec:functionality-tags-75">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-75" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-75">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-75" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Device.LocalAgent.Controller.{i}.ScheduleTimer() command)</p>
 
-<h3 id="sec:test-setup-165">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-165">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
 and receive USP Records to each other.</li>
 </ol>
 
-<h3 id="sec:test-procedure-157">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-157" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-157">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-157" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -41,25 +41,25 @@ body {
 <li><p>Wait for the EUT to send a Notification.</p></li>
 </ol>
 
-<h3 id="sec:test-metrics-165">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-165">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends an OperateResponse with &lsquo;ScheduleTimer()&rsquo; in the <code>executed_command</code> element.</li>
 <li>The EUT sends a Notify message with an <code>event</code> element containing Timer!</li>
 </ol>
 
-<h2 id="sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()<a class="headerlink" href="09-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()<a class="headerlink" href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-165">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-165">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the AddCertificate() operation
 on the EUT functions correctly.</p>
 
-<h3 id="sec:functionality-tags-76">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-76" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-76">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-76" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Device.LocalAgent.AddCertificate() command)</p>
 
-<h3 id="sec:test-setups">Test Setups<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setups" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setups">Test Setups<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setups" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -67,7 +67,7 @@ and receive USP Records to each other.</li>
 <li>Have an alternate certificate that the EUT hasn’t seen.</li>
 </ol>
 
-<h3 id="sec:test-procedure-158">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-158" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-158">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-158" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -122,7 +122,7 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-166">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-166">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends an OperateResponse after step 1.</li>
@@ -133,18 +133,18 @@ an Alias which matches the certificate added in step 1.</li>
 <li>The EUT sends an OperateResponse after step 5.</li>
 </ol>
 
-<h2 id="sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-166">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-166">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can download firmware and
 automatically activate it using the AutoActivate parameter.</p>
 
-<h3 id="sec:functionality-tags-77">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-77" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-77">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-77" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Firmware:1 profile)</p>
 
-<h3 id="sec:test-setup-166">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-166">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -153,7 +153,7 @@ and receive USP Records to each other.</li>
 events with the Recipient being the Controller instance used for testing.</li>
 </ol>
 
-<h3 id="sec:test-procedure-159">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-159" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-159">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-159" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -205,7 +205,7 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-167">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-167">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a Notify message after step 1 containing a <code>oper_complete</code>
@@ -219,18 +219,18 @@ on which the Download() operation was called; also that
 Device.DeviceInfo.SoftwareVersion matches the expected version.</li>
 </ol>
 
-<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-167">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-167">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can activate a firmware image when
 a TimeWindow object is used with Immediately mode.</p>
 
-<h3 id="sec:functionality-tags-78">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-78" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-78">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-78" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Firmware:1 profile with Activate() operation)</p>
 
-<h3 id="sec:test-setup-167">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-167">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -243,7 +243,7 @@ notification with a NotifType equal to &lsquo;OperationComplete&rsquo; and a Ref
 used for testing set as the Recipient.</li>
 </ol>
 
-<h3 id="sec:test-procedure-160">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-160" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-160">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-160" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -287,7 +287,7 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-168">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-168">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a Notify message within 5 seconds with an
@@ -299,18 +299,18 @@ containing a SoftwareVersion element with the expected
 software version.</li>
 </ol>
 
-<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-168">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-168">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can activate a firmware image
 when a TimeWindow instance used with the AnyTime mode.</p>
 
-<h3 id="sec:functionality-tags-79">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-79" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-79">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-79" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditionally Mandatory (implements Firmware:1 and Activate() operation)</p>
 
-<h3 id="sec:test-setup-168">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-168">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-168" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -324,7 +324,7 @@ that matches the path of the &lsquo;Activate()&rsquo; command with the Controlle
 used for testing set as the Recipient.</li>
 </ol>
 
-<h3 id="sec:test-procedure-161">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-161" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-161">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-161" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -368,7 +368,7 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-169">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-169">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a Notify message within 2 minutes after step 1.</li>
@@ -379,18 +379,18 @@ FirmwareUpdated argument set to true.</li>
 parameter that matches the expected version.</li>
 </ol>
 
-<h2 id="sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-169">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-169">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can validate the integrity of
 downloaded firmware.</p>
 
-<h3 id="sec:functionality-tags-80">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-80" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-80">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-80" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Firmware:1 profile)</p>
 
-<h3 id="sec:test-setup-169">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-169">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-169" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -399,7 +399,7 @@ and receive USP Records to each other.</li>
 notification with the Controller used for testing set as the Recipient.</li>
 </ol>
 
-<h3 id="sec:test-procedure-162">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-162" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-162">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-162" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure using an invalid checksum:</p>
@@ -443,25 +443,25 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-170">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-170">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a Notify message with a TransferComplete! event.</li>
 <li>The EUT sends a Get response with a Status parameter of ValidationFailed.</li>
 </ol>
 
-<h2 id="sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-170">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-170">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT is capable downloading and
 installing new firmware for EUTs that may support only the active firmware bank.</p>
 
-<h3 id="sec:functionality-tags-81">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-81" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-81">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-81" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Firmware:1 profile)</p>
 
-<h3 id="sec:test-setup-170">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-170">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-170" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -473,7 +473,7 @@ Controller used for testing is set as the Recipient.</li>
 <li>Record the number of firmware banks the EUT supports.</li>
 </ol>
 
-<h3 id="sec:test-procedure-163">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-163" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-163">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-163" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -500,7 +500,7 @@ body {
 <li><p>Wait for a Notify message from the EUT.</p></li>
 </ol>
 
-<h3 id="sec:test-metrics-171">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-171">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a Notify message with an OperationComplete, if the EUT
@@ -510,18 +510,18 @@ indicating that downloading to an active firmware slot is not allowed.</li>
 sends a Notify message with a Boot! event and a FirmwareUpdated argument set to true.</li>
 </ol>
 
-<h2 id="sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command<a class="headerlink" href="09-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command<a class="headerlink" href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-171">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-171">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can correctly
 cancel a Download() operation.</p>
 
-<h3 id="sec:functionality-tags-82">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-82" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-82">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-82" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Firmware:1 profile and Device.LocalAgent.Request.{i}.Cancel() operation)</p>
 
-<h3 id="sec:test-setup-171">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-171">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-171" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -531,7 +531,7 @@ and receive USP Records to each other.</li>
 Controller used for testing set as the Recipient.</li>
 </ol>
 
-<h3 id="sec:test-procedure-164">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-164" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-164">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-164" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -589,7 +589,7 @@ body {
 }</code></pre></li>
 </ol>
 
-<h3 id="sec:test-metrics-172">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-172">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends a OperationResponse after step 1 with a <code>executed_command</code>
@@ -601,18 +601,18 @@ either non-existent or the Status parameter of the relevant request is
 either Cancelled or Cancelling.</li>
 </ol>
 
-<h2 id="sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest<a class="headerlink" href="09-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest<a class="headerlink" href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-172">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-172">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT can handle the
 manual adding of a new Controller.</p>
 
-<h3 id="sec:functionality-tags-83">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-83" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-83">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-83" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Controller:1 profile with the ability to create instances of the Device.LocalAgent.Controller. object, supports SendOnBoardRequest())</p>
 
-<h3 id="sec:test-setup-172">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-172">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-172" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -622,7 +622,7 @@ and receive USP Records to each other.</li>
 <li>A secondary Controller is configured and ready to communicate with another endpoint.</li>
 </ol>
 
-<h3 id="sec:test-procedure-165">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-165">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-165" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Add message to the EUT with the following structure.</p>
@@ -701,7 +701,7 @@ body {
 NotifyResponse.</p></li>
 </ol>
 
-<h3 id="sec:test-metrics-173">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-173">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT is able to start a session with the secondary Controller.</li>
@@ -709,25 +709,25 @@ NotifyResponse.</p></li>
 OnBoardRequest element.</li>
 </ol>
 
-<h2 id="sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters<a class="headerlink" href="09-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters<a class="headerlink" href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-173">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-173">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the EUT correctly triggers the Boot!
 event and correctly includes the configured BootParameters.</p>
 
-<h3 id="sec:functionality-tags-84">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-84" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-84">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-84" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Reboot:1 profile, supports Device.DeviceInfo.BootFirmwareImage)</p>
 
-<h3 id="sec:test-setup-173">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-173">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-173" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
 and receive USP Records to each other.</li>
 </ol>
 
-<h3 id="sec:test-procedure-166">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-166">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-166" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Add message to the EUT with the following structure:</p>
@@ -784,25 +784,25 @@ body {
 <li><p>Wait for a Notify message from the EUT.</p></li>
 </ol>
 
-<h3 id="sec:test-metrics-174">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-174">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>After step 2 the EUT sends a Notify message with an event element
 containing a ParameterMap argument with &lsquo;Device.DeviceInfo.BootFirmwareImage&rsquo;</li>
 </ol>
 
-<h2 id="sec:use-of-the-timer-event">9.11 Use of the Timer! Event<a class="headerlink" href="09-index-functionality-test-cases.html#sec:use-of-the-timer-event" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+<h2 id="sec:use-of-the-timer-event">9.11 Use of the Timer! Event<a class="headerlink" href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 
-<h3 id="sec:purpose-174">Purpose<a class="headerlink" href="09-index-functionality-test-cases.html#sec:purpose-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:purpose-174">Purpose<a class="headerlink" href="10-index-functionality-test-cases.html#sec:purpose-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>The purpose of this test is to ensure the Timer! event can
 be configured, and the EUT correctly triggers the event.</p>
 
-<h3 id="sec:functionality-tags-85">Functionality Tags<a class="headerlink" href="09-index-functionality-test-cases.html#sec:functionality-tags-85" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:functionality-tags-85">Functionality Tags<a class="headerlink" href="10-index-functionality-test-cases.html#sec:functionality-tags-85" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <p>Conditional Mandatory (supports Device.ScheduleTimer() command)</p>
 
-<h3 id="sec:test-setup-174">Test Setup<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-setup-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-setup-174">Test Setup<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-setup-174" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>Ensure that the EUT and test equipment have the necessary information to send
@@ -811,7 +811,7 @@ and receive USP Records to each other.</li>
 OperationComplete on Device.ScheduleTimer().</li>
 </ol>
 
-<h3 id="sec:test-procedure-167">Test Procedure<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-procedure-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-procedure-167">Test Procedure<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-procedure-167" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li><p>Send an Operate message to the EUT with the following structure:</p>
@@ -835,7 +835,7 @@ body {
 <li><p>Wait for the EUT to send a Notification.</p></li>
 </ol>
 
-<h3 id="sec:test-metrics-175">Test Metrics<a class="headerlink" href="09-index-functionality-test-cases.html#sec:test-metrics-175" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+<h3 id="sec:test-metrics-175">Test Metrics<a class="headerlink" href="10-index-functionality-test-cases.html#sec:test-metrics-175" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
 
 <ol>
 <li>The EUT sends an OperateResponse with ScheduleTimer() in the executed_command

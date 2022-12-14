@@ -1,0 +1,383 @@
+<!-- <h1 class="display-none" id="sec:websocket-test-cases">7 WebSocket Test Cases<a class="headerlink" href="08-index-websocket-test-cases.html#sec:websocket-test-cases" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1> -->
+
+<h2 id="sec:session-establishment">7.1 Session Establishment<a class="headerlink" href="08-index-websocket-test-cases.html#sec:session-establishment" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-147">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-147" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can establish a session
+using WebSocket as the MTP.</p>
+
+<h3 id="sec:functionality-tags-58">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-58" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-148">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-148" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket and to communicate to the controller
+that exists in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-140">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-140" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the controller.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo.'
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a GetResponse from the EUT</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-148">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-148" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT is able to establish a WebSocket connection to the controller</li>
+<li>The EUT sends a GetResponse to the Get message sent in step 3</li>
+</ol>
+
+<h2 id="sec:use-of-only-one-session">7.2 Use of only one session<a class="headerlink" href="08-index-websocket-test-cases.html#sec:use-of-only-one-session" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-148">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-148" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT maintains
+only one WebSocket connection to a controller at a time.</p>
+
+<h3 id="sec:functionality-tags-59">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-59" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP with requirement R-WS.6)</p>
+
+<h3 id="sec:test-setup-149">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-149" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket and to communicate to the controller
+that exists in the test environment.</li>
+</ol>
+
+<h3 id="sec:test-procedure-141">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-141" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Get message to the EUT using the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo.'
+        }
+    }
+}</code></pre></li>
+<li><p>Attempt to open a second WebSocket connection to the EUT.</p></li>
+<li><p>Send the Get message outlined in step 1 over the new connection.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-149">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-149" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Either the first WebSocket connection closes when the second is opened, or
+the second connection is rejected.</li>
+</ol>
+
+<h2 id="sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller<a class="headerlink" href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-149">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-149" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>This test has been DEPRECATED as of version 1.0.1 of this test plan.</p>
+
+<h3 id="sec:functionality-tags-60">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-60" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>N/A</p>
+
+<h3 id="sec:test-setup-150">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-150" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>N/A</p>
+
+<h3 id="sec:test-procedure-142">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-142" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>N/A</p>
+
+<h3 id="sec:test-metrics-150">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-150" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>N/A</p>
+
+<h2 id="sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection<a class="headerlink" href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-150">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-150" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correctly implements the
+procedure to close a WebSocket connection.</p>
+
+<h3 id="sec:functionality-tags-61">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-61" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-151">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-151" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket.</li>
+<li>Ensure there is an active WebSocket connection between the
+EUT and the controller that was initiated by the EUT.</li>
+</ol>
+
+<h3 id="sec:test-procedure-143">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-143" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Send a <code>Close</code> WebSocket control frame to the EUT.</li>
+<li>Wait for the EUT to close the underlying TCP session.</li>
+</ol>
+
+<h3 id="sec:test-metrics-151">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-151" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT sends a WebSocket Close frame.</li>
+</ol>
+
+<h2 id="sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment<a class="headerlink" href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-151">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-151" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT will correctly
+reject WebSocket sessions.</p>
+
+<h3 id="sec:functionality-tags-62">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-62" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-152">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-152" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket.</li>
+<li>Configure the controller to reject WebSocket connections
+from the EUT.</li>
+</ol>
+
+<h3 id="sec:test-procedure-144">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-144" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Configure the controller to not include the <code>Sec-WebSocket-Protocol</code>
+when opening new WebSocket connections.</li>
+<li>Reboot the EUT</li>
+<li>Attempt to start a WebSocket connection to the EUT.</li>
+</ol>
+
+<h3 id="sec:test-metrics-152">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-152" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT rejects the WebSocket connection with the missing
+<code>Sec-WebSocket-Protocol</code> header.</li>
+</ol>
+
+<h2 id="sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records<a class="headerlink" href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-152">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-152" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correctly closes
+the WebSocket connection when a malformed USP Record is received.</p>
+
+<h3 id="sec:functionality-tags-63">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-63" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-153">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-153" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket</li>
+<li>Ensure there is an active WebSocket connection between
+the EUT and controller.</li>
+</ol>
+
+<h3 id="sec:test-procedure-145">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-145" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Send a malformed USP record to the EUT.</li>
+</ol>
+
+<h3 id="sec:test-metrics-153">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-153" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>After step 1 the EUT closes the WebSocket connection with
+a WebSocket <code>Close</code> control frame containing status code 1003.</li>
+</ol>
+
+<h2 id="sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames<a class="headerlink" href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-153">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-153" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correctly
+uses <code>Ping</code> and <code>Pong</code> control frames to keep the WebSocket
+session alive.</p>
+
+<h3 id="sec:functionality-tags-64">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-64" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-154">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-154" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket</li>
+<li>Ensure there is an active WebSocket session between the
+EUT and the Controller.</li>
+</ol>
+
+<h3 id="sec:test-procedure-146">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-146" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Send a <code>Ping</code> control frame to the EUT.</li>
+<li>Wait up to 60 seconds for a <code>Pong</code> control frame from the EUT.</li>
+<li>Send a <code>Pong</code> control frame to the EUT.</li>
+</ol>
+
+<h3 id="sec:test-metrics-154">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-154" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT sends a <code>Pong</code> control frame in response to the
+<code>Ping</code> control frame.</li>
+<li>The EUT doesn’t terminate the WebSocket connection after
+receiving an unsolicited <code>Pong</code> control frame.</li>
+</ol>
+
+<h2 id="sec:websocket-session-retry">7.8 WebSocket Session Retry<a class="headerlink" href="08-index-websocket-test-cases.html#sec:websocket-session-retry" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-154">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-154" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT will correctly
+attempt to reestablish a WebSocket session if a session is
+unexpectedly closed.</p>
+
+<h3 id="sec:functionality-tags-65">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-65" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-155">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-155" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket.</li>
+<li>Ensure there is an active WebSocket connection between the
+EUT and controller.</li>
+</ol>
+
+<h3 id="sec:test-procedure-147">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-147" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.LocalAgent.Controller.&lt;test controller instance&gt;.MTP.&lt;active MTP instance&gt;.'
+        }
+    }
+}</code></pre></li>
+<li><p>Configure the controller to reject new WebSocket connections.</p></li>
+<li><p>Terminate the underlying TCP connection on the existing WebSocket connection.</p></li>
+<li><p>Wait for the EUT to attempt to establish a WebSocket connection.</p></li>
+<li><p>Configure the controller to accept new WebSocket connections.</p></li>
+<li><p>Wait for the EUT to attempt to establish a WebSocket connection.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-155">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-155" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT attempts to start a new WebSocket connection in conformance
+with the <code>SessionRetryMinimumWaitInterval</code> parameter.</li>
+<li>The EUT makes a second attempt to start a new WebSocket connection
+in conformance with the <code>SessionRetryMinimumWaitInterval</code> and
+<code>SessionRetryIntervalMultiplier</code> parameters.</li>
+</ol>
+
+<h2 id="sec:use-of-tls">7.9 Use of TLS<a class="headerlink" href="08-index-websocket-test-cases.html#sec:use-of-tls" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-155">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-155" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT can establish and use
+a secure WebSocket connection.</p>
+
+<h3 id="sec:functionality-tags-66">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-66" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-156">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-156" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to use WebSocket.</li>
+<li>Ensure the EUT and controller both have the required
+certificates to secure a websocket connection.</li>
+</ol>
+
+<h3 id="sec:test-procedure-148">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-148" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to connect to the controller.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+
+<pre><code filter="pbv" type="Msg">header {
+    msg_id: '&lt;msg_id&gt;'
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: 'Device.DeviceInfo.'
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for GetResponse from the EUT.</p></li>
+</ol>
+
+<h3 id="sec:test-metrics-156">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-156" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>The EUT starts a WebSocket connection with the controller
+using TLS.</li>
+<li>The EUT sends a GetResponse in step 4.</li>
+</ol>
+
+<h2 id="sec:websocket---use-of-connect-record">7.10 WebSocket - Use of Connect Record<a class="headerlink" href="08-index-websocket-test-cases.html#sec:websocket---use-of-connect-record" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
+
+<h3 id="sec:purpose-156">Purpose<a class="headerlink" href="08-index-websocket-test-cases.html#sec:purpose-156" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>The purpose of this test is to ensure the EUT correctly sends a Connect
+Record after it has established a WebSocket connection to the Controller.</p>
+
+<h3 id="sec:functionality-tags-67">Functionality Tags<a class="headerlink" href="08-index-websocket-test-cases.html#sec:functionality-tags-67" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<p>Conditional Mandatory (supports the WebSocket MTP)</p>
+
+<h3 id="sec:test-setup-157">Test Setup<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-setup-157" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Ensure the EUT is configured to connect to the test controller using WebSocket.</li>
+</ol>
+
+<h3 id="sec:test-procedure-149">Test Procedure<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-procedure-149" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the test controller.</li>
+</ol>
+
+<h3 id="sec:test-metrics-157">Test Metrics<a class="headerlink" href="08-index-websocket-test-cases.html#sec:test-metrics-157" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h3>
+
+<ol>
+<li>After reconnecting to the test controller the EUT transmits a
+WebSocketConnectRecord to the test controller within 30 seconds.</li>
+</ol>
+

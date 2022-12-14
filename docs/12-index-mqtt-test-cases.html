@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<!-- BBF GitHub Pages pandoc template; modified from default.html template -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="generator" content="pandoc"/>
+  <meta name="description" content="USP – The User Services Platform:
+Conformance Test Plan for USP Agents"/>
+  <meta name="theme-color" content="#157878"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+  <title>BBF – 11 MQTT Test Cases</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="github.css"/>
+  <link rel="stylesheet" href="extra.css"/>
+  <link rel="stylesheet" href="toc.css"/>
+  <link rel="stylesheet" href="release.css"/>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+  <!-- XXX header includes are included just before the ToC (below) -->
+</head>
+
+<body>
+  <section class="page-header">
+    <h1 class="project-name">
+      <a href="index.html" style="text-decoration: none; color: white;">
+        <img src="bbflogo-reverse-dark.png"/><br>
+        The User Services Platform
+      </a>
+    </h1>
+    <h2 class="project-tagline">Conformance Test Plan for USP
+Agents</h2>
+    <p></p>
+    <p></p>
+    <div class="project-buttons">
+      <a class="btn" href="index.htm" title="TP-469 Single-file
+HTML">HTML</a>
+      <a class="btn" href="index.pdf" title="TP-469 PDF">PDF</a>
+      <a class="btn" href="https://usp.technology" title="usp.technology">Home</a>
+    </div>
+  </section>
+
+  <section class="main-content">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases-deprecated.html#sec:coap-test-cases-deprecated">5 CoAP Test Cases (DEPRECATED)</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+ | <a href="12-index-mqtt-test-cases.html#sec:mqtt-test-cases">11 MQTT Test Cases</a>
+</p>
+</nav>
+
+<nav id="TOCFULL">
+<ul>
+  <li><a href="00-index-contents.html#contents">Cover Page</a></li>
+  <ul>
+    <li><a href="00-index-contents.html#sec:executive-summary">Executive Summary</a></li>
+    <li><a href="00-index-contents.html#sec:purpose">Purpose</a></li>
+    <li><a href="00-index-contents.html#sec:scope">Scope</a></li>
+  </ul>
+  <li><a href="01-index-test-setup.html#sec:test-setup">Test Setup</a></li>
+  <ul>
+    <li><a href="01-index-test-setup.html#sec:test-equipment">Test Equipment</a></li>
+    <li><a href="01-index-test-setup.html#sec:test-setup-and-execution">Test Setup and Execution</a></li>
+    <li><a href="01-index-test-setup.html#sec:universal-test-metrics">Universal Test Metrics</a></li>
+    <li><a href="01-index-test-setup.html#sec:notes-about-test-case-descriptions">Notes about test case descriptions</a></li>
+  </ul>
+  <li><a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a></li>
+  <ul>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-single-object-required-parameters-succeed">1.2 Add message with allow partial true, single object, required parameters succeed</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-object-required-parameters-fail">1.3 Add message with allow partial false, single object, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-single-invalid-object">1.4 Add message with allow partial false, single invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects">1.5 Add message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-with-an-invalid-object">1.6 Add message with allow partial false, multiple objects with an invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.7 Add message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-invalid-type-single-object">1.8 Add message with allow partial true, required parameters fail, invalid type, single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-allow-partial-true-required-parameters-fail-multiple-objects">1.9 Add message with allow partial true, required parameters fail, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-with-unique-key-addressing-in-path">1.10 Add message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-pass">1.11 Set message with allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameters-pass">1.12 Set message with allow partial true, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects">1.13 Set message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-required-parameters-fail">1.14 Set message with allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-false-multiple-objects-required-parameters-fail-in-single-object">1.15 Set message with allow partial false, multiple objects, required parameters fail in single object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-required-parameter-fails-multiple-objects">1.16 Set message with allow partial true, required parameter fails, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-allow-partial-true-non-required-parameter-fails-multiple-parameters">1.17 Set message with allow partial true, non-required parameter fails, multiple parameters</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-unique-key-addressing-in-path">1.18 Set message with unique key addressing in path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-pass">1.19 Set message with wildcard search path, allow partial false, required parameters pass</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-false-required-parameters-fail">1.20 Set message with wildcard search path, allow partial false, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-wildcard-search-path-allow-partial-true-required-parameters-fail">1.21 Set message with wildcard search path, allow partial true, required parameters fail</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-search-expression-search-path">1.22 Set message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:set-message-with-path-that-matches-no-objects">1.23 Set message with path that matches no objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-valid-object-instance">1.24 Delete message with allow partial false, valid object instance</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-object-instance-doesnt-exist">1.25 Delete message with allow partial false, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-invalid-object">1.26 Delete message with allow partial false, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects">1.27 Delete message with allow partial false, multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-false-multiple-objects-invalid-object">1.28 Delete message with allow partial false, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-object-instance-doesnt-exist">1.29 Delete message with allow partial true, object instance doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-invalid-object">1.30 Delete message with allow partial true, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-invalid-object">1.31 Delete message with allow partial true, multiple objects, invalid object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-allow-partial-true-multiple-objects-object-doesnt-exist">1.32 Delete message with allow partial true, multiple objects, object doesn’t exist</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-unique-key-addressing">1.33 Delete message with unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-wildcard-search-path-valid-objects">1.34 Delete message with wildcard search path, valid objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-search-path">1.35 Delete message with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-full-parameter-path">1.36 Get message with full parameter path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-same-object">1.37 Get message with multiple full parameter paths, same object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-multiple-full-parameter-paths-different-objects">1.38 Get message with multiple full parameter paths, different objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-path">1.39 Get message with object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-object-instance-path">1.40 Get message with object instance path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter">1.41 Get message with invalid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-invalid-parameter-and-valid-parameter">1.42 Get message with invalid parameter and valid parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-unique-key-addressing">1.43 Get message using unique key addressing</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-full-parameter">1.44 Get message using wildcard search path on full parameter</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-wildcard-search-path-on-object-path">1.45 Get message using wildcard search path on object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-equivalence">1.46 Get message using search expression search path (equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-non-equivalence">1.47 Get message using search expression search path (non-equivalence)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-greater-comparison">1.48 Get message using search expression search path (exclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-exclusive-lesser-comparison">1.49 Get message using search expression search path (exclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-greater-comparison">1.50 Get message using search expression search path (inclusive greater comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-search-expression-search-path-inclusive-lesser-comparison">1.51 Get message using search expression search path (inclusive lesser comparison)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-creation-using-value-change">1.52 Notify - Subscription creation using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notify---subscription-deletion-using-value-change">1.53 Notify - Subscription Deletion Using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-using-value-change">1.54 Notification Retry using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:subscription-expiration-using-value-change">1.55 Subscription Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification-retry-expiration-using-value-change">1.56 Notification Retry Expiration using Value Change</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectcreation-notification">1.57 ObjectCreation Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:objectdeletion-notification">1.58 ObjectDeletion Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:event-notification-using-periodic">1.59 Event Notification using Periodic!</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:onboardrequest-notification">1.60 OnBoardRequest Notification</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-true">1.61 Operate message using Reboot() with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-reboot-with-send_resp-false">1.62 Operate message using Reboot() with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments-deprecated-by-1.79">1.63 Operate message using input arguments (DEPRECATED by 1.79)</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-true">1.64 Asynchronous operation with send_resp true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:asynchronous-operation-with-send_resp-false">1.65 Asynchronous operation with send_resp false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-true">1.66 GetInstances using a single object, first_level_only true</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-using-a-single-object-first_level_only-false">1.67 GetInstances using a single object, first_level_only false</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-multiple-objects">1.68 GetInstances with multiple objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:deleted"><em>1.69 DELETED</em></a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-wildcard-search-path">1.70 GetInstances with wildcard search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-with-search-expression-search-path">1.71 GetInstances with search expression search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-false-all-options">1.72 GetSupportedDM using a single object, first_level_only false, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options">1.73 GetSupportedDM using a single object, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options">1.74 GetSupportedDM using a single object, first_level_only true, no options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options">1.75 GetSupportedDM using multiple objects, first_level_only true, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-root-object-all-options">1.76 GetSupportedDM on root object, all options</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupporteddm-on-unsupported-object">1.77 GetSupportedDM on unsupported object</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:removal-of-subscriptions-that-have-no-associated-controller">1.78 Removal of subscriptions that have no associated controller</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:operate-message-using-input-arguments">1.79 Operate message using input arguments</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getsupportedprotocol">1.80 GetSupportedProtocol</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:automatic-unique-key-generation">1.81 Automatic unique key generation</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unmatched-search-expression">1.82 Get message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:getinstances-message-with-unmatched-search-expression">1.83 GetInstances message with unmatched search expression</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:notification---subscription-using-search-paths">1.84 Notification - Subscription using search paths</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:for-future-work-get-message-with-unresolved-instances---addressing-by-instance-number">1.85 (For future work) Get message with unresolved instances - addressing by instance number</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unresolved-instances---using-a-search-path">1.86 Get message with unresolved instances - using a search path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-with-unresolved-instances---using-an-object-path">1.87 Get message with unresolved instances - using an object path</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:add-message-fails-when-unique-key-is-invalid">1.88 Add message fails when unique key is invalid</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:get-message-using-max_depth">1.89 Get message using max_depth</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:delete-message-with-search-expression-that-matches-no-objects">1.90 Delete message with search expression that matches no objects</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:unknown-arguments-in-an-operate-message">1.91 Unknown arguments in an Operate message</a></li>
+    <li><a href="02-index-messages-and-path-names.html#sec:agent-uses-default-values-for-operate-arguments">1.92 Agent uses default values for Operate arguments</a></li>
+  </ul>
+  <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a></li>
+  <ul>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-accept-messages-from-its-own-endpoint-id">2.1 Agent does not accept messages from its own Endpoint ID</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record">2.2 Agent rejects messages that do not contain its to_id in the USP Record</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-does-not-process-messages-without-s-certificate-information---deprecated">2.3 Agent does not process messages without ’s certificate information - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated">2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-use-of-self-signed-certificates---deprecated">2.5 Agent use of self-signed certificates - DEPRECATED</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:connecting-without-absolute-time">2.6 Connecting without absolute time</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-unsigned-or-invalid-record-signatures">2.7 Agent ignores unsigned or invalid Record signatures</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:agent-ignores-invalid-tls-certificate">2.8 Agent ignores invalid TLS certificate</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:use-of-the-untrusted-role">2.9 Use of the Untrusted role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:adding-a-role">2.10 Adding a Role</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-allowed">2.11 Permissions - Object Creation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-creation-not-allowed">2.12 Permissions - Object Creation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-allowed">2.13 Permissions - Object Deletion Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---object-deletion-not-allowed">2.14 Permissions - Object Deletion Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-allowed">2.15 Permissions - Parameter Update Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---parameter-update-not-allowed">2.16 Permissions - Parameter Update Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-allowed">2.17 Permissions - Operation Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---operation-not-allowed">2.18 Permissions - Operation Not Allowed</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-allowed-on-parameter">2.19 Permissions - Value Change Notification Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---value-change-notification-not-allowed-on-parameter">2.20 Permissions - Value Change Notification Not Allowed on Parameter</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:permissions---overlapping-permissions">2.21 Permissions - Overlapping Permissions</a></li>
+    <li><a href="03-index-authentication-and-access-control-test-cases.html#sec:using-get-when-no-read-permissions-are-available-on-some-parameters">2.22 Using Get when no read permissions are available on some parameters</a></li>
+  </ul>
+  <li><a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a></li>
+  <ul>
+    <li><a href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context">3.1 Bad request outside a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity">3.2 Agent Verifies Non-Payload Field Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context">3.3 Agent rejects invalid signature starting a session context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP Record Integrity</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls">3.5 Failure to Establish TLS</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6 Agent does not accept TLS renegotiation for E2E message exchange</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context">3.8 Establishing a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of a Record out of a Session Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:session-context-expiration">3.10 Session Context Expiration</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID and Expected ID</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records">3.12 Preservation of USP Records</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13 Agent Rejects Records with Different Payload Security than the Established Context</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id">3.14 Use of retransmit_id</a></li>
+    <li><a href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records">3.15 Handling Duplicate Records</a></li>
+  </ul>
+  <li><a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a></li>
+  <ul>
+    <li><a href="05-index-general-mtp-test-cases.html#sec:use-of-x.509-certificates-at-the-mtp-layer">4.1 Use of X.509 certificates at the MTP layer</a></li>
+  </ul>
+  <li><a href="06-index-coap-test-cases-deprecated.html#sec:coap-test-cases-deprecated">5 CoAP Test Cases (DEPRECATED)</a></li>
+  <ul>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:mapping-a-usp-record-to-a-coap-message-deprecated">5.1 Mapping a USP Record to a CoAP message (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:usp-records-that-exceed-coap-message-size-deprecated">5.2 USP Records that exceed CoAP message size (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:successful-coap-exchange-deprecated">5.3 Successful CoAP exchange (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:failed-coap-exchange---timeout-deprecated">5.4 Failed CoAP exchange - timeout (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:failed-coap-exchange---invalid-method-deprecated">5.5 Failed CoAP Exchange - Invalid Method (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:failed-coap-exchange---invalid-content-format-deprecated">5.6 Failed CoAP Exchange - Invalid Content-Format (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:failed-coap-exchange---invalid-usp-record-deprecated">5.7 Failed CoAP Exchange - Invalid USP Record (DEPRECATED)</a></li>
+    <li><a href="06-index-coap-test-cases-deprecated.html#sec:use-of-dtls-deprecated">5.8 Use of DTLS (DEPRECATED)</a></li>
+  </ul>
+  <li><a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a></li>
+  <ul>
+    <li><a href="07-index-stomp-test-cases.html#sec:support-of-required-profiles">6.1 Support of Required Profiles</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-session-establishment">6.2 STOMP session establishment</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-connection-retry">6.3 STOMP Connection Retry</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:successful-usp-message-over-stomp-with-required-headers">6.4 Successful USP message over STOMP with required headers</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---provided-in-subscribe-dest">6.5 STOMP destination - provided in subscribe-dest</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---configured-in-usp-data-model">6.6 STOMP destination - configured in USP data model</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp-destination---terminates-unconfigured-session">6.7 STOMP Destination - terminates unconfigured session</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:use-of-stomp-heartbeat-mechanism">6.8 Use of STOMP heartbeat mechanism</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:error-handling---unprocessed-record">6.9 Error Handling - Unprocessed Record</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:agents-stomp-destination-is-changed">6.10 Agent’s STOMP destination is changed</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-tls">6.11 STOMP - Use of TLS</a></li>
+    <li><a href="07-index-stomp-test-cases.html#sec:stomp---use-of-connect-record">6.12 STOMP - Use of Connect Record</a></li>
+  </ul>
+  <li><a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a></li>
+  <ul>
+    <li><a href="08-index-websocket-test-cases.html#sec:session-establishment">7.1 Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-only-one-session">7.2 Use of only one session</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:agent-session-acceptance-from-controller">7.3 Agent session acceptance from Controller</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:closing-a-websocket-connection">7.4 Closing a WebSocket Connection</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:rejection-of-session-establishment">7.5 Rejection of Session Establishment</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:error-handling---unprocessed-records">7.6 Error Handling - Unprocessed Records</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-ping-and-pong-frames">7.7 Use of Ping and Pong frames</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket-session-retry">7.8 WebSocket Session Retry</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:use-of-tls">7.9 Use of TLS</a></li>
+    <li><a href="08-index-websocket-test-cases.html#sec:websocket---use-of-connect-record">7.10 WebSocket - Use of Connect Record</a></li>
+  </ul>
+  <li><a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a></li>
+  <ul>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-request-requirements">8.1 DHCP Discovery - Agent Request Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---agent-handling-of-received-options">8.2 DHCP Discovery - Agent handling of received options</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dhcp-discovery---fqdn-leads-to-dns-query">8.3 DHCP Discovery - FQDN Leads to DNS Query</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns">8.4 mDNS</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-and-message-transfer-protocols">8.5 mDNS and Message Transfer Protocols</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:dns---dns-record-requirements">8.6 DNS - DNS Record Requirements</a></li>
+    <li><a href="09-index-discovery-test-cases.html#sec:mdns-request-response">8.7 mDNS request response</a></li>
+  </ul>
+  <li><a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a></li>
+  <ul>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event-deprecated-by-9.11">9.1 Use of the Timer! Event (DEPRECATED by 9.11)</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-device.localagent.addcertificate">9.2 Use of Device.LocalAgent.AddCertificate()</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgraded-the-agents-firmware---autoactivate-enabled">9.3 Upgraded the Agent’s Firmware - Autoactivate enabled</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-immediate">9.4 Upgrading the Agent’s Firmware - Using TimeWindow, Immediate</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---using-timewindow-anytime">9.5 Upgrading the Agent’s Firmware - Using TimeWindow, AnyTime</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---validated-firmware">9.6 Upgrading the Agent’s Firmware - Validated Firmware</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---download-to-active-bank">9.7 Upgrading the Agent’s Firmware - Download to Active Bank</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command">9.8 Upgrading the Agent’s Firmware - Cancelling a request using the Cancel() command</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:adding-a-new-controller---onboardrequest">9.9 Adding a New Controller - OnBoardRequest</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-boot-event-and-bootparameters">9.10 Use of the Boot! event and BootParameters</a></li>
+    <li><a href="10-index-functionality-test-cases.html#sec:use-of-the-timer-event">9.11 Use of the Timer! Event</a></li>
+  </ul>
+  <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a></li>
+  <ul>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-json">10.1 Use BulkData collection using HTTP and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-json">10.2 Use BulkData collection using HTTPS and JSON</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-and-csv">10.3 Use BulkData collection using HTTP and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-and-csv">10.4 Use BulkData collection using HTTPS and CSV</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-uri-parameters">10.5 Use BulkData collection using HTTP with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-https-with-uri-parameters">10.6 Use BulkData collection using HTTPS with URI Parameters</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:bulkdata-collection-retry-mechanism-over-http">10.7 BulkData collection retry mechanism over HTTP</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-wildcard-parameter">10.8 Use BulkData collection using HTTP with wildcard parameter</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-using-http-with-object-path">10.9 Use BulkData collection using HTTP with Object Path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event">10.10 Use BulkData collection Push event</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-wildcard-path">10.11 Use BulkData collection Push event with Wildcard path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-push-event-with-object-path">10.12 Use BulkData collection Push event with Object path</a></li>
+    <li><a href="11-index-bulk-data-collection-test-cases.html#sec:use-bulkdata-collection-over-mqtt">10.13 Use BulkData collection over MQTT</a></li>
+  </ul>
+  <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-test-cases">11 MQTT Test Cases</a></li>
+  <ul>
+    <li><a href="12-index-mqtt-test-cases.html#sec:support-of-required-mqtt-profiles">11.1 Support of Required MQTT Profiles</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-session-establishment-using-a-connect-packet">11.2 MQTT session establishment using a CONNECT packet</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-use-of-tls">11.3 MQTT Use of TLS</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-5.0-clientid">11.4 MQTT 5.0 ClientID</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-clientid-persistence">11.5 MQTT ClientID Persistence</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-message-retry">11.6 MQTT Message Retry</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-keep-alive">11.7 MQTT Keep Alive</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-subscribe-packet">11.8 MQTT SUBSCRIBE Packet</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-new-subscription">11.9 MQTT New Subscription</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-no-topic-in-connack">11.10 MQTT No Topic in CONNACK</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-failure-to-subscribe">11.11 MQTT Failure to Subscribe</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-publish-packet">11.12 MQTT PUBLISH Packet</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-qos">11.13 MQTT QoS</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-reply-to-topic">11.14 MQTT Reply to Topic</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-5.0-content-type">11.15 MQTT 5.0 Content Type</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt-connection-retry">11.16 MQTT Connection Retry</a></li>
+    <li><a href="12-index-mqtt-test-cases.html#sec:mqtt---use-of-connect-record">11.17 MQTT - Use of Connect Record</a></li>
+  </ul>
+</ul>
+</nav>
+
+    <header id="title-block-header">
+      <h1 class="title" id="sec:mqtt-test-cases">11 MQTT Test
+Cases<a href="#sec:mqtt-test-cases" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
+    </header>
+    <nav id="_TOC" role="doc-toc">
+<ul>
+<li><a href="#sec:support-of-required-mqtt-profiles"
+id="toc-sec:support-of-required-mqtt-profiles">11.1 Support of Required
+MQTT Profiles <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-session-establishment-using-a-connect-packet"
+id="toc-sec:mqtt-session-establishment-using-a-connect-packet">11.2 MQTT
+session establishment using a CONNECT packet <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-use-of-tls" id="toc-sec:mqtt-use-of-tls">11.3
+MQTT Use of TLS <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-5.0-clientid" id="toc-sec:mqtt-5.0-clientid">11.4
+MQTT 5.0 ClientID <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-clientid-persistence"
+id="toc-sec:mqtt-clientid-persistence">11.5 MQTT ClientID Persistence
+<img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-message-retry"
+id="toc-sec:mqtt-message-retry">11.6 MQTT Message Retry <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-keep-alive" id="toc-sec:mqtt-keep-alive">11.7
+MQTT Keep Alive <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-subscribe-packet"
+id="toc-sec:mqtt-subscribe-packet">11.8 MQTT SUBSCRIBE Packet <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-new-subscription"
+id="toc-sec:mqtt-new-subscription">11.9 MQTT New Subscription <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-no-topic-in-connack"
+id="toc-sec:mqtt-no-topic-in-connack">11.10 MQTT No Topic in CONNACK
+<img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-failure-to-subscribe"
+id="toc-sec:mqtt-failure-to-subscribe">11.11 MQTT Failure to Subscribe
+<img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-publish-packet"
+id="toc-sec:mqtt-publish-packet">11.12 MQTT PUBLISH Packet <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-qos" id="toc-sec:mqtt-qos">11.13 MQTT QoS <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-reply-to-topic"
+id="toc-sec:mqtt-reply-to-topic">11.14 MQTT Reply to Topic <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-5.0-content-type"
+id="toc-sec:mqtt-5.0-content-type">11.15 MQTT 5.0 Content Type <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt-connection-retry"
+id="toc-sec:mqtt-connection-retry">11.16 MQTT Connection Retry <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:mqtt---use-of-connect-record"
+id="toc-sec:mqtt---use-of-connect-record">11.17 MQTT - Use of Connect
+Record <img src="permalink.png" style="width:0.8em" /></a></li>
+</ul>
+    </nav>
+<h2 id="sec:support-of-required-mqtt-profiles">11.1 Support of Required
+MQTT Profiles <a
+href="12-index-mqtt-test-cases.html#sec:support-of-required-mqtt-profiles"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-188">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-188" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT supports the required
+MQTT profiles.</p>
+<h3 id="sec:functionality-tags-99">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-99"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-188">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-188"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary
+information to send and receive USP records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-181">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-181"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a GetSupportedDM message to the EUT with the following
+structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET_SUPPORTED_DM
+}
+body {
+    request {
+        get_supported_dm {
+            obj_paths: &#39;Device.MQTT.&#39;
+            obj_paths: &#39;Device.LocalAgent.&#39;
+            return_params: true
+            first_level_only: false
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the GetSupportedDMResponse.</p></li>
+</ol>
+<h3 id="sec:test-metrics-189">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-189"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a GetSupportedDMResponse.</li>
+<li>The GetSupportedDMResponse from the EUT contains all required
+parameters in the MQTTClientCon:1, MQTTClientSubscribe:1, MQTTAgent:1,
+and MQTTController:1 data model profiles. The parameter
+<code>Device.MQTT.Client.{i}.MessageRetryTime</code> is not required to
+be supported for EUTs that only implement MQTT version 5.0.</li>
+</ol>
+<h2 id="sec:mqtt-session-establishment-using-a-connect-packet">11.2 MQTT
+session establishment using a CONNECT packet <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-session-establishment-using-a-connect-packet"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-189">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-189" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can properly start an
+MQTT session using an MQTT CONNECT packet.</p>
+<h3 id="sec:functionality-tags-100">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-100"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-189">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-189"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+<li>Ensure that the EUT data model is configured with
+<code>.MQTT.Client.{i}.Username</code>,
+<code>.MQTT.Client.{i}.Password</code> values.</li>
+</ol>
+<h3 id="sec:test-procedure-182">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-182"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the MQTT server.</li>
+</ol>
+<h3 id="sec:test-metrics-190">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-190"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT CONNECT packet to the MQTT server.<br />
+</li>
+<li>The MQTT CONNECT packet Version is either 5.0 or 3.1.1.</li>
+<li>If the EUT uses MQTT 5.0, the MQTT CONNECT packet contains a User
+Property name-value pair with name of “usp-endpoint-id” and value of the
+EUT USP Endpoint ID.</li>
+<li>The EUT includes User Name and Password fields in the MQTT CONNECT
+packet.</li>
+</ol>
+<h2 id="sec:mqtt-use-of-tls">11.3 MQTT Use of TLS <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-use-of-tls"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-190">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-190" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can establish secure
+MQTT communication via TLS.</p>
+<h3 id="sec:functionality-tags-101">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-101"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-190">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-190"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+<li>Ensure the EUT and MQTT server are configured with the appropriate
+certificates to communicate over TLS.</li>
+</ol>
+<h3 id="sec:test-procedure-183">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-183"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Reboot the EUT</p></li>
+<li><p>Wait for the EUT to reconnect to the MQTT server</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse</p></li>
+</ol>
+<h3 id="sec:test-metrics-191">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-191"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>All communication between the EUT and MQTT server after step 1 are
+encrypted using TLS 1.2 or later.</li>
+</ol>
+<h2 id="sec:mqtt-5.0-clientid">11.4 MQTT 5.0 ClientID <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-5.0-clientid"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-191">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-191" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT properly sets the
+ClientID field in MQTT packets.</p>
+<h3 id="sec:functionality-tags-102">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-102"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP, version 5.0)</p>
+<h3 id="sec:test-setup-191">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-191"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-184">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-184"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: SET
+}
+
+body {
+  request {
+    set {
+      allow_partial: false
+      update_objs {
+        obj_path: &#39;Device.​MQTT.​Client.&lt;active MQTT client instance&gt;.&#39;
+        param_settings {
+         param: &#39;ClientID&#39;
+         value: &#39;&#39;
+         required: true
+        }
+      }
+    }
+  }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the MQTT server.</p></li>
+<li><p>The MQTT server sends an MQTT CONNACK packet with an Assigned
+Client Identifier.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: GET
+}
+body {
+  request {
+    get {
+      param_paths: &#39;Device.​MQTT.​Client.&lt;active MQTT client instance&gt;.ClientID&#39;
+    }
+  }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-192">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-192"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT MQTT CONNECT packet must include a ClientID set to an empty
+string.</li>
+<li>The retrieved value of ClientID matches the Assigned Client
+Identifier from step 4.</li>
+</ol>
+<h2 id="sec:mqtt-clientid-persistence">11.5 MQTT ClientID Persistence <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-clientid-persistence"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-192">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-192" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the MQTT ClientID field
+persists after successful connection with an MQTT server.</p>
+<h3 id="sec:functionality-tags-103">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-103"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-192">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-192"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-185">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-185"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: GET
+}
+body {
+  request {
+    get {
+      param_paths: &#39;Device.​MQTT.​Client.&lt;active MQTT client instance&gt;.ClientID&#39;
+    }
+  }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the MQTT server.</p></li>
+</ol>
+<h3 id="sec:test-metrics-193">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-193"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT uses the same ClientID in the subsequent MQTT CONNECT
+packet.</li>
+</ol>
+<h2 id="sec:mqtt-message-retry">11.6 MQTT Message Retry <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-message-retry"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-193">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-193" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT properly enters a retry
+state when it fails to connect to the MQTT server.</p>
+<h3 id="sec:functionality-tags-104">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-104"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-193">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-193"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that is part of
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-186">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-186"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT with the following structure</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.MQTT.Client.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Send an Operate message to the EUT with the following
+structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: OPERATE
+}
+body {
+    request {
+        operate {
+            command: &#39;Device.Reboot()&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Disable the MQTT server.</p></li>
+<li><p>Allow the EUT to attempt to start an MQTT session with the MQTT
+server.</p></li>
+<li><p>Reenable the MQTT server after the EUT fails to connect to the
+MQTT server twice.</p></li>
+</ol>
+<h3 id="sec:test-metrics-194">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-194"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT retries connecting to the MQTT server within the
+<code>ConnectRetryTime</code> of the connection instance.</li>
+<li>The EUT retries a second time in accordance with
+<code>ConnectRetryTime</code> and
+<code>ConnectRetryIntervalMultiplier</code>.</li>
+</ol>
+<h2 id="sec:mqtt-keep-alive">11.7 MQTT Keep Alive <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-keep-alive"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-194">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-194" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can correctly implement
+the MQTT keep alive mechanism and the relevant parameters in the data
+model.</p>
+<h3 id="sec:functionality-tags-105">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-105"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP, version 5.0)</p>
+<h3 id="sec:test-setup-194">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-194"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT is configured to use an MQTT server which exists in the test
+environment.</li>
+</ol>
+<h3 id="sec:test-procedure-187">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-187"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: &#39;Device.​MQTT.​Client.​&lt;active MQTT client instance&gt;.&#39;
+                    param_settings {
+                            param: &#39;KeepAliveTime&#39;
+                            value: &#39;60&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the MQTT server.</p></li>
+<li><p>The MQTT server sends an MQTT CONNACK packet with a Keep Alive
+value of 30 seconds.</p></li>
+<li><p>Wait 45 seconds.</p></li>
+</ol>
+<h3 id="sec:test-metrics-195">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-195"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT CONNECT packet on boot with the Keep Alive
+property set to 60 seconds.</li>
+<li>The EUT sends an MQTT PINGREQ packet within 45 seconds of the last
+MQTT message. This represents 1.5 times the Keep Alive value.</li>
+</ol>
+<h2 id="sec:mqtt-subscribe-packet">11.8 MQTT SUBSCRIBE Packet <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-subscribe-packet"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-195">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-195" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT includes the correct
+fields in an MQTT SUBSCRIBE packet.</p>
+<h3 id="sec:functionality-tags-106">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-106"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP, version 5.0)</p>
+<h3 id="sec:test-setup-195">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-195"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-188">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-188"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the MQTT server.</li>
+<li>The MQTT server sends an MQTT CONNACK packet containing a User
+Property of subscribe-topic.</li>
+<li>For an EUT using MQTT 5.0, the MQTT CONNACK packet contains a
+Response Information property.</li>
+<li>Wait for the EUT to send an MQTT SUBSCRIBE packet.</li>
+</ol>
+<h3 id="sec:test-metrics-196">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-196"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT CONNECT packet to the MQTT server. If the EUT
+uses MQTT 5.0, the Request Response Information property must be set to
+1.</li>
+<li>The EUT sends an MQTT SUBSCRIBE packet to the MQTT server. The MQTT
+SUBSCRIBE packet includes the subscribe-topic sent in step 3.</li>
+<li>If the EUT uses MQTT 5.0, the MQTT SUBSCRIBE packet includes the
+Response Information property sent in step 4.</li>
+</ol>
+<h2 id="sec:mqtt-new-subscription">11.9 MQTT New Subscription <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-new-subscription"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-196">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-196" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT sends an MQTT SUBSCRIBE
+packet when a new <code>Device.MQTT.Client.{i}.Subscription.{i}.</code>
+object is added.</p>
+<h3 id="sec:functionality-tags-107">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-107"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports MQTT MTP)</p>
+<h3 id="sec:test-setup-196">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-196"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+</ol>
+<h3 id="sec:test-metrics-197">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-197"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+          allow_partial: false
+          create_objs {
+              obj_path: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&#39;
+              param_settings {
+                      param: &#39;Enable&#39;
+                      value: &#39;true&#39;
+                  }
+              param_settings {
+                      param: &#39;Topic&#39;
+                      value: &#39;newTopic-11-9&#39;
+                  }
+              }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send an MQTT SUBSCRIBE packet.</p></li>
+<li><p>The MQTT server sends an MQTT SUBACK packet indicating the QoS
+level that was granted for the subscription.</p></li>
+<li><p>Send a Get message with topic <code>newTopic-11-9</code> with the
+following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: GET
+}
+body {
+  request {
+    get {
+      param_paths: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&lt;instance identifier from step 1&gt;.&#39;
+    }
+  }
+}</code></pre></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &quot;&lt;msg_id&gt;&quot;
+  msg_type: SET
+}
+
+body {
+  request {
+
+    set {
+      allow_partial: false
+      update_objs {
+        obj_path: &quot;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&lt;instance identifier from step 1&gt;&quot;
+        param_settings: {
+         param: &quot;Enable&quot;
+         value: &quot;false&quot;
+         required: true
+        }
+      }
+    }
+  }
+}</code></pre></li>
+<li><p>The MQTT Server sends an MQTT UNSUBACK packet indicating
+success.</p></li>
+</ol>
+<h3 id="sec:test-metrics-198">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-198"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT SUBSCRIBE packet that includes the new Topic
+from step 1.</li>
+<li>The EUT sends a GetResp for the Subscription.</li>
+<li>The EUT sends an MQTT UNSUBSCRIBE packet for the configured Topic
+after Enable is set to false.</li>
+</ol>
+<h2 id="sec:mqtt-no-topic-in-connack">11.10 MQTT No Topic in CONNACK <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-no-topic-in-connack"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-197">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-197" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT will disconnect from
+the MQTT server if it receives no subscribe-topic.</p>
+<h3 id="sec:functionality-tags-108">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-108"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP, version 5.0)</p>
+<h3 id="sec:test-setup-197">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-197"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+<li>Ensure that all instances of
+<code>Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.</code>
+are removed from the EUT.</li>
+</ol>
+<h3 id="sec:test-procedure-189">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-189"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to reconnect to the MQTT server.</li>
+<li>The MQTT server sends an MQTT CONNACK packet that does not include a
+subscribe-topic User Property.</li>
+</ol>
+<h3 id="sec:test-metrics-199">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-199"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT DISCONNECT packet to the MQTT server.</li>
+</ol>
+<h2 id="sec:mqtt-failure-to-subscribe">11.11 MQTT Failure to Subscribe
+<a href="12-index-mqtt-test-cases.html#sec:mqtt-failure-to-subscribe"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-198">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-198" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT will disconnect from
+the MQTT server if it is unable to subscribe to a Topic.</p>
+<h3 id="sec:functionality-tags-109">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-109"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-198">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-198"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT is configured to use an MQTT server that exists
+in the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-190">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-190"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to send an MQTT SUBSCRIBE packet.</li>
+<li>The MQTT server sends an MQTT SUBACK packet that includes an error
+for each Topic in the SUBSCRIBE packet.</li>
+</ol>
+<h3 id="sec:test-metrics-200">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-200"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT DISCONNECT packet to the MQTT server.</li>
+</ol>
+<h2 id="sec:mqtt-publish-packet">11.12 MQTT PUBLISH Packet <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-publish-packet"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-199">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-199" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can send a properly
+formatted an MQTT PUBLISH packet.</p>
+<h3 id="sec:functionality-tags-110">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-110"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-199">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-199"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-191">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-191"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Reboot the EUT.</p></li>
+<li><p>Wait for the EUT to reconnect to the MQTT server.</p></li>
+<li><p>The MQTT server sends a CONNACK packet.</p></li>
+<li><p>For an EUT using MQTT 5.0, the CONNACK packet contains a Response
+Information property.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse</p></li>
+</ol>
+<h3 id="sec:test-metrics-201">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-201"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends an MQTT PUBLISH packet containing a GetResponse.</li>
+<li>If the EUT uses MQTT 5.0, the Response Topic is set to the Response
+Information property from step 4.</li>
+<li>If the EUT uses MQTT 3.1.1, the “reply to” is included after
+<code>/reply-to=</code> at the end of the PUBLISH Topic Name, with any
+<code>/</code> character in the Topic replaced by <code>%2F</code>.</li>
+<li>If the EUT uses MQTT 5.0, the Content Type property is set to
+<code>usp.msg</code></li>
+</ol>
+<h2 id="sec:mqtt-qos">11.13 MQTT QoS <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-qos" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-200">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-200" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT supports at least MQTT
+QoS levels 0 and 1.</p>
+<h3 id="sec:functionality-tags-111">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-111"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-200">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-200"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-192">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-192"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+          allow_partial: false
+          create_objs {
+              obj_path: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&#39;
+              param_settings {
+                      param: &#39;Enable&#39;
+                      value: &#39;true&#39;
+                  }
+              param_settings {
+                      param: &#39;Topic&#39;
+                      value: &#39;newTopic-11-13-QoS0&#39;
+                  }
+              }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send an MQTT SUBSCRIBE packet.</p></li>
+<li><p>The MQTT server sends an MQTT SUBACK packet indicating a QoS
+level of 0 for the subscription.</p></li>
+<li><p>Send an Add message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: ADD
+}
+body {
+    request {
+        add {
+          allow_partial: false
+          create_objs {
+              obj_path: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&#39;
+              param_settings {
+                      param: &#39;Enable&#39;
+                      value: &#39;true&#39;
+                  }
+              param_settings {
+                      param: &#39;Topic&#39;
+                      value: &#39;newTopic-11-13-QoS1&#39;
+                  }
+              param_settings {
+                      param: &#39;QoS&#39;
+                      value: &#39;1&#39;
+                  }
+              }
+        }
+    }
+}</code></pre></li>
+<li><p>The MQTT server sends an MQTT SUBACK packet indicating a QoS
+level of 1 for the subscription.</p></li>
+<li><p>Send a Get message with topic ‘newTopic-11-13-QoS0’ to the EUT
+with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: GET
+}
+body {
+  request {
+    get {
+      param_paths: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&lt;instance from step 1&gt;.&#39;
+    }
+  }
+}</code></pre></li>
+<li><p>Send a Get message with topic ‘newTopic-11-13-QoS1’ to the EUT
+with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+  msg_id: &#39;&lt;msg_id&gt;&#39;
+  msg_type: GET
+}
+body {
+  request {
+    get {
+      param_paths: &#39;Device.MQTT.Client.&lt;active MQTT client instance&gt;.Subscription.&lt;instance from step 4&gt;.&#39;
+    }
+  }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-202">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-202"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends a GetResp for the Get message sent to topic
+‘newTopic-11-13-QoS0’.</li>
+<li>The EUT sends a GetResp for the Get message sent to topic
+‘newTopic-11-13-QoS1’.</li>
+</ol>
+<h2 id="sec:mqtt-reply-to-topic">11.14 MQTT Reply to Topic <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-reply-to-topic"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-201">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-201" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can process and set the
+“reply to” Topic in MQTT PUBLISH packets.</p>
+<h3 id="sec:functionality-tags-112">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-112"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-201">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-201"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-193">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-193"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse.</p></li>
+</ol>
+<h3 id="sec:test-metrics-203">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-203"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>If the EUT uses MQTT 5.0, the EUT must send an MQTT PUBLISH packet
+that includes a GetResponse. The Topic Name must be set to the “reply
+to” Topic from the controller’s MQTT PUBLISH packet Response Topic
+property. The EUT must include a Response Topic property that has a
+“reply to” Topic set.</li>
+<li>If the EUT uses MQTT 3.1.1, the EUT must send an MQTT PUBLISH packet
+that includes a GetResponse. The Topic must be set to the reply to topic
+at the end of the Topic Name in the Controller’s MQTT PUBLISH packet.
+All instances of <code>%2F</code> must be replaced by <code>/</code> in
+the Topic Name. The EUT must set a reply to topic by including it at the
+end of the Topic Name after <code>/reply-to=</code> and replacing all
+instances of <code>/</code> with <code>%2F</code>.</li>
+</ol>
+<h2 id="sec:mqtt-5.0-content-type">11.15 MQTT 5.0 Content Type <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-5.0-content-type"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-202">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-202" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can accept valid values
+of the MQTT Content Type property.</p>
+<h3 id="sec:functionality-tags-113">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-113"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP, version 5.0)</p>
+<h3 id="sec:test-setup-202">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-202"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-194">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-194"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Configure the Controller to include an MQTT Content Type property
+of <code>usp.msg</code> in its MQTT packets.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse.</p></li>
+<li><p>Configure the Controller to include an MQTT Content Type property
+of <code>application/vnd.bbf.usp.msg</code> in its MQTT
+packets.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for the EUT to send a GetResponse.</p></li>
+</ol>
+<h3 id="sec:test-metrics-204">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-204"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT must send a GetResponse for both Get messages, indicating
+that it processed the Controller’s MQTT PUBLISH packets.</li>
+</ol>
+<h2 id="sec:mqtt-connection-retry">11.16 MQTT Connection Retry <a
+href="12-index-mqtt-test-cases.html#sec:mqtt-connection-retry"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-203">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-203" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT retries its connection
+with the MQTT server after the server terminates the connection.</p>
+<h3 id="sec:functionality-tags-114">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-114"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-203">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-203"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-195">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-195"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send an MQTT DISCONNECT packet to the EUT.</li>
+<li>Allow the EUT to start a new MQTT session with the MQTT server.</li>
+</ol>
+<h3 id="sec:test-metrics-205">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-205"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT retries connecting to the MQTT server between
+ConnectRetryTime of the connection instance and
+ConnectRetryTime*(ConnectRetryIntervalMultiplier/1000).</li>
+</ol>
+<h2 id="sec:mqtt---use-of-connect-record">11.17 MQTT - Use of Connect
+Record <a
+href="12-index-mqtt-test-cases.html#sec:mqtt---use-of-connect-record"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-204">Purpose <a
+href="12-index-mqtt-test-cases.html#sec:purpose-204" class="headerlink"
+title="Permalink to this header"><img src="permalink.png"
+style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly sends a
+Connect record after it has established a communications channel to the
+controller.</p>
+<h3 id="sec:functionality-tags-115">Functionality Tags <a
+href="12-index-mqtt-test-cases.html#sec:functionality-tags-115"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports the MQTT MTP)</p>
+<h3 id="sec:test-setup-204">Test Setup <a
+href="12-index-mqtt-test-cases.html#sec:test-setup-204"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT is configured to use an MQTT server that exists in
+the test environment.</li>
+</ol>
+<h3 id="sec:test-procedure-196">Test Procedure <a
+href="12-index-mqtt-test-cases.html#sec:test-procedure-196"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Reboot the EUT.</li>
+<li>Wait for the EUT to establish an MQTT session with the MQTT
+server.</li>
+</ol>
+<h3 id="sec:test-metrics-206">Test Metrics <a
+href="12-index-mqtt-test-cases.html#sec:test-metrics-206"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After reconnecting to the MQTT server, the EUT transmits an
+MQTTConnectRecord within 30 seconds. The EUT includes the MQTTVersion
+field set to the correct MQTT version and the subscribed_topic field set
+to a Topic that the EUT is subscribed to.</li>
+</ol>
+    <div style="clear: both;"/>
+    <footer class="site-footer">
+<nav>
+<p>
+   <a href="00-index-contents.html#contents">Cover Page</a>
+ | <a href="01-index-test-setup.html#sec:test-setup">Test Setup</a>
+ | <a href="02-index-messages-and-path-names.html#sec:messages-and-path-names">1 Messages and Path Names</a>
+ | <a href="03-index-authentication-and-access-control-test-cases.html#sec:authentication-and-access-control-test-cases">2 Authentication and Access Control Test Cases</a>
+ | <a href="04-index-usp-record-test-cases.html#sec:usp-record-test-cases">3 USP Record Test Cases</a>
+ | <a href="05-index-general-mtp-test-cases.html#sec:general-mtp-test-cases">4 General MTP Test Cases</a>
+ | <a href="06-index-coap-test-cases-deprecated.html#sec:coap-test-cases-deprecated">5 CoAP Test Cases (DEPRECATED)</a>
+ | <a href="07-index-stomp-test-cases.html#sec:stomp-test-cases">6 STOMP Test Cases</a>
+ | <a href="08-index-websocket-test-cases.html#sec:websocket-test-cases">7 WebSocket Test Cases</a>
+ | <a href="09-index-discovery-test-cases.html#sec:discovery-test-cases">8 Discovery Test Cases</a>
+ | <a href="10-index-functionality-test-cases.html#sec:functionality-test-cases">9 Functionality Test Cases</a>
+ | <a href="11-index-bulk-data-collection-test-cases.html#sec:bulk-data-collection-test-cases">10 Bulk Data Collection Test Cases</a>
+ | <a href="12-index-mqtt-test-cases.html#sec:mqtt-test-cases">11 MQTT Test Cases</a>
+</p>
+</nav>
+
+      <span class="site-footer-owner">
+        USP is developed and maintained
+        by <a href="https://www.broadband-forum.org">The Broadband Forum</a>.
+        &copy; The Broadband Forum 2022</a>. All Rights Reserved.
+      </span>
+      <span class="site-footer-credits">
+        This page was generated by <a href="https://pandoc.org">pandoc</a>
+        and <a href="https://pages.github.com">GitHub Pages</a>.
+        View the <a href="https://github.com/BroadbandForum/usp-test">specification
+source on GitHub</a>.
+        <span class="release"/>
+      </span>
+    </footer>
+  </section>
+</body>
+</html>

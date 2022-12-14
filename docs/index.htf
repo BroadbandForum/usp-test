@@ -631,7 +631,7 @@ the protocol’s behavior are indicated with greater-than/less-than
 brackets (&lt;for example&gt;), to indicate a variable. These examples
 should not be taken literally.</p>
 
-<p><code>requested_path</code> # 1 Messages and Path Names</p>
+<h1 id="sec:messages-and-path-names">1 Messages and Path Names<a class="headerlink" href="#sec:messages-and-path-names" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h1>
 
 <h2 id="sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed">1.1 Add message with allow partial false, single object, required parameters succeed<a class="headerlink" href="#sec:add-message-with-allow-partial-false-single-object-required-parameters-succeed" title="Permalink to this header"> <img src='permalink.png' title='' width="0.8em"/></a></h2>
 

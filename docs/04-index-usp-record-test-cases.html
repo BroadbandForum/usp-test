@@ -8,7 +8,7 @@
 Conformance Test Plan for USP Agents"/>
   <meta name="theme-color" content="#157878"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
-  <title>BBF – Test Setup</title>
+  <title>BBF – 3 USP Record Test Cases</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -332,467 +332,907 @@ HTML">HTML</a>
 </nav>
 
     <header id="title-block-header">
-      <h1 class="title" id="sec:test-setup">Test
-Setup<a href="#sec:test-setup" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
+      <h1 class="title" id="sec:usp-record-test-cases">3 USP Record Test
+Cases<a href="#sec:usp-record-test-cases" class="headerlink" title="Permalink to this header"> <img src="permalink.png" style="width: 0.8em"/></a></h1>
     </header>
     <nav id="_TOC" role="doc-toc">
 <ul>
-<li><a href="#sec:test-equipment" id="toc-sec:test-equipment">Test
-Equipment <img src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:test-setup-and-execution"
-id="toc-sec:test-setup-and-execution">Test Setup and Execution <img
+<li><a href="#sec:bad-request-outside-a-session-context"
+id="toc-sec:bad-request-outside-a-session-context">3.1 Bad request
+outside a session context <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:agent-verifies-non-payload-field-integrity"
+id="toc-sec:agent-verifies-non-payload-field-integrity">3.2 Agent
+Verifies Non-Payload Field Integrity <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a
+href="#sec:agent-rejects-invalid-signature-starting-a-session-context"
+id="toc-sec:agent-rejects-invalid-signature-starting-a-session-context">3.3
+Agent rejects invalid signature starting a session context <img
 src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:universal-test-metrics"
-id="toc-sec:universal-test-metrics">Universal Test Metrics <img
+<li><a href="#sec:using-tls-for-usp-record-integrity"
+id="toc-sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP
+Record Integrity <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:failure-to-establish-tls"
+id="toc-sec:failure-to-establish-tls">3.5 Failure to Establish TLS <img
 src="permalink.png" style="width:0.8em" /></a></li>
-<li><a href="#sec:notes-about-test-case-descriptions"
-id="toc-sec:notes-about-test-case-descriptions">Notes about test case
-descriptions <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a
+href="#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange"
+id="toc-sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6
+Agent does not accept TLS renegotiation for E2E message exchange <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:use-of-x.509-certificates"
+id="toc-sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates
+<img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:establishing-a-session-context"
+id="toc-sec:establishing-a-session-context">3.8 Establishing a Session
+Context <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:receipt-of-a-record-out-of-a-session-context"
+id="toc-sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of
+a Record out of a Session Context <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:session-context-expiration"
+id="toc-sec:session-context-expiration">3.10 Session Context Expiration
+<img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:use-of-sequence-id-and-expected-id"
+id="toc-sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID
+and Expected ID <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:preservation-of-usp-records"
+id="toc-sec:preservation-of-usp-records">3.12 Preservation of USP
+Records <img src="permalink.png" style="width:0.8em" /></a></li>
+<li><a
+href="#sec:agent-rejects-records-with-different-payload-security-than-the-established-context"
+id="toc-sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13
+Agent Rejects Records with Different Payload Security than the
+Established Context <img src="permalink.png"
+style="width:0.8em" /></a></li>
+<li><a href="#sec:use-of-retransmit_id"
+id="toc-sec:use-of-retransmit_id">3.14 Use of retransmit_id <img
+src="permalink.png" style="width:0.8em" /></a></li>
+<li><a href="#sec:handling-duplicate-records"
+id="toc-sec:handling-duplicate-records">3.15 Handling Duplicate Records
+<img src="permalink.png" style="width:0.8em" /></a></li>
 </ul>
     </nav>
-<h2 id="sec:test-equipment">Test Equipment <a
-href="01-index-test-setup.html#sec:test-equipment" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h2>
-<p>There are a number of components necessary to the implementation of
-this test suite.</p>
-<p><strong>Traffic Generator</strong> - One or more traffic generators
-are necessary in order to transmit the required traffic to execute the
-test procedures. Traffic generation can be done with script-able, real
-implementations of DHCP servers, mDNS endpoints, and USP endpoints (for
-example), or can be simulated through other means. For tests that
-exercise the presence of multiple Controllers or agents, the traffic
-generators can each represent a single endpoint, or multiple endpoints,
-depending on its capabilities, as long as the traffic can be
-differentiated by the Endpoint Under Test.</p>
-<p><strong>Analyzer</strong> - One or more traffic analyzers are
-necessary to confirm the receipt of messages and evaluate the test
-metrics outlined in the tests below. This analyzer may exist at the
-traffic generator source, in-line, or accessed through a replicated
-interface that will push traffic to the analyzer.</p>
-<p><strong>Test Network</strong> - The tests below require IP layer
-connectivity between the Traffic Generator and the Endpoint Under Test
-(EUT). Steps SHOULD be taken to unsure that the underlying network does
-not interfere with the test procedures or test metrics.</p>
-<h2 id="sec:test-setup-and-execution">Test Setup and Execution <a
-href="01-index-test-setup.html#sec:test-setup-and-execution"
+<h2 id="sec:bad-request-outside-a-session-context">3.1 Bad request
+outside a session context <a
+href="04-index-usp-record-test-cases.html#sec:bad-request-outside-a-session-context"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h2>
-<h3 id="sec:basic-test-setup">Basic Test Setup <a
-href="01-index-test-setup.html#sec:basic-test-setup" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h3>
-<figure>
-<img src="././figure-1.png" id="fig:basic-test-setup"
-alt="Figure 1: Basic Test Setup " />
-<figcaption aria-hidden="true">Figure 1: Basic Test Setup <a
-href="01-index-test-setup.html#fig:basic-test-setup" class="headerlink"
-title="Permalink to this figure"><img src="permalink.png"
-style="width:0.8em" /></a></figcaption>
-</figure>
-<h3 id="sec:functionality-tags">Functionality Tags <a
-href="01-index-test-setup.html#sec:functionality-tags"
+<h3 id="sec:purpose-112">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-112"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<p>USP contains both required and optional functionality. To ensure that
-all different classes of device can exercise this test suite, tests are
-marked as “Mandatory”, “Conditional Mandatory”, or “Deprecated”. This is
-indicated in each individual test case under the “Functionality
-Tag”.</p>
-<p>Tests that are “Deprecated” represent tests that were removed or
-replaced with newer tests.</p>
-<h4
-id="sec:alternate-parameters-objects-commands-and-events-in-test-procedures">Alternate
-parameters, objects, commands, and events in test procedures <a
-href="01-index-test-setup.html#sec:alternate-parameters-objects-commands-and-events-in-test-procedures"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>For tests that make use of particular parameter, object, command,
-event to validate the test metrics, a different subject can be
-substituted that meets the needs of the test. For example, if an EUT
-does not support the Reboot:1 profile, another synchronous operation can
-be substituted for tests 1.61 and 1.62.</p>
-<h3 id="sec:endpoint-requirements-and-metadata-collection">Endpoint
-Requirements and Metadata Collection <a
-href="01-index-test-setup.html#sec:endpoint-requirements-and-metadata-collection"
+<p>The purpose of this test is to ensure the EUT correctly responds to a
+bad request outside a session context.</p>
+<h3 id="sec:functionality-tags-23">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-23"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<h4 id="sec:required-profiles">Required Profiles <a
-href="01-index-test-setup.html#sec:required-profiles" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h4>
-<p>The Device:2 Data Model for USP Agents outlines several profiles that
-contain data model objects, parameters, commands, and events necessary
-to the operation of USP. In order to be able to perform the tests below,
-a USP Agent MUST implement, at minimum, the following profiles:</p>
-<ul>
-<li><p>LocalAgent:1</p></li>
-<li><p>Subscriptions:1</p></li>
-</ul>
-<p>Conditional mandatory tests may require the implementation of
-additional profiles.</p>
-<h4 id="sec:test-cases-required-by-profile-and-option-support">Test
-Cases Required by Profile and Option Support <a
-href="01-index-test-setup.html#sec:test-cases-required-by-profile-and-option-support"
+<p>Mandatory</p>
+<h3 id="sec:test-setup-113">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-113"
 class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>Those seeking to utilize this test plan can use the following feature
-IDs to specify their support for conditional mandatory test cases. Since
-the types of endpoints under test may vary widely in use cases and
-complexity, this list is meant to act as a guide to ensure that many
-kinds of products can achieve compliance. However, when determining
-which tests must be passed to achieve compliance, testers must know
-that:</p>
-<p><strong>An Endpoint Under Test (EUT) MUST complete all Mandatory test
-cases, and MUST complete all Conditional Mandatory test cases for ALL
-features supported by the EUT (see table below).</strong></p>
-<table>
-<colgroup>
-<col style="width: 23%" />
-<col style="width: 38%" />
-<col style="width: 26%" />
-<col style="width: 13%" />
-</colgroup>
-<thead>
-<tr class="header header">
-<th style="text-align: left;">Feature ID</th>
-<th style="text-align: left;">Feature name</th>
-<th style="text-align: left;">Test Cases</th>
-<th style="text-align: left;">Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd odd">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">At least one command</td>
-<td style="text-align: left;">1.61, 1.62</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">At least one command with input
-arguments</td>
-<td style="text-align: left;">1.63</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">At least one asynchronous command</td>
-<td style="text-align: left;">1.64, 1.65</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">Subscription.{i}.NotifExpiration
-parameter</td>
-<td style="text-align: left;">1.56</td>
-<td style="text-align: left;">An extension to the Subscription:1
-profile</td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">Controller:1 profile</td>
-<td style="text-align: left;">1.59</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">6</td>
-<td
-style="text-align: left;">Device.LocalAgent.Subscription.{i}.TimeToLive</td>
-<td style="text-align: left;">1.55</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">7</td>
-<td style="text-align: left;">Controller:1 profile (writeable)</td>
-<td style="text-align: left;">1.78, 9.9</td>
-<td style="text-align: left;">EUT allows the creation of
-Device.LocalAgent.Controller.{i}. objects</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">8</td>
-<td
-style="text-align: left;">Device.LocalAgent.Controller.{i}.SendOnBoardRequest()</td>
-<td style="text-align: left;">1.60, 4.1, 9.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">9</td>
-<td style="text-align: left;">Device.ScheduleTimer()</td>
-<td style="text-align: left;">1.63, 1.79, 9.1</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">10</td>
-<td style="text-align: left;">Reboot:1 profile</td>
-<td style="text-align: left;">1.61, 1.62, 9.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">11</td>
-<td style="text-align: left;">TraceRoute:1 profile</td>
-<td style="text-align: left;">1.64, 1.65</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">12</td>
-<td style="text-align: left;">ControllerTrust:1 profile</td>
-<td style="text-align: left;">2.9, 2.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">13</td>
-<td style="text-align: left;">ControllerTrust:1 profile (writeable)</td>
-<td style="text-align: left;">2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17,
-2.18, 2.19, 2.20, 2.21, 2.22</td>
-<td style="text-align: left;">Additionally supports at least one role
-that allows object creation, or supports writable parameters in
-Device.LocalAgent.ControllerTrust.{i}.Role.{i}.</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">14</td>
-<td style="text-align: left;">Self-signed controller certificates</td>
-<td style="text-align: left;">TBD</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">15</td>
-<td style="text-align: left;">TLS at the MTP Layer</td>
-<td style="text-align: left;">4.1</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">16</td>
-<td style="text-align: left;">CoAP MTP (DEPRECATED)</td>
-<td style="text-align: left;">5.*</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">17</td>
-<td style="text-align: left;">STOMP MTP</td>
-<td style="text-align: left;">6.*</td>
-<td style="text-align: left;">Excludes 6.8 unless option 18 is
-supported</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">18</td>
-<td style="text-align: left;">STOMPHeartbeat:1 profile</td>
-<td style="text-align: left;">6.8</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">19</td>
-<td style="text-align: left;">WebSocket MTP</td>
-<td style="text-align: left;">7.*</td>
-<td style="text-align: left;">Excludes 7.3 unless option 20 is
-supported</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">20</td>
-<td style="text-align: left;">TR-369 requirement R-WS.6</td>
-<td style="text-align: left;">7.3</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">21</td>
-<td style="text-align: left;">Discovery via DHCP Options</td>
-<td style="text-align: left;">8.1, 8.2, 8.3</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">22</td>
-<td style="text-align: left;">Discovery via mDNS</td>
-<td style="text-align: left;">8.4, 8.5, 8.6, 8.7</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">23</td>
-<td style="text-align: left;">Secure Message Exchange (TLS for USP
-Record Integrity)</td>
-<td style="text-align: left;">3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.13</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">24</td>
-<td style="text-align: left;">USP session context</td>
-<td style="text-align: left;">2.6, 2.7, 2.8, 3.8, 3.9, 3.10, 3.11, 3.12,
-3.13, 3.14, 3.15</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">25</td>
-<td style="text-align: left;">Device.LocalAgent.AddCertificate()</td>
-<td style="text-align: left;">9.2</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">26</td>
-<td style="text-align: left;">Firmware:1 profile</td>
-<td style="text-align: left;">9.3, 9.5, 9.6, 9.7</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">27</td>
-<td style="text-align: left;">Firmware:1 profile (Activate)</td>
-<td style="text-align: left;">9.4, 9.5</td>
-<td style="text-align: left;">Supports Firmware:1 profile and
-additionally supports the Activate() operation</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">28</td>
-<td
-style="text-align: left;">Device.LocalAgent.Request.{i}.Cancel()</td>
-<td style="text-align: left;">9.8</td>
-<td style="text-align: left;">Applies only if option 26 is
-supported</td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">29</td>
-<td style="text-align: left;">UntrustedRole disabled</td>
-<td style="text-align: left;">TBD</td>
-<td style="text-align: left;">The use of UntrustedRole must be either
-unsupported, or capable of being disabled, to run this test</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">30</td>
-<td style="text-align: left;">Device.DeviceInfo.BootFirmwareImage</td>
-<td style="text-align: left;">9.10</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">31</td>
-<td style="text-align: left;">The product supports at least one nested
-multi-instance object</td>
-<td style="text-align: left;">1.10, 1.71, 1.83</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">32</td>
-<td style="text-align: left;">HTTP bulk data collection with JSON
-encoding</td>
-<td style="text-align: left;">10.1, 10.2, 10.5, 10.6, 10.7, 10.8,
-10.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">33</td>
-<td style="text-align: left;">HTTP bulk data collection with CSV
-encoding</td>
-<td style="text-align: left;">10.3, 10.4, 10.5, 10.6, 10.7, 10.8,
-10.9</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">34</td>
-<td style="text-align: left;">Bulk data collection via the Push!
-Event</td>
-<td style="text-align: left;">10.10, 10.11, 10.12</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd odd">
-<td style="text-align: left;">35</td>
-<td style="text-align: left;">MQTT MTP, version 3.1.1</td>
-<td style="text-align: left;">11.*</td>
-<td style="text-align: left;">Excludes 11.4, 11.7, 11.8, 11.10, &amp;
-11.15, MQTT 5.0 only tests</td>
-</tr>
-<tr class="even even">
-<td style="text-align: left;">36</td>
-<td style="text-align: left;">MQTT MTP, version 5.0</td>
-<td style="text-align: left;">11.*</td>
-<td style="text-align: left;"></td>
-</tr>
-</tbody>
-</table>
-<h4 id="sec:elements-specified-in-the-test-procedure">Elements Specified
-in the Test Procedure <a
-href="01-index-test-setup.html#sec:elements-specified-in-the-test-procedure"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>Many of the mandatory and conditional mandatory tests specify the
-objects, parameters, or operations to be used for the test. If the
-specific elements are not supported by the EUT, other elements that will
-satisfy the test criteria MAY be used instead. If so, the test report
-MUST include the alternate elements used.</p>
-<h4 id="sec:required-eut-information-and-resources">Required EUT
-Information and Resources <a
-href="01-index-test-setup.html#sec:required-eut-information-and-resources"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h4>
-<p>In order to be able to perform the tests and create a report of the
-results, the following must be provided concerning the Endpoint Under
-Test:</p>
+src="permalink.png" style="width:0.8em" /></a></h3>
 <ol>
-<li>The software and/or firmware version of the EUT.</li>
-<li>The number of firmware banks available if the Firmware:1 profile is
-supported.</li>
-<li>A list of the feature IDs supported.</li>
-<li>If the service elements specified in the tests are not supported,
-provide a list of alternate elements used in the testing.</li>
+<li>Ensure the EUT is configured to not use a session context.</li>
+<li>Ensure that the EUT and test equipment have the necessary
+information to send and receive USP Records to each other.</li>
 </ol>
-<h3 id="sec:clean-up-procedures">Clean-Up Procedures <a
-href="01-index-test-setup.html#sec:clean-up-procedures"
+<h3 id="sec:test-procedure-105">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-105"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h3>
-<p>A number of tests that make changes to the EUT have procedures that
-are not part of the validation portion of the test case. These
-procedures are intended to “clean up” any changes that were made during
-the test to ensure that the EUT is in a relatively known state from one
-test case to the next. The most obvious example is using the Delete
-message to remove any objects that were added as part of the procedure,
-but the clean-up procedure may include any number of steps.</p>
-<h2 id="sec:universal-test-metrics">Universal Test Metrics <a
-href="01-index-test-setup.html#sec:universal-test-metrics"
-class="headerlink" title="Permalink to this header"><img
-src="permalink.png" style="width:0.8em" /></a></h2>
-<p>Due to the nature of performative testing of protocol messages,
-certain requirements in the specification are effectively tested every
-time. Writing additional test cases for these metrics is unnecessary,
-but the requirements must still be met by endpoint implementations.</p>
 <ol>
-<li><p>The Endpoint ID of the Endpoint Under Test is valid (ARC.3,
-ARC.4, ARC.5, and the requirements outlined in the <a
-href="http://usp.technology/specification/architecture/#endpoint_identifier">authority-scheme
-table</a>).</p></li>
-<li><p>The USP records and USP messages of the Endpoint Under Test are
-valid according to the usp-record.proto and usp-msg.proto schemas
-(ENC.0, ENC.1).</p></li>
-<li><p>The Path Names and Search Paths used in messages sent by the
-Endpoint Under Test are valid according to <a
-href="http://usp.technology/specification/architecture/#data_model_path_grammar">Data
-Model Path Grammar</a> and TR-106 (ARC.7).</p></li>
-<li><p>Path Names in messages originating from the EUT use instance
-number addressing (R-MSG.3).</p></li>
+<li>Send a malformed USP Record to the EUT.</li>
 </ol>
-<h2 id="sec:notes-about-test-case-descriptions">Notes about test case
-descriptions <a
-href="01-index-test-setup.html#sec:notes-about-test-case-descriptions"
+<h3 id="sec:test-metrics-112">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-112"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT either ignores the malformed record or sends a USP Record
+Error.</li>
+</ol>
+<h2 id="sec:agent-verifies-non-payload-field-integrity">3.2 Agent
+Verifies Non-Payload Field Integrity <a
+href="04-index-usp-record-test-cases.html#sec:agent-verifies-non-payload-field-integrity"
 class="headerlink" title="Permalink to this header"><img
 src="permalink.png" style="width:0.8em" /></a></h2>
-<p>Each of the test cases below have the following sections:</p>
-<p><strong>Purpose</strong> - The purpose describes the reasoning for
-the test case, based on the normative requirements defined in USP.</p>
-<p><strong>Functionality Tag</strong> - The functionality tag indicates
-whether the test is mandatory or conditional mandatory. If it is the
-latter, this section will list any additional Device:2 profiles
-necessary to the performance of the test case.</p>
-<p><strong>Test Setup</strong> - The test setup section indicates any
-special prior conditions that must be configured before performing the
-test.</p>
-<p><strong>Test Procedure</strong> - The procedure indicates the steps,
-in order, taken to perform the test.</p>
-<p><strong>Test Metrics</strong> - The metrics indicate the required
-behavior that must be observed to consider the test passed.</p>
-<h3 id="sec:use-of-examples">Use of examples <a
-href="01-index-test-setup.html#sec:use-of-examples" class="headerlink"
-title="Permalink to this header"><img src="permalink.png"
-style="width:0.8em" /></a></h3>
-<p>The test setup, procedure, and metrics in each test case may contain
-examples of the data to be sent to or received from the EUT. In these
-examples, elements that are to be filled with a known value dependent on
-the protocol’s behavior are indicated with greater-than/less-than
-brackets (&lt;for example&gt;), to indicate a variable. These examples
-should not be taken literally.</p>
+<h3 id="sec:purpose-113">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-113"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT verifies the integrity
+of the non-payload fields in a USP record.</p>
+<h3 id="sec:functionality-tags-24">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-24"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-114">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-114"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the relevant equipment are configured to NOT provide
+integrity protection at the MTP layer.</li>
+<li>Ensure that the EUT and test equipment have the necessary
+information to send and receive USP records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-106">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-106"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send a Get message to the EUT with a <code>payload_security</code>
+of PLAINTEXT.</li>
+</ol>
+<h3 id="sec:test-metrics-113">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-113"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After the EUT receives the USP record, it exhibits the expected ‘bad
+request’ behavior for the applicable MTP.</li>
+</ol>
+<h2
+id="sec:agent-rejects-invalid-signature-starting-a-session-context">3.3
+Agent rejects invalid signature starting a session context <a
+href="04-index-usp-record-test-cases.html#sec:agent-rejects-invalid-signature-starting-a-session-context"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-114">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-114"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT handles an attempt to
+start a session context with an invalid <code>mac_signature</code>.</p>
+<h3 id="sec:functionality-tags-25">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-25"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-115">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-115"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure that the EUT and test equipment have the necessary
+information to send and receive USP records to each other.</li>
+</ol>
+<h3 id="sec:test-procedure-107">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-107"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Send a TLS ‘client hello’ to the EUT to begin a session context as
+described in ‘<a
+href="https://usp.technology/specification/e2e-message-exchange/">End to
+End Message Exchange</a>’ in TR-369 with an invalid
+<code>mac_signature</code>.</li>
+</ol>
+<h3 id="sec:test-metrics-114">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-114"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After the EUT receives the USP record, it exhibits the expected ‘bad
+request’ behavior for the applicable MTP.</li>
+</ol>
+<h2 id="sec:using-tls-for-usp-record-integrity">3.4 Using TLS for USP
+Record Integrity <a
+href="04-index-usp-record-test-cases.html#sec:using-tls-for-usp-record-integrity"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-115">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-115"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT uses TLS to validate
+the integrity of USP records when the <code>payload_security</code> is
+TLS and the TLS handshake has completed.</p>
+<h3 id="sec:functionality-tags-26">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-26"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-116">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-116"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller are configured to secure the USP
+record payload with TLS.</li>
+</ol>
+<h3 id="sec:test-procedure-108">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-108"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Start a E2E session with the EUT using TLS to secure the
+payload.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-115">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-115"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>In the GetResponse sent by the EUT, the <code>mac_signature</code>
+in the USP Record secures the non-payload fields via the MAC
+mechanism.</li>
+<li>The <code>mac_signature</code> in the USP record sent by the EUT
+validates the integrity of the non-payload fields.</li>
+</ol>
+<h2 id="sec:failure-to-establish-tls">3.5 Failure to Establish TLS <a
+href="04-index-usp-record-test-cases.html#sec:failure-to-establish-tls"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-116">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-116"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT behaves correctly when
+the TLS session used to encapsulate the payload cannot be
+established.</p>
+<h3 id="sec:functionality-tags-27">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-27"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-117">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-117"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Configure the controller to use TLS12 as a
+<code>payload_security</code>.</li>
+<li>Ensure <code>PeriodicNotifInterval</code> is ‘60’, and the
+controller used for testing is subscribed to Periodic Event
+Notification.</li>
+</ol>
+<h3 id="sec:test-procedure-109">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-109"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.E2ESession.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Attempt to establish a new secure session with the EUT using TLS
+payload encapsulation.</p></li>
+<li><p>Configure the controller to send TLS alerts during the TLS
+handshake process.</p></li>
+<li><p>Wait for the EUT to attempt to start a session with the
+controller.</p></li>
+<li><p>Allow the controller to send a TLS alert to the EUT and for the
+session to terminate.</p></li>
+<li><p>Configure the controller to not send a TLS alert.</p></li>
+<li><p>Wait for the EUT to retry establishing a E2E session.</p></li>
+</ol>
+<h3 id="sec:test-metrics-116">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-116"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After sending the client certificate to the EUT, the EUT sends a TLS
+alert, terminating the session.</li>
+<li>After step 5, the EUT waits before retrying the session in
+accordance with the ‘SessionRetry’ parameters found in step 1.</li>
+</ol>
+<h2
+id="sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange">3.6
+Agent does not accept TLS renegotiation for E2E message exchange <a
+href="04-index-usp-record-test-cases.html#sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-117">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-117"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT does not accept TLS
+renegotiation. frames during a E2E message exchange.</p>
+<h3 id="sec:functionality-tags-28">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-28"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-118">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-118"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure both the EUT and the controller are configured to use TLS
+payload security.</li>
+</ol>
+<h3 id="sec:test-procedure-110">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-110"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Establish a E2E session with the EUT.</p></li>
+<li><p>Send a request to renegotiate TLS in place of the
+payload.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a GetResponse from the EUT.</p></li>
+</ol>
+<h3 id="sec:test-metrics-117">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-117"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Between sending the TLS renegotiation request and receiving the
+GetResponse, the EUT either sends no records, or sends a TLS alert of
+type <code>no_renegotiation(100)</code>.</li>
+</ol>
+<h2 id="sec:use-of-x.509-certificates">3.7 Use of X.509 Certificates <a
+href="04-index-usp-record-test-cases.html#sec:use-of-x.509-certificates"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-118">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-118"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly uses X.509
+certificates to authenticate other endpoints, and in turn provides a
+X.509 certificate for the purpose of authentication.</p>
+<h3 id="sec:functionality-tags-29">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-29"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>‘Conditional Mandatory (supports Secure Message Exchange using TLS
+for USP Record Integrity)’</p>
+<h3 id="sec:test-setup-119">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-119"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller are configured to use TLS payload
+security.</li>
+</ol>
+<h3 id="sec:test-procedure-111">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-111"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Configure the controller to provide a X.509 certificate with a
+<code>subjectAltName</code> that does not match the controller’s USP
+endpoint ID.</p></li>
+<li><p>Attempt to start a session with the EUT and send a Get message
+with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-118">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-118"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>During the TLS handshake the EUT provides a X.509 certificate with a
+<code>subjectAltName</code> that matches the endpoint ID of the
+EUT.</li>
+<li>During the TLS handshake the EUT requests a X.509 certificate from
+the controller.</li>
+<li>The EUT rejects the controller’s certificate.</li>
+</ol>
+<h2 id="sec:establishing-a-session-context">3.8 Establishing a Session
+Context <a
+href="04-index-usp-record-test-cases.html#sec:establishing-a-session-context"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-119">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-119"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can use a session
+context to exchange USP messages.</p>
+<h3 id="sec:functionality-tag-90">Functionality Tag <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tag-90"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-120">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-120"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+establish a connection and exchange USP messages.</li>
+<li>Ensure at the start of the test there is no existing session context
+between the EUT and controller.</li>
+</ol>
+<h3 id="sec:test-procedure-112">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-112"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Start a session context with the EUT and send a Get message with
+the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.&#39;
+        }
+    }
+}</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-119">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-119"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After step 1, the EUT responds with a USP record containing a
+session context, a <code>sequence_number</code> of 1 and a
+<code>session_id</code> that matched the session identifier sent to the
+EUT.</li>
+</ol>
+<h2 id="sec:receipt-of-a-record-out-of-a-session-context">3.9 Receipt of
+a Record out of a Session Context <a
+href="04-index-usp-record-test-cases.html#sec:receipt-of-a-record-out-of-a-session-context"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-120">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-120"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly handles the
+receiving of a USP record outside of a session context.</p>
+<h3 id="sec:functionality-tags-30">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-30"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-121">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-121"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+establish a session and exchange USP messages.</li>
+</ol>
+<h3 id="sec:test-procedure-113">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-113"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Start a session with the EUT using a session context.</p></li>
+<li><p>Send a Get message to the EUT for <code>Device.DeviceInfo.</code>
+using a USP Record with the following structure:</p>
+<pre><code>Record {
+      session_context {
+        session_id: &lt;new_session_id&gt;
+        sequence_id:  1
+        expected_id:  1
+        payload {
+            #  ...
+          }
+        }
+      }</code></pre></li>
+</ol>
+<h3 id="sec:test-metrics-120">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-120"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends the GetResponse in a USP Record using the new
+<code>session_id</code> and a <code>sequence_id</code> of 1.</li>
+</ol>
+<h2 id="sec:session-context-expiration">3.10 Session Context Expiration
+<a
+href="04-index-usp-record-test-cases.html#sec:session-context-expiration"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-121">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-121"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly adheres to
+the <code>SessionExpiration</code> parameter.</p>
+<h3 id="sec:functionality-tags-31">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-31"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-122">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-122"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information
+required to start a session and exchange USP records.</li>
+<li>Ensure the controller is subscribed to Periodic! event.</li>
+</ol>
+<h3 id="sec:test-procedure-114">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-114"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.E2ESession.&#39;
+                    param_settings {
+                            param: &#39;SessionExpiration&#39;
+                            value: &#39;60&#39;
+                        }
+                }
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.&#39;
+                    param_settings {
+                            param: &#39;PeriodicNotifInterval&#39;
+                            value: &#39;10&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for 3 Notify messages from the EUT containing a Periodic!
+event.</p></li>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.E2ESession.&#39;
+                    param_settings: {
+                            param: &#39;SessionExpiration&#39;
+                            value: &#39;5&#39;
+                        }
+                }
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.&#39;
+                    param_settings {
+                            param: &#39;PeriodicNotifInterval&#39;
+                            value: &#39;10&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for 3 Notify messages from the EUT containing a Periodic!
+event.</p></li>
+</ol>
+<h3 id="sec:test-metrics-121">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-121"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>All three Notify messages received in step 2 use the same session
+context.</li>
+<li>None of the three Notify messages received in step 4 shared the same
+session context.</li>
+</ol>
+<h2 id="sec:use-of-sequence-id-and-expected-id">3.11 Use of Sequence ID
+and Expected ID <a
+href="04-index-usp-record-test-cases.html#sec:use-of-sequence-id-and-expected-id"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-122">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-122"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly uses the
+<code>sequence_id</code> and <code>expected_id</code> attributes found
+in a session context.</p>
+<h3 id="sec:functionality-tags-32">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-32"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-123">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-123"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+start a session and exchange USP messages.</li>
+<li>Ensure the controller is not subscribed to any events on the
+EUT.</li>
+</ol>
+<h3 id="sec:test-procedure-115">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-115"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Start a new session by sending a Get message to the EUT with
+<code>sequence_id</code> and <code>expected_id</code> set to 1 for
+‘Device.DeviceInfo.ModelNumber’.</li>
+<li>Send a Get message to the EUT with the <code>sequence_id</code> and
+<code>expected_id</code> set to 4 for
+‘Device.DeviceInfo.SoftwareVersion’.</li>
+<li>Send a Get message to the EUT with the <code>sequence_id</code> and
+<code>expected_id</code> set to 2 for
+‘Device.DeviceInfo.HardwareVersion’.</li>
+<li>Send a Get message to the EUT with the <code>sequence_id</code> and
+<code>expected_id</code> set to 3 for
+‘Device.DeviceInfo.HardwareVersion’.</li>
+</ol>
+<h3 id="sec:test-metrics-122">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-122"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>After step 1, the EUT returns a GetResponse with a
+<code>sequence_id</code> of 1 containing the parameter
+‘Device.DeviceInfo.ModelNumber’.</li>
+<li>The EUT buffers the Get message sent in step 2 and does not
+immediately respond.</li>
+<li>After step 3, The EUT sends a GetResponse with a
+<code>sequence_id</code> of 2 containing the parameter
+‘Device.DeviceInfo.HardwareVersion’.</li>
+<li>After step 4, the EUT sends a GetResponse with a
+<code>sequence_id</code> of 3 containing the parameter
+‘Device.DeviceInfo.HardwareVersion’. The EUT then sends a GetResponse
+for the buffered Get message from step 2 with a <code>sequence_id</code>
+of 4 containing the parameter ‘Device.DeviceInfo.SoftwareVersion’.</li>
+</ol>
+<h2 id="sec:preservation-of-usp-records">3.12 Preservation of USP
+Records <a
+href="04-index-usp-record-test-cases.html#sec:preservation-of-usp-records"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<p>The purpose of this test is to ensure the EUT preserves a sent record
+in the event the receiving endpoint requests a retransmission.</p>
+<h3 id="sec:functionality-tags-33">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-33"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-124">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-124"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+start a session an exchange USP messages.</li>
+</ol>
+<h3 id="sec:test-procedures">Test Procedures <a
+href="04-index-usp-record-test-cases.html#sec:test-procedures"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Start a new session.</p></li>
+<li><p>Send a Get message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: GET
+}
+body {
+    request {
+        get {
+            param_paths: &#39;Device.DeviceInfo.&#39;
+        }
+    }
+}</code></pre></li>
+<li><p>Wait 60 seconds.</p></li>
+<li><p>Send a USP record to the EUT with a <code>retransmit_id</code>
+set to the <code>expected_id</code> value in the record sent in step
+1.</p></li>
+</ol>
+<h3 id="sec:test-metrics-123">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-123"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT sends the same GetResponse twice, once after step 2 and once
+after step 4.</li>
+</ol>
+<h2
+id="sec:agent-rejects-records-with-different-payload-security-than-the-established-context">3.13
+Agent Rejects Records with Different Payload Security than the
+Established Context <a
+href="04-index-usp-record-test-cases.html#sec:agent-rejects-records-with-different-payload-security-than-the-established-context"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-123">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-123"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT does not accept USP
+Records that have a different <code>payload_security</code> value than
+the that of the established session context.</p>
+<h3 id="sec:functionality-tags-34">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-34"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports Secure Message Exchange using TLS for
+USP Record Integrity)</p>
+<h3 id="sec:test-setup-125">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-125"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+start a session and exchange USP messages.</li>
+<li>Ensure the EUT and controller have the necessary information to
+secure the USP record payload using TLS.</li>
+</ol>
+<h3 id="sec:test-procedure-116">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-116"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Starts a session with the EUT using <code>payload_security</code>
+TLS12.</li>
+<li>After the session is established, send the following Get message for
+any valid parameter using <code>payload_security</code> PLAINTEXT and a
+plaintext payload.</li>
+</ol>
+<h3 id="sec:test-metrics-124">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-124"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT does not send a GetResponse.</li>
+<li>The EUT starts a new session after step 2.</li>
+</ol>
+<h2 id="sec:use-of-retransmit_id">3.14 Use of retransmit_id <a
+href="04-index-usp-record-test-cases.html#sec:use-of-retransmit_id"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-124">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-124"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT correctly uses the
+<code>retransmit_id</code> value in a USP record and adheres to the
+related parameters in the data model.</p>
+<h3 id="sec:functionality-tags-35">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-35"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditionality Mandatory (supports session context)</p>
+<h3 id="sec:test-setup-126">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-126"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+start a session and exchange USP messages.</li>
+</ol>
+<h3 id="sec:test-procedure-117">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-117"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li><p>Send a Set message to the EUT with the following structure:</p>
+<pre data-filter="pbv" type="Msg"><code>header {
+    msg_id: &#39;&lt;msg_id&gt;&#39;
+    msg_type: SET
+}
+body {
+    request {
+        set {
+            update_objs {
+                    obj_path: &#39;Device.LocalAgent.Controller.&lt;controller instance&gt;.E2ESession.&#39;
+                    param_settings {
+                            param: &#39;MaxRetransmitTries&#39;
+                            value: &#39;2&#39;
+                        }
+                }
+        }
+    }
+}</code></pre></li>
+<li><p>Wait for a SetResponse</p></li>
+<li><p>Send a USP record with a <code>retransmit_id</code> set to the
+value of the <code>sequence_id</code> found in the SetResponse in step
+2.</p></li>
+<li><p>Repeat steps 2 and 3 twice more.</p></li>
+</ol>
+<h3 id="sec:test-metrics-125">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-125"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The first three SetResponse messages are sent in the same session
+context.</li>
+<li>On the third retransmit request, the EUT doesn’t send a SetResponse
+and instead starts a new session with the controller.</li>
+</ol>
+<h2 id="sec:handling-duplicate-records">3.15 Handling Duplicate Records
+<a
+href="04-index-usp-record-test-cases.html#sec:handling-duplicate-records"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h2>
+<h3 id="sec:purpose-125">Purpose <a
+href="04-index-usp-record-test-cases.html#sec:purpose-125"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>The purpose of this test is to ensure the EUT can correctly handle
+receiving duplicate records.</p>
+<h3 id="sec:functionality-tags-36">Functionality Tags <a
+href="04-index-usp-record-test-cases.html#sec:functionality-tags-36"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<p>Conditional Mandatory (supports USP session context)</p>
+<h3 id="sec:test-setup-127">Test Setup <a
+href="04-index-usp-record-test-cases.html#sec:test-setup-127"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Ensure the EUT and controller have the necessary information to
+start session and exchange USP messages.</li>
+</ol>
+<h3 id="sec:test-procedure-118">Test Procedure <a
+href="04-index-usp-record-test-cases.html#sec:test-procedure-118"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>Start a session with the EUT.</li>
+<li>Send a Get message to the EUT requesting a parameter that is known
+to exist.</li>
+<li>Retransmit the same USP record sent in step 2 to the EUT, using the
+same non-payload USP record field values.</li>
+<li>Repeat step 3 twice more.</li>
+</ol>
+<h3 id="sec:test-metrics-126">Test Metrics <a
+href="04-index-usp-record-test-cases.html#sec:test-metrics-126"
+class="headerlink" title="Permalink to this header"><img
+src="permalink.png" style="width:0.8em" /></a></h3>
+<ol>
+<li>The EUT send only one GetResponse.</li>
+</ol>
     <div style="clear: both;"/>
     <footer class="site-footer">
 <nav>

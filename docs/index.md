@@ -275,7 +275,7 @@ the protocol's behavior are indicated with greater-than/less-than
 brackets (<for example>), to indicate a variable. These examples
 should not be taken literally.
 
-`requested_path` # 1 Messages and Path Names
+# 1 Messages and Path Names
 
 ## 1.1 Add message with allow partial false, single object, required parameters succeed
 

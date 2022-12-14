@@ -1,4 +1,4 @@
-`requested_path` # 1 Messages and Path Names
+# 1 Messages and Path Names
 
 ## 1.1 Add message with allow partial false, single object, required parameters succeed
 
