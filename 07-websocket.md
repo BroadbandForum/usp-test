@@ -133,7 +133,12 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 1. The EUT sends a WebSocket Close frame.
 
-## 7.5 Rejection of Session Establishment
+## 7.5 Rejection of Session Establishment - DEPRECATED
+
+### Deprecation Notice
+
+This test was deprecated in TP-469 Issue 1 Amendment 3 due to the deprecation of
+R-WS.10a in TR-369 Issue 1 Amendment 3.
 
 ### Purpose
 
@@ -338,3 +343,50 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 1. After reconnecting to the test controller the EUT transmits a
    WebSocketConnectRecord to the test controller within 30 seconds.
+
+## 7.11 Websocket response does not include bbf-usp-protocol 
+
+### Purpose
+
+The purpose of this test is to ensure the EUT properly processes a Websocket
+response that does not contain the bbf-usp-protocol Websocket Extension.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the WebSocket MTP)
+
+### Test Setup
+
+1. Ensure the EUT is configured to connect to the test controller using WebSocket.
+
+### Test Procedure
+
+1. Configure the controller to not include 'bbf-usp-protocol' in its Sec-WebSocket-Extensions header when opening new WebSocket connections.
+
+2. Reboot the EUT.
+
+3. Attempt to start a WebSocket connection to the EUT.
+
+4. Send a Get message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg_id>'
+        msg_type: GET
+    }
+    body {
+        request {
+            get {
+                param_paths: 'Device.DeviceInfo.'
+            }
+        }
+    }
+    ```
+
+5. Wait for a GetResponse from the EUT
+
+### Test Metrics
+
+1. The EUT is able to establish a WebSocket connection to the controller.
+
+2. The EUT sends a GetResponse to the Get message sent in step 4.

@@ -155,7 +155,7 @@ specify their support for conditional mandatory test cases. Since the types of e
 | Feature ID | Feature name | Test Cases | Notes |
 | :-------- | :-------------- | :--------- | :---- |
 | 1 | At least one command | 1.61, 1.62 | |
-| 2 | At least one command with input arguments | 1.63 | |
+| 2 | At least one command with input arguments | 1.79 | |
 | 3 | At least one asynchronous command | 1.64, 1.65 | |
 | 4 | Subscription.{i}.NotifExpiration parameter |  1.56 | An extension to the Subscription:1 profile |
 | 5 | Controller:1 profile | 1.59 | |
@@ -166,7 +166,7 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
 | 11 | TraceRoute:1 profile | 1.64, 1.65 | |
 | 12 | ControllerTrust:1 profile | 2.9, 2.10 | |
-| 13 | ControllerTrust:1 profile (writeable) | 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
+| 13 | ControllerTrust:1 profile (writeable) | 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22, 2.23, 2.24, 2.25, 2.26 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
 | 14 | Self-signed controller certificates | TBD | |
 | 15 | TLS at the MTP Layer | 4.1 | |
 | 16 | CoAP MTP (DEPRECATED)| 5.* | |
@@ -190,6 +190,10 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 34 | Bulk data collection via the Push! Event | 10.10, 10.11, 10.12 |
 | 35 | MQTT MTP, version 3.1.1 | 11.* | Excludes 11.4, 11.7, 11.8, 11.10, & 11.15, MQTT 5.0 only tests |
 | 36 | MQTT MTP, version 5.0 | 11.* | |
+| 37 | TriggerAction | 1.93, 1.94 | Supports the Device.LocalAgent.Subscription.{i}.TriggerAction and Device.LocalAgent.Subscription.{i}.TriggerConfigSettings parameters |
+| 38 | Command with input arguments | 1.97 | Supports a command that includes one or more input arguments |
+| 39 | Event with arguments | 1.98 | Supports an event that includes one or more arguments |
+| 40 | Device.LocalAgent.ControllerTrust.SecuredRoles | 2.27 | Supports the use of the SecuredRole for Secured Parameters |
 
 
 #### Elements Specified in the Test Procedure
@@ -244,6 +248,13 @@ requirements must still be met by endpoint implementations.
 
 4.  Path Names in messages originating from the EUT use instance number
     addressing (R-MSG.3).
+
+### Appropriate Error Codes
+
+When test cases specify that the EUT include "an appropriate error code", the
+error code must be applicable to the USP message for which it was triggered, as
+is documented in the [Error Codes
+table](https://usp.technology/specification/index.html#sec:error-codes).
 
 ## Notes about test case descriptions
 

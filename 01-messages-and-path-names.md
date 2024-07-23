@@ -317,10 +317,9 @@ Mandatory
 
 1.  The EUT sends an Error message.
 
-2.  The Error message contains an `err_code` of 7004, 'Invalid
-    Arguments', with the `param_errs` element containing a single error
-    with a `param_path` that indicates the Enable parameter, and an
-    `err_code` of '7011' (Invalid Type) or '7012' (Invalid Value).
+2.  The Error message contains an appropriate error code with the `param_errs`
+    element containing a single error with a `param_path` that indicates the
+    Enable parameter, and an appropriate error code.
 
 3. The EUT did not create a new Subscription object.
 
@@ -403,10 +402,9 @@ Mandatory
 
 1.  The EUT sends an Error message.
 
-2.  The Error message contains an `err_code` of 7004, 'Invalid
-    Arguments', with the `param_errs` element containing a single error
-    with a `param_path` of 'Device.LocalAgent.InvalidObject.', and an
-    `err_code` of 7026, 'Invalid Path'.
+2.  The Error message contains an appropriate error code with the `param_errs`
+    element containing a single error with a `param_path` of
+    'Device.LocalAgent.InvalidObject.', and an appropriate error code.
 
 3. The EUT did not create a new Subscription object.
 
@@ -659,10 +657,9 @@ Mandatory
 
 1.  The EUT sends an Error message.
 
-2.  The Error message contains an `err_code` of 7004, 'Invalid
-    Arguments', with the `param_errs` element containing a single error
-    with a `param_path` of 'Device.LocalAgent.InvalidObject.', and an
-    `err_code` of 7026, 'Invalid Path'.
+2.  The Error message contains an appropriate error code with the `param_errs`
+     element containing a single error with a `param_path` of
+    'Device.LocalAgent.InvalidObject.', and an appropriate error code.
 
 3. The EUT did not create a new Subscription object.
 
@@ -750,10 +747,9 @@ Mandatory
 
 1.  The EUT sends an Error message.
 
-2.  The Error message contains an `err_code` of 7004, 'Invalid
-    arguments', with the `param_errs` element containing a single error
-    with a `param_path` that indicates the Enable parameter, and an
-    `err_code` of '7011' (Invalid Type) or '7012' (Invalid Value).
+2.  The Error message contains an appropriate error code with the `param_errs`
+    element containing a single error with a `param_path` that indicates the
+    Enable parameter, and an appropriate error code.
 
 3.  The GetResp from the EUT does not contain a Subscription instance
     with ID 'add71' or 'add72'.
@@ -825,7 +821,7 @@ Mandatory
 
 2.  The AddResp contains a single CreatedObjectResult that has an
     OperationStatus that is an element of type OperationFailure. The
-    OperationFailure element contains an `err_code` of '7011' (Invalid Type) or '7012' (Invalid Value).
+    OperationFailure element contains an appropriate error code.
 
 3.  The GetResp from the EUT does not contain a Subscription instance
     with ID 'add8'.
@@ -928,7 +924,7 @@ Mandatory
       body {
         request {
           get {
-            param_paths: 'Device.LocalAgent.Subscription.<instance identifier>.'
+            param_paths: 'Device.LocalAgent.Subscription.'
           }
         }
       }
@@ -964,10 +960,8 @@ Mandatory
 
     a.  One CreateObjectResult is an element of type OperationSuccess. The OperationSuccess element contains no parameter errors and 3 elements in the unique key map: Alias, Recipient, and ID. Alternatively, the OperationSuccess contains 2 elements in the unique key map if the Alias parameter is not supported: Recipient, and ID.
 
-    b.  The other CreateObjectResult is an element of type
-    OperationFailure. The OperationFailure element contains an `err_code` of
-    '7010' ('Unsupported Parameter'), '7017' ('Object could not be created'),
-    or '7026' ('Invalid Path').
+    b.  The other CreateObjectResult is an element of type OperationFailure. The
+    OperationFailure element contains an appropriate error code.
 
 3.  The EUT creates the first Subscription object, and does not create
     the second Subscription object.
@@ -1391,11 +1385,10 @@ Mandatory
 
 1.  The EUT sends an Error.
 
-2.  The Error contains `err_code` '7004', 'Invalid Arguments', and a
+2.  The Error contains an appropriate error code and a
     single ParamError element. The ParamError element contains a
     `param_path` of 'Device.LocalAgent.Subscription.<instance
-    identifier>.InvalidParameter' and an `err_code` of '7010',
-    'Unsupported Parameter'.
+    identifier>.InvalidParameter' and an appropriate error code.
 
 3.  The GetResp contains a single Subscription instance that does not include
     a 'InvalidParameter' parameter.
@@ -1462,11 +1455,10 @@ Mandatory
 
 1.  The EUT sends an Error.
 
-2.  The Error contains `err_code` '7004', 'Invalid Arguments', and a
+2.  The Error contains an appropriate error code and a
     single ParamError element. The ParamError element contains a
     `param_path` of 'Device.LocalAgent.Subscription.<instance
-    identifier>.InvalidParameter' and an `err_code` of '7010',
-    'Unsupported Parameter'.
+    identifier>.InvalidParameter' and an appropriate error code.
 
 3.  The GetResp contains at least two Subscription instances, neither of which
     contain a `InvalidParameter` parameter and the first instance from the test setup
@@ -1560,15 +1552,15 @@ Mandatory
         single entry in the `updated_params` map containing 'NotifRetry'
         as the key.
 
-    b.  The second UpdatedObjectResult has an OperationStatus that is an
-        element of type OperationFailure. The OperationFailure contains
-        an `err_code` of '7021', 'Required parameter failed', and a
-        single UpdatedInstanceFailure element. The
+    b.  The second UpdatedObjectResult has an OperationStatus that is an element
+        of type OperationFailure. The OperationFailure contains an appropriate
+        error code and a single UpdatedInstanceFailure element. The
         UpdatedInstanceFailure has an `affected_path` with a value of
-        'Device.LocalAgent.Subscription.<instance identifier>.',
-        and a single ParameterError element.
+        'Device.LocalAgent.Subscription.<instance identifier>.', and a single
+        ParameterError element.
 
-    c.  The ParameterError has a `param` element with a value of 'InvalidParameter' and an `err_code` of '7010', 'Unsupported Parameter'.
+    c.  The ParameterError has a `param` element with a value of
+        'InvalidParameter' and an appropriate error code.
 
 3.  The retrieved value matches the value set in the `param_settings`
     element for the first object.
@@ -1659,7 +1651,7 @@ Mandatory
 
     c.  The UpdatedInstanceResult has a single ParameterError element,
         with the 'param' field set to 'InvalidParameter', and an
-        `err_code` of '7010', 'Unsupported Parameter'.
+        appropriate error code.
 
 3.  The retrieved value of NotifRetry matches the value set in the
     `param_settings` element.
@@ -1874,18 +1866,24 @@ Mandatory
         }
       ```
 
-2.  Allow the EUT to send an Error.
+2.  Allow the EUT to send a SetResp.
 
 3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1.  The EUT sends an Error.
+1.  The EUT sends a SetResp.
 
-2.  The Error contains an appropriate error code and at
-    least one ParamError element. The ParamError element contains a
-    `param_path` of 'Device.LocalAgent.Subscription.<instance
-    identifier of relevant object>.InvalidParameter' and an appropriate error code.
+2. The SetResp contains an UpdatedObjectResults element.
+
+3.  The UpdatedObjectResults has an OperationStatus that is an element of type
+    OperationFailure. The OperationFailure contains an appropriate error code
+    and at least one UpdatedInstanceFailure element. The UpdatedInstanceFailure
+    has an affected_path with a value of
+    ‘Device.LocalAgent.Subscription.<instance identifier>.’ for the respective
+    failed instance, and a single ParameterError element. The ParameterError has
+    a param element that indicates the InvalidParameter parameter, and an
+    appropriate error code.
 
 3.  In the GetResp there are no Subscription instances with an
     'InvalidParameter' parameter.
@@ -1964,13 +1962,13 @@ Mandatory
 2.  The SetResp contains an UpdatedObjectResults element.
 
 3. The UpdatedObjectResults has an OperationStatus that is an element of type
-OperationFailure. The OperationFailure contains an `err_code` of '7021',
-'Required Parameter Failed', and at least one UpdatedInstanceFailure elements.
-The UpdatedInstanceFailure has an `affected_path` with a value of
-'Device.LocalAgent.Subscription.<instance identifier>.' for the
-respective failed instance, and a single ParameterError element. The
-ParameterError has a `param` element that indicates the Enable parameter, and an
-`err_code` of '7011' (Invalid Type), or '7012' (Invalid Value).
+OperationFailure. The OperationFailure contains an appropriate error code and
+at least one UpdatedInstanceFailure elements. The UpdatedInstanceFailure has an
+`affected_path` with a value of 
+'Device.LocalAgent.Subscription.<instance identifier>.' for the respective
+failed instance, and a single ParameterError element. The ParameterError has a
+`param` element that indicates the Enable parameter, and an appropriate error
+code.
 
 4. The EUT has no Subscription objects that have an Enable parameter set to 'InvalidValue'.
 
@@ -2247,10 +2245,9 @@ Mandatory
 
 1. The EUT sends an Error message.
 
-2.  The Error contains an `err_code` of 7004, 'Invalid
-    arguments', with the `param_errs` element containing a single error with
-    a `param_path` of 'Device.LocalAgent.InvalidObject.', and an `err_code` of
-    7026, 'InvalidPath'.
+2. The Error contains an appropriate error code with the `param_errs` element
+   containing a single error with a `param_path` of
+   'Device.LocalAgent.InvalidObject.', and an appropriate error code.
 
 ## 1.27 Delete message with allow partial false, multiple objects
 
@@ -2357,10 +2354,9 @@ Mandatory
 
 1. The EUT sends an Error message.
 
-2.  The Error contains an `err_code` of 7004, 'Invalid
-    arguments', with the `param_errs` element containing a single error with
-    a `param_path` of 'Device.LocalAgent.InvalidObject.', and an `err_code` of
-    7026, 'InvalidPath'.
+2.  The Error contains an appropriate error code with the `param_errs` element
+    containing a single error with a `param_path` of
+    'Device.LocalAgent.InvalidObject.', and an appropriate error code.
 
 3.  The GetResp contains the Subscription that was not deleted by step 1.
 
@@ -2452,7 +2448,7 @@ Mandatory
 
 2.  The DeleteResp contains a single `deleted_obj_result`
     message with a `requested_path` of 'Device.LocalAgent.InvalidObject.' and
-    an `oper_failure` element, with `err_code` '7026', 'Invalid Path'.
+    an `oper_failure` element, with an appropriate error code.
 
 ## 1.31 Delete message with allow partial true, multiple objects, invalid object
 
@@ -2507,7 +2503,7 @@ Mandatory
     one with an `oper_success` element, containing an `affected_path` element
     with the value 'Device.LocalAgent.Subscription.<instance
     identifier>.', and the other with an `oper_failure` element containing
-    an `err_code` of '7026', 'InvalidPath'.
+    an appropriate error code.
 
 3.  The GetResp does not contain the Subscription instance deleted in step 1.
 
@@ -3047,8 +3043,7 @@ information to send and receive USP Records to each other.
 
 2. The GetResp contains a single `req_path_results` element.
 The `requested_path_results` has a `requested_path` equal to
-'Device.LocalAgent.InvalidParameter', and an `err_code` of '7026',
-'Invalid Path'.
+'Device.LocalAgent.InvalidParameter', and an appropriate error code.
 
 ## 1.42 Get message with invalid parameter and valid parameter
 
@@ -3100,7 +3095,7 @@ single `resolved_path`equal to 'Device.LocalAgent.', and a single
 `result_params` element with a key of 'EndpointID' and a value equal to
 the EUT EndpointID. The other `requested_path_results` has a
 `requested_path` equal to 'Device.LocalAgent.InvalidParameter', and an
-`err_code` of '7026', 'Invalid Path'.
+appropriate error code.
 
 ## 1.43 Get message using unique key addressing
 
@@ -4740,7 +4735,7 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
 
 1. Ensure that the EUT and test equipment have the necessary information to
    send and receive USP Records to each other.
-2. Ensure that a Subscription object exists on the EUT that is subscribed to the OperationComplete notification for TraceRoute().
+2. Ensure that a Subscription object exists on the EUT that is subscribed to the OperationComplete notification for the supported asynchronous operation.
 
 
 ### Test Procedure
@@ -4755,16 +4750,12 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
     body {
         request {
             operate {
-                command: 'Device.IP.Diagnostics.TraceRoute()'
+                command: '<supported async operation>'
                 command_key: 'test64'
                 send_resp: true
                 input_args {
-                   key: 'Host'
-                   value: '<remote host IP>'
-                }
-                input_args {
-                   key: 'ProtocolVersion'
-                   value: 'Any'
+                   key: '<required input argument>'
+                   value: '<value>'
                 }
             }
         }
@@ -4779,10 +4770,10 @@ Message.
 ### Test Metrics
 
 1. The EUT sends an OperateResp message with a single `operation_results`
-element containing an `executed_command` of
-'Device.IP.Diagnostics.TraceRoute()' and a `req_obj_path` field containing a
+element containing an `executed_command` matching the command sent in the Operate message
+and a `req_obj_path` field containing a
 path name to the Request object created by the EUT.
-2. The EUT sends a Notify message with an `obj_path` of 'Device.IP.Diagnostics.', a `command_name` of 'TraceRoute()', and a `command_key` of 'test64'.
+2. The EUT sends a Notify message with `obj_path` and `command_name` forming the command sent in the Operate message, and a `command_key` of 'test64'.
 
 ## 1.65 Asynchronous operation with send_resp false
 
@@ -4799,7 +4790,7 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
 
 1. Ensure that the EUT and test equipment have the necessary information to
    send and receive USP Records to each other.
-2. Ensure that a Subscription object exists on the EUT that is subscribed to the OperationComplete notification for TraceRoute().
+2. Ensure that a Subscription object exists on the EUT that is subscribed to the OperationComplete notification for the supported asynchronous operation.
 
 ### Test Procedure
 
@@ -4813,24 +4804,24 @@ Conditional Mandatory (supports the TraceRoute:1 profile or at least one other a
     body {
         request {
             operate {
-                command: 'Device.IP.Diagnostics.TraceRoute()'
+                command: '<supported async operation>'
                 command_key: 'test65'
                 send_resp: false
                 input_args {
-                    key: 'Host'
-                    value: '<remote host IP>'
+                   key: '<required input argument>'
+                   value: '<value>'
                 }
             }
         }
     }
     ```
 
-2. Allow the EUT to send a Notify message containing an OperationComplete message with an `obj_path` and `command_name` matching the command sent in the Operate Request.
+2. Allow the EUT to send a Notify message containing an OperationComplete message with `obj_path` and `command_name` forming the command sent in the Operate message.
 
 ### Test Metrics
 
 1. The EUT does not send an OperateResp message.
-2. The EUT sends a Notify message containing an OperationComplete message with an `obj_path` of 'Device.IP.Diagnostics.', a `command_name` of 'TraceRoute()', and a `command_key` of 'test65'.
+2. The EUT sends a Notify message containing an OperationComplete message with `obj_path` and `command_name` forming the command in the Operate message, and a `command_key` of 'test65'.
 
 ## 1.66 GetInstances using a single object, first\_level\_only true
 
@@ -5335,7 +5326,7 @@ body {
 ### Test Metrics
 
 1. The EUT returns a GetSupportedDMResp with a single `req_obj_results`
-   with a `err_code` of '7026'.
+   with an appropriate error code.
 
 ## 1.78 Removal of subscriptions that have no associated controller
 
@@ -5945,8 +5936,8 @@ Mandatory
                  value: 'True'
                }
               param_settings {
-                 param: 'ID'
-                 value: ''
+                 param: 'Alias'
+                 value: '88InvalidAlias'
                }
               param_settings {
                  param: 'NotifType'
@@ -6215,3 +6206,566 @@ Conditional Mandatory (supports the TraceRoute:1 profile)
 1. The EUT sends an OperateResp message with a single `operation_results` element containing an `executed_command` of 'Device.IP.Diagnostics.TraceRoute()' and a `req_obj_path` field containing a path name to the Request object created by the EUT.
 
 2. The EUT attempts a TraceRoute diagnostic against the supplied host name. It retries 3 times within a 1% range of a 5000 millisecond delay between each retry, which are the default values.
+
+## 1.93 Subscription using TriggerAction Config
+
+### Purpose
+
+The purpose of this test is to ensure that the Agent will update its
+configuration when the conditions of a subscription are fulfilled.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Subscription.{i}.TriggerAction and
+Device.LocalAgent.Subscription.{i}.TriggerConfigSettings parameters)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+2. Ensure that the traffic generator has learned the instance identifier of the
+   Device.LocalAgent.Controller. object that represents the Controller simulated
+   by the traffic generator.
+
+3. Set the Device.LocalAgent.Controller.<instance identifier>.ProvisioningCode
+   to an arbitrary value that is not ‘TestValue93’.
+
+### Test Procedure
+
+1. Send an Add message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: ADD
+  }
+  body {
+    request {
+      add {
+        allow_partial: false
+        create_objs {
+          obj_path: 'Device.LocalAgent.Subscription.'
+          param_settings {
+            param: 'Enable'
+            value: 'true'
+          }
+          param_settings {
+            param: 'TriggerAction'
+            value: 'Config'
+          }
+          param_settings {
+              param: 'ID'
+              value: 'notify93'
+          }
+          param_settings {
+              param: 'NotifType'
+              value: 'ValueChange'
+          }
+          param_settings {
+              param: 'ReferenceList'
+              value: 'Device.LocalAgent.Controller.<instance identifier>.ProvisioningCode'
+              required: true
+          }
+          param_settings {
+              param: 'NotifRetry'
+              value: 'true'
+          }
+        }
+      }
+    }
+  }
+  ```
+
+2. Allow the EUT to send an AddResp
+
+3. Send a Set message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.'
+          param_settings {
+            param: 'TriggerConfigSettings'
+            value: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.Enable=false'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
+
+4. Send a Set message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier>.'
+          param_settings {
+            param: 'ProvisioningCode'
+            value: 'TestValue93'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ````
+
+5. Send a Get message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.Enable'
+      }
+    }
+  }
+  ```
+
+6. Allow the EUT to send a GetResp.
+
+### Test Metrics
+
+1. The EUT sends a successful AddResp.
+
+2. The EUT sends a GetResp that contains a result_params element with a key of
+   ‘Enable’ and a value set to ‘false’.
+
+## 1.94 Subscription using TriggerAction NotifyAndConfig
+
+### Purpose
+
+The purpose of this test is to ensure that the Agent will update its
+configuration and notify the Controller when the conditions of a subscription
+are fulfilled.
+
+### Functionality Tag
+Conditional Mandatory (supports the
+Device.LocalAgent.Subscription.{i}.TriggerAction and
+Device.LocalAgent.Subscription.{i}.TriggerConfigSettings parameters)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+2. Ensure that the traffic generator has learned the instance identifier of the
+   Device.LocalAgent.Controller. object that represents the Controller simulated
+   by the traffic generator.
+
+3. Set the Device.LocalAgent.Controller.<instance identifier>.ProvisioningCode
+   to an arbitrary value that is not ‘TestValue94’.
+
+### Test Procedure
+
+1. Send an Add message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: ADD
+  }
+  body {
+    request {
+      add {
+        allow_partial: false
+        create_objs {
+          obj_path: 'Device.LocalAgent.Subscription.'
+          param_settings {
+            param: 'Enable'
+            value: 'true'
+          }
+          param_settings {
+            param: 'TriggerAction'
+            value: 'NotifyAndConfig'
+          }
+          param_settings {
+            param: 'ID'
+            value: 'notify94'
+            }
+          param_settings {
+            param: 'NotifType'
+            value: 'ValueChange'
+          }
+          param_settings {
+            param: 'ReferenceList'
+            value: 'Device.LocalAgent.Controller.<instance identifier>.ProvisioningCode'
+            required: true
+          }
+          param_settings {
+            param: 'NotifRetry'
+            value: 'true'
+          }
+        }
+      }
+    }
+  }
+  ```
+
+2. Allow the EUT to send an AddResp
+
+3. Send a Set message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.'
+          param_settings {
+            param: 'TriggerConfigSettings'
+            value: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.Enable=false'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
+
+4. Send a Set message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier>.'
+          param_settings {
+            param: 'ProvisioningCode'
+            value: 'TestValue94'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
+
+5. Allow the EUT to send a Notify message.
+
+6. Send a NotifyResp to the EUT.
+
+7. Send a Get message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Subscription.<instance identifier from step 2>.Enable'
+      }
+    }
+  }
+  ```
+
+8. Allow the EUT to send a GetResp.
+
+### Test Metrics
+
+1. The EUT sends a successful AddResp.
+
+2. The EUT sends a Notify message with a subscription_id field equal to
+   ‘Notify94’, and an event element of value_change with a param_path of
+   ‘Device.LocalAgent.Controller.<instance identifier>.ProvisioningCode’ and a
+   param_value of ‘TestValue94’.
+
+3. The EUT sends a GetResp that contains a result_params element with a key of
+   ‘Enable’ and a value set to ‘false’.
+
+## 1.95 Add message with search expression
+
+### Purpose
+
+The purpose of this test is to ensure the EUT properly handles an Add message
+that contains a search expression.
+
+### Functionality Tag
+
+Mandatory
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+2. Ensure that the EUT has at least two Controller instances in its
+   Device.LocalAgent.Controller.{i}. table.
+
+### Test Procedure
+
+1. Send an Add message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: ADD
+  }
+  body {
+    request {
+      add {
+        allow_partial: false
+        create_objs {
+          obj_path: 'Device.LocalAgent.Controller.[Enable==true].BootParameter.'
+          param_settings {
+            param: 'Enable'
+            value: 'true'
+          }
+          param_settings {
+            param: 'ParameterName'
+            value: 'Device.LocalAgent.SoftwareVersion'
+          }
+        }
+      }
+    }
+  }
+  ```
+
+2. Allow the EUT to send an AddResp.
+
+3. Send a Get message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Controller.*.BootParameter.'
+      }
+    }
+  }
+  ```
+
+4. Allow the EUT to send a GetResp.
+
+### Test Metrics
+
+1. The AddResp contains at least one CreatedObjectResult object that has an
+   OperationStatus that has an element of type OperationSuccess.
+
+2. The EUT sends a GetResp that contains the new BootParameter object.
+
+## 1.96 Non-functional Unique Key Immutability
+
+### Purpose
+
+The purpose of this test is to ensure the EUT does not allow a non-functional
+unique key to be changed.
+
+### Functionality Tag
+
+Mandatory
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send an Add message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: ADD
+  }
+
+  body {
+    request {
+      add {
+        allow_partial: false
+        create_objs {
+          obj_path: 'Device.LocalAgent.Subscription.'
+          param_settings {
+            param: 'ID'
+            value: 'add96'
+          }
+        }
+      }
+    }
+  }
+  ```
+
+2. Send a Get message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Subscription.<instance identifier>.'
+      }
+    }
+  }
+  ```
+
+3. Send a Set message to the EUT with the following structure:
+
+  ```{filter=pbv type=Msg}
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Subscription.<instance identifier from step 1>.'
+          param_settings {
+          param: 'ID'
+          value: 'add96-NEW'
+          required: true
+          }
+        }
+      }
+    }
+  }
+  ```
+
+4. Allow the EUT to send an Error.
+
+### Test Metrics
+
+1. The EUT sends an Error indicating it did not allow a non-functional unique
+   key to be changed.
+
+## 1.97 GetSupportedDM on root object, commands
+
+### Purpose
+
+The purpose of this test is to ensure the EUT provides correctly formatted input
+arguments for commands returned in GetSupportedDM Resp.
+
+### Functionality Tag
+
+Conditionally Mandatory (Supports a command that includes one or more input arguments)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.'
+                first_level_only: false
+                return_commands: true
+                return_events: false
+                return_params: false
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one or more `req_obj_results`
+   specifying its entire supported data model, listing only commands.
+2. Each SupportedCommandResult field contains a `command_name` field, an
+   `input_arg_names` field, an `output_arg_names` field, and a `command_type`
+   field. 
+3. The `command_type` field indicates if the command is asynchronous or
+   synchronous.
+4. At least one `input_arg_fields` contains a list of one or more input arguments. The
+   input arguments are relative paths. 
+
+## 1.98 GetSupportedDM on root object, events
+
+### Purpose
+
+The purpose of this test is to ensure the EUT provides correctly formatted
+fields for events returned in GetSupportedDM Resp.
+
+### Functionality Tag
+
+Conditionally Mandatory (Supports an event that includes one or more arguments)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.'
+                first_level_only: false
+                return_commands: false
+                return_events: true
+                return_params: false
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one or more `req_obj_results`
+   specifying its entire supported data model, listing only events.
+2. Each SupportedEventResult field contains the `event_name` field and an
+   `arg_names` field.
+3. At least one `arg_names` field contains a list of one or more arguments. The
+   arguments are relative paths. 

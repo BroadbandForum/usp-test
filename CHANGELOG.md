@@ -2,6 +2,29 @@
 
 # TP-469: Conformance Test Plan for USP Agents Change Log
 
+## 2024-07-23: [Release 1.3][TP-469 Amendment 3]
+
+*Tag: [v1.3.0]*
+
+* Deprecates tests 6.9 and 7.6
+* Error code requirements in the test metrics of several tests have been clarified or loosened. This change applies to tests 1.3, 1.4, 1.6, 1.7, 1.8, 1.9, 1.14, 1.15, 1.16, 1.17, 1.26, 1.28, 1.30, 1.31, 1.41, 1.42, and 1.77.
+* Updates 11.11 to check that no additional USP records are sent
+* Updates 1.20 to require SetResponse containing an error rather than a USP Error message
+* Updates 2.18 to allow for OperateResponse with an error or a USP Error message
+* Fixes test 9.3 test setup to require the proper subscriptions
+* Updates 2.21 and 2.22 with proper role setup and behavior
+* Adds new tests 1.93 and 1.94 for TriggerAction
+* Adds new tests 1.95, 2.23 and 2.24 for Add message with Search Expression
+* Adds new tests 2.25 and 2.26 for Add message when some parameters aren't writable
+* Adds new test 1.96 for non-functional unique key immutability
+* Adds new test 2.27 for the use of SecuredRole
+* Adds new tests 1.97 and 1.98 to verify GetSupportedDMResponse fields
+* Adds new test 7.11 for WebSocket response with no bbf-usp-protocol
+* TraceRoute no longer specifically required to run Asyc operation tests 1.64 and 1.65
+* Updates 1.88 to use a unique key that starts with a number as an invalid value, rather than an empty unique key. Updates test parameter to Alias.
+* Updates tests 11.9 and 11.13 to be compatible with MQTT 3.1.1
+* Various other typographical and procedure fixes
+
 ## 2022-11-21: [Release 1.2][TP-469 Amendment 2]
 
 *Tag: [v1.2.0]*
@@ -124,6 +147,7 @@
 [TP-469]: https://www.broadband-forum.org/download/TP-469.pdf
 [TP-469 Amendment 1]: https://www.broadband-forum.org/download/TP-469_Amendment-1.pdf
 [TP-469 Amendment 2]: https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf
+[TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf
 [v1.0.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.1
@@ -131,3 +155,4 @@
 [v1.0.3]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.3
 [v1.1.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.1.0
 [v1.2.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.2.0
+[v1.3.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.0

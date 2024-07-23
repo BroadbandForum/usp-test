@@ -149,6 +149,9 @@ Conditional Mandatory (supports Firmware:1 profile)
    and receive USP Records to each other.
 2. Ensure that the EUT has a Subscription to the TransferComplete! and Boot!
    events with the Recipient being the Controller instance used for testing.
+3. Ensure that the EUT has a Subscription instance for the OperationComplete
+notification with a NotifType equal to 'OperationComplete' and a ReferenceList that matches 
+the path of the 'Download()' command with the Controller used for testing set as the Recipient.
 
 ### Test Procedure
 
@@ -497,11 +500,18 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 ### Test Metrics
 
-1. The EUT sends a Notify message with an OperationComplete, if the EUT
-supports multiple firmware banks the OperationComplete may contain an error
-indicating that downloading to an active firmware slot is not allowed.
-2. If an OperationComplete Notification is sent without an error, the EUT
-sends a Notify message with a Boot! event and a FirmwareUpdated argument set to true.
+If the EUT supports only one firmware bank:
+1. The EUT sends a Notify message with a TransferComplete! event.
+2. the EUT sends a Notify message with a Boot! event and a FirmwareUpdated
+   argument set to true.
+
+If the EUT supports multiple firmware banks:
+3. The EUT may send an error indicating that downloading to an active firmware
+slot is not allowed. 
+4. If the EUT did not send an error message in Test Metric 3, the EUT sends a
+   Notify message with a TransferComplete! event.
+5. If the EUT did not send an error message in Test Metric 3, the EUT sends a
+   Notify message with a Boot! event and a FirmwareUpdated argument set to true.
 
 ## 9.8 Upgrading the Agent's Firmware - Cancelling a request using the Cancel() command
 

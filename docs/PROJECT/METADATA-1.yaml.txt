@@ -4,21 +4,31 @@
 bbfNumber: TP-469
 bbfTitle: Conformance Test Plan for USP Agents
 bbfIssue: Issue
-bbfVersion: 1 Amendment 2
-bbfMonth: November
-bbfYear: 2022
+bbfVersion: 1 Amendment 3
+bbfMonth: July
+bbfYear: 2024
 bbfType: ''
 bbfStatus: ''
 bbfContrib: ''
 bbfMajor: 1
-bbfMinor: 2
+bbfMinor: 3
 bbfPatch: 0
+bbfMicro: 0
+bbfExtra: 0
 bbfDraft: ''
 bbfBuild: ''
 
 # other top-level variables
 notice: tp
 reponame: usp-test
+website: https://usp-test.broadband-forum.org
 "tagline": ""
+"summary": ""
+"description": |
+  This repository contains the Broadband Forum specification TP-469,
+  which is the test plan for certifying TR-369 (USP) Agents.
+
+  The files in this document are used to build index.md, which is used to
+  render the text of TP-469 for web consumption.
 bbfWorkArea: ''
 bbfProjectStream: ''

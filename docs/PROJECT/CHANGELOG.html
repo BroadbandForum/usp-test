@@ -4,16 +4,19 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="description" content="TP-469 – Conformance Test Plan for USP Agents: " />
-  <title>BBF – TP-469 – Conformance Test Plan for USP Agents</title>
+  <meta name="description" content=" : " />
+  <title>BBF –  </title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
     div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
     ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
       width: 0.8em;
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
@@ -21,23 +24,51 @@
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
   </style>
   <link rel="stylesheet" href="bbf.css" />
-  <link rel="stylesheet" href="extra.css" />
-  <link rel="stylesheet" href="toc.css" />
-  <link rel="stylesheet" href="release.css" />
-  <!--[if lt IE 9]>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
-  <![endif]-->
 </head>
 <body>
-<div class="main-content">
 <header id="title-block-header">
-<h1 class="title">TP-469 – Conformance Test Plan for USP Agents</h1>
-<p class="subtitle">Issue: 1 Amendment 2 <span
-class="release"></span></p>
-<p class="date">Issue Date: November 2022</p>
+<h1 class="title"> </h1>
 </header>
+<!-- do not edit! this file was created from PROJECT.yaml by project-parser.py -->
 <h1 id="tp-469-conformance-test-plan-for-usp-agents-change-log">TP-469:
 Conformance Test Plan for USP Agents Change Log</h1>
+<h2 id="release-1.3tp-469-amendment-3">2024-07-23: <a
+href="https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf">Release
+1.3</a></h2>
+<p><em>Tag: <a
+href="https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.0">v1.3.0</a></em></p>
+<ul>
+<li>Deprecates tests 6.9 and 7.6</li>
+<li>Error code requirements in the test metrics of several tests have
+been clarified or loosened. This change applies to tests 1.3, 1.4, 1.6,
+1.7, 1.8, 1.9, 1.14, 1.15, 1.16, 1.17, 1.26, 1.28, 1.30, 1.31, 1.41,
+1.42, and 1.77.</li>
+<li>Updates 11.11 to check that no additional USP records are sent</li>
+<li>Updates 1.20 to require SetResponse containing an error rather than
+a USP Error message</li>
+<li>Updates 2.18 to allow for OperateResponse with an error or a USP
+Error message</li>
+<li>Fixes test 9.3 test setup to require the proper subscriptions</li>
+<li>Updates 2.21 and 2.22 with proper role setup and behavior</li>
+<li>Adds new tests 1.93 and 1.94 for TriggerAction</li>
+<li>Adds new tests 1.95, 2.23 and 2.24 for Add message with Search
+Expression</li>
+<li>Adds new tests 2.25 and 2.26 for Add message when some parameters
+aren’t writable</li>
+<li>Adds new test 1.96 for non-functional unique key immutability</li>
+<li>Adds new test 2.27 for the use of SecuredRole</li>
+<li>Adds new tests 1.97 and 1.98 to verify GetSupportedDMResponse
+fields</li>
+<li>Adds new test 7.11 for WebSocket response with no
+bbf-usp-protocol</li>
+<li>TraceRoute no longer specifically required to run Asyc operation
+tests 1.64 and 1.65</li>
+<li>Updates 1.88 to use a unique key that starts with a number as an
+invalid value, rather than an empty unique key. Updates test parameter
+to Alias.</li>
+<li>Updates tests 11.9 and 11.13 to be compatible with MQTT 3.1.1</li>
+<li>Various other typographical and procedure fixes</li>
+</ul>
 <h2 id="release-1.2tp-469-amendment-2">2022-11-21: <a
 href="https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf">Release
 1.2</a></h2>
@@ -178,6 +209,5 @@ href="https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.0">v1.0.0</a>
 <li>First release of this test plan, containing test cases for basic
 compliance with TR-369/USP</li>
 </ul>
-</div>
 </body>
 </html>

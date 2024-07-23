@@ -422,7 +422,7 @@ Conditional Mandatory (supports MQTT MTP)
                       }
                   param_settings {
                           param: 'Topic'
-                          value: 'newTopic-11-9'
+                          value: '<newTopic-11-9 OR newTopic-11-9/# for USP Agents using MQTT version 3.1.1>'
                       }
                   }
             }
@@ -525,6 +525,9 @@ Conditional Mandatory (supports the MQTT MTP)
 
 1. Ensure that the EUT is configured to use an MQTT server that exists
    in the test environment.
+2. Ensure that the EUT is configured to send a Device.LocalAgent.Periodic! event
+   to the Controller every 60 seconds through the Device.
+   LocalAgent.Controller.<i>.PeriodicNotifInterval parameter.
 
 ### Test Procedure
 
@@ -532,10 +535,13 @@ Conditional Mandatory (supports the MQTT MTP)
 2. Wait for the EUT to send an MQTT SUBSCRIBE packet.
 3. The MQTT server sends an MQTT SUBACK packet that includes an error for each
    Topic in the SUBSCRIBE packet.
+4. Wait 120 seconds.
 
 ### Test Metrics
 
 1. The EUT sends an MQTT DISCONNECT packet to the MQTT server.
+2. The EUT does not publish a USP record to the MQTT server for any Topic in the
+   MQTT SUBSCRIBE packet.
 
 ## 11.12 MQTT PUBLISH Packet
 
@@ -625,7 +631,7 @@ Conditional Mandatory (supports the MQTT MTP)
                       }
                   param_settings {
                           param: 'Topic'
-                          value: 'newTopic-11-13-QoS0'
+                          value: '<newTopic-11-13-QoS0 OR newTopic-11-13-QoS0/# for USP Agents using MQTT version 3.1.1>'
                       }
                   }
             }
