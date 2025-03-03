@@ -46,7 +46,7 @@ buttons:
 
 !include %notice%-notice.md
 
-!include METADATA-%bbfMajor%.md
+!include METADATA.md
 
 ## Executive Summary
 
@@ -161,19 +161,19 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 5 | Controller:1 profile | 1.59 | |
 | 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 | 7 | Controller:1 profile (writeable) | 1.78, 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
-| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 4.1, 9.9 | |
-| 9 | Device.ScheduleTimer() | 1.63, 1.79, 9.1 | |
+| 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 9.9 | |
+| 9 | Device.ScheduleTimer() | 1.79 | |
 | 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
-| 11 | TraceRoute:1 profile | 1.64, 1.65 | |
+| 11 | (Removed) | | |
 | 12 | ControllerTrust:1 profile | 2.9, 2.10 | |
 | 13 | ControllerTrust:1 profile (writeable) | 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22, 2.23, 2.24, 2.25, 2.26 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
-| 14 | Self-signed controller certificates | TBD | |
+| 14 | (Removed) | | |
 | 15 | TLS at the MTP Layer | 4.1 | |
 | 16 | CoAP MTP (DEPRECATED)| 5.* | |
 | 17 | STOMP MTP | 6.* | Excludes 6.8 unless option 18 is supported |
 | 18 | STOMPHeartbeat:1 profile | 6.8 | |
-| 19 | WebSocket MTP | 7.* | Excludes 7.3 unless option 20 is supported |
-| 20 | TR-369 requirement R-WS.6 | 7.3 | |
+| 19 | WebSocket MTP | 7.* | |
+| 20 | (removed) | | |
 | 21 | Discovery via DHCP Options | 8.1, 8.2, 8.3 | |
 | 22 | Discovery via mDNS | 8.4, 8.5, 8.6, 8.7 | |
 | 23 | Secure Message Exchange (TLS for USP Record Integrity) | 3.2, 3.3, 3.4, 3.5, 3.6, 3.7, 3.13 | |
@@ -182,7 +182,7 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 26 | Firmware:1 profile | 9.3, 9.5, 9.6, 9.7 | |
 | 27 | Firmware:1 profile (Activate) | 9.4, 9.5 | Supports Firmware:1 profile and additionally supports the Activate() operation |
 | 28 | Device.LocalAgent.Request.{i}.Cancel() | 9.8 | Applies only if option 26 is supported |
-| 29 | UntrustedRole disabled | TBD | The use of UntrustedRole must be either unsupported, or capable of being disabled, to run this test |
+| 29 | (Removed) | | |
 | 30 | Device.DeviceInfo.BootFirmwareImage | 9.10 | |
 | 31 | The product supports at least one nested multi-instance object | 1.10, 1.71, 1.83 |
 | 32 | HTTP bulk data collection with JSON encoding | 10.1, 10.2, 10.5, 10.6, 10.7, 10.8, 10.9 |
@@ -194,6 +194,7 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 38 | Command with input arguments | 1.97 | Supports a command that includes one or more input arguments |
 | 39 | Event with arguments | 1.98 | Supports an event that includes one or more arguments |
 | 40 | Device.LocalAgent.ControllerTrust.SecuredRoles | 2.27 | Supports the use of the SecuredRole for Secured Parameters |
+| 41 | Bulk data collection over MQTT | 10.13 | |
 
 
 #### Elements Specified in the Test Procedure

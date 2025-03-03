@@ -1,11 +1,5 @@
-// Some definitions presupposed by pandoc's typst output.
-#let horizontalrule = [
-  #line(start: (25%,0%), end: (75%,0%))
-]
+#let horizontalrule = line(start: (25%,0%), end: (75%,0%))
 
-#let endnote(num, contents) = [
-  #stack(dir: ltr, spacing: 3pt, super[#num], contents)
-]
 #show terms: it => {
   it.children
     .map(child => [
@@ -15,12 +9,30 @@
     .join()
 }
 
+#set table(
+  inset: 6pt,
+  stroke: none
+)
+
+#show figure.where(
+  kind: table
+): set figure.caption(position: top)
+
+#show figure.where(
+  kind: image
+): set figure.caption(position: bottom)
+
 #import "typst-template.typ": *
+
+#set smartquote(enabled: false)
 
 #show: doc => conf(
   title: [USP – The User Services Platform],
-  date: [Issue Date: July 2024],
+  subtitle: [Issue: 1 Amendment 3 Corrigendum 1 #bbf-release[]],
+  date: [Issue Date: February 2025],
+  pagenumbering: none,
   cols: 1,
+  linenumbering: none,
   info: (
     PYTHONDIR: [.\/..\/..\/install\/pandoc\/\/..\/python],
     analyticstag: [],
@@ -35,19 +47,19 @@
     bbfMajor: [1],
     bbfMicro: [0],
     bbfMinor: [3],
-    bbfMonth: [July],
+    bbfMonth: [February],
     bbfNumber: [TP\-469],
-    bbfPatch: [0],
+    bbfPatch: [1],
     bbfProjectStream: [],
     bbfStatus: [],
     bbfTitle: [Conformance Test Plan for USP Agents],
     bbfType: [],
-    bbfVersion: [1 Amendment 3],
+    bbfVersion: [1 Amendment 3 Corrigendum 1],
     bbfWorkArea: [],
-    bbfYear: [2024],
+    bbfYear: [2025],
     citation-style: [bbf.csl],
-    copydate: [2024],
-    date: [Issue Date: July 2024],
+    copydate: [2025],
+    date: [Issue Date: February 2025],
     description: [This repository contains the Broadband Forum
 specification TP\-469, which is the test plan for certifying TR\-369
 (USP) Agents.
@@ -95,7 +107,7 @@ Conformance Test Plan for USP Agents],
     shortname: [USP],
     siteurl: [index.html],
     status: [],
-    subtitle: [Issue: 1 Amendment 3 #bbf-release[]<section>],
+    subtitle: [Issue: 1 Amendment 3 Corrigendum 1 #bbf-release[]],
     summary: [],
     tagline: [Conformance Test Plan for USP Agents],
     template: [typst-template.typ],
@@ -123,12 +135,12 @@ Conformance Test Plan for USP Agents],
 
 // scale = 1 will size the image at 1px = 1pt
 #let bbf-image-scale = 1
-#let bbf-image(scale: bbf-image-scale, ..args) = style(styles => {
+#let bbf-image(scale: bbf-image-scale, ..args) = context {
   let named = args.named()
   if "width" in named or "height" in named {
     image(..args)
   } else {
-    let (width, height) = measure(image(..args), styles)
+    let (width, height) = measure(image(..args))
     layout(page => {
       // XXX should allow control over this hard-coded (1.0, 0.9)
       let (max_width, max_height) = (1.0 * page.width, 0.9 * page.height)
@@ -146,7 +158,7 @@ Conformance Test Plan for USP Agents],
       image(..args, width: new_width, height: new_height)
     })
   }
-})
+}
 
 #bbf-new-page[
 #heading(level: 3, outlined: false)[
@@ -195,7 +207,7 @@ All copies of this Test Plan (or any portion hereof) must include the
 notices, legends and other provisions set forth on this page.
 
 #bbf-note[
-© 2024, The Broadband Forum. All rights reserved. This Broadband Forum
+© 2025, The Broadband Forum. All rights reserved. This Broadband Forum
 document (TP\-469) specifies the Test Plan on which is based the
 #strong[\<BBF.NNN>]; Certification Program for #strong[\<type of
 product>]; products. Through an open selection process, the Broadband
@@ -227,6 +239,8 @@ Broadband Forum Certification Programs can be found at
   #show table.cell.where(y: 0): strong
   #set par(justify: false)
   #set text(hyphenate: true)
+  #show regex("\>,"): "," + sym.zws
+  #show regex("\>\."): "." + sym.zws
   #table(
     columns: (auto, auto, auto),
     align: (left, left, left),
@@ -406,14 +420,22 @@ Broadband Forum Certification Programs can be found at
       parameter to Alias.
     - Updates tests 11.9 and 11.13 to be compatible with MQTT 3.1.1
     - Various other typographical and procedure fixes
+    ],
+    [#link("https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf")[Release
+    1.3.1]
+    ],
+    [February 2025
+    ],
+    [- Corrections to the Feature ID Table
+    - Fixed typo in test 1.86
+    - Fixed tests 2.23 \- 2.26 to use 'Param' instead of invalid 'Obj'
+      permissions
     ]
   )
 ]
 
 Comments or questions about this Broadband Forum should be directed to
 #link("mailto:info@broadband-forum.org")[info\@broadband\-forum.org].
-
-#bbf-nobreak[
 
 #heading(level: 3, outlined: false)[
   Work Area Directors
@@ -423,6 +445,8 @@ Comments or questions about this Broadband Forum should be directed to
   #show table.cell.where(y: 0): strong
   #set par(justify: false)
   #set text(hyphenate: true)
+  #show regex("\>,"): "," + sym.zws
+  #show regex("\>\."): "." + sym.zws
   #table(
     columns: (auto, auto, auto, auto),
     align: (left, left, left, left),
@@ -454,9 +478,6 @@ Comments or questions about this Broadband Forum should be directed to
     ]
   )
 ]
-]
-
-#bbf-nobreak[
 
 #heading(level: 3, outlined: false)[
   Editors
@@ -466,6 +487,8 @@ Comments or questions about this Broadband Forum should be directed to
   #show table.cell.where(y: 0): strong
   #set par(justify: false)
   #set text(hyphenate: true)
+  #show regex("\>,"): "," + sym.zws
+  #show regex("\>\."): "." + sym.zws
   #table(
     columns: (auto, auto, auto, auto),
     align: (left, left, left, left),
@@ -488,7 +511,6 @@ Comments or questions about this Broadband Forum should be directed to
     [Editor
     ]
   )
-]
 ]
 
 #pagebreak()
@@ -632,6 +654,8 @@ features supported by the EUT (see table below).];
   #show table.cell.where(y: 0): strong
   #set par(justify: false)
   #set text(hyphenate: true)
+  #show regex("\>,"): "," + sym.zws
+  #show regex("\>\."): "." + sym.zws
   #table(
     columns: (auto, auto, auto, auto),
     align: (left, left, left, left),
@@ -696,13 +720,13 @@ features supported by the EUT (see table below).];
     ],
     [Device.LocalAgent.Controller.{i}.SendOnBoardRequest()
     ],
-    [1.60, 4.1, 9.9
+    [1.60, 9.9
     ], [],
     [9
     ],
     [Device.ScheduleTimer()
     ],
-    [1.63, 1.79, 9.1
+    [1.79
     ], [],
     [10
     ],
@@ -712,10 +736,8 @@ features supported by the EUT (see table below).];
     ], [],
     [11
     ],
-    [TraceRoute:1 profile
-    ],
-    [1.64, 1.65
-    ], [],
+    [(Removed)
+    ], [], [],
     [12
     ],
     [ControllerTrust:1 profile
@@ -735,10 +757,8 @@ features supported by the EUT (see table below).];
     ],
     [14
     ],
-    [Self\-signed controller certificates
-    ],
-    [TBD
-    ], [],
+    [(Removed)
+    ], [], [],
     [15
     ],
     [TLS at the MTP Layer
@@ -770,15 +790,11 @@ features supported by the EUT (see table below).];
     [WebSocket MTP
     ],
     [7.\*
-    ],
-    [Excludes 7.3 unless option 20 is supported
-    ],
+    ], [],
     [20
     ],
-    [TR\-369 requirement R\-WS.6
-    ],
-    [7.3
-    ], [],
+    [(removed)
+    ], [], [],
     [21
     ],
     [Discovery via DHCP Options
@@ -834,13 +850,8 @@ features supported by the EUT (see table below).];
     ],
     [29
     ],
-    [UntrustedRole disabled
-    ],
-    [TBD
-    ],
-    [The use of UntrustedRole must be either unsupported, or capable of
-    being disabled, to run this test
-    ],
+    [(Removed)
+    ], [], [],
     [30
     ],
     [Device.DeviceInfo.BootFirmwareImage
@@ -917,7 +928,13 @@ features supported by the EUT (see table below).];
     [2.27
     ],
     [Supports the use of the SecuredRole for Secured Parameters
-    ]
+    ],
+    [41
+    ],
+    [Bulk data collection over MQTT
+    ],
+    [10.13
+    ], []
   )
 ]
 
@@ -6591,8 +6608,8 @@ Mandatory
 + The EUT’s sends a GetResp.
 + The GetResp contains no errors.
 + The GetResp contains a single `req_path_results` element. The
-  `requested_path_results` element is empty
-  (i.e.~`requested_path_results{}`).
+  `resolved_path_results` element is empty
+  (i.e.~`resolved_path_results{}`).
 
 == 1.87 Get message with unresolved instances \- using an object path <sec:get-message-with-unresolved-instances---using-an-object-path>
 
@@ -8979,7 +8996,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                       value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
                   }
                   param_settings {
-                      param: 'Obj'
+                      param: 'Param'
                       value: 'rw--'
                   }
                   param_settings {
@@ -8998,7 +9015,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                       value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
                   }
                   param_settings {
-                      param: 'Obj'
+                      param: 'Param'
                       value: 'r---'
                   }
                   param_settings {
@@ -9090,7 +9107,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                           value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
                       }
                   param_settings {
-                          param: 'Obj'
+                          param: 'Param'
                           value: 'rw--'
                       }
       param_settings {
@@ -9109,7 +9126,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                           value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
                       }
                   param_settings {
-                          param: 'Obj'
+                          param: 'Param'
                           value: 'r---'
                       }
       param_settings {
@@ -9213,7 +9230,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                       value: 'Device.LocalAgent.Subscription.*.Enable'
                   }
                   param_settings {
-                      param: 'Obj'
+                      param: 'Param'
                       value: 'r---'
                   }
                   param_settings {
@@ -9328,7 +9345,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                       value: 'Device.LocalAgent.Subscription.*.Enable'
                   }
                   param_settings {
-                      param: 'Obj'
+                      param: 'Param'
                       value: 'r---'
                   }
                   param_settings {

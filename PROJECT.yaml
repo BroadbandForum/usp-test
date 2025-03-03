@@ -1,4 +1,4 @@
-name: DTP-469
+name: TP-469
 
 title: Conformance Test Plan for USP Agents
 
@@ -16,6 +16,14 @@ resources:
     title: TP-469 Document
 
 versions:
+  v1.3.1:
+    date: 2025-02-10
+    title: |
+      [Release 1.3.1][TP-469 Amendment 3 Corrigendum 1]
+    changes: |
+      * Corrections to the Feature ID Table
+      * Fixed typo in test 1.86
+      * Fixed tests 2.23 - 2.26 to use 'Param' instead of invalid 'Obj' permissions
   v1.3.0:
     date: 2024-07-23
     title: |

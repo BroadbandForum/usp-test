@@ -1453,7 +1453,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                         value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
                     }
                     param_settings {
-                        param: 'Obj'
+                        param: 'Param'
                         value: 'rw--'
                     }
                     param_settings {
@@ -1472,7 +1472,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                         value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
                     }
                     param_settings {
-                        param: 'Obj'
+                        param: 'Param'
                         value: 'r---'
                     }
                     param_settings {
@@ -1567,7 +1567,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                             value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
                         }
                     param_settings {
-                            param: 'Obj'
+                            param: 'Param'
                             value: 'rw--'
                         }
         param_settings {
@@ -1586,7 +1586,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                             value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
                         }
                     param_settings {
-                            param: 'Obj'
+                            param: 'Param'
                             value: 'r---'
                         }
         param_settings {
@@ -1695,7 +1695,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                         value: 'Device.LocalAgent.Subscription.*.Enable'
                     }
                     param_settings {
-                        param: 'Obj'
+                        param: 'Param'
                         value: 'r---'
                     }
                     param_settings {
@@ -1813,7 +1813,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                         value: 'Device.LocalAgent.Subscription.*.Enable'
                     }
                     param_settings {
-                        param: 'Obj'
+                        param: 'Param'
                         value: 'r---'
                     }
                     param_settings {

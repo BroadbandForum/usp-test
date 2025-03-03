@@ -139,11 +139,15 @@
     * Updates tests 11.9 and 11.13 to be compatible with MQTT 3.1.1
     * Various other typographical and procedure fixes
 
+* - [Release 1.3.1][TP-469 Amendment 3 Corrigendum 1]
+  - February 2025
+  - * Corrections to the Feature ID Table
+    * Fixed typo in test 1.86
+    * Fixed tests 2.23 - 2.26 to use 'Param' instead of invalid 'Obj' permissions
+
 :::
 
 Comments or questions about this Broadband Forum  should be directed to <info@broadband-forum.org>.
-
-::: nobreak
 
 ### %bbfWorkArea% Work Area Directors {.unnumbered .unlisted}
 
@@ -166,10 +170,6 @@ Comments or questions about this Broadband Forum  should be directed to <info@br
 
 :::
 
-:::
-
-::: nobreak
-
 ### Editors {.unnumbered .unlisted}
 
 ::: {.list-table .editors aligns=l,l,l,l widths=12,10,15,21}
@@ -186,10 +186,9 @@ Comments or questions about this Broadband Forum  should be directed to <info@br
 
 :::
 
-:::
-
 [TP-469]: https://www.broadband-forum.org/download/TP-469.pdf
 [TP-469 Amendment 1]: https://www.broadband-forum.org/download/TP-469_Amendment-1.pdf
 [TP-469 Amendment 2]: https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf
 [TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
+[TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf

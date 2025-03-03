@@ -5851,7 +5851,7 @@ information to send and receive USP Records to each other.
 2. The GetResp contains no errors.
 
 3. The GetResp contains a single `req_path_results` element.
-The `requested_path_results` element is empty (i.e. `requested_path_results{}`).
+The `resolved_path_results` element is empty (i.e. `resolved_path_results{}`).
 
 ## 1.87 Get message with unresolved instances - using an object path
 
