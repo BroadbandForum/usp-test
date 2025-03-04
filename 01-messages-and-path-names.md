@@ -4419,7 +4419,7 @@ Mandatory
       }
     ```
 
-4.  Allow the EUT to send a DeleteResp
+4.  Allow the EUT to send a DeleteResp.
 
 5.  Allow the EUT to send a Notify message.
 
@@ -4596,23 +4596,23 @@ Conditional Mandatory (supports Reboot:1 or any other command)
 
 1.  Send an Operate message to the EUT with the following structure:
 
-  ```{filter=pbv type=Msg}
-  header {
-    msg_id: '<msg_id>'
-    msg_type: OPERATE
-  }
-  body {
-    request {
-      operate {
-        command: 'Device.Reboot()'
-        command_key: 'test61'
-        send_resp: true
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: OPERATE
+    }
+    body {
+      request {
+        operate {
+          command: 'Device.Reboot()'
+          command_key: 'test61'
+          send_resp: true
+        }
       }
     }
-  }
-  ```
+    ```
 
-2.  Allow the EUT to send an OperateResp
+2.  Allow the EUT to send an OperateResp.
 
 3.  Allow the EUT to reboot.
 
