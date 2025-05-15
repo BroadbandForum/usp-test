@@ -145,6 +145,11 @@
     * Fixed typo in test 1.86
     * Fixed tests 2.23 - 2.26 to use 'Param' instead of invalid 'Obj' permissions
 
+* - [Release 1.3.2][TP-469 Amendment 3 Corrigendum 2]
+  - May 2025
+  - * Updates build version
+    * Reverts test 1.20 to version 1.2 of test plan
+
 :::
 
 Comments or questions about this Broadband Forum  should be directed to <info@broadband-forum.org>.
@@ -191,4 +196,5 @@ Comments or questions about this Broadband Forum  should be directed to <info@br
 [TP-469 Amendment 2]: https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf
 [TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
+[TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf

@@ -1,7 +1,7 @@
 ---
 # USP major and minor versions
 uspMajor: 1
-uspMinor: 2
+uspMinor: 3
 
 # information shown on each page header
 project: The User Services Platform

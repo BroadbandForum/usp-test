@@ -1,7 +1,7 @@
 ---
 # USP major and minor versions
 uspMajor: 1
-uspMinor: 2
+uspMinor: 3
 
 # information shown on each page header
 project: The User Services Platform
@@ -2155,24 +2155,18 @@ Mandatory
         }
       ```
 
-2.  Allow the EUT to send a SetResp.
+2.  Allow the EUT to send an Error.
 
 3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1.  The EUT sends a SetResp.
+1.  The EUT sends an Error.
 
-2. The SetResp contains an UpdatedObjectResults element.
-
-3.  The UpdatedObjectResults has an OperationStatus that is an element of type
-    OperationFailure. The OperationFailure contains an appropriate error code
-    and at least one UpdatedInstanceFailure element. The UpdatedInstanceFailure
-    has an affected_path with a value of
-    ‘Device.LocalAgent.Subscription.<instance identifier>.’ for the respective
-    failed instance, and a single ParameterError element. The ParameterError has
-    a param element that indicates the InvalidParameter parameter, and an
-    appropriate error code.
+2.  The Error contains an appropriate error code and at
+    least one ParamError element. The ParamError element contains a
+    `param_path` of 'Device.LocalAgent.Subscription.<instance
+    identifier of relevant object>.InvalidParameter' and an appropriate error code.
 
 3.  In the GetResp there are no Subscription instances with an
     'InvalidParameter' parameter.
@@ -7448,17 +7442,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Subscription.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Subscription.'
+                    }
                     param_settings {
-                            param: 'Obj'
-                            value: 'rw--'
-                        }
+                        param: 'Param'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rw--'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -7523,17 +7529,29 @@ body {
             create_objs {
                 obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                 param_settings {
-                        param: 'Enable'
-                        value: 'true'
-                    }
+                    param: 'Enable'
+                    value: 'true'
+                }
                 param_settings {
-                        param: 'Targets'
-                        value: 'Device.LocalAgent.Subscription.'
-                    }
+                    param: 'Targets'
+                    value: 'Device.LocalAgent.Subscription.'
+                }
                 param_settings {
-                        param: 'Obj'
-                        value: 'r---'
-                    }
+                    param: 'Param'
+                    value: 'rwxn'
+                }
+                param_settings {
+                    param: 'Obj'
+                    value: 'r---'
+                }
+                param_settings {
+                    param: 'InstantiatedObj'
+                    value: 'rwxn'
+                }
+                param_settings {
+                    param: 'CommandEvent'
+                    value: 'rwxn'
+                }
             }
         }
     }
@@ -7599,17 +7617,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Subscription.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Subscription.'
+                    }
                     param_settings {
-                            param: 'InstantiatedObj'
-                            value: 'rw--'
-                        }
+                        param: 'Param'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rw--'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -7674,17 +7704,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Subscription.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Subscription.'
+                    }
                     param_settings {
-                            param: 'InstantiatedObj'
-                            value: 'r---'
-                        }
+                        param: 'Param'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'r---'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -7748,17 +7790,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Subscription.<instance that can be edited>.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Subscription.<instance that can be edited>.'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'rw--'
-                        }
+                        param: 'Param'
+                        value: 'rw--'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -7830,17 +7884,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Subscription.<instance that can be edited>.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Subscription.<instance that can be edited>.'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'r---'
-                        }
+                        param: 'Param'
+                        value: 'r---'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -7910,17 +7976,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.Reboot()'
-                        }
+                        param: 'Targets'
+                        value: 'Device.Reboot()'
+                    }
                     param_settings {
-                            param: 'CommandEvent'
-                            value: 'r-x-'
-                        }
+                        param: 'Param'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'r-x-'
+                    }
                 }
             }
         }
@@ -7983,17 +8061,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.Reboot()'
-                        }
+                        param: 'Targets'
+                        value: 'Device.Reboot()'
+                    }
                     param_settings {
-                            param: 'CommandEvent'
-                            value: 'r---'
-                        }
+                        param: 'Param'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'r---'
+                    }
                 }
             }
         }
@@ -8060,17 +8150,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'rw-n'
-                        }
+                        param: 'Param'
+                        value: 'rw-n'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -8158,17 +8260,29 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.PeriodicNotifInterval'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'rw--'
-                        }
+                        param: 'Param'
+                        value: 'rw--'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
                 }
             }
         }
@@ -8257,40 +8371,64 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.<Controller id>.Role.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
-                    param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
-                        }
-                    param_settings {
-                            param: 'Param'
-                            value: '----'
-                        }
-                    param_settings {
-                            param: 'Order'
-                            value: '<lowest available value>'
-                        }
+                        param: 'Enable'
+                        value: 'true'
                     }
+                    param_settings {
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
+                    }
+                    param_settings {
+                        param: 'Param'
+                        value: '----'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Order'
+                        value: '<lowest available value>'
+                    }
+                }
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.<Controller id>.Role.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'rw--'
-                        }
+                        param: 'Param'
+                        value: 'rw--'
+                    }
                     param_settings {
-                            param: 'Order'
-                            value: '<value which is higher than the Order value set in the other Permission instance>'
-                        }
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Order'
+                        value: '<value which is higher than the Order value set in the other Permission instance>'
+                    }
                 }
             }
         }
@@ -8327,22 +8465,34 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.<Controller id>.Role.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
-                    param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
-                        }
-                    param_settings {
-                            param: 'Param'
-                            value: '----'
-                        }
-                    param_settings {
-                            param: 'Order'
-                            value: '<value which is higher than both Order values set in step 1>'
-                        }
+                        param: 'Enable'
+                        value: 'true'
                     }
+                    param_settings {
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.<boot parameter instance>.'
+                    }
+                    param_settings {
+                        param: 'Param'
+                        value: '----'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Order'
+                        value: '<value which is higher than both Order values set in step 1>'
+                    }
+                }
             }
         }
     }
@@ -8410,33 +8560,57 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at least one 
                 create_objs {
                         obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller trust instance>.Permission.'
                         param_settings {
-                                param: 'Enable'
-                                value: 'true'
-                            }
+                            param: 'Enable'
+                            value: 'true'
+                        }
                         param_settings {
-                                param: 'Targets'
-                                value: 'Device.LocalAgent.Controller.<Controller instance ID>.BootParameter.<known instance>.'
-                            }
+                            param: 'Targets'
+                            value: 'Device.LocalAgent.Controller.<Controller instance ID>.BootParameter.<known instance>.'
+                        }
                         param_settings {
-                                param: 'Param'
-                                value: 'rw--'
-                            }
+                            param: 'Param'
+                            value: 'rw--'
+                        }
+                        param_settings {
+                            param: 'Obj'
+                            value: 'rwxn'
+                        }
+                        param_settings {
+                            param: 'InstantiatedObj'
+                            value: 'rwxn'
+                        }
+                        param_settings {
+                            param: 'CommandEvent'
+                            value: 'rwxn'
+                        }
                     }
                 create_objs {
-                        obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller trust instance>.Permission.'
-                        param_settings {
-                                param: 'Enable'
-                                value: 'true'
-                            }
-                        param_settings {
-                                param: 'Targets'
-                                value: 'Device.LocalAgent.Controller.<Controller instance ID>.BootParameter.<known instance>.ParameterName'
-                            }
-                        param_settings {
-                                param: 'Param'
-                                value: '----'
-                            }
+                    obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller trust instance>.Permission.'
+                    param_settings {
+                        param: 'Enable'
+                        value: 'true'
                     }
+                    param_settings {
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance ID>.BootParameter.<known instance>.ParameterName'
+                    }
+                    param_settings {
+                        param: 'Param'
+                        value: '----'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                }
             }
         }
     }
@@ -8518,6 +8692,18 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                         value: 'rw--'
                     }
                     param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
                         param: 'Order'
                         value: '1'
                     }
@@ -8535,6 +8721,18 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     param_settings {
                         param: 'Param'
                         value: 'r---'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
                     }
                     param_settings {
                         param: 'Order'
@@ -8620,40 +8818,64 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                 create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Controller instance id>.BootParameter.'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'rw--'
-                        }
-        param_settings {
-                            param: 'Order'
-                            value: '1'
-                        }
+                        param: 'Param'
+                        value: 'rw--'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Order'
+                        value: '1'
+                    }
                 }
-        create_objs {
+                create_objs {
                     obj_path: 'Device.LocalAgent.ControllerTrust.Role.<Controller Role instance>.Permission.'
                     param_settings {
-                            param: 'Enable'
-                            value: 'true'
-                        }
+                        param: 'Enable'
+                        value: 'true'
+                    }
                     param_settings {
-                            param: 'Targets'
-                            value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
-                        }
+                        param: 'Targets'
+                        value: 'Device.LocalAgent.Controller.<Second Controller id>.BootParameter.'
+                    }
                     param_settings {
-                            param: 'Param'
-                            value: 'r---'
-                        }
-        param_settings {
-                            param: 'Order'
-                            value: '1'
-                        }
+                        param: 'Param'
+                        value: 'r---'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'Order'
+                        value: '2'
+                    }
                 }
             }
         }
@@ -8758,6 +8980,18 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     param_settings {
                         param: 'Param'
                         value: 'r---'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
                     }
                     param_settings {
                         param: 'Order'
@@ -8876,6 +9110,18 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     param_settings {
                         param: 'Param'
                         value: 'r---'
+                    }
+                    param_settings {
+                        param: 'Obj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'InstantiatedObj'
+                        value: 'rwxn'
+                    }
+                    param_settings {
+                        param: 'CommandEvent'
+                        value: 'rwxn'
                     }
                     param_settings {
                         param: 'Order'

@@ -1866,24 +1866,18 @@ Mandatory
         }
       ```
 
-2.  Allow the EUT to send a SetResp.
+2.  Allow the EUT to send an Error.
 
 3.  Send a Get message to the EUT with a requested path of `Device.LocalAgent.Subscription.`.
 
 ### Test Metrics
 
-1.  The EUT sends a SetResp.
+1.  The EUT sends an Error.
 
-2. The SetResp contains an UpdatedObjectResults element.
-
-3.  The UpdatedObjectResults has an OperationStatus that is an element of type
-    OperationFailure. The OperationFailure contains an appropriate error code
-    and at least one UpdatedInstanceFailure element. The UpdatedInstanceFailure
-    has an affected_path with a value of
-    ‘Device.LocalAgent.Subscription.<instance identifier>.’ for the respective
-    failed instance, and a single ParameterError element. The ParameterError has
-    a param element that indicates the InvalidParameter parameter, and an
-    appropriate error code.
+2.  The Error contains an appropriate error code and at
+    least one ParamError element. The ParamError element contains a
+    `param_path` of 'Device.LocalAgent.Subscription.<instance
+    identifier of relevant object>.InvalidParameter' and an appropriate error code.
 
 3.  In the GetResp there are no Subscription instances with an
     'InvalidParameter' parameter.

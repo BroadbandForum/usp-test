@@ -2,6 +2,13 @@
 
 # TP-469: Conformance Test Plan for USP Agents Change Log
 
+## 2025-05-19: [Release 1.3.2][TP-469 Amendment 3 Corrigendum 2]
+
+*Tag: [v1.3.2]*
+
+* Updates build version
+* Reverts test 1.20 to version 1.2 of test plan
+
 ## 2025-02-10: [Release 1.3.1][TP-469 Amendment 3 Corrigendum 1]
 
 *Tag: [v1.3.1]*
@@ -157,6 +164,7 @@
 [TP-469 Amendment 2]: https://www.broadband-forum.org/download/TP-469_Amendment-2.pdf
 [TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
+[TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf
 [v1.0.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.1
@@ -166,3 +174,4 @@
 [v1.2.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.2.0
 [v1.3.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.0
 [v1.3.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.1
+[v1.3.2]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.2

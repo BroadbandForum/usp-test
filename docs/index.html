@@ -265,9 +265,9 @@ HTML">HTML</a>
     <header id="title-block-header" class="cover-only">
       <h1 class="title auto-hoverlink" id="title">TP-469 – Conformance
 Test Plan for USP Agents</h1>
-      <p class="subtitle">Issue: 1 Amendment 3 Corrigendum 1 <span
+      <p class="subtitle">Issue: 1 Amendment 3 Corrigendum 2 <span
 class="release"></span></p>
-      <p class="date">Issue Date: February 2025</p>
+      <p class="date">Issue Date: May 2025</p>
     </header>
     <nav id="NAVTOP" role="doc-toc">
 <p><a href="#sec:cover-page">Cover Page</a> | <a
@@ -1809,6 +1809,16 @@ href="https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.
 <li>Fixed typo in test 1.86</li>
 <li>Fixed tests 2.23 - 2.26 to use ‘Param’ instead of invalid ‘Obj’
 permissions</li>
+</ul></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a
+href="https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf">Release
+1.3.2</a></td>
+<td style="text-align: left;">May 2025</td>
+<td style="text-align: left;"><ul>
+<li>Updates build version</li>
+<li>Reverts test 1.20 to version 1.2 of test plan</li>
 </ul></td>
 </tr>
 </tbody>
@@ -4360,23 +4370,19 @@ body {
       }
     }
   }</code></pre></li>
-<li><p>Allow the EUT to send a SetResp.</p></li>
+<li><p>Allow the EUT to send an Error.</p></li>
 <li><p>Send a Get message to the EUT with a requested path of
 <code>Device.LocalAgent.Subscription.</code>.</p></li>
 </ol>
 <h3 class="auto-hoverlink" data-info="header"
 id="sec:test-metrics-19">Test Metrics</h3>
 <ol type="1">
-<li><p>The EUT sends a SetResp.</p></li>
-<li><p>The SetResp contains an UpdatedObjectResults element.</p></li>
-<li><p>The UpdatedObjectResults has an OperationStatus that is an
-element of type OperationFailure. The OperationFailure contains an
-appropriate error code and at least one UpdatedInstanceFailure element.
-The UpdatedInstanceFailure has an affected_path with a value of
-‘Device.LocalAgent.Subscription.&lt;instance identifier&gt;.’ for the
-respective failed instance, and a single ParameterError element. The
-ParameterError has a param element that indicates the InvalidParameter
-parameter, and an appropriate error code.</p></li>
+<li><p>The EUT sends an Error.</p></li>
+<li><p>The Error contains an appropriate error code and at least one
+ParamError element. The ParamError element contains a
+<code>param_path</code> of ‘Device.LocalAgent.Subscription.&lt;instance
+identifier of relevant object&gt;.InvalidParameter’ and an appropriate
+error code.</p></li>
 <li><p>In the GetResp there are no Subscription instances with an
 ‘InvalidParameter’ parameter.</p></li>
 </ol>
@@ -9657,17 +9663,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&#39;
+                }
                 param_settings {
-                        param: &#39;Obj&#39;
-                        value: &#39;rw--&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rw--&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -9733,17 +9751,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&#39;
+                }
                 param_settings {
-                        param: &#39;Obj&#39;
-                        value: &#39;r---&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -9811,17 +9841,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&#39;
+                }
                 param_settings {
-                        param: &#39;InstantiatedObj&#39;
-                        value: &#39;rw--&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rw--&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -9889,17 +9931,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&#39;
+                }
                 param_settings {
-                        param: &#39;InstantiatedObj&#39;
-                        value: &#39;r---&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -9966,17 +10020,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;rw--&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rw--&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -10049,17 +10115,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Subscription.&lt;instance that can be edited&gt;.&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;r---&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -10130,17 +10208,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.Reboot()&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.Reboot()&#39;
+                }
                 param_settings {
-                        param: &#39;CommandEvent&#39;
-                        value: &#39;r-x-&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;r-x-&#39;
+                }
             }
         }
     }
@@ -10205,17 +10295,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.Reboot()&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.Reboot()&#39;
+                }
                 param_settings {
-                        param: &#39;CommandEvent&#39;
-                        value: &#39;r---&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;r---&#39;
+                }
             }
         }
     }
@@ -10285,17 +10387,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;rw-n&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rw-n&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -10385,17 +10499,29 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.PeriodicNotifInterval&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;rw--&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rw--&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
             }
         }
     }
@@ -10486,40 +10612,64 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.&lt;Controller id&gt;.Role.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
-                param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
-                    }
-                param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;----&#39;
-                    }
-                param_settings {
-                        param: &#39;Order&#39;
-                        value: &#39;&lt;lowest available value&gt;&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
                 }
+                param_settings {
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
+                }
+                param_settings {
+                    param: &#39;Param&#39;
+                    value: &#39;----&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Order&#39;
+                    value: &#39;&lt;lowest available value&gt;&#39;
+                }
+            }
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.&lt;Controller id&gt;.Role.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;rw--&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rw--&#39;
+                }
                 param_settings {
-                        param: &#39;Order&#39;
-                        value: &#39;&lt;value which is higher than the Order value set in the other Permission instance&gt;&#39;
-                    }
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Order&#39;
+                    value: &#39;&lt;value which is higher than the Order value set in the other Permission instance&gt;&#39;
+                }
             }
         }
     }
@@ -10548,22 +10698,34 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.&lt;Controller id&gt;.Role.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
-                param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
-                    }
-                param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;----&#39;
-                    }
-                param_settings {
-                        param: &#39;Order&#39;
-                        value: &#39;&lt;value which is higher than both Order values set in step 1&gt;&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
                 }
+                param_settings {
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&lt;boot parameter instance&gt;.&#39;
+                }
+                param_settings {
+                    param: &#39;Param&#39;
+                    value: &#39;----&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Order&#39;
+                    value: &#39;&lt;value which is higher than both Order values set in step 1&gt;&#39;
+                }
+            }
         }
     }
 }</code></pre></li>
@@ -10631,33 +10793,57 @@ body {
             create_objs {
                     obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller trust instance&gt;.Permission.&#39;
                     param_settings {
-                            param: &#39;Enable&#39;
-                            value: &#39;true&#39;
-                        }
+                        param: &#39;Enable&#39;
+                        value: &#39;true&#39;
+                    }
                     param_settings {
-                            param: &#39;Targets&#39;
-                            value: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.&#39;
-                        }
+                        param: &#39;Targets&#39;
+                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.&#39;
+                    }
                     param_settings {
-                            param: &#39;Param&#39;
-                            value: &#39;rw--&#39;
-                        }
+                        param: &#39;Param&#39;
+                        value: &#39;rw--&#39;
+                    }
+                    param_settings {
+                        param: &#39;Obj&#39;
+                        value: &#39;rwxn&#39;
+                    }
+                    param_settings {
+                        param: &#39;InstantiatedObj&#39;
+                        value: &#39;rwxn&#39;
+                    }
+                    param_settings {
+                        param: &#39;CommandEvent&#39;
+                        value: &#39;rwxn&#39;
+                    }
                 }
             create_objs {
-                    obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller trust instance&gt;.Permission.&#39;
-                    param_settings {
-                            param: &#39;Enable&#39;
-                            value: &#39;true&#39;
-                        }
-                    param_settings {
-                            param: &#39;Targets&#39;
-                            value: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.ParameterName&#39;
-                        }
-                    param_settings {
-                            param: &#39;Param&#39;
-                            value: &#39;----&#39;
-                        }
+                obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller trust instance&gt;.Permission.&#39;
+                param_settings {
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
                 }
+                param_settings {
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance ID&gt;.BootParameter.&lt;known instance&gt;.ParameterName&#39;
+                }
+                param_settings {
+                    param: &#39;Param&#39;
+                    value: &#39;----&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+            }
         }
     }
 }</code></pre></li>
@@ -10735,6 +10921,18 @@ body {
                     value: &#39;rw--&#39;
                 }
                 param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
                     param: &#39;Order&#39;
                     value: &#39;1&#39;
                 }
@@ -10752,6 +10950,18 @@ body {
                 param_settings {
                     param: &#39;Param&#39;
                     value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
                 }
                 param_settings {
                     param: &#39;Order&#39;
@@ -10832,40 +11042,64 @@ body {
             create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Controller instance id&gt;.BootParameter.&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;rw--&#39;
-                    }
-    param_settings {
-                        param: &#39;Order&#39;
-                        value: &#39;1&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;rw--&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Order&#39;
+                    value: &#39;1&#39;
+                }
             }
-    create_objs {
+            create_objs {
                 obj_path: &#39;Device.LocalAgent.ControllerTrust.Role.&lt;Controller Role instance&gt;.Permission.&#39;
                 param_settings {
-                        param: &#39;Enable&#39;
-                        value: &#39;true&#39;
-                    }
+                    param: &#39;Enable&#39;
+                    value: &#39;true&#39;
+                }
                 param_settings {
-                        param: &#39;Targets&#39;
-                        value: &#39;Device.LocalAgent.Controller.&lt;Second Controller id&gt;.BootParameter.&#39;
-                    }
+                    param: &#39;Targets&#39;
+                    value: &#39;Device.LocalAgent.Controller.&lt;Second Controller id&gt;.BootParameter.&#39;
+                }
                 param_settings {
-                        param: &#39;Param&#39;
-                        value: &#39;r---&#39;
-                    }
-    param_settings {
-                        param: &#39;Order&#39;
-                        value: &#39;1&#39;
-                    }
+                    param: &#39;Param&#39;
+                    value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;Order&#39;
+                    value: &#39;2&#39;
+                }
             }
         }
     }
@@ -10960,6 +11194,18 @@ body {
                 param_settings {
                     param: &#39;Param&#39;
                     value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
                 }
                 param_settings {
                     param: &#39;Order&#39;
@@ -11068,6 +11314,18 @@ body {
                 param_settings {
                     param: &#39;Param&#39;
                     value: &#39;r---&#39;
+                }
+                param_settings {
+                    param: &#39;Obj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;InstantiatedObj&#39;
+                    value: &#39;rwxn&#39;
+                }
+                param_settings {
+                    param: &#39;CommandEvent&#39;
+                    value: &#39;rwxn&#39;
                 }
                 param_settings {
                     param: &#39;Order&#39;
