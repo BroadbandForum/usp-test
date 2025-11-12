@@ -390,3 +390,44 @@ Conditional Mandatory (supports the WebSocket MTP)
 1. The EUT is able to establish a WebSocket connection to the controller.
 
 2. The EUT sends a GetResponse to the Get message sent in step 4.
+
+## 7.12 Agent can process USP Records within fragmented Websocket messages
+
+### Purpose
+
+The purpose of this test is to ensure the EUT properly processes a fragmented
+WebSocket message.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the WebSocket MTP)
+
+### Test Setup
+
+1. Ensure the EUT is configured to connect to the test controller using WebSocket.
+
+### Test Procedure
+
+1. Configure the test controller to send fragmented WebSocket messages.
+
+2. Send a Get message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg_id>'
+        msg_type: GET
+    }
+    body {
+        request {
+            get {
+                param_paths: 'Device.DeviceInfo.'
+            }
+        }
+    }
+    ```
+
+3. Wait for a GetResponse from the EUT
+
+### Test Metrics
+
+1. The EUT sends a GetResponse to the Get message sent in step 2.

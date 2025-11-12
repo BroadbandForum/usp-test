@@ -5073,6 +5073,7 @@ Mandatory
                 return_commands: true
                 return_events: true
                 return_params: true
+                return_unique_key_sets: true
             }
         }
     }
@@ -5082,12 +5083,13 @@ Mandatory
 
 1. The EUT sends a GetSupportedDMResp.
 2. Every `req_obj_results` element contains all
-   parameters, events, and commands below the
+   parameters, events, commands, and unique_key_sets below the
    specified partial path, plus the supported data model information of all
    sub-objects.
 3. Each SupportedParamResult field contains the `param_name`, `access`, `value_type`, and `value_change` fields with valid information, if the element is a parameter.
 4. Each SupportedCommandResult field contains the `command_name` field, `command_type` field, and a set of `input_arg_names` and `output_arg_names` fields with valid information, if the element is a command.
 5. Each SupportedEventResult field contains the `event_name` field and a set of `arg_names` fields with valid information, if the element is an event.
+6. Each SupportedUniqueKeySet field contains the `key_names` field and a set of relative parameters, whose values together uniquely identify an instance of the object in the instantiated data model.
 
 ## 1.73 GetSupportedDM using a single object, first_level_only true, all options
 
@@ -5123,6 +5125,7 @@ Mandatory
                 return_commands: true
                 return_events: true
                 return_params: true
+                return_unique_key_sets: true
             }
         }
     }
@@ -5132,10 +5135,11 @@ Mandatory
 
 1. The EUT sends a GetSupportedDMResp containing `req_object_results` elements
 for the specified object and each immediate child object.
-2. Only the `req_obj_results` element of the object specified in `obj_paths` contains parameters, events, and commands.
+2. Only the `req_obj_results` element of the object specified in `obj_paths` contains parameters, events, commands, and unique_key_sets.
 3. Each SupportedParamResult field contains the `param_name`, `access`, `value_type`, and `value_change` fields with valid information, if applicable.
 4. Each SupportedCommandResult field contains the `command_name` field, `command_type` field, and a set of `input_arg_names` and `output_arg_names` fields with valid information, if applicable.
 5. Each SupportedEventResult field contains the `event_name` field and a set of `arg_names` fields with valid information, if applicable.
+6. Each SupportedUniqueKeySet field is an empty list, since the object is a single-instance object.  
 
 ## 1.74 GetSupportedDM using a single object, first_level_only true, no options
 
@@ -5171,6 +5175,7 @@ Mandatory
                 return_commands: false
                 return_events: false
                 return_params: false
+                return_unique_key_sets: false
             }
         }
     }
@@ -5181,7 +5186,7 @@ Mandatory
 1. The EUT sends a GetSupportedDMResp containing `req_object_results` elements
 for the specified object and each immediate child object.
 2. None of the `req_obj_results` elements contain
-   any commands, events, or params.
+   any commands, events, params, or unique_key_sets.
 
 
 ## 1.75 GetSupportedDM using multiple objects, first_level_only true, all options
@@ -5219,6 +5224,7 @@ Mandatory
                 return_commands: true
                 return_events: true
                 return_params: true
+                return_unique_key_sets: true
             }
         }
     }
@@ -5229,10 +5235,11 @@ Mandatory
 1. The EUT sends a GetSupportedDMResp containing `req_object_results` elements
 for the specified objects and each immediate child object.
 2. Only the `req_obj_results` element of the object specified in `obj_paths`
-contains parameters, events, and commands.
+contains parameters, events, commands, and unique_key_sets.
 3. Each SupportedParamResult field contains the `param_name`, `access`, `value_type`, and `value_change` fields with valid information, if applicable.
 4. Each SupportedCommandResult field contains the `command_name` field, `command_type` field, and a set of `input_arg_names` and `output_arg_names` fields with valid information, if applicable.
 5. Each SupportedEventResult field contains the `event_name` field and a set of `arg_names` fields with valid information, if applicable.
+6. Each SupportedUniqueKeySet field contains the `key_names` field and a set of relative parameters, whose values together uniquely identify an instance of the object in the instantiated data model. `key_names` must be included in the requested objects and immediate child objects returned in the GetSupportedDMResp.
 
 ## 1.76 GetSupportedDM on root object, all options
 
@@ -5267,6 +5274,7 @@ Mandatory
                 return_commands: true
                 return_events: true
                 return_params: true
+                return_unique_key_sets: true
             }
         }
     }
@@ -5274,10 +5282,11 @@ Mandatory
 
 ### Test Metrics
 
-1. The EUT sends a GetSupportedDMResp message with one or more `req_obj_results` specifying its entire supported data model, listing commands, parameters, and events.
+1. The EUT sends a GetSupportedDMResp message with one or more `req_obj_results` specifying its entire supported data model, listing commands, parameters, events, and unique_key_sets.
 2. Each SupportedParamResult field contains the `param_name`, `access`, `value_type`, and `value_change` fields with valid information, if applicable.
 3. Each SupportedCommandResult field contains the `command_name` field, `command_type` field, and a set of `input_arg_names` and `output_arg_names` fields with valid information, if applicable.
 4. Each SupportedEventResult field contains the `event_name` field and a set of `arg_names` fields with valid information, if applicable.
+5. Each SupportedUniqueKeySet field contains the `key_names` field and a set of relative parameters, whose values together uniquely identify an instance of the object in the instantiated data model.
 
 ## 1.77 GetSupportedDM on unsupported object
 
@@ -5312,6 +5321,7 @@ body {
             return_commands: true
             return_events: true
             return_params: true
+            return_unique_key_sets: true
         }
     }
 }
@@ -6156,7 +6166,7 @@ The purpose of this test is to ensure that the Agent will correctly use default 
 
 ### Functionality Tag
 
-Conditional Mandatory (supports the TraceRoute:1 profile)
+Conditional Mandatory (supports the TraceRoute:1 profile or at least one other asynchronous operation)
 
 ### Test Setup
 
@@ -6763,3 +6773,613 @@ Conditionally Mandatory (Supports an event that includes one or more arguments)
    `arg_names` field.
 3. At least one `arg_names` field contains a list of one or more arguments. The
    arguments are relative paths. 
+
+## 1.99 GetSupportedDM, unique_key_sets
+
+### Purpose
+
+The purpose of this test is to ensure the EUT provides correctly formatted
+fields for unique_key_sets returned in GetSupportedDM Resp.
+
+### Functionality Tag
+
+Mandatory
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.LocalAgent.Subscription'
+                first_level_only: false
+                return_commands: false
+                return_events: false
+                return_params: false
+                return_unique_key_sets: true
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+   specifying its supported data model, listing only unique_key_sets.
+2. The SupportedUniqueKeySet field contains two `key_names` fields, one
+   containing the relative path `Alias` and the other containing the relative
+   paths `Recipient` and `ID`.
+
+## 1.100 Command with missing mandatory input_args
+
+### Purpose
+
+The purpose of this test is to ensure the EUT provides the correct error
+when it receives a command with a missing mandatory input_arg
+
+### Functionality Tag
+
+Conditional Mandatory (supports Device.ScheduleTimer() command or at least one
+operation that contains input arguments)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+2. Ensure that a Subscription object exists on the EUT with NotifType
+OperationComplete on Device.ScheduleTimer().
+
+### Test Procedure
+
+1. Send an Operate message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: OPERATE
+    }
+    body {
+      request {
+          operate {
+              command: 'Device.ScheduleTimer()'
+              command_key: 'test100'
+              send_resp: true
+              input_args {}
+              }
+          }
+      }
+    ```
+
+2. Wait at least 120 seconds.
+
+
+### Test Metrics
+
+1. The EUT sends an OperateResp message including a cmd_failure element
+   containing an err_code of type 7027 "Invalid Command Arguments". 
+
+2. The EUT must not send a Notify message containing an OperationComplete event
+   with a `command_name` of `ScheduleTimer()`.
+
+## 1.101 OnBoardRequest Notification - OnBoardingComplete set to false
+
+### Purpose
+
+The purpose of this test is to ensure that the Agent sets the
+`Device.LocalAgent.Controller.{i}.OnBoardingComplete` to false when it receives
+a SendOnBoardRequest() command.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+### Test Setup
+
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
+
+### Test Procedure
+
+1.  Send an Operate message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: OPERATE
+    }
+    body {
+      request {
+        operate {
+          command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+          command_key: 'test101'
+          send_resp: false
+        }
+      }
+    }
+    ```
+
+2.  Allow the EUT to send a Notify message.
+
+3.  Send a NotifyResp to the EUT.
+
+4.  Send a Get message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: GET
+    }
+    body {
+      request {
+        get {
+          param_paths: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.OnBoardingComplete'
+        }
+      }
+    }
+    ```
+
+5.  Allow the EUT to send a GetResp.
+
+6.  Send a Set message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: SET
+    }
+
+    body {
+      request {
+        set {
+          allow_partial: false
+          update_objs {
+            obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+            param_settings {
+              param: 'OnBoardingComplete'
+              value: 'true'
+              required: true
+            }
+          }
+        }
+      }
+    }
+    ```
+
+### Test Metrics
+
+1.  The EUT sends an OnBoardRequest Notify message to the Controller.
+
+2.  The EUT returns an OnBoardingComplete value of false in step 5.
+
+## 1.102 OnBoardRequest Notification - OnBoardingRestartTime
+
+### Purpose
+
+The purpose of this test is to ensure that the Agent will retransmit an
+OnBoardRequest Notify message to the Controller according to the
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameter.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+### Test Setup
+
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
+
+### Test Procedure
+
+1.  Send a Set message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: SET
+    }
+
+    body {
+      request {
+        set {
+          allow_partial: false
+          update_objs {
+            obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+            param_settings {
+              param: 'OnBoardingRestartTime'
+              value: '60'
+              required: true
+            }
+          }
+        }
+      }
+    }
+    ```
+2.  Send an Operate message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: OPERATE
+    }
+    body {
+      request {
+        operate {
+          command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+          command_key: 'test102'
+          send_resp: false
+        }
+      }
+    }
+    ```
+
+3.  Allow the EUT to send a Notify message.
+
+4.  Send a NotifyResp to the EUT.
+
+5.  Wait 60 seconds for the EUT to send a second Notify message.
+
+6.  Send a NotifyResp to the EUT.
+
+7.  Send a Set message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: SET
+    }
+
+    body {
+      request {
+        set {
+          allow_partial: false
+          update_objs {
+            obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+            param_settings {
+              param: 'OnBoardingComplete'
+              value: 'true'
+              required: true
+            }
+          }
+        }
+      }
+    }
+    ```
+
+8.  Wait 60 seconds.
+
+### Test Metrics
+
+1.  The EUT sends an OnBoardRequest Notify message to the Controller in step 2.
+
+2.  The EUT sends another OnBoardRequest Notify message to the Controller 60
+    seconds after receiving the NotifyResponse.
+
+3.  The EUT does not send another OnBoardRequest Notify message to the
+    Controller after the Controller sets the `OnBoardingComplete` parameter to
+    `true`.
+
+## 1.103 OnBoardRequest Notification - OnBoardingRestartTime disabled
+
+### Purpose
+
+The purpose of this test is to ensure that the Agent will not retransmit an
+OnBoardRequest Notify message to the Controller when the
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameter is set to 0.
+
+### Functionality Tag
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+### Test Setup
+
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
+
+### Test Procedure
+
+1.  Send a Set message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: SET
+    }
+
+    body {
+      request {
+        set {
+          allow_partial: false
+          update_objs {
+            obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+            param_settings {
+              param: 'OnBoardingRestartTime'
+              value: '0'
+              required: true
+            }
+          }
+        }
+      }
+    }
+    ```
+
+2.  Send an Operate message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: OPERATE
+    }
+    body {
+      request {
+        operate {
+          command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+          command_key: 'test103'
+          send_resp: false
+        }
+      }
+    }
+    ```
+
+3.  Allow the EUT to send a Notify message.
+
+4.  Send a NotifyResp to the EUT.
+
+5.  Wait 60 seconds.
+
+### Test Metrics
+
+1.  The EUT sends an OnBoardRequest Notify message to the Controller in step 3.
+
+2.  The EUT does not send an OnBoardRequest Notify message to the Controller
+    when the `OnBoardingRestartTime` parameter is set to 0. 
+
+## 1.104 Set message on WriteOnceReadOnly parameter
+
+### Purpose
+
+The purpose of this test is to validate that the EUT properly handles a
+Set message on a parameter that is WriteOnceReadOnly.
+
+### Functionality Tag
+
+Mandatory
+
+### Test Setup
+
+1.  Ensure that the EUT and test equipment have the necessary
+    information to send and receive USP Records to each other.
+
+### Test Procedure
+
+1.  Send an Add message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: ADD
+    }
+
+    body {
+      request {
+        add {
+          allow_partial: false
+          create_objs {
+            obj_path: 'Device.LocalAgent.Subscription.'
+            param_settings {
+                param: 'Alias'
+                value: 'test-1-104'
+              }
+            }
+          }
+        }
+      }
+    ```
+
+2.  Allow the EUT to send an AddResp.
+
+3.  Send a Set message to the EUT with the following structure:
+
+      ```{filter=pbv type=Msg}
+      header {
+        msg_id: '<msg_id>'
+        msg_type: SET
+      }
+
+      body {
+        request {
+          set {
+            allow_partial: false
+            update_objs {
+              obj_path: 'Device.LocalAgent.Subscription.<instance identifier from test setup>.'
+              param_settings {
+               param: 'Alias'
+               value: 'test-1-104-new-alias'
+               required: true
+              }
+            }
+          }
+        }
+      }
+      ```
+4.  Allow the EUT to send an Error.
+
+5.  Send a Get message to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+      msg_id: '<msg_id>'
+      msg_type: GET
+    }
+    body {
+      request {
+        get {
+          param_paths: 'Device.LocalAgent.Subscription.<instance identifier>.Alias'
+        }
+      }
+    }
+    ```
+
+6. Allow the EUT to send a GetResp.
+
+### Test Metrics
+
+1. The EUT sends an Error message in response to the Set message for a
+   WriteOnceReadOnly parameter.
+
+2. The value of the WriteOnceReadOnly parameter is the same value as was set in
+   the Add message.
+
+## 1.105 GetSupportedDM on a Command
+
+### Purpose
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for a command.
+
+### Functionality Tag
+
+Conditional Mandatory (supports Reboot:1 or any other command)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.Reboot()'
+                first_level_only: false
+                return_commands: true
+                return_events: true
+                return_params: true
+                return_unique_key_sets: true
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+   specifying its supported data model, listing only the requested command in
+   'supported_commands'. The 'supported_events', 'supported_params', and
+   'unique_key_sets' fields are empty.
+
+## 1.106 GetSupportedDM on an Event
+
+### Purpose
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for an event.
+
+### Functionality Tag
+
+Conditional Mandatory (supports Reboot:1 or any other command)
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.Boot!'
+                first_level_only: false
+                return_commands: true
+                return_events: true
+                return_params: true
+                return_unique_key_sets: true
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+   specifying its supported data model, listing only the requested event in
+   'supported_events'. The 'supported_commands', 'supported_params', and
+   'unique_key_sets' fields are empty.
+
+## 1.107 GetSupportedDM on a Parameter
+
+### Purpose
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for a parameter.
+
+### Functionality Tag
+
+Mandatory
+
+### Test Setup
+
+1. Ensure that the EUT and test equipment have the necessary information to send
+   and receive USP Records to each other.
+
+### Test Procedure
+
+1. Send a GetSupportedDM to the EUT with the following structure:
+
+    ```{filter=pbv type=Msg}
+    header {
+        msg_id: '<msg id>'
+        msg_type: GET_SUPPORTED_DM
+    }
+    body {
+        request {
+            get_supported_dm {
+                obj_paths:'Device.LocalAgent.EndpointID'
+                first_level_only: false
+                return_commands: true
+                return_events: true
+                return_params: true
+                return_unique_key_sets: true
+            }
+        }
+    }
+    ```
+
+### Test Metrics
+
+1. The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+   specifying its supported data model, listing only the requested parameter in
+   'supported_params'. The 'supported_commands', 'supported_events', and
+   'unique_key_sets' fields are empty.

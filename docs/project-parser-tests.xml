@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
-<testsuites disabled="0" errors="0" failures="0" tests="35" time="0.0">
-	<testsuite disabled="0" errors="0" failures="0" name="project-parser-py" skipped="0" tests="35" time="0">
+<testsuites disabled="0" errors="0" failures="0" tests="36" time="0.0">
+	<testsuite disabled="0" errors="0" failures="0" name="project-parser-py" skipped="0" tests="36" time="0">
 		<testcase name="project-parser"/>
 		<testcase name="project-parser-2"/>
 		<testcase name="project-parser-3"/>
@@ -25,6 +25,7 @@
 		<testcase name="project-parser-no-project-name-in"/>
 		<testcase name="project-parser-no-tags-is-an-invalid-boolean-value"/>
 		<testcase name="project-parser-referenced-file-doesnt-exist"/>
+		<testcase name="project-parser-revision-has-an-unwanted-leading-dot"/>
 		<testcase name="project-parser-revision-omits-minor-level"/>
 		<testcase name="project-parser-revision-omits-patch-level"/>
 		<testcase name="project-parser-should-define-navigation-buttons-in-projectyaml"/>

@@ -2,6 +2,16 @@
 
 # TP-469: Conformance Test Plan for USP Agents Change Log
 
+## 2025-11-10: [Release 1.4.0][TP-469 Amendment 4]
+
+*Tag: [v1.4.0]*
+
+* Updates all test cases to support USP 1.4.2
+* New test case for WebSocket defragmentation
+* New test for commands missing required input arguments
+* New test cases for OnboardingComplete and OnboardingRestartTime
+* New test case for WriteOnceReadOnly parameters
+
 ## 2025-05-19: [Release 1.3.2][TP-469 Amendment 3 Corrigendum 2]
 
 *Tag: [v1.3.2]*
@@ -165,6 +175,7 @@
 [TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
 [TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
+[TP-469 Amendment 4]: https://www.broadband-forum.org/download/TP-469_Amendment-4.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf
 [v1.0.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.1
@@ -175,3 +186,4 @@
 [v1.3.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.0
 [v1.3.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.1
 [v1.3.2]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.2
+[v1.4.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.4.0

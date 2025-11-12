@@ -150,6 +150,14 @@
   - * Updates build version
     * Reverts test 1.20 to version 1.2 of test plan
 
+* - [Release 1.4.0][TP-469 Amendment 4]
+  - November 2025
+  - * Updates all test cases to support USP 1.4.2
+    * New test case for WebSocket defragmentation
+    * New test for commands missing required input arguments
+    * New test cases for OnboardingComplete and OnboardingRestartTime
+    * New test case for WriteOnceReadOnly parameters
+
 :::
 
 Comments or questions about this Broadband Forum  should be directed to <info@broadband-forum.org>.
@@ -197,4 +205,5 @@ Comments or questions about this Broadband Forum  should be directed to <info@br
 [TP-469 Amendment 3]: https://www.broadband-forum.org/download/TP-469_Amendment-3.pdf
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
 [TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
+[TP-469 Amendment 4]: https://www.broadband-forum.org/download/TP-469_Amendment-4.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf

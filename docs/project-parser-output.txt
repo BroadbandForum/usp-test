@@ -1,10 +1,10 @@
-make[1]: Entering directory '/mnt/ebs/bamboo-agent-home-bravo/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
-rm -f ./docs/CNAME ./docs/index.htm ./docs/index.html ./docs/index.pdf ./docs/DTP-469-release-1.3-31.pdf ./docs/DTP-469-release-1.3-*.pdf ./docs/index.md ./docs/index-metadata.yaml ./docs/index.typ ./docs/watermark.txt ./docs/watermark.png ./docs/release.css ./docs/json-defaults.yaml ./docs/docx-defaults.yaml ./docs/pdf-defaults.yaml ./docs/typst-defaults.yaml ./docs/typst-template.typ ./docs/typst-stringify.typ ./docs/bbf.css ./docs/bbflogo-bw.png ./docs/bbflogo-reverse-dark.png ./docs/bee.png ./docs/broadband-forum-logo.png ./docs/extra.css ./docs/github.css ./docs/missing.png ./docs/pencil.png ./docs/permalink.png ./docs/right.png ./docs/tick.png ./docs/toc.css ./docs/watermark-pdf.css ./docs/watermark.css ./docs/./figure-1.png ./docs/index.html 
+make[1]: Entering directory '/opt/atlassian/pipelines/agent/build/DTP-469'
+rm -f ./docs/CNAME ./docs/index.htm ./docs/index.html ./docs/index.pdf ./docs/index.md ./docs/index-metadata.yaml ./docs/index.typ ./docs/watermark.css ./docs/release.css ./docs/json-defaults.yaml ./docs/docx-defaults.yaml ./docs/pdf-defaults.yaml ./docs/typst-defaults.yaml ./docs/typst-template.typ ./docs/typst-stringify.typ ./docs/bbf.css ./docs/bbflogo-bw.png ./docs/bbflogo-reverse-dark.png ./docs/bee.png ./docs/broadband-forum-logo.png ./docs/extra.css ./docs/github.css ./docs/missing.png ./docs/pencil.png ./docs/permalink.png ./docs/right.png ./docs/tick.png ./docs/toc.css ./docs/watermark-pdf.css ./docs/./figure-1.png ./docs/index.html 
 rm -f ./docs/README.md ./docs/CHANGELOG.md ./docs/METADATA-1.yaml ./docs/METADATA.yaml ./docs/METADATA-1.md ./docs/METADATA.md ./docs/METADATA-1.mk ./docs/METADATA.mk  ./docs/PROJECT.yaml.outputs
 rm -f -r  ./docs/PROJECT
-make[1]: Leaving directory '/mnt/ebs/bamboo-agent-home-bravo/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
-make[1]: Entering directory '/mnt/ebs/bamboo-agent-home-bravo/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
-PYTHONPATH=./../../install/python/ ./../../install/bin/project-parser.py --outdir=./docs --loglevel=1 PROJECT.yaml 2>&1 >docs/PROJECT.yaml.outputs || true
+make[1]: Leaving directory '/opt/atlassian/pipelines/agent/build/DTP-469'
+make[1]: Entering directory '/opt/atlassian/pipelines/agent/build/DTP-469'
+PYTHONPATH=./../install/python/ ./../install/bin/project-parser.py --outdir=./docs --loglevel=1 PROJECT.yaml 2>&1 >docs/PROJECT.yaml.outputs || true
 INFO:project-parser:created TP-469 project (valid)
 INFO:project-parser:validated projects
 INFO:project-parser:wrote ./docs/README.md
@@ -17,7 +17,7 @@ INFO:project-parser:wrote ./docs/METADATA-1.mk
 INFO:project-parser:wrote ./docs/METADATA.mk
 [ -f docs/PROJECT ] && echo docs/PROJECT exists and is not a directory && exit 1; \
 rm -f -r docs/PROJECT && mkdir -p docs/PROJECT && touch docs/PROJECT/index.html; \
-cp -p ./../../install/pandoc/css/bbf.css docs/PROJECT; \
+cp -p ./../install/pandoc/css/bbf.css docs/PROJECT; \
 echo "<p>TP-469 PROJECT.yaml and its products:</p>" >>docs/PROJECT/index.html; \
 echo "<ul>" >>docs/PROJECT/index.html; \
 flags=""; \
@@ -37,8 +37,8 @@ for file in PROJECT.yaml ./docs/README.md ./docs/CHANGELOG.md ./docs/METADATA-1.
     if [ ${file##*.} = "md" ]; then \
 	[ $bas = "index.md" ] && \
                     out="_index.html" || out=${out/.md.txt/.html}; \
-	echo pandoc --data-dir=./../../install/pandoc/ $flags $file --output=docs/PROJECT/$out; \
-	pandoc --data-dir=./../../install/pandoc/ $flags $file --output=docs/PROJECT/$out; \
+	echo pandoc --data-dir=./../install/pandoc/ $flags $file --output=docs/PROJECT/$out; \
+	pandoc --data-dir=./../install/pandoc/ $flags $file --output=docs/PROJECT/$out; \
 	echo "<li>$file -> <a href='$out'>$out</a></li>" \
 		>>docs/PROJECT/index.html; \
     fi; \
@@ -46,15 +46,15 @@ for file in PROJECT.yaml ./docs/README.md ./docs/CHANGELOG.md ./docs/METADATA-1.
 echo "</ul>" >>docs/PROJECT/index.html
 cp -p PROJECT.yaml docs/PROJECT/PROJECT.yaml.txt
 cp -p ./docs/README.md docs/PROJECT/README.md.txt
-pandoc --data-dir=./../../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/README.md --output=docs/PROJECT/README.html
+pandoc --data-dir=./../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/README.md --output=docs/PROJECT/README.html
 cp -p ./docs/CHANGELOG.md docs/PROJECT/CHANGELOG.md.txt
-pandoc --data-dir=./../../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/CHANGELOG.md --output=docs/PROJECT/CHANGELOG.html
+pandoc --data-dir=./../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/CHANGELOG.md --output=docs/PROJECT/CHANGELOG.html
 cp -p ./docs/METADATA-1.yaml docs/PROJECT/METADATA-1.yaml.txt
 cp -p ./docs/METADATA.yaml docs/PROJECT/METADATA.yaml.txt
 cp -p ./docs/METADATA-1.md docs/PROJECT/METADATA-1.md.txt
-pandoc --data-dir=./../../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/METADATA-1.md --output=docs/PROJECT/METADATA-1.html
+pandoc --data-dir=./../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/METADATA-1.md --output=docs/PROJECT/METADATA-1.html
 cp -p ./docs/METADATA.md docs/PROJECT/METADATA.md.txt
-pandoc --data-dir=./../../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/METADATA.md --output=docs/PROJECT/METADATA.html
+pandoc --data-dir=./../install/pandoc/ --standalone --metadata-file=bbf-metadata.yaml --metadata-file=no-title-metadata.yaml --lua-filter=expand-macros.lua --lua-filter=list-table.lua --css=bbf.css ./docs/METADATA.md --output=docs/PROJECT/METADATA.html
 cp -p ./docs/METADATA-1.mk docs/PROJECT/METADATA-1.mk.txt
 cp -p ./docs/METADATA.mk docs/PROJECT/METADATA.mk.txt
-make[1]: Leaving directory '/mnt/ebs/bamboo-agent-home-bravo/xml-data/build-dir/USP-USPTESTREL-JOB1/project/bbf'
+make[1]: Leaving directory '/opt/atlassian/pipelines/agent/build/DTP-469'

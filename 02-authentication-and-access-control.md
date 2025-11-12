@@ -1702,6 +1702,11 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                 allow_partial: true
                 create_objs {
                     obj_path: 'Device.LocalAgent.Controller.*.BootParameter'
+                    param_settings {
+                        param: "Enable"
+                        value: "false"
+                        required: true
+                    }
                 }
             }
         }
@@ -1840,6 +1845,11 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                 allow_partial: false
                 create_objs {
                     obj_path: 'Device.LocalAgent.Controller.*.BootParameter'
+                    param_settings {
+                        param: "Enable"
+                        value: "false"
+                        required: true
+                    }
                 }
             }
         }

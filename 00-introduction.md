@@ -1,7 +1,7 @@
 ---
 # USP major and minor versions
 uspMajor: 1
-uspMinor: 3
+uspMinor: 4
 
 # information shown on each page header
 project: The User Services Platform
@@ -156,14 +156,14 @@ specify their support for conditional mandatory test cases. Since the types of e
 | :-------- | :-------------- | :--------- | :---- |
 | 1 | At least one command | 1.61, 1.62 | |
 | 2 | At least one command with input arguments | 1.79 | |
-| 3 | At least one asynchronous command | 1.64, 1.65 | |
+| 3 | At least one asynchronous command | 1.64, 1.65, 1.92 | |
 | 4 | Subscription.{i}.NotifExpiration parameter |  1.56 | An extension to the Subscription:1 profile |
 | 5 | Controller:1 profile | 1.59 | |
 | 6 | Device.LocalAgent.Subscription.{i}.TimeToLive | 1.55 | |
 | 7 | Controller:1 profile (writeable) | 1.78, 9.9 | EUT allows the creation of Device.LocalAgent.Controller.{i}. objects |
 | 8 | Device.LocalAgent.Controller.{i}.SendOnBoardRequest() | 1.60, 9.9 | |
-| 9 | Device.ScheduleTimer() | 1.79 | |
-| 10 | Reboot:1 profile | 1.61, 1.62, 9.10 | |
+| 9 | Device.ScheduleTimer() | 1.79, 1.91, 1.100, 9.11 | |
+| 10 | Reboot:1 profile | 1.61, 1.62, 1.105, 1.106, 9.10 | |
 | 11 | (Removed) | | |
 | 12 | ControllerTrust:1 profile | 2.9, 2.10 | |
 | 13 | ControllerTrust:1 profile (writeable) | 2.11, 2.12, 2.13, 2.14, 2.15, 2.16, 2.17, 2.18, 2.19, 2.20, 2.21, 2.22, 2.23, 2.24, 2.25, 2.26 | Additionally supports at least one role that allows object creation, or supports writable parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}. |
@@ -195,6 +195,7 @@ specify their support for conditional mandatory test cases. Since the types of e
 | 39 | Event with arguments | 1.98 | Supports an event that includes one or more arguments |
 | 40 | Device.LocalAgent.ControllerTrust.SecuredRoles | 2.27 | Supports the use of the SecuredRole for Secured Parameters |
 | 41 | Bulk data collection over MQTT | 10.13 | |
+| 42 | OnBoardingComplete and OnBoardingRestartTime | 1.101, 1.102, 1.103 | Supports the Device.LocalAgent.Controller.{i}.OnBoardingComplete and Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters |
 
 
 #### Elements Specified in the Test Procedure

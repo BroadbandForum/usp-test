@@ -28,13 +28,13 @@
 
 #show: doc => conf(
   title: [USP – The User Services Platform],
-  subtitle: [Issue: 1 Amendment 3 Corrigendum 2 #bbf-release[]],
-  date: [Issue Date: May 2025],
+  subtitle: [Issue: 1 Amendment 4 #bbf-release[]],
+  date: [Issue Date: November 2025],
   pagenumbering: none,
   cols: 1,
   linenumbering: none,
   info: (
-    PYTHONDIR: [.\/..\/..\/install\/pandoc\/\/..\/python],
+    PYTHONDIR: [.\/..\/install\/pandoc\/\/..\/python],
     analyticstag: [],
     autoSectionLabels: [true],
     bbfBuild: [],
@@ -46,20 +46,20 @@
     bbfIssue: [Issue],
     bbfMajor: [1],
     bbfMicro: [0],
-    bbfMinor: [3],
-    bbfMonth: [May],
+    bbfMinor: [4],
+    bbfMonth: [November],
     bbfNumber: [TP\-469],
-    bbfPatch: [2],
+    bbfPatch: [0],
     bbfProjectStream: [],
     bbfStatus: [],
     bbfTitle: [Conformance Test Plan for USP Agents],
     bbfType: [],
-    bbfVersion: [1 Amendment 3 Corrigendum 2],
+    bbfVersion: [1 Amendment 4],
     bbfWorkArea: [],
     bbfYear: [2025],
     citation-style: [bbf.csl],
     copydate: [2025],
-    date: [Issue Date: May 2025],
+    date: [Issue Date: November 2025],
     description: [This repository contains the Broadband Forum
 specification TP\-469, which is the test plan for certifying TR\-369
 (USP) Agents.
@@ -107,7 +107,7 @@ Conformance Test Plan for USP Agents],
     shortname: [USP],
     siteurl: [index.html],
     status: [],
-    subtitle: [Issue: 1 Amendment 3 Corrigendum 2 #bbf-release[]],
+    subtitle: [Issue: 1 Amendment 4 #bbf-release[]],
     summary: [],
     tagline: [Conformance Test Plan for USP Agents],
     template: [typst-template.typ],
@@ -118,7 +118,7 @@ Conformance Test Plan for USP Agents],
     titleid: [title],
     toc: [false],
     uspMajor: [1],
-    uspMinor: [3],
+    uspMinor: [4],
     version: [],
     website: [https:\/\/usp\-test.broadband\-forum.org],
     ),
@@ -438,6 +438,17 @@ Broadband Forum Certification Programs can be found at
     ],
     [- Updates build version
     - Reverts test 1.20 to version 1.2 of test plan
+    ],
+    [#link("https://www.broadband-forum.org/download/TP-469_Amendment-4.pdf")[Release
+    1.4.0]
+    ],
+    [November 2025
+    ],
+    [- Updates all test cases to support USP 1.4.2
+    - New test case for WebSocket defragmentation
+    - New test for commands missing required input arguments
+    - New test cases for OnboardingComplete and OnboardingRestartTime
+    - New test case for WriteOnceReadOnly parameters
     ]
   )
 ]
@@ -693,7 +704,7 @@ features supported by the EUT (see table below).];
     ],
     [At least one asynchronous command
     ],
-    [1.64, 1.65
+    [1.64, 1.65, 1.92
     ], [],
     [4
     ],
@@ -734,13 +745,13 @@ features supported by the EUT (see table below).];
     ],
     [Device.ScheduleTimer()
     ],
-    [1.79
+    [1.79, 1.91, 1.100, 9.11
     ], [],
     [10
     ],
     [Reboot:1 profile
     ],
-    [1.61, 1.62, 9.10
+    [1.61, 1.62, 1.105, 1.106, 9.10
     ], [],
     [11
     ],
@@ -942,7 +953,17 @@ features supported by the EUT (see table below).];
     [Bulk data collection over MQTT
     ],
     [10.13
-    ], []
+    ], [],
+    [42
+    ],
+    [OnBoardingComplete and OnBoardingRestartTime
+    ],
+    [1.101, 1.102, 1.103
+    ],
+    [Supports the Device.LocalAgent.Controller.{i}.OnBoardingComplete
+    and Device.LocalAgent.Controller.{i}.OnBoardingRestartTime
+    parameters
+    ]
   )
 ]
 
@@ -5836,6 +5857,7 @@ Mandatory
               return_commands: true
               return_events: true
               return_params: true
+              return_unique_key_sets: true
           }
       }
   }
@@ -5844,9 +5866,9 @@ Mandatory
 === Test Metrics <sec:test-metrics-70>
 
 + The EUT sends a GetSupportedDMResp.
-+ Every `req_obj_results` element contains all parameters, events, and
-  commands below the specified partial path, plus the supported data
-  model information of all sub\-objects.
++ Every `req_obj_results` element contains all parameters, events,
+  commands, and unique\_key\_sets below the specified partial path, plus
+  the supported data model information of all sub\-objects.
 + Each SupportedParamResult field contains the `param_name`, `access`,
   `value_type`, and `value_change` fields with valid information, if the
   element is a parameter.
@@ -5857,6 +5879,9 @@ Mandatory
 + Each SupportedEventResult field contains the `event_name` field and a
   set of `arg_names` fields with valid information, if the element is an
   event.
++ Each SupportedUniqueKeySet field contains the `key_names` field and a
+  set of relative parameters, whose values together uniquely identify an
+  instance of the object in the instantiated data model.
 
 == 1.73 GetSupportedDM using a single object, first\_level\_only true, all options <sec:getsupporteddm-using-a-single-object-first_level_only-true-all-options>
 
@@ -5892,6 +5917,7 @@ Mandatory
               return_commands: true
               return_events: true
               return_params: true
+              return_unique_key_sets: true
           }
       }
   }
@@ -5902,7 +5928,8 @@ Mandatory
 + The EUT sends a GetSupportedDMResp containing `req_object_results`
   elements for the specified object and each immediate child object.
 + Only the `req_obj_results` element of the object specified in
-  `obj_paths` contains parameters, events, and commands.
+  `obj_paths` contains parameters, events, commands, and
+  unique\_key\_sets.
 + Each SupportedParamResult field contains the `param_name`, `access`,
   `value_type`, and `value_change` fields with valid information, if
   applicable.
@@ -5911,6 +5938,8 @@ Mandatory
   `output_arg_names` fields with valid information, if applicable.
 + Each SupportedEventResult field contains the `event_name` field and a
   set of `arg_names` fields with valid information, if applicable.
++ Each SupportedUniqueKeySet field is an empty list, since the object is
+  a single\-instance object.
 
 == 1.74 GetSupportedDM using a single object, first\_level\_only true, no options <sec:getsupporteddm-using-a-single-object-first_level_only-true-no-options>
 
@@ -5946,6 +5975,7 @@ Mandatory
               return_commands: false
               return_events: false
               return_params: false
+              return_unique_key_sets: false
           }
       }
   }
@@ -5956,7 +5986,7 @@ Mandatory
 + The EUT sends a GetSupportedDMResp containing `req_object_results`
   elements for the specified object and each immediate child object.
 + None of the `req_obj_results` elements contain any commands, events,
-  or params.
+  params, or unique\_key\_sets.
 
 == 1.75 GetSupportedDM using multiple objects, first\_level\_only true, all options <sec:getsupporteddm-using-multiple-objects-first_level_only-true-all-options>
 
@@ -5993,6 +6023,7 @@ Mandatory
               return_commands: true
               return_events: true
               return_params: true
+              return_unique_key_sets: true
           }
       }
   }
@@ -6003,7 +6034,8 @@ Mandatory
 + The EUT sends a GetSupportedDMResp containing `req_object_results`
   elements for the specified objects and each immediate child object.
 + Only the `req_obj_results` element of the object specified in
-  `obj_paths` contains parameters, events, and commands.
+  `obj_paths` contains parameters, events, commands, and
+  unique\_key\_sets.
 + Each SupportedParamResult field contains the `param_name`, `access`,
   `value_type`, and `value_change` fields with valid information, if
   applicable.
@@ -6012,6 +6044,11 @@ Mandatory
   `output_arg_names` fields with valid information, if applicable.
 + Each SupportedEventResult field contains the `event_name` field and a
   set of `arg_names` fields with valid information, if applicable.
++ Each SupportedUniqueKeySet field contains the `key_names` field and a
+  set of relative parameters, whose values together uniquely identify an
+  instance of the object in the instantiated data model. `key_names`
+  must be included in the requested objects and immediate child objects
+  returned in the GetSupportedDMResp.
 
 == 1.76 GetSupportedDM on root object, all options <sec:getsupporteddm-on-root-object-all-options>
 
@@ -6047,6 +6084,7 @@ Mandatory
               return_commands: true
               return_events: true
               return_params: true
+              return_unique_key_sets: true
           }
       }
   }
@@ -6056,7 +6094,7 @@ Mandatory
 
 + The EUT sends a GetSupportedDMResp message with one or more
   `req_obj_results` specifying its entire supported data model, listing
-  commands, parameters, and events.
+  commands, parameters, events, and unique\_key\_sets.
 + Each SupportedParamResult field contains the `param_name`, `access`,
   `value_type`, and `value_change` fields with valid information, if
   applicable.
@@ -6065,6 +6103,9 @@ Mandatory
   `output_arg_names` fields with valid information, if applicable.
 + Each SupportedEventResult field contains the `event_name` field and a
   set of `arg_names` fields with valid information, if applicable.
++ Each SupportedUniqueKeySet field contains the `key_names` field and a
+  set of relative parameters, whose values together uniquely identify an
+  instance of the object in the instantiated data model.
 
 == 1.77 GetSupportedDM on unsupported object <sec:getsupporteddm-on-unsupported-object>
 
@@ -6098,6 +6139,7 @@ body {
             return_commands: true
             return_events: true
             return_params: true
+            return_unique_key_sets: true
         }
     }
 }
@@ -6923,7 +6965,8 @@ defaults defined in the data model.
 
 === Functionality Tag <sec:functionality-tag-88>
 
-Conditional Mandatory (supports the TraceRoute:1 profile)
+Conditional Mandatory (supports the TraceRoute:1 profile or at least one
+other asynchronous operation)
 
 === Test Setup <sec:test-setup-90>
 
@@ -7502,20 +7545,605 @@ arguments)
 + At least one `arg_names` field contains a list of one or more
   arguments. The arguments are relative paths.
 
-= 2 Authentication and Access Control Test Cases <sec:authentication-and-access-control-test-cases>
-
-== 2.1 Agent does not accept messages from its own Endpoint ID <sec:agent-does-not-accept-messages-from-its-own-endpoint-id>
+== 1.99 GetSupportedDM, unique\_key\_sets <sec:getsupporteddm-unique_key_sets>
 
 === Purpose <sec:purpose-96>
 
-The purpose of this test is to ensure the EUT does not respond to a USP
-message when the `from_id` is the EUT endpoint ID.
+The purpose of this test is to ensure the EUT provides correctly
+formatted fields for unique\_key\_sets returned in GetSupportedDM Resp.
 
 === Functionality Tag <sec:functionality-tag-95>
 
 Mandatory
 
 === Test Setup <sec:test-setup-97>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-96>
+
++ Send a GetSupportedDM to the EUT with the following structure:
+
+  ```
+  header {
+      msg_id: '<msg id>'
+      msg_type: GET_SUPPORTED_DM
+  }
+  body {
+      request {
+          get_supported_dm {
+              obj_paths:'Device.LocalAgent.Subscription'
+              first_level_only: false
+              return_commands: false
+              return_events: false
+              return_params: false
+              return_unique_key_sets: true
+          }
+      }
+  }
+  ```
+
+=== Test Metrics <sec:test-metrics-96>
+
++ The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+  specifying its supported data model, listing only unique\_key\_sets.
++ The SupportedUniqueKeySet field contains two `key_names` fields, one
+  containing the relative path `Alias` and the other containing the
+  relative paths `Recipient` and `ID`.
+
+== 1.100 Command with missing mandatory input\_args <sec:command-with-missing-mandatory-input_args>
+
+=== Purpose <sec:purpose-97>
+
+The purpose of this test is to ensure the EUT provides the correct error
+when it receives a command with a missing mandatory input\_arg
+
+=== Functionality Tag <sec:functionality-tag-96>
+
+Conditional Mandatory (supports Device.ScheduleTimer() command or at
+least one operation that contains input arguments)
+
+=== Test Setup <sec:test-setup-98>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
++ Ensure that a Subscription object exists on the EUT with NotifType
+  OperationComplete on Device.ScheduleTimer().
+
+=== Test Procedure <sec:test-procedure-97>
+
++ Send an Operate message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: OPERATE
+  }
+  body {
+    request {
+        operate {
+            command: 'Device.ScheduleTimer()'
+            command_key: 'test100'
+            send_resp: true
+            input_args {}
+            }
+        }
+    }
+  ```
++ Wait at least 120 seconds.
+
+=== Test Metrics <sec:test-metrics-97>
+
++ The EUT sends an OperateResp message including a cmd\_failure element
+  containing an err\_code of type 7027 "Invalid Command Arguments".
++ The EUT must not send a Notify message containing an OperationComplete
+  event with a `command_name` of `ScheduleTimer()`.
+
+== 1.101 OnBoardRequest Notification \- OnBoardingComplete set to false <sec:onboardrequest-notification---onboardingcomplete-set-to-false>
+
+=== Purpose <sec:purpose-98>
+
+The purpose of this test is to ensure that the Agent sets the
+`Device.LocalAgent.Controller.{i}.OnBoardingComplete` to false when it
+receives a SendOnBoardRequest() command.
+
+=== Functionality Tag <sec:functionality-tag-97>
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+=== Test Setup <sec:test-setup-99>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-98>
+
++ Send an Operate message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: OPERATE
+  }
+  body {
+    request {
+      operate {
+        command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+        command_key: 'test101'
+        send_resp: false
+      }
+    }
+  }
+  ```
++ Allow the EUT to send a Notify message.
++ Send a NotifyResp to the EUT.
++ Send a Get message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.OnBoardingComplete'
+      }
+    }
+  }
+  ```
++ Allow the EUT to send a GetResp.
++ Send a Set message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+          param_settings {
+            param: 'OnBoardingComplete'
+            value: 'true'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
+
+=== Test Metrics <sec:test-metrics-98>
+
++ The EUT sends an OnBoardRequest Notify message to the Controller.
++ The EUT returns an OnBoardingComplete value of false in step 5.
+
+== 1.102 OnBoardRequest Notification \- OnBoardingRestartTime <sec:onboardrequest-notification---onboardingrestarttime>
+
+=== Purpose <sec:purpose-99>
+
+The purpose of this test is to ensure that the Agent will retransmit an
+OnBoardRequest Notify message to the Controller according to the
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameter.
+
+=== Functionality Tag <sec:functionality-tag-98>
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+=== Test Setup <sec:test-setup-100>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-99>
+
++ Send a Set message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+          param_settings {
+            param: 'OnBoardingRestartTime'
+            value: '60'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
++ Send an Operate message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: OPERATE
+  }
+  body {
+    request {
+      operate {
+        command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+        command_key: 'test102'
+        send_resp: false
+      }
+    }
+  }
+  ```
++ Allow the EUT to send a Notify message.
++ Send a NotifyResp to the EUT.
++ Wait 60 seconds for the EUT to send a second Notify message.
++ Send a NotifyResp to the EUT.
++ Send a Set message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+          param_settings {
+            param: 'OnBoardingComplete'
+            value: 'true'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
++ Wait 60 seconds.
+
+=== Test Metrics <sec:test-metrics-99>
+
++ The EUT sends an OnBoardRequest Notify message to the Controller in
+  step 2.
++ The EUT sends another OnBoardRequest Notify message to the Controller
+  60 seconds after receiving the NotifyResponse.
++ The EUT does not send another OnBoardRequest Notify message to the
+  Controller after the Controller sets the `OnBoardingComplete`
+  parameter to `true`.
+
+== 1.103 OnBoardRequest Notification \- OnBoardingRestartTime disabled <sec:onboardrequest-notification---onboardingrestarttime-disabled>
+
+=== Purpose <sec:purpose-100>
+
+The purpose of this test is to ensure that the Agent will not retransmit
+an OnBoardRequest Notify message to the Controller when the
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameter is set
+to 0.
+
+=== Functionality Tag <sec:functionality-tag-99>
+
+Conditional Mandatory (supports the
+Device.LocalAgent.Controller.{i}.OnBoardingComplete and
+Device.LocalAgent.Controller.{i}.OnBoardingRestartTime parameters)
+
+=== Test Setup <sec:test-setup-101>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-100>
+
++ Send a Set message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.'
+          param_settings {
+            param: 'OnBoardingRestartTime'
+            value: '0'
+            required: true
+          }
+        }
+      }
+    }
+  }
+  ```
++ Send an Operate message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: OPERATE
+  }
+  body {
+    request {
+      operate {
+        command: 'Device.LocalAgent.Controller.<instance identifier of traffic generator>.SendOnBoardRequest()'
+        command_key: 'test103'
+        send_resp: false
+      }
+    }
+  }
+  ```
++ Allow the EUT to send a Notify message.
++ Send a NotifyResp to the EUT.
++ Wait 60 seconds.
+
+=== Test Metrics <sec:test-metrics-100>
+
++ The EUT sends an OnBoardRequest Notify message to the Controller in
+  step 3.
++ The EUT does not send an OnBoardRequest Notify message to the
+  Controller when the `OnBoardingRestartTime` parameter is set to 0.
+
+== 1.104 Set message on WriteOnceReadOnly parameter <sec:set-message-on-writeoncereadonly-parameter>
+
+=== Purpose <sec:purpose-101>
+
+The purpose of this test is to validate that the EUT properly handles a
+Set message on a parameter that is WriteOnceReadOnly.
+
+=== Functionality Tag <sec:functionality-tag-100>
+
+Mandatory
+
+=== Test Setup <sec:test-setup-102>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-101>
+
++ Send an Add message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: ADD
+  }
+
+  body {
+    request {
+      add {
+        allow_partial: false
+        create_objs {
+          obj_path: 'Device.LocalAgent.Subscription.'
+          param_settings {
+              param: 'Alias'
+              value: 'test-1-104'
+            }
+          }
+        }
+      }
+    }
+  ```
++ Allow the EUT to send an AddResp.
++ Send a Set message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: SET
+  }
+
+  body {
+    request {
+      set {
+        allow_partial: false
+        update_objs {
+          obj_path: 'Device.LocalAgent.Subscription.<instance identifier from test setup>.'
+          param_settings {
+           param: 'Alias'
+           value: 'test-1-104-new-alias'
+           required: true
+          }
+        }
+      }
+    }
+  }
+  ```
++ Allow the EUT to send an Error.
++ Send a Get message to the EUT with the following structure:
+
+  ```
+  header {
+    msg_id: '<msg_id>'
+    msg_type: GET
+  }
+  body {
+    request {
+      get {
+        param_paths: 'Device.LocalAgent.Subscription.<instance identifier>.Alias'
+      }
+    }
+  }
+  ```
++ Allow the EUT to send a GetResp.
+
+=== Test Metrics <sec:test-metrics-101>
+
++ The EUT sends an Error message in response to the Set message for a
+  WriteOnceReadOnly parameter.
++ The value of the WriteOnceReadOnly parameter is the same value as was
+  set in the Add message.
+
+== 1.105 GetSupportedDM on a Command <sec:getsupporteddm-on-a-command>
+
+=== Purpose <sec:purpose-102>
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for a command.
+
+=== Functionality Tag <sec:functionality-tag-101>
+
+Conditional Mandatory (supports Reboot:1 or any other command)
+
+=== Test Setup <sec:test-setup-103>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-102>
+
++ Send a GetSupportedDM to the EUT with the following structure:
+
+  ```
+  header {
+      msg_id: '<msg id>'
+      msg_type: GET_SUPPORTED_DM
+  }
+  body {
+      request {
+          get_supported_dm {
+              obj_paths:'Device.Reboot()'
+              first_level_only: false
+              return_commands: true
+              return_events: true
+              return_params: true
+              return_unique_key_sets: true
+          }
+      }
+  }
+  ```
+
+=== Test Metrics <sec:test-metrics-102>
+
++ The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+  specifying its supported data model, listing only the requested
+  command in 'supported\_commands'. The 'supported\_events',
+  'supported\_params', and 'unique\_key\_sets' fields are empty.
+
+== 1.106 GetSupportedDM on an Event <sec:getsupporteddm-on-an-event>
+
+=== Purpose <sec:purpose-103>
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for an event.
+
+=== Functionality Tag <sec:functionality-tag-102>
+
+Conditional Mandatory (supports Reboot:1 or any other command)
+
+=== Test Setup <sec:test-setup-104>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-103>
+
++ Send a GetSupportedDM to the EUT with the following structure:
+
+  ```
+  header {
+      msg_id: '<msg id>'
+      msg_type: GET_SUPPORTED_DM
+  }
+  body {
+      request {
+          get_supported_dm {
+              obj_paths:'Device.Boot!'
+              first_level_only: false
+              return_commands: true
+              return_events: true
+              return_params: true
+              return_unique_key_sets: true
+          }
+      }
+  }
+  ```
+
+=== Test Metrics <sec:test-metrics-103>
+
++ The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+  specifying its supported data model, listing only the requested event
+  in 'supported\_events'. The 'supported\_commands',
+  'supported\_params', and 'unique\_key\_sets' fields are empty.
+
+== 1.107 GetSupportedDM on a Parameter <sec:getsupporteddm-on-a-parameter>
+
+=== Purpose <sec:purpose-104>
+
+The purpose of this test is to ensure the EUT correctly responds to a
+GetSupportedDM message for a parameter.
+
+=== Functionality Tag <sec:functionality-tag-103>
+
+Mandatory
+
+=== Test Setup <sec:test-setup-105>
+
++ Ensure that the EUT and test equipment have the necessary information
+  to send and receive USP Records to each other.
+
+=== Test Procedure <sec:test-procedure-104>
+
++ Send a GetSupportedDM to the EUT with the following structure:
+
+  ```
+  header {
+      msg_id: '<msg id>'
+      msg_type: GET_SUPPORTED_DM
+  }
+  body {
+      request {
+          get_supported_dm {
+              obj_paths:'Device.LocalAgent.EndpointID'
+              first_level_only: false
+              return_commands: true
+              return_events: true
+              return_params: true
+              return_unique_key_sets: true
+          }
+      }
+  }
+  ```
+
+=== Test Metrics <sec:test-metrics-104>
+
++ The EUT sends a GetSupportedDMResp message with one `req_obj_results`
+  specifying its supported data model, listing only the requested
+  parameter in 'supported\_params'. The 'supported\_commands',
+  'supported\_events', and 'unique\_key\_sets' fields are empty. \# 2
+  Authentication and Access Control Test Cases
+
+== 2.1 Agent does not accept messages from its own Endpoint ID <sec:agent-does-not-accept-messages-from-its-own-endpoint-id>
+
+=== Purpose <sec:purpose-105>
+
+The purpose of this test is to ensure the EUT does not respond to a USP
+message when the `from_id` is the EUT endpoint ID.
+
+=== Functionality Tag <sec:functionality-tag-104>
+
+Mandatory
+
+=== Test Setup <sec:test-setup-106>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -7533,13 +8161,13 @@ Mandatory
       }
   ```
 
-=== Test Metrics <sec:test-metrics-96>
+=== Test Metrics <sec:test-metrics-105>
 
 + The EUT does not respond to the message.
 
 == 2.2 Agent rejects messages that do not contain its to\_id in the USP Record <sec:agent-rejects-messages-that-do-not-contain-its-to_id-in-the-usp-record>
 
-=== Purpose <sec:purpose-97>
+=== Purpose <sec:purpose-106>
 
 The purpose of this test is to ensure the EUT does not respond to a USP
 message when the USP record doesn’t contain a the EUT `to_id`.
@@ -7548,7 +8176,7 @@ message when the USP record doesn’t contain a the EUT `to_id`.
 
 Mandatory
 
-=== Test Setup <sec:test-setup-98>
+=== Test Setup <sec:test-setup-107>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -7564,13 +8192,13 @@ Mandatory
       # ...
   ```
 
-=== Test Metrics <sec:test-metrics-97>
+=== Test Metrics <sec:test-metrics-106>
 
 + The EUT does not respond to the USP message.
 
 == 2.3 Agent does not process messages without ’s certificate information \- DEPRECATED <sec:agent-does-not-process-messages-without-s-certificate-information---deprecated>
 
-=== Purpose <sec:purpose-98>
+=== Purpose <sec:purpose-107>
 
 The purpose of this test is to ensure that the EUT doesn’t process a USP
 message when the EUT does not possess the Controller’s certificate
@@ -7580,7 +8208,7 @@ information.
 
 Deprecated
 
-=== Test Setup <sec:test-setup-99>
+=== Test Setup <sec:test-setup-108>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -7589,7 +8217,7 @@ Deprecated
 + Ensure that the UntrustedRole feature is either unsupported or
   disabled in the EUT.
 
-=== Test Procedure <sec:test-procedure-96>
+=== Test Procedure <sec:test-procedure-105>
 
 + Send a Get message from the second simulated Controller to the EUT
   with the following structure:
@@ -7609,13 +8237,13 @@ Deprecated
   }
   ```
 
-=== Test Metrics <sec:test-metrics-98>
+=== Test Metrics <sec:test-metrics-107>
 
 + Ensure the EUT does not respond to the Get message.
 
 == 2.4 Agent rejects messages from Endpoint IDs that are not in subjectAltName \- DEPRECATED <sec:agent-rejects-messages-from-endpoint-ids-that-are-not-in-subjectaltname---deprecated>
 
-=== Purpose <sec:purpose-99>
+=== Purpose <sec:purpose-108>
 
 The purpose of this test is to ensure that the EUT rejects a message
 from an Endpoint ID that doesn’t match the subjectAltName in the
@@ -7625,23 +8253,23 @@ provided certificate.
 
 Deprecated
 
-=== Test Setup <sec:test-setup-100>
+=== Test Setup <sec:test-setup-109>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-97>
+=== Test Procedure <sec:test-procedure-106>
 
 + Send a Get message to the EUT using a certificate with a
   subjectAltName that does not match the Controller’s Endpoint ID.
 
-=== Test Metrics <sec:test-metrics-99>
+=== Test Metrics <sec:test-metrics-108>
 
 + The EUT does not respond to the Get message.
 
 == 2.5 Agent use of self\-signed certificates \- DEPRECATED <sec:agent-use-of-self-signed-certificates---deprecated>
 
-=== Purpose <sec:purpose-100>
+=== Purpose <sec:purpose-109>
 
 The purpose of this test is to ensure the EUT can handle self\-signed
 certificates.
@@ -7650,14 +8278,14 @@ certificates.
 
 Deprecated
 
-=== Test Setup <sec:test-setup-101>
+=== Test Setup <sec:test-setup-110>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure the is configured to use a self\-signed certificate and
   Endpoint ID that the EUT has not seen.
 
-=== Test Procedure <sec:test-procedure-98>
+=== Test Procedure <sec:test-procedure-107>
 
 + Send a Get message to the EUT using a self\-signed cert with the
   following structure:
@@ -7676,14 +8304,14 @@ Deprecated
   }
   ```
 
-=== Test Metrics <sec:test-metrics-100>
+=== Test Metrics <sec:test-metrics-109>
 
 + The EUT responds to the Get with a GetResponse containing a
   'Device.LocalAgent.ControllerTrust.{i}.Alias' parameter.
 
 == 2.6 Connecting without absolute time <sec:connecting-without-absolute-time>
 
-=== Purpose <sec:purpose-101>
+=== Purpose <sec:purpose-110>
 
 The purpose of this test is to ensure the EUT can communicate with a
 Controller if it cannot obtain an absolute time.
@@ -7692,7 +8320,7 @@ Controller if it cannot obtain an absolute time.
 
 Conditional Mandatory (Supports USP Session Context)
 
-=== Test Setup <sec:test-setup-102>
+=== Test Setup <sec:test-setup-111>
 
 + The EUT is booted into a test environment where it cannot resolve
   absolute time.
@@ -7700,7 +8328,7 @@ Conditional Mandatory (Supports USP Session Context)
   to send and receive USP Records to each other.
 + Ensure the Controller is configured to use an expired certificate.
 
-=== Test Procedure <sec:test-procedure-99>
+=== Test Procedure <sec:test-procedure-108>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -7718,14 +8346,14 @@ Conditional Mandatory (Supports USP Session Context)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-101>
+=== Test Metrics <sec:test-metrics-110>
 
 + The EUT responds to the Get message with a GetResponse, ignoring the
   expired dates on the certificate.
 
 == 2.7 Agent ignores unsigned or invalid Record signatures <sec:agent-ignores-unsigned-or-invalid-record-signatures>
 
-=== Purpose <sec:purpose-102>
+=== Purpose <sec:purpose-111>
 
 The purpose of this test is to ensure the EUT will ignore a USP record
 when the signature field is invalid.
@@ -7734,22 +8362,22 @@ when the signature field is invalid.
 
 Conditional Mandatory (Supports USP Session Context)
 
-=== Test Setup <sec:test-setup-103>
+=== Test Setup <sec:test-setup-112>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-100>
+=== Test Procedure <sec:test-procedure-109>
 
 + Send a Get message to the EUT with an invalid signature value.
 
-=== Test Metrics <sec:test-metrics-102>
+=== Test Metrics <sec:test-metrics-111>
 
 + The EUT does not respond to the Get message.
 
 == 2.8 Agent ignores invalid TLS certificate <sec:agent-ignores-invalid-tls-certificate>
 
-=== Purpose <sec:purpose-103>
+=== Purpose <sec:purpose-112>
 
 The purpose of this test is to ensure the EUT rejects TLS connections
 when an Endpoint’s TLS certificate is invalid.
@@ -7758,23 +8386,23 @@ when an Endpoint’s TLS certificate is invalid.
 
 Conditional Mandatory (Supports USP Session Context)
 
-=== Test Setup <sec:test-setup-104>
+=== Test Setup <sec:test-setup-113>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure that the EUT has obtained an absolute time reference.
 
-=== Test Procedure <sec:test-procedure-101>
+=== Test Procedure <sec:test-procedure-110>
 
 + Send a Get message to the EUT with an expired TLS certificate.
 
-=== Test Metrics <sec:test-metrics-103>
+=== Test Metrics <sec:test-metrics-112>
 
 + The EUT doesn’t respond to the Get message.
 
 == 2.9 Use of the Untrusted role <sec:use-of-the-untrusted-role>
 
-=== Purpose <sec:purpose-104>
+=== Purpose <sec:purpose-113>
 
 The purpose of this test is to ensure the EUT correctly assigns new a
 Role of Untrusted.
@@ -7783,12 +8411,12 @@ Role of Untrusted.
 
 Conditional Mandatory (supports the ControllerTrust:1 profile)
 
-=== Test Setup <sec:test-setup-105>
+=== Test Setup <sec:test-setup-114>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-102>
+=== Test Procedure <sec:test-procedure-111>
 
 + Using a secondary Controller, connect to the EUT and send an Get
   message.
@@ -7809,7 +8437,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-104>
+=== Test Metrics <sec:test-metrics-113>
 
 + Ensure the
   `Device.LocalAgent.Controller.<secondary Controller instance>.AssignedRole`
@@ -7818,7 +8446,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile)
 
 == 2.10 Adding a Role <sec:adding-a-role>
 
-=== Purpose <sec:purpose-105>
+=== Purpose <sec:purpose-114>
 
 The purpose of this test is to ensure that the Add message can be used
 to add new Roles to the EUT data model.
@@ -7827,12 +8455,12 @@ to add new Roles to the EUT data model.
 
 Conditional Mandatory (supports the ControllerTrust:1 profile)
 
-=== Test Setup <sec:test-setup-106>
+=== Test Setup <sec:test-setup-115>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-103>
+=== Test Procedure <sec:test-procedure-112>
 
 + Send a Add message to the EUT with the following structure:
 
@@ -7861,13 +8489,13 @@ Conditional Mandatory (supports the ControllerTrust:1 profile)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-105>
+=== Test Metrics <sec:test-metrics-114>
 
 + The EUT correctly sent an AddResponse with a new Role instance.
 
 == 2.11 Permissions \- Object Creation Allowed <sec:permissions---object-creation-allowed>
 
-=== Purpose <sec:purpose-106>
+=== Purpose <sec:purpose-115>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to allow the creation of a particular object.
@@ -7878,14 +8506,14 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-107>
+=== Test Setup <sec:test-setup-116>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure the Controller used for testing has an assigned Role that is
   writable.
 
-=== Test Procedure <sec:test-procedure-104>
+=== Test Procedure <sec:test-procedure-113>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -7948,7 +8576,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-106>
+=== Test Metrics <sec:test-metrics-115>
 
 + The EUT sends an AddResponse with a oper\_success element containing a
   new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -7958,7 +8586,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.12 Permissions \- Object Creation Not Allowed <sec:permissions---object-creation-not-allowed>
 
-=== Purpose <sec:purpose-107>
+=== Purpose <sec:purpose-116>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to restrict the creation of a particular object.
@@ -7969,14 +8597,14 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-108>
+=== Test Setup <sec:test-setup-117>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure the Controller used for testing has an assigned Role that is
   writable.
 
-=== Test Procedure <sec:test-procedure-105>
+=== Test Procedure <sec:test-procedure-114>
 
 + Send an Add message to the EUT with the following structure:
 ```
@@ -8037,7 +8665,7 @@ body {
 }
 ```
 
-=== Test Metrics <sec:test-metrics-107>
+=== Test Metrics <sec:test-metrics-116>
 
 + The EUT sends an AddResponse with a oper\_success element containing a
   new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8046,7 +8674,7 @@ body {
 
 == 2.13 Permissions \- Object Deletion Allowed <sec:permissions---object-deletion-allowed>
 
-=== Purpose <sec:purpose-108>
+=== Purpose <sec:purpose-117>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to allow the deletion of a particular object.
@@ -8057,7 +8685,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-109>
+=== Test Setup <sec:test-setup-118>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8065,7 +8693,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   writable.
 + Ensure there is one or more Subscription object that can be deleted.
 
-=== Test Procedure <sec:test-procedure-106>
+=== Test Procedure <sec:test-procedure-115>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -8126,7 +8754,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-108>
+=== Test Metrics <sec:test-metrics-117>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8136,7 +8764,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.14 Permissions \- Object Deletion Not Allowed <sec:permissions---object-deletion-not-allowed>
 
-=== Purpose <sec:purpose-109>
+=== Purpose <sec:purpose-118>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to restrict the deletion of a particular object.
@@ -8147,7 +8775,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-110>
+=== Test Setup <sec:test-setup-119>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8155,7 +8783,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   writable.
 + Ensure there is one or more Subscription object that can be deleted.
 
-=== Test Procedure <sec:test-procedure-107>
+=== Test Procedure <sec:test-procedure-116>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -8216,7 +8844,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-109>
+=== Test Metrics <sec:test-metrics-118>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8225,7 +8853,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.15 Permissions \- Parameter Update Allowed <sec:permissions---parameter-update-allowed>
 
-=== Purpose <sec:purpose-110>
+=== Purpose <sec:purpose-119>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to allow the update of a particular object.
@@ -8236,7 +8864,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-111>
+=== Test Setup <sec:test-setup-120>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8244,7 +8872,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   writable.
 + Ensure there is one or more Subscription object that can be edited.
 
-=== Test Procedure <sec:test-procedure-108>
+=== Test Procedure <sec:test-procedure-117>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -8312,7 +8940,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-110>
+=== Test Metrics <sec:test-metrics-119>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8322,7 +8950,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.16 Permissions \- Parameter Update Not Allowed <sec:permissions---parameter-update-not-allowed>
 
-=== Purpose <sec:purpose-111>
+=== Purpose <sec:purpose-120>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to restrict the update of a particular object.
@@ -8333,7 +8961,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-112>
+=== Test Setup <sec:test-setup-121>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8409,7 +9037,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-111>
+=== Test Metrics <sec:test-metrics-120>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8418,7 +9046,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.17 Permissions \- Operation Allowed <sec:permissions---operation-allowed>
 
-=== Purpose <sec:purpose-112>
+=== Purpose <sec:purpose-121>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to allow the invocation of commands on a particular object.
@@ -8429,7 +9057,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-113>
+=== Test Setup <sec:test-setup-122>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8497,7 +9125,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-112>
+=== Test Metrics <sec:test-metrics-121>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8507,7 +9135,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.18 Permissions \- Operation Not Allowed <sec:permissions---operation-not-allowed>
 
-=== Purpose <sec:purpose-113>
+=== Purpose <sec:purpose-122>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to restrict the invocation of commands on a particular object.
@@ -8518,7 +9146,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-114>
+=== Test Setup <sec:test-setup-123>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8585,7 +9213,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-113>
+=== Test Metrics <sec:test-metrics-122>
 
 + The EUT sends an AddResponse with a `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8600,7 +9228,7 @@ a USP Error Message instead.];
 
 == 2.19 Permissions \- Value Change Notification Allowed on Parameter <sec:permissions---value-change-notification-allowed-on-parameter>
 
-=== Purpose <sec:purpose-114>
+=== Purpose <sec:purpose-123>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to allow a Controller to subscribe to the ValueChange notification of a
@@ -8612,7 +9240,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-115>
+=== Test Setup <sec:test-setup-124>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8698,7 +9326,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   id>.PeriodicNotifInterval to a new value.
 + Wait for a Notification from the EUT.
 
-=== Test Metrics <sec:test-metrics-114>
+=== Test Metrics <sec:test-metrics-123>
 
 + The EUT sends an AddResponse with an `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8714,7 +9342,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.20 Permissions \- Value Change Notification Not Allowed on Parameter <sec:permissions---value-change-notification-not-allowed-on-parameter>
 
-=== Purpose <sec:purpose-115>
+=== Purpose <sec:purpose-124>
 
 The purpose of this test is to ensure the EUT adheres to permissions set
 to restrict a Controller from subscribing to the ValueChange
@@ -8726,7 +9354,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-116>
+=== Test Setup <sec:test-setup-125>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8812,7 +9440,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   id>.PeriodicNotifInterval to a new value.
 + Wait 30 seconds.
 
-=== Test Metrics <sec:test-metrics-115>
+=== Test Metrics <sec:test-metrics-124>
 
 + The EUT sends an AddResponse with an `oper_success` element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -8828,7 +9456,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.21 Permissions \- Overlapping Permissions <sec:permissions---overlapping-permissions>
 
-=== Purpose <sec:purpose-116>
+=== Purpose <sec:purpose-125>
 
 The purpose of this test is to ensure the EUT allows for the creation of
 Permission instances, and when Permissions overlap the EUT behaves
@@ -8840,7 +9468,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-117>
+=== Test Setup <sec:test-setup-126>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -8848,7 +9476,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   writable.
 + Ensure there is at least one BootParameter configured.
 
-=== Test Procedure <sec:test-procedure-109>
+=== Test Procedure <sec:test-procedure-118>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9004,7 +9632,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-116>
+=== Test Metrics <sec:test-metrics-125>
 
 + The EUT sends an AddResponse message after step 1. The message
   contains two `oper_success` elements, one for each added permission.
@@ -9017,7 +9645,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.22 Using Get when no read permissions are available on some parameters <sec:using-get-when-no-read-permissions-are-available-on-some-parameters>
 
-=== Purpose <sec:purpose-117>
+=== Purpose <sec:purpose-126>
 
 The purpose of this test is to ensure the EUT correctly returns
 parameters that are readable while ignoring parameters that do not have
@@ -9029,7 +9657,7 @@ Conditional Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-118>
+=== Test Setup <sec:test-setup-127>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -9037,7 +9665,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   writable.
 + Ensure there is at least one BootParameter configured.
 
-=== Test Procedure <sec:test-procedure-110>
+=== Test Procedure <sec:test-procedure-119>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9124,7 +9752,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-117>
+=== Test Metrics <sec:test-metrics-126>
 
 + The EUT sends an AddResponse message after step 1. The message
   contains a `oper_success` element for the added Permission.
@@ -9134,19 +9762,19 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.23 Permissions \- Add message with search path, allow partial true, required parameters fail <sec:permissions---add-message-with-search-path-allow-partial-true-required-parameters-fail>
 
-=== Purpose <sec:purpose-118>
+=== Purpose <sec:purpose-127>
 
 The purpose of this test is to ensure the EUT properly handles an add
 message with a search path with allow\_partial set to true when some
 objects fail to be added.
 
-=== Functionality Tag <sec:functionality-tag-96>
+=== Functionality Tag <sec:functionality-tag-105>
 
 Conditionally Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-119>
+=== Test Setup <sec:test-setup-128>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -9155,7 +9783,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 + Ensure that the EUT has at least two Controller instances in its
   Device.LocalAgent.Controller.{i}. table.
 
-=== Test Procedure <sec:test-procedure-111>
+=== Test Procedure <sec:test-procedure-120>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9247,6 +9875,11 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
               allow_partial: true
               create_objs {
                   obj_path: 'Device.LocalAgent.Controller.*.BootParameter'
+                  param_settings {
+                      param: "Enable"
+                      value: "false"
+                      required: true
+                  }
               }
           }
       }
@@ -9254,7 +9887,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   ```
 + Allow the EUT to send an AddResp.
 
-=== Test Metrics <sec:test-metrics-118>
+=== Test Metrics <sec:test-metrics-127>
 
 + The EUT sends an AddResponse message after step 1. The message
   contains two oper\_success elements, one for each added permission.
@@ -9269,19 +9902,19 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.24 Permissions \- Add message with search path, allow partial false, required parameters fail <sec:permissions---add-message-with-search-path-allow-partial-false-required-parameters-fail>
 
-=== Purpose <sec:purpose-119>
+=== Purpose <sec:purpose-128>
 
 The purpose of this test is to ensure the EUT properly handles an add
 message with a search path with allow\_partial set to false when some
 objects fail to be added.
 
-=== Functionality Tag <sec:functionality-tag-97>
+=== Functionality Tag <sec:functionality-tag-106>
 
 Conditionally Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-120>
+=== Test Setup <sec:test-setup-129>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -9290,7 +9923,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 + Ensure that the EUT has at least two Controller instances in its
   Device.LocalAgent.Controller.{i}. table.
 
-=== Test Procedure <sec:test-procedure-112>
+=== Test Procedure <sec:test-procedure-121>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9382,6 +10015,11 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
               allow_partial: false
               create_objs {
                   obj_path: 'Device.LocalAgent.Controller.*.BootParameter'
+                  param_settings {
+                      param: "Enable"
+                      value: "false"
+                      required: true
+                  }
               }
           }
       }
@@ -9405,7 +10043,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   ```
 + Allow the EUT to send a GetResp.
 
-=== Test Metrics <sec:test-metrics-119>
+=== Test Metrics <sec:test-metrics-128>
 
 + The EUT sends an AddResponse message after step 1. The message
   contains two oper\_success elements, one for each added permission.
@@ -9418,26 +10056,26 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.25 Permissions \- Parameter within added object not allowed, omitted <sec:permissions---parameter-within-added-object-not-allowed-omitted>
 
-=== Purpose <sec:purpose-120>
+=== Purpose <sec:purpose-129>
 
 The purpose of this test is to ensure the EUT properly handles an add
 message when a parameter within the added object cannot be written to
 and the parameter is omitted from the Add message.
 
-=== Functionality Tag <sec:functionality-tag-98>
+=== Functionality Tag <sec:functionality-tag-107>
 
 Conditionally Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-121>
+=== Test Setup <sec:test-setup-130>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure the Controller used for testing has an assigned Role that is
   writable.
 
-=== Test Procedure <sec:test-procedure-113>
+=== Test Procedure <sec:test-procedure-122>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9533,7 +10171,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-120>
+=== Test Metrics <sec:test-metrics-129>
 
 + The EUT sends an AddResponse with a oper\_success element containing a
   new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -9545,26 +10183,26 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.26 Permissions \- Parameter within added object not allowed, included <sec:permissions---parameter-within-added-object-not-allowed-included>
 
-=== Purpose <sec:purpose-121>
+=== Purpose <sec:purpose-130>
 
 The purpose of this test is to ensure the EUT properly handles an add
 message when a parameter within the added object cannot be written to
 and the parameter is included in the Add message.
 
-=== Functionality Tag <sec:functionality-tag-99>
+=== Functionality Tag <sec:functionality-tag-108>
 
 Conditionally Mandatory (supports the ControllerTrust:1 profile with at
 least one role that allows object creation, or supports writable
 parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
-=== Test Setup <sec:test-setup-122>
+=== Test Setup <sec:test-setup-131>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure the Controller used for testing has an assigned Role that is
   writable.
 
-=== Test Procedure <sec:test-procedure-114>
+=== Test Procedure <sec:test-procedure-123>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -9652,7 +10290,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 + Send a Get message to the EUT with the request path of
   'Device.LocalAgent.Subscription.'.
 
-=== Test Metrics <sec:test-metrics-121>
+=== Test Metrics <sec:test-metrics-130>
 
 + The EUT sends an AddResponse with an oper\_success element containing
   a new Device.LocalAgent.ControllerTrust.Role.{i}.Permission. object in
@@ -9666,18 +10304,18 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
 
 == 2.27 Use of SecuredRole <sec:use-of-securedrole>
 
-=== Purpose <sec:purpose-122>
+=== Purpose <sec:purpose-131>
 
 The purpose of this test is to ensure the EUT shares secured parameters
 with a Controller which is assigned the SecuredRole.
 
-=== Functionality Tag <sec:functionality-tag-100>
+=== Functionality Tag <sec:functionality-tag-109>
 
 Conditional Mandatory (supports the ControllerTrust:1 profile,
 Device.LocalAgent.ControllerTrust.SecuredRoles, and a parameter with the
 secured attribute)
 
-=== Test Setup <sec:test-setup-123>
+=== Test Setup <sec:test-setup-132>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -9690,7 +10328,7 @@ secured attribute)
   the secured parameter. The Role is not added to the
   Device.LocalAgent.ControllerTrust.SecuredRoles parameter.
 
-=== Test Procedure <sec:test-procedure-115>
+=== Test Procedure <sec:test-procedure-124>
 
 + The secondary Controller sends a Get message to the EUT for the
   secured parameter from test setup.
@@ -9722,7 +10360,7 @@ secured attribute)
   secured parameter from test setup.
 + Allow the EUT to send a GetResp.
 
-=== Test Metrics <sec:test-metrics-122>
+=== Test Metrics <sec:test-metrics-131>
 
 + The EUT sends a GetResp that contains an empty string in place of a
   value for the secured parameter when the Controller’s Role is not in
@@ -9734,7 +10372,7 @@ secured attribute)
 
 == 3.1 Bad request outside a session context <sec:bad-request-outside-a-session-context>
 
-=== Purpose <sec:purpose-123>
+=== Purpose <sec:purpose-132>
 
 The purpose of this test is to ensure the EUT correctly responds to a
 bad request outside a session context.
@@ -9743,24 +10381,24 @@ bad request outside a session context.
 
 Mandatory
 
-=== Test Setup <sec:test-setup-124>
+=== Test Setup <sec:test-setup-133>
 
 + Ensure the EUT is configured to not use a session context.
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-116>
+=== Test Procedure <sec:test-procedure-125>
 
 + Send a malformed USP Record to the EUT.
 
-=== Test Metrics <sec:test-metrics-123>
+=== Test Metrics <sec:test-metrics-132>
 
 + The EUT either ignores the malformed record or sends a USP Record
   Error.
 
 == 3.2 Agent Verifies Non\-Payload Field Integrity <sec:agent-verifies-non-payload-field-integrity>
 
-=== Purpose <sec:purpose-124>
+=== Purpose <sec:purpose-133>
 
 The purpose of this test is to ensure the EUT verifies the integrity of
 the non\-payload fields in a USP record.
@@ -9770,25 +10408,25 @@ the non\-payload fields in a USP record.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-125>
+=== Test Setup <sec:test-setup-134>
 
 + Ensure the relevant equipment are configured to NOT provide integrity
   protection at the MTP layer.
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 
-=== Test Procedure <sec:test-procedure-117>
+=== Test Procedure <sec:test-procedure-126>
 
 + Send a Get message to the EUT with a `payload_security` of PLAINTEXT.
 
-=== Test Metrics <sec:test-metrics-124>
+=== Test Metrics <sec:test-metrics-133>
 
 + After the EUT receives the USP record, it exhibits the expected 'bad
   request' behavior for the applicable MTP.
 
 == 3.3 Agent rejects invalid signature starting a session context <sec:agent-rejects-invalid-signature-starting-a-session-context>
 
-=== Purpose <sec:purpose-125>
+=== Purpose <sec:purpose-134>
 
 The purpose of this test is to ensure the EUT handles an attempt to
 start a session context with an invalid `mac_signature`.
@@ -9798,26 +10436,26 @@ start a session context with an invalid `mac_signature`.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-126>
+=== Test Setup <sec:test-setup-135>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 
-=== Test Procedure <sec:test-procedure-118>
+=== Test Procedure <sec:test-procedure-127>
 
 + Send a TLS 'client hello' to the EUT to begin a session context as
   described in
   '#link("https://usp.technology/specification/e2e-message-exchange/")[End
   to End Message Exchange]' in TR\-369 with an invalid `mac_signature`.
 
-=== Test Metrics <sec:test-metrics-125>
+=== Test Metrics <sec:test-metrics-134>
 
 + After the EUT receives the USP record, it exhibits the expected 'bad
   request' behavior for the applicable MTP.
 
 == 3.4 Using TLS for USP Record Integrity <sec:using-tls-for-usp-record-integrity>
 
-=== Purpose <sec:purpose-126>
+=== Purpose <sec:purpose-135>
 
 The purpose of this test is to ensure the EUT uses TLS to validate the
 integrity of USP records when the `payload_security` is TLS and the TLS
@@ -9828,12 +10466,12 @@ handshake has completed.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-127>
+=== Test Setup <sec:test-setup-136>
 
 + Ensure the EUT and controller are configured to secure the USP record
   payload with TLS.
 
-=== Test Procedure <sec:test-procedure-119>
+=== Test Procedure <sec:test-procedure-128>
 
 + Start a E2E session with the EUT using TLS to secure the payload.
 + Send a Get message to the EUT with the following structure:
@@ -9852,7 +10490,7 @@ USP Record Integrity)'
   }
   ```
 
-=== Test Metrics <sec:test-metrics-126>
+=== Test Metrics <sec:test-metrics-135>
 
 + In the GetResponse sent by the EUT, the `mac_signature` in the USP
   Record secures the non\-payload fields via the MAC mechanism.
@@ -9861,7 +10499,7 @@ USP Record Integrity)'
 
 == 3.5 Failure to Establish TLS <sec:failure-to-establish-tls>
 
-=== Purpose <sec:purpose-127>
+=== Purpose <sec:purpose-136>
 
 The purpose of this test is to ensure the EUT behaves correctly when the
 TLS session used to encapsulate the payload cannot be established.
@@ -9871,13 +10509,13 @@ TLS session used to encapsulate the payload cannot be established.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-128>
+=== Test Setup <sec:test-setup-137>
 
 + Configure the controller to use TLS12 as a `payload_security`.
 + Ensure `PeriodicNotifInterval` is '60', and the controller used for
   testing is subscribed to Periodic Event Notification.
 
-=== Test Procedure <sec:test-procedure-120>
+=== Test Procedure <sec:test-procedure-129>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -9904,7 +10542,7 @@ USP Record Integrity)'
 + Configure the controller to not send a TLS alert.
 + Wait for the EUT to retry establishing a E2E session.
 
-=== Test Metrics <sec:test-metrics-127>
+=== Test Metrics <sec:test-metrics-136>
 
 + After sending the client certificate to the EUT, the EUT sends a TLS
   alert, terminating the session.
@@ -9913,7 +10551,7 @@ USP Record Integrity)'
 
 == 3.6 Agent does not accept TLS renegotiation for E2E message exchange <sec:agent-does-not-accept-tls-renegotiation-for-e2e-message-exchange>
 
-=== Purpose <sec:purpose-128>
+=== Purpose <sec:purpose-137>
 
 The purpose of this test is to ensure the EUT does not accept TLS
 renegotiation. frames during a E2E message exchange.
@@ -9923,12 +10561,12 @@ renegotiation. frames during a E2E message exchange.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-129>
+=== Test Setup <sec:test-setup-138>
 
 + Ensure both the EUT and the controller are configured to use TLS
   payload security.
 
-=== Test Procedure <sec:test-procedure-121>
+=== Test Procedure <sec:test-procedure-130>
 
 + Establish a E2E session with the EUT.
 + Send a request to renegotiate TLS in place of the payload.
@@ -9949,7 +10587,7 @@ USP Record Integrity)'
   ```
 + Wait for a GetResponse from the EUT.
 
-=== Test Metrics <sec:test-metrics-128>
+=== Test Metrics <sec:test-metrics-137>
 
 + Between sending the TLS renegotiation request and receiving the
   GetResponse, the EUT either sends no records, or sends a TLS alert of
@@ -9957,7 +10595,7 @@ USP Record Integrity)'
 
 == 3.7 Use of X.509 Certificates <sec:use-of-x.509-certificates>
 
-=== Purpose <sec:purpose-129>
+=== Purpose <sec:purpose-138>
 
 The purpose of this test is to ensure the EUT correctly uses X.509
 certificates to authenticate other endpoints, and in turn provides a
@@ -9968,12 +10606,12 @@ X.509 certificate for the purpose of authentication.
 'Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)'
 
-=== Test Setup <sec:test-setup-130>
+=== Test Setup <sec:test-setup-139>
 
 + Ensure the EUT and controller are configured to use TLS payload
   security.
 
-=== Test Procedure <sec:test-procedure-122>
+=== Test Procedure <sec:test-procedure-131>
 
 + Configure the controller to provide a X.509 certificate with a
   `subjectAltName` that does not match the controller’s USP endpoint ID.
@@ -9994,7 +10632,7 @@ USP Record Integrity)'
   }
   ```
 
-=== Test Metrics <sec:test-metrics-129>
+=== Test Metrics <sec:test-metrics-138>
 
 + During the TLS handshake the EUT provides a X.509 certificate with a
   `subjectAltName` that matches the endpoint ID of the EUT.
@@ -10004,23 +10642,23 @@ USP Record Integrity)'
 
 == 3.8 Establishing a Session Context <sec:establishing-a-session-context>
 
-=== Purpose <sec:purpose-130>
+=== Purpose <sec:purpose-139>
 
 The purpose of this test is to ensure the EUT can use a session context
 to exchange USP messages.
 
-=== Functionality Tag <sec:functionality-tag-101>
+=== Functionality Tag <sec:functionality-tag-110>
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-131>
+=== Test Setup <sec:test-setup-140>
 
 + Ensure the EUT and controller have the necessary information to
   establish a connection and exchange USP messages.
 + Ensure at the start of the test there is no existing session context
   between the EUT and controller.
 
-=== Test Procedure <sec:test-procedure-123>
+=== Test Procedure <sec:test-procedure-132>
 
 + Start a session context with the EUT and send a Get message with the
   following structure:
@@ -10039,7 +10677,7 @@ Conditional Mandatory (supports USP session context)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-130>
+=== Test Metrics <sec:test-metrics-139>
 
 + After step 1, the EUT responds with a USP record containing a session
   context, a `sequence_number` of 1 and a `session_id` that matched the
@@ -10047,7 +10685,7 @@ Conditional Mandatory (supports USP session context)
 
 == 3.9 Receipt of a Record out of a Session Context <sec:receipt-of-a-record-out-of-a-session-context>
 
-=== Purpose <sec:purpose-131>
+=== Purpose <sec:purpose-140>
 
 The purpose of this test is to ensure the EUT correctly handles the
 receiving of a USP record outside of a session context.
@@ -10056,12 +10694,12 @@ receiving of a USP record outside of a session context.
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-132>
+=== Test Setup <sec:test-setup-141>
 
 + Ensure the EUT and controller have the necessary information to
   establish a session and exchange USP messages.
 
-=== Test Procedure <sec:test-procedure-124>
+=== Test Procedure <sec:test-procedure-133>
 
 + Start a session with the EUT using a session context.
 + Send a Get message to the EUT for `Device.DeviceInfo.` using a USP
@@ -10080,14 +10718,14 @@ Conditional Mandatory (supports USP session context)
         }
   ```
 
-=== Test Metrics <sec:test-metrics-131>
+=== Test Metrics <sec:test-metrics-140>
 
 + The EUT sends the GetResponse in a USP Record using the new
   `session_id` and a `sequence_id` of 1.
 
 == 3.10 Session Context Expiration <sec:session-context-expiration>
 
-=== Purpose <sec:purpose-132>
+=== Purpose <sec:purpose-141>
 
 The purpose of this test is to ensure the EUT correctly adheres to the
 `SessionExpiration` parameter.
@@ -10096,13 +10734,13 @@ The purpose of this test is to ensure the EUT correctly adheres to the
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-133>
+=== Test Setup <sec:test-setup-142>
 
 + Ensure the EUT and controller have the necessary information required
   to start a session and exchange USP records.
 + Ensure the controller is subscribed to Periodic! event.
 
-=== Test Procedure <sec:test-procedure-125>
+=== Test Procedure <sec:test-procedure-134>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -10163,7 +10801,7 @@ Conditional Mandatory (supports USP session context)
   ```
 + Wait for 3 Notify messages from the EUT containing a Periodic! event.
 
-=== Test Metrics <sec:test-metrics-132>
+=== Test Metrics <sec:test-metrics-141>
 
 + All three Notify messages received in step 2 use the same session
   context.
@@ -10172,7 +10810,7 @@ Conditional Mandatory (supports USP session context)
 
 == 3.11 Use of Sequence ID and Expected ID <sec:use-of-sequence-id-and-expected-id>
 
-=== Purpose <sec:purpose-133>
+=== Purpose <sec:purpose-142>
 
 The purpose of this test is to ensure the EUT correctly uses the
 `sequence_id` and `expected_id` attributes found in a session context.
@@ -10181,13 +10819,13 @@ The purpose of this test is to ensure the EUT correctly uses the
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-134>
+=== Test Setup <sec:test-setup-143>
 
 + Ensure the EUT and controller have the necessary information to start
   a session and exchange USP messages.
 + Ensure the controller is not subscribed to any events on the EUT.
 
-=== Test Procedure <sec:test-procedure-126>
+=== Test Procedure <sec:test-procedure-135>
 
 + Start a new session by sending a Get message to the EUT with
   `sequence_id` and `expected_id` set to 1 for
@@ -10199,7 +10837,7 @@ Conditional Mandatory (supports USP session context)
 + Send a Get message to the EUT with the `sequence_id` and `expected_id`
   set to 3 for 'Device.DeviceInfo.HardwareVersion'.
 
-=== Test Metrics <sec:test-metrics-133>
+=== Test Metrics <sec:test-metrics-142>
 
 + After step 1, the EUT returns a GetResponse with a `sequence_id` of 1
   containing the parameter 'Device.DeviceInfo.ModelNumber'.
@@ -10222,7 +10860,7 @@ the event the receiving endpoint requests a retransmission.
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-135>
+=== Test Setup <sec:test-setup-144>
 
 + Ensure the EUT and controller have the necessary information to start
   a session an exchange USP messages.
@@ -10249,14 +10887,14 @@ Conditional Mandatory (supports USP session context)
 + Send a USP record to the EUT with a `retransmit_id` set to the
   `expected_id` value in the record sent in step 1.
 
-=== Test Metrics <sec:test-metrics-134>
+=== Test Metrics <sec:test-metrics-143>
 
 + The EUT sends the same GetResponse twice, once after step 2 and once
   after step 4.
 
 == 3.13 Agent Rejects Records with Different Payload Security than the Established Context <sec:agent-rejects-records-with-different-payload-security-than-the-established-context>
 
-=== Purpose <sec:purpose-134>
+=== Purpose <sec:purpose-143>
 
 The purpose of this test is to ensure the EUT does not accept USP
 Records that have a different `payload_security` value than the that of
@@ -10267,28 +10905,28 @@ the established session context.
 Conditional Mandatory (supports Secure Message Exchange using TLS for
 USP Record Integrity)
 
-=== Test Setup <sec:test-setup-136>
+=== Test Setup <sec:test-setup-145>
 
 + Ensure the EUT and controller have the necessary information to start
   a session and exchange USP messages.
 + Ensure the EUT and controller have the necessary information to secure
   the USP record payload using TLS.
 
-=== Test Procedure <sec:test-procedure-127>
+=== Test Procedure <sec:test-procedure-136>
 
 + Starts a session with the EUT using `payload_security` TLS12.
 + After the session is established, send the following Get message for
   any valid parameter using `payload_security` PLAINTEXT and a plaintext
   payload.
 
-=== Test Metrics <sec:test-metrics-135>
+=== Test Metrics <sec:test-metrics-144>
 
 + The EUT does not send a GetResponse.
 + The EUT starts a new session after step 2.
 
 == 3.14 Use of retransmit\_id <sec:use-of-retransmit_id>
 
-=== Purpose <sec:purpose-135>
+=== Purpose <sec:purpose-144>
 
 The purpose of this test is to ensure the EUT correctly uses the
 `retransmit_id` value in a USP record and adheres to the related
@@ -10298,12 +10936,12 @@ parameters in the data model.
 
 Conditionality Mandatory (supports session context)
 
-=== Test Setup <sec:test-setup-137>
+=== Test Setup <sec:test-setup-146>
 
 + Ensure the EUT and controller have the necessary information to start
   a session and exchange USP messages.
 
-=== Test Procedure <sec:test-procedure-128>
+=== Test Procedure <sec:test-procedure-137>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -10331,7 +10969,7 @@ Conditionality Mandatory (supports session context)
   `sequence_id` found in the SetResponse in step 2.
 + Repeat steps 2 and 3 twice more.
 
-=== Test Metrics <sec:test-metrics-136>
+=== Test Metrics <sec:test-metrics-145>
 
 + The first three SetResponse messages are sent in the same session
   context.
@@ -10340,7 +10978,7 @@ Conditionality Mandatory (supports session context)
 
 == 3.15 Handling Duplicate Records <sec:handling-duplicate-records>
 
-=== Purpose <sec:purpose-136>
+=== Purpose <sec:purpose-145>
 
 The purpose of this test is to ensure the EUT can correctly handle
 receiving duplicate records.
@@ -10349,12 +10987,12 @@ receiving duplicate records.
 
 Conditional Mandatory (supports USP session context)
 
-=== Test Setup <sec:test-setup-138>
+=== Test Setup <sec:test-setup-147>
 
 + Ensure the EUT and controller have the necessary information to start
   session and exchange USP messages.
 
-=== Test Procedure <sec:test-procedure-129>
+=== Test Procedure <sec:test-procedure-138>
 
 + Start a session with the EUT.
 + Send a Get message to the EUT requesting a parameter that is known to
@@ -10363,7 +11001,7 @@ Conditional Mandatory (supports USP session context)
   same non\-payload USP record field values.
 + Repeat step 3 twice more.
 
-=== Test Metrics <sec:test-metrics-137>
+=== Test Metrics <sec:test-metrics-146>
 
 + The EUT send only one GetResponse.
 
@@ -10371,7 +11009,7 @@ Conditional Mandatory (supports USP session context)
 
 == 4.1 Use of X.509 certificates at the MTP layer <sec:use-of-x.509-certificates-at-the-mtp-layer>
 
-=== Purpose <sec:purpose-137>
+=== Purpose <sec:purpose-146>
 
 The purpose of this test is to ensure the EUT can use X.509 certificates
 to secure communication at the MTP layer.
@@ -10380,13 +11018,13 @@ to secure communication at the MTP layer.
 
 Mandatory
 
-=== Test Setup <sec:test-setup-139>
+=== Test Setup <sec:test-setup-148>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure that the use of MTP layer encryption is enabled on the EUT.
 
-=== Test Procedure <sec:test-procedure-130>
+=== Test Procedure <sec:test-procedure-139>
 
 + Send a GetSupportedProtocol message to the EUT with the following
   structure:
@@ -10404,7 +11042,7 @@ body {
 }
 ```
 
-=== Test Metrics <sec:test-metrics-138>
+=== Test Metrics <sec:test-metrics-147>
 
 + The EUT processes the certificate and establishes a secure TLS
   connection at the MTP layer.
@@ -10413,7 +11051,7 @@ body {
 
 == 5.1 Mapping a USP Record to a CoAP message (DEPRECATED) <sec:mapping-a-usp-record-to-a-coap-message-deprecated>
 
-=== Purpose <sec:purpose-138>
+=== Purpose <sec:purpose-147>
 
 The purpose of this test is to ensure the EUT can properly use CoAP to
 transport USP Records.
@@ -10422,13 +11060,13 @@ transport USP Records.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-140>
+=== Test Setup <sec:test-setup-149>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-131>
+=== Test Procedure <sec:test-procedure-140>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -10447,7 +11085,7 @@ Conditional Mandatory (supports the CoAP MTP)
   ```
 + Wait for a GetResponse
 
-=== Test Metrics <sec:test-metrics-139>
+=== Test Metrics <sec:test-metrics-148>
 
 + The GetResponse is encapsulated in a CoAP message.
 + The CoAP message used transport the GetResponse uses
@@ -10455,7 +11093,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 == 5.2 USP Records that exceed CoAP message size (DEPRECATED) <sec:usp-records-that-exceed-coap-message-size-deprecated>
 
-=== Purpose <sec:purpose-139>
+=== Purpose <sec:purpose-148>
 
 The purpose of this test is to ensure the EUT properly segments large
 USP records and transports them using block encapsulation.
@@ -10464,13 +11102,13 @@ USP records and transports them using block encapsulation.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-141>
+=== Test Setup <sec:test-setup-150>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-132>
+=== Test Procedure <sec:test-procedure-141>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -10489,14 +11127,14 @@ Conditional Mandatory (supports the CoAP MTP)
   ```
 + Wait for a GetResponse
 
-=== Test Metrics <sec:test-metrics-140>
+=== Test Metrics <sec:test-metrics-149>
 
 + The EUT sends the GetResponse message using multiple block
   encapsulated CoAP messages.
 
 == 5.3 Successful CoAP exchange (DEPRECATED) <sec:successful-coap-exchange-deprecated>
 
-=== Purpose <sec:purpose-140>
+=== Purpose <sec:purpose-149>
 
 The purpose of this test is to ensure the EUT correctly sends a 2.04
 Changed response to CoAP messages.
@@ -10505,13 +11143,13 @@ Changed response to CoAP messages.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-142>
+=== Test Setup <sec:test-setup-151>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-133>
+=== Test Procedure <sec:test-procedure-142>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -10529,14 +11167,14 @@ Conditional Mandatory (supports the CoAP MTP)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-141>
+=== Test Metrics <sec:test-metrics-150>
 
 + After the transmission of the Get message the EUT sends a 2.04 Changed
   message.
 
 == 5.4 Failed CoAP exchange \- timeout (DEPRECATED) <sec:failed-coap-exchange---timeout-deprecated>
 
-=== Purpose <sec:purpose-141>
+=== Purpose <sec:purpose-150>
 
 The purpose of this test is to ensure the EUT behaves correctly when a
 timeout occurs at the MTP layer when using CoAP.
@@ -10545,13 +11183,13 @@ timeout occurs at the MTP layer when using CoAP.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-143>
+=== Test Setup <sec:test-setup-152>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-134>
+=== Test Procedure <sec:test-procedure-143>
 
 + Configure the to not send 2.04 Changed responses to CoAP messages
 + Send a Get message to the EUT with the following structure:
@@ -10574,14 +11212,14 @@ Conditional Mandatory (supports the CoAP MTP)
 + Wait for EUT to retry sending the GetResponse.
 + Allow the Controller to send a 2.04 Changed CoAP response.
 
-=== Test Metrics <sec:test-metrics-142>
+=== Test Metrics <sec:test-metrics-151>
 
 + The EUT attempts to retransmit the GetResponse message after not
   receiving a 2.04 Changed from the Controller.
 
 == 5.5 Failed CoAP Exchange \- Invalid Method (DEPRECATED) <sec:failed-coap-exchange---invalid-method-deprecated>
 
-=== Purpose <sec:purpose-142>
+=== Purpose <sec:purpose-151>
 
 The purpose of this test is to ensure the EUT correctly responds when it
 receives a CoAP message with an invalid method.
@@ -10590,19 +11228,19 @@ receives a CoAP message with an invalid method.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-144>
+=== Test Setup <sec:test-setup-153>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 + The EUT the Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-135>
+=== Test Procedure <sec:test-procedure-144>
 
 + Send a USP record to the EUT using a CoAP message with method code
   `0x06`.
 + Wait up to 60 seconds for the EUT to send a CoAP response.
 
-=== Test Metrics <sec:test-metrics-143>
+=== Test Metrics <sec:test-metrics-152>
 
 + The EUT sends a reply to the CoAP message with an invalid method code.
 + The EUT CoAP response uses code `4.05` to indicate an invalid CoAP
@@ -10610,7 +11248,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 == 5.6 Failed CoAP Exchange \- Invalid Content\-Format (DEPRECATED) <sec:failed-coap-exchange---invalid-content-format-deprecated>
 
-=== Purpose <sec:purpose-143>
+=== Purpose <sec:purpose-152>
 
 The purpose of this test is to ensure the EUT properly responds to CoAP
 messages that feature invalid Content\-Format options.
@@ -10619,19 +11257,19 @@ messages that feature invalid Content\-Format options.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-145>
+=== Test Setup <sec:test-setup-154>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-136>
+=== Test Procedure <sec:test-procedure-145>
 
 + Send a USP record to the EUT using a CoAP message with Content\-Format
   option `0x113a`.
 + Wait up to 60 second for the EUT to respond.
 
-=== Test Metrics <sec:test-metrics-144>
+=== Test Metrics <sec:test-metrics-153>
 
 + The EUT sends a reply to the CoAP message with an invalid
   Content\-Format.
@@ -10640,7 +11278,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 == 5.7 Failed CoAP Exchange \- Invalid USP Record (DEPRECATED) <sec:failed-coap-exchange---invalid-usp-record-deprecated>
 
-=== Purpose <sec:purpose-144>
+=== Purpose <sec:purpose-153>
 
 The purpose of this is to ensure the EUT properly responds to a CoAP
 message containing a malformed USP record.
@@ -10649,18 +11287,18 @@ message containing a malformed USP record.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-146>
+=== Test Setup <sec:test-setup-155>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 + The EUT and Controller are configured to communicate over CoAP.
 
-=== Test Procedure <sec:test-procedure-137>
+=== Test Procedure <sec:test-procedure-146>
 
 + Send a malformed USP record to the EUT in a CoAP message.
 + Wait up to 60 seconds for the EUT to send a CoAP reply.
 
-=== Test Metrics <sec:test-metrics-145>
+=== Test Metrics <sec:test-metrics-154>
 
 + The EUT sends a reply to the CoAP message with the malformed USP
   record.
@@ -10669,7 +11307,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 == 5.8 Use of DTLS (DEPRECATED) <sec:use-of-dtls-deprecated>
 
-=== Purpose <sec:purpose-145>
+=== Purpose <sec:purpose-154>
 
 The purpose of this test is to ensure the EUT can establish secure
 communication with another CoAP endpoint at the CoAP layer.
@@ -10678,7 +11316,7 @@ communication with another CoAP endpoint at the CoAP layer.
 
 Conditional Mandatory (supports the CoAP MTP)
 
-=== Test Setup <sec:test-setup-147>
+=== Test Setup <sec:test-setup-156>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
@@ -10687,7 +11325,7 @@ Conditional Mandatory (supports the CoAP MTP)
 + The EUT and Controller have the necessary information about one
   another to establish an encrypted channel of communication.
 
-=== Test Procedure <sec:test-procedure-138>
+=== Test Procedure <sec:test-procedure-147>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -10706,7 +11344,7 @@ Conditional Mandatory (supports the CoAP MTP)
   ```
 + Wait for the EUT to send a GetResponse.
 
-=== Test Metrics <sec:test-metrics-146>
+=== Test Metrics <sec:test-metrics-155>
 
 + The Controller is able to establish a DTLS session with the EUT.
 + The EUT established a DTLS session and sends a GetResponse.
@@ -10715,7 +11353,7 @@ Conditional Mandatory (supports the CoAP MTP)
 
 == 6.1 Support of Required Profiles <sec:support-of-required-profiles>
 
-=== Purpose <sec:purpose-146>
+=== Purpose <sec:purpose-155>
 
 The purpose of this test is to ensure the EUT supports the required
 STOMP profiles.
@@ -10724,12 +11362,12 @@ STOMP profiles.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-148>
+=== Test Setup <sec:test-setup-157>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 
-=== Test Procedure <sec:test-procedure-139>
+=== Test Procedure <sec:test-procedure-148>
 
 + Send a GetSupportedDM message to the EUT with the following structure:
 
@@ -10751,7 +11389,7 @@ Conditional Mandatory (supports the STOMP MTP)
   ```
 + Wait for the GetSupportedDMResponse.
 
-=== Test Metrics <sec:test-metrics-147>
+=== Test Metrics <sec:test-metrics-156>
 
 + The EUT sends a GetSupportedDMResponse.
 + The GetSupportedDMResponse from the EUT contains the following
@@ -10770,7 +11408,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.2 STOMP session establishment <sec:stomp-session-establishment>
 
-=== Purpose <sec:purpose-147>
+=== Purpose <sec:purpose-156>
 
 The purpose of this test is to ensure the EUT can properly start a STOMP
 session.
@@ -10779,25 +11417,25 @@ session.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-149>
+=== Test Setup <sec:test-setup-158>
 
 + Ensure that the EUT is configured to use a STOMP server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-140>
+=== Test Procedure <sec:test-procedure-149>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the STOMP server and subscribe to a
   destination.
 
-=== Test Metrics <sec:test-metrics-148>
+=== Test Metrics <sec:test-metrics-157>
 
 + The EUT sends a STOMP frame to the STOMP server to initiate the STOMP
   session.
 
 == 6.3 STOMP Connection Retry <sec:stomp-connection-retry>
 
-=== Purpose <sec:purpose-148>
+=== Purpose <sec:purpose-157>
 
 The purpose of this test is to ensure the EUT properly enters a retry
 state when it fails to connect to the STOMP server.
@@ -10806,12 +11444,12 @@ state when it fails to connect to the STOMP server.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-150>
+=== Test Setup <sec:test-setup-159>
 
 + Ensure that the EUT is configured to use a STOMP server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-141>
+=== Test Procedure <sec:test-procedure-150>
 
 + Send a Get message to the EUT with the following structure
 
@@ -10849,7 +11487,7 @@ Conditional Mandatory (supports the STOMP MTP)
 + Reenable the STOMP server after the EUT fails to connect to the STOMP
   server twice.
 
-=== Test Metrics <sec:test-metrics-149>
+=== Test Metrics <sec:test-metrics-158>
 
 + The EUT retries connecting to the STOMP server within the
   `ServerRetryInitialInterval` of the connection instance.
@@ -10858,7 +11496,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.4 Successful USP message over STOMP with required headers <sec:successful-usp-message-over-stomp-with-required-headers>
 
-=== Purpose <sec:purpose-149>
+=== Purpose <sec:purpose-158>
 
 The purpose of this test is to ensure the EUT can communicate over STOMP
 using the correct headers.
@@ -10867,12 +11505,12 @@ using the correct headers.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-151>
+=== Test Setup <sec:test-setup-160>
 
 + Ensure that the EUT is configured to use a STOMP server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-142>
+=== Test Procedure <sec:test-procedure-151>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -10891,7 +11529,7 @@ Conditional Mandatory (supports the STOMP MTP)
   ```
 + Allow the EUT to send a GetResponse.
 
-=== Test Metrics <sec:test-metrics-150>
+=== Test Metrics <sec:test-metrics-159>
 
 + In the STOMP frame transporting the GetResponse the `content-length`
   header is present and contains the length of the included body of the
@@ -10903,7 +11541,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.5 STOMP destination \- provided in subscribe\-dest <sec:stomp-destination---provided-in-subscribe-dest>
 
-=== Purpose <sec:purpose-150>
+=== Purpose <sec:purpose-159>
 
 The purpose of this test is to ensure the EUT correct subscribe to a
 destination found in the `subscribe-dest` header in a CONNECTED frame.
@@ -10912,12 +11550,12 @@ destination found in the `subscribe-dest` header in a CONNECTED frame.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-152>
+=== Test Setup <sec:test-setup-161>
 
 + Ensure the EUT is configured to use a STOMP server that is part of the
   test environment.
 
-=== Test Procedure <sec:test-procedure-143>
+=== Test Procedure <sec:test-procedure-152>
 
 + Configure the STOMP server to send an unused destination via the
   `subscribe-dest` header in the CONNECTED frames.
@@ -10940,7 +11578,7 @@ Conditional Mandatory (supports the STOMP MTP)
   ```
 + Allow the EUT to respond to the Get message.
 
-=== Test Metrics <sec:test-metrics-151>
+=== Test Metrics <sec:test-metrics-160>
 
 + The EUT subscribes to the destination configured in step 1.
 + The STOMP frame containing the GetResponse has a `reply-to-dest`
@@ -10948,7 +11586,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.6 STOMP destination \- configured in USP data model <sec:stomp-destination---configured-in-usp-data-model>
 
-=== Purpose <sec:purpose-151>
+=== Purpose <sec:purpose-160>
 
 The purpose of this test is to ensure the EUT can use the
 `Device.LocalAgent.MTP.{i}.STOMP.Destination` parameter to select a
@@ -10963,7 +11601,7 @@ Conditional Mandatory (supports the STOMP MTP)
 + Ensure the EUT is configured to use a STOMP server that is part of the
   test environment.
 
-=== Test Procedure <sec:test-procedure-144>
+=== Test Procedure <sec:test-procedure-153>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -11007,7 +11645,7 @@ Conditional Mandatory (supports the STOMP MTP)
   ```
 + Wait for a GetResponse from the EUT.
 
-=== Test Metrics <sec:test-metrics-152>
+=== Test Metrics <sec:test-metrics-161>
 
 + The EUT subscribes to the destination configured in step 1.
 + The STOMP frame containing the GetResponse has a `reply-to-dest`
@@ -11015,7 +11653,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.7 STOMP Destination \- terminates unconfigured session <sec:stomp-destination---terminates-unconfigured-session>
 
-=== Purpose <sec:purpose-152>
+=== Purpose <sec:purpose-161>
 
 The purpose of this test is to ensure the EUT terminates a STOMP session
 when no destination id configured.
@@ -11024,14 +11662,14 @@ when no destination id configured.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-153>
+=== Test Setup <sec:test-setup-162>
 
 + The EUT is configured to use a STOMP server which exists in the test
   environment.
 + Configure the STOMP server to not provide a `subscribe-dest` header in
   the CONNECTED frame.
 
-=== Test Procedure <sec:test-procedure-145>
+=== Test Procedure <sec:test-procedure-154>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -11057,14 +11695,14 @@ Conditional Mandatory (supports the STOMP MTP)
 + Reboot the EUT.
 + Wait for the EUT to attempt to reconnect to the STOMP server.
 
-=== Test Metrics <sec:test-metrics-153>
+=== Test Metrics <sec:test-metrics-162>
 
 + The EUT terminates the STOMP session after the STOMP server sends a
   CONNECTION to the EUT.
 
 == 6.8 Use of STOMP heartbeat mechanism <sec:use-of-stomp-heartbeat-mechanism>
 
-=== Purpose <sec:purpose-153>
+=== Purpose <sec:purpose-162>
 
 The purpose of this test is to ensure the EUT can correctly implements
 the STOMP heartbeat mechanism and the relevant parameters in the data
@@ -11074,13 +11712,13 @@ model.
 
 Conditional Mandatory (supports STOMPHeartbeat:1 profile)
 
-=== Test Setup <sec:test-setup-154>
+=== Test Setup <sec:test-setup-163>
 
 + The EUT is configured to use a STOMP server which exists in the test
   environment.
 + Ensure the STOMP server supports heartbeats.
 
-=== Test Procedure <sec:test-procedure-146>
+=== Test Procedure <sec:test-procedure-155>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -11115,7 +11753,7 @@ Conditional Mandatory (supports STOMPHeartbeat:1 profile)
 + Wait for the EUT to reconnect to the STOMP server.
 + Wait for 60 seconds
 
-=== Test Metrics <sec:test-metrics-154>
+=== Test Metrics <sec:test-metrics-163>
 
 + In the STOMP frame sent to the STOMP server during step 2, the
   `heart-beat` header sent by the EUT contains '15000, 10000'.
@@ -11124,7 +11762,7 @@ Conditional Mandatory (supports STOMPHeartbeat:1 profile)
 
 == 6.9 Error Handling \- Unprocessed Record <sec:error-handling---unprocessed-record>
 
-=== Purpose <sec:purpose-154>
+=== Purpose <sec:purpose-163>
 
 The purpose of this test is to ensure the EUT will correctly send an
 ERROR STOMP frame when a malformed USP record is received.
@@ -11133,24 +11771,24 @@ ERROR STOMP frame when a malformed USP record is received.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-155>
+=== Test Setup <sec:test-setup-164>
 
 + Ensure the EUT is configured to use a STOMP server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-147>
+=== Test Procedure <sec:test-procedure-156>
 
 + Send a malformed USP record to the EUT.
 + Wait 60 seconds for the EUT to send a response.
 
-=== Test Metrics <sec:test-metrics-155>
+=== Test Metrics <sec:test-metrics-164>
 
 + The EUT either ignores the malformed record or sends a USP Record
   Error.
 
 == 6.10 Agent’s STOMP destination is changed <sec:agents-stomp-destination-is-changed>
 
-=== Purpose <sec:purpose-155>
+=== Purpose <sec:purpose-164>
 
 The purpose of this test is to ensure that when the EUT destination is
 altered it properly unsubscribes and subscribes to the new destination.
@@ -11159,14 +11797,14 @@ altered it properly unsubscribes and subscribes to the new destination.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-156>
+=== Test Setup <sec:test-setup-165>
 
 + Ensure the EUT is configured to use a STOMP server that exists in the
   test environment.
 + Ensure the STOMP server is configured to not provide a destination via
   the `subscribe-dest` header.
 
-=== Test Procedure <sec:test-procedure-148>
+=== Test Procedure <sec:test-procedure-157>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -11190,7 +11828,7 @@ Conditional Mandatory (supports the STOMP MTP)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-156>
+=== Test Metrics <sec:test-metrics-165>
 
 + After the STOMP destination was changed the EUT sent an UNSUBSCRIBE
   message message to the STOMP server.
@@ -11199,7 +11837,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 6.11 STOMP \- Use of TLS <sec:stomp---use-of-tls>
 
-=== Purpose <sec:purpose-156>
+=== Purpose <sec:purpose-165>
 
 The purpose of this test is to ensure the EUT can establish secure STOMP
 communication via TLS.
@@ -11208,14 +11846,14 @@ communication via TLS.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-157>
+=== Test Setup <sec:test-setup-166>
 
 + Ensure the EUT is configured to the use a STOMP server that exists in
   the test environment.
 + Ensure the EUT and STOMP server are configured with the appropriate
   certificates to communicate over TLS.
 
-=== Test Procedure <sec:test-procedure-149>
+=== Test Procedure <sec:test-procedure-158>
 
 + Reboot the EUT
 + Wait for the EUT to reconnect to the STOMP server
@@ -11236,14 +11874,14 @@ Conditional Mandatory (supports the STOMP MTP)
   ```
 + Wait for the EUT to send a GetResponse
 
-=== Test Metrics <sec:test-metrics-157>
+=== Test Metrics <sec:test-metrics-166>
 
 + All communication between the EUT and STOMP server after step 1 are
   encrypted using TLS
 
 == 6.12 STOMP \- Use of Connect Record <sec:stomp---use-of-connect-record>
 
-=== Purpose <sec:purpose-157>
+=== Purpose <sec:purpose-166>
 
 The purpose of this test is to ensure the EUT correctly sends a Connect
 record after it has established a communications channel to the
@@ -11253,17 +11891,17 @@ controller.
 
 Conditional Mandatory (supports the STOMP MTP)
 
-=== Test Setup <sec:test-setup-158>
+=== Test Setup <sec:test-setup-167>
 
 + Ensure the EUT is configured to use a STOMP server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-150>
+=== Test Procedure <sec:test-procedure-159>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the STOMP server.
 
-=== Test Metrics <sec:test-metrics-158>
+=== Test Metrics <sec:test-metrics-167>
 
 + After reconnecting to the STOMP server the EUT transmits a
   STOMPConnectRecord to the test controller within 30 seconds.
@@ -11276,7 +11914,7 @@ Conditional Mandatory (supports the STOMP MTP)
 
 == 7.1 Session Establishment <sec:session-establishment>
 
-=== Purpose <sec:purpose-158>
+=== Purpose <sec:purpose-167>
 
 The purpose of this test is to ensure the EUT can establish a session
 using WebSocket as the MTP.
@@ -11285,12 +11923,12 @@ using WebSocket as the MTP.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-159>
+=== Test Setup <sec:test-setup-168>
 
 + Ensure the EUT is configured to use WebSocket and to communicate to
   the controller that exists in the test environment.
 
-=== Test Procedure <sec:test-procedure-151>
+=== Test Procedure <sec:test-procedure-160>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the controller.
@@ -11311,14 +11949,14 @@ Conditional Mandatory (supports the WebSocket MTP)
   ```
 + Wait for a GetResponse from the EUT
 
-=== Test Metrics <sec:test-metrics-159>
+=== Test Metrics <sec:test-metrics-168>
 
 + The EUT is able to establish a WebSocket connection to the controller
 + The EUT sends a GetResponse to the Get message sent in step 3
 
 == 7.2 Use of only one session <sec:use-of-only-one-session>
 
-=== Purpose <sec:purpose-159>
+=== Purpose <sec:purpose-168>
 
 The purpose of this test is to ensure the EUT maintains only one
 WebSocket connection to a controller at a time.
@@ -11328,12 +11966,12 @@ WebSocket connection to a controller at a time.
 Conditional Mandatory (supports the WebSocket MTP with requirement
 R\-WS.6)
 
-=== Test Setup <sec:test-setup-160>
+=== Test Setup <sec:test-setup-169>
 
 + Ensure the EUT is configured to use WebSocket and to communicate to
   the controller that exists in the test environment.
 
-=== Test Procedure <sec:test-procedure-152>
+=== Test Procedure <sec:test-procedure-161>
 
 + Send a Get message to the EUT using the following structure:
 
@@ -11353,14 +11991,14 @@ R\-WS.6)
 + Attempt to open a second WebSocket connection to the EUT.
 + Send the Get message outlined in step 1 over the new connection.
 
-=== Test Metrics <sec:test-metrics-160>
+=== Test Metrics <sec:test-metrics-169>
 
 + Either the first WebSocket connection closes when the second is
   opened, or the second connection is rejected.
 
 == 7.3 Agent session acceptance from Controller <sec:agent-session-acceptance-from-controller>
 
-=== Purpose <sec:purpose-160>
+=== Purpose <sec:purpose-169>
 
 This test has been DEPRECATED as of version 1.0.1 of this test plan.
 
@@ -11368,21 +12006,21 @@ This test has been DEPRECATED as of version 1.0.1 of this test plan.
 
 N\/A
 
-=== Test Setup <sec:test-setup-161>
+=== Test Setup <sec:test-setup-170>
 
 N\/A
 
-=== Test Procedure <sec:test-procedure-153>
+=== Test Procedure <sec:test-procedure-162>
 
 N\/A
 
-=== Test Metrics <sec:test-metrics-161>
+=== Test Metrics <sec:test-metrics-170>
 
 N\/A
 
 == 7.4 Closing a WebSocket Connection <sec:closing-a-websocket-connection>
 
-=== Purpose <sec:purpose-161>
+=== Purpose <sec:purpose-170>
 
 The purpose of this test is to ensure the EUT correctly implements the
 procedure to close a WebSocket connection.
@@ -11391,18 +12029,18 @@ procedure to close a WebSocket connection.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-162>
+=== Test Setup <sec:test-setup-171>
 
 + Ensure the EUT is configured to use WebSocket.
 + Ensure there is an active WebSocket connection between the EUT and the
   controller that was initiated by the EUT.
 
-=== Test Procedure <sec:test-procedure-154>
+=== Test Procedure <sec:test-procedure-163>
 
 + Send a `Close` WebSocket control frame to the EUT.
 + Wait for the EUT to close the underlying TCP session.
 
-=== Test Metrics <sec:test-metrics-162>
+=== Test Metrics <sec:test-metrics-171>
 
 + The EUT sends a WebSocket Close frame.
 
@@ -11413,7 +12051,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 This test was deprecated in TP\-469 Issue 1 Amendment 3 due to the
 deprecation of R\-WS.10a in TR\-369 Issue 1 Amendment 3.
 
-=== Purpose <sec:purpose-162>
+=== Purpose <sec:purpose-171>
 
 The purpose of this test is to ensure the EUT will correctly reject
 WebSocket sessions.
@@ -11422,26 +12060,26 @@ WebSocket sessions.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-163>
+=== Test Setup <sec:test-setup-172>
 
 + Ensure the EUT is configured to use WebSocket.
 + Configure the controller to reject WebSocket connections from the EUT.
 
-=== Test Procedure <sec:test-procedure-155>
+=== Test Procedure <sec:test-procedure-164>
 
 + Configure the controller to not include the `Sec-WebSocket-Protocol`
   when opening new WebSocket connections.
 + Reboot the EUT
 + Attempt to start a WebSocket connection to the EUT.
 
-=== Test Metrics <sec:test-metrics-163>
+=== Test Metrics <sec:test-metrics-172>
 
 + The EUT rejects the WebSocket connection with the missing
   `Sec-WebSocket-Protocol` header.
 
 == 7.6 Error Handling \- Unprocessed Records <sec:error-handling---unprocessed-records>
 
-=== Purpose <sec:purpose-163>
+=== Purpose <sec:purpose-172>
 
 The purpose of this test is to ensure the EUT correctly closes the
 WebSocket connection when a malformed USP Record is received.
@@ -11450,24 +12088,24 @@ WebSocket connection when a malformed USP Record is received.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-164>
+=== Test Setup <sec:test-setup-173>
 
 + Ensure the EUT is configured to use WebSocket
 + Ensure there is an active WebSocket connection between the EUT and
   controller.
 
-=== Test Procedure <sec:test-procedure-156>
+=== Test Procedure <sec:test-procedure-165>
 
 + Send a malformed USP record to the EUT.
 
-=== Test Metrics <sec:test-metrics-164>
+=== Test Metrics <sec:test-metrics-173>
 
 + After step 1 the EUT closes the WebSocket connection with a WebSocket
   `Close` control frame containing status code 1003.
 
 == 7.7 Use of Ping and Pong frames <sec:use-of-ping-and-pong-frames>
 
-=== Purpose <sec:purpose-164>
+=== Purpose <sec:purpose-173>
 
 The purpose of this test is to ensure the EUT correctly uses `Ping` and
 `Pong` control frames to keep the WebSocket session alive.
@@ -11476,19 +12114,19 @@ The purpose of this test is to ensure the EUT correctly uses `Ping` and
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-165>
+=== Test Setup <sec:test-setup-174>
 
 + Ensure the EUT is configured to use WebSocket
 + Ensure there is an active WebSocket session between the EUT and the
   Controller.
 
-=== Test Procedure <sec:test-procedure-157>
+=== Test Procedure <sec:test-procedure-166>
 
 + Send a `Ping` control frame to the EUT.
 + Wait up to 60 seconds for a `Pong` control frame from the EUT.
 + Send a `Pong` control frame to the EUT.
 
-=== Test Metrics <sec:test-metrics-165>
+=== Test Metrics <sec:test-metrics-174>
 
 + The EUT sends a `Pong` control frame in response to the `Ping` control
   frame.
@@ -11497,7 +12135,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 == 7.8 WebSocket Session Retry <sec:websocket-session-retry>
 
-=== Purpose <sec:purpose-165>
+=== Purpose <sec:purpose-174>
 
 The purpose of this test is to ensure the EUT will correctly attempt to
 reestablish a WebSocket session if a session is unexpectedly closed.
@@ -11506,13 +12144,13 @@ reestablish a WebSocket session if a session is unexpectedly closed.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-166>
+=== Test Setup <sec:test-setup-175>
 
 + Ensure the EUT is configured to use WebSocket.
 + Ensure there is an active WebSocket connection between the EUT and
   controller.
 
-=== Test Procedure <sec:test-procedure-158>
+=== Test Procedure <sec:test-procedure-167>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -11536,7 +12174,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 + Configure the controller to accept new WebSocket connections.
 + Wait for the EUT to attempt to establish a WebSocket connection.
 
-=== Test Metrics <sec:test-metrics-166>
+=== Test Metrics <sec:test-metrics-175>
 
 + The EUT attempts to start a new WebSocket connection in conformance
   with the `SessionRetryMinimumWaitInterval` parameter.
@@ -11546,7 +12184,7 @@ Conditional Mandatory (supports the WebSocket MTP)
 
 == 7.9 Use of TLS <sec:use-of-tls>
 
-=== Purpose <sec:purpose-166>
+=== Purpose <sec:purpose-175>
 
 The purpose of this test is to ensure the EUT can establish and use a
 secure WebSocket connection.
@@ -11555,13 +12193,13 @@ secure WebSocket connection.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-167>
+=== Test Setup <sec:test-setup-176>
 
 + Ensure the EUT is configured to use WebSocket.
 + Ensure the EUT and controller both have the required certificates to
   secure a websocket connection.
 
-=== Test Procedure <sec:test-procedure-159>
+=== Test Procedure <sec:test-procedure-168>
 
 + Reboot the EUT.
 + Wait for the EUT to connect to the controller.
@@ -11582,14 +12220,14 @@ Conditional Mandatory (supports the WebSocket MTP)
   ```
 + Wait for GetResponse from the EUT.
 
-=== Test Metrics <sec:test-metrics-167>
+=== Test Metrics <sec:test-metrics-176>
 
 + The EUT starts a WebSocket connection with the controller using TLS.
 + The EUT sends a GetResponse in step 4.
 
 == 7.10 WebSocket \- Use of Connect Record <sec:websocket---use-of-connect-record>
 
-=== Purpose <sec:purpose-167>
+=== Purpose <sec:purpose-176>
 
 The purpose of this test is to ensure the EUT correctly sends a Connect
 Record after it has established a WebSocket connection to the
@@ -11599,39 +12237,39 @@ Controller.
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-168>
+=== Test Setup <sec:test-setup-177>
 
 + Ensure the EUT is configured to connect to the test controller using
   WebSocket.
 
-=== Test Procedure <sec:test-procedure-160>
+=== Test Procedure <sec:test-procedure-169>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the test controller.
 
-=== Test Metrics <sec:test-metrics-168>
+=== Test Metrics <sec:test-metrics-177>
 
 + After reconnecting to the test controller the EUT transmits a
   WebSocketConnectRecord to the test controller within 30 seconds.
 
 == 7.11 Websocket response does not include bbf\-usp\-protocol <sec:websocket-response-does-not-include-bbf-usp-protocol>
 
-=== Purpose <sec:purpose-168>
+=== Purpose <sec:purpose-177>
 
 The purpose of this test is to ensure the EUT properly processes a
 Websocket response that does not contain the bbf\-usp\-protocol
 Websocket Extension.
 
-=== Functionality Tag <sec:functionality-tag-102>
+=== Functionality Tag <sec:functionality-tag-111>
 
 Conditional Mandatory (supports the WebSocket MTP)
 
-=== Test Setup <sec:test-setup-169>
+=== Test Setup <sec:test-setup-178>
 
 + Ensure the EUT is configured to connect to the test controller using
   WebSocket.
 
-=== Test Procedure <sec:test-procedure-161>
+=== Test Procedure <sec:test-procedure-170>
 
 + Configure the controller to not include 'bbf\-usp\-protocol' in its
   Sec\-WebSocket\-Extensions header when opening new WebSocket
@@ -11655,16 +12293,56 @@ Conditional Mandatory (supports the WebSocket MTP)
   ```
 + Wait for a GetResponse from the EUT
 
-=== Test Metrics <sec:test-metrics-169>
+=== Test Metrics <sec:test-metrics-178>
 
 + The EUT is able to establish a WebSocket connection to the controller.
 + The EUT sends a GetResponse to the Get message sent in step 4.
+
+== 7.12 Agent can process USP Records within fragmented Websocket messages <sec:agent-can-process-usp-records-within-fragmented-websocket-messages>
+
+=== Purpose <sec:purpose-178>
+
+The purpose of this test is to ensure the EUT properly processes a
+fragmented WebSocket message.
+
+=== Functionality Tag <sec:functionality-tag-112>
+
+Conditional Mandatory (supports the WebSocket MTP)
+
+=== Test Setup <sec:test-setup-179>
+
++ Ensure the EUT is configured to connect to the test controller using
+  WebSocket.
+
+=== Test Procedure <sec:test-procedure-171>
+
++ Configure the test controller to send fragmented WebSocket messages.
++ Send a Get message to the EUT with the following structure:
+
+  ```
+  header {
+      msg_id: '<msg_id>'
+      msg_type: GET
+  }
+  body {
+      request {
+          get {
+              param_paths: 'Device.DeviceInfo.'
+          }
+      }
+  }
+  ```
++ Wait for a GetResponse from the EUT
+
+=== Test Metrics <sec:test-metrics-179>
+
++ The EUT sends a GetResponse to the Get message sent in step 2.
 
 = 8 Discovery Test Cases <sec:discovery-test-cases>
 
 == 8.1 DHCP Discovery \- Agent Request Requirements <sec:dhcp-discovery---agent-request-requirements>
 
-=== Purpose <sec:purpose-169>
+=== Purpose <sec:purpose-179>
 
 The purpose of this test is to ensure the EUT correctly requests
 controller information via DHCP. #emph[Note: this test can be run over
@@ -11674,24 +12352,24 @@ DHCPv4 or DHCPv6, depending on the deployment model of the EUT.];
 
 Conditional Mandatory (supports discovery via DHCP Options)
 
-=== Test Setup <sec:test-setup-170>
+=== Test Setup <sec:test-setup-180>
 
 + Ensure the EUT is configured to request controller DHCP information.
 + Ensure the EUT is configured to acquire an address via DHCP.
 
-=== Test Procedure <sec:test-procedure-162>
+=== Test Procedure <sec:test-procedure-172>
 
 + Reboot the EUT.
 + Wait for the EUT to request an address via DHCP.
 
-=== Test Metrics <sec:test-metrics-170>
+=== Test Metrics <sec:test-metrics-180>
 
 + The EUT includes a Vendor Class option with Enterprise Number 3561 and
   vendor\-class\-data "usp" in the DHCP request.
 
 == 8.2 DHCP Discovery \- Agent handling of received options <sec:dhcp-discovery---agent-handling-of-received-options>
 
-=== Purpose <sec:purpose-170>
+=== Purpose <sec:purpose-180>
 
 The purpose of this test is to ensure the EUT can properly handle the
 USP options provided by a DHCP server.
@@ -11700,14 +12378,14 @@ USP options provided by a DHCP server.
 
 Conditional Mandatory (supports discovery via DHCP Options)
 
-=== Test Setup <sec:test-setup-171>
+=== Test Setup <sec:test-setup-181>
 
 + Ensure the EUT is configured to request controller DHCP information
 + Ensure the EUT is configured to acquire an address via DHCP.
 + Ensure the EUT ProvisioningCode parameter is set to a value other than
   that which will be set during the test procedure.
 
-=== Test Procedure <sec:test-procedure-163>
+=== Test Procedure <sec:test-procedure-173>
 
 + Configure the DHCP server to provide a null terminated provisioning
   code.
@@ -11730,14 +12408,14 @@ Conditional Mandatory (supports discovery via DHCP Options)
   ```
 + Wait for the GetResponse from the EUT.
 
-=== Test Metrics <sec:test-metrics-171>
+=== Test Metrics <sec:test-metrics-181>
 
 + The ProvisioningCode parameter found in the GetResponse matches the
   provisioning code configured on the DHCP server.
 
 == 8.3 DHCP Discovery \- FQDN Leads to DNS Query <sec:dhcp-discovery---fqdn-leads-to-dns-query>
 
-=== Purpose <sec:purpose-171>
+=== Purpose <sec:purpose-181>
 
 The purpose of this test is to ensure the EUT correctly uses DNS to
 retrieve additional controller information upon receiving a FQDN of a
@@ -11747,13 +12425,13 @@ controller.
 
 Conditional Mandatory (supports discovery via DHCP Options)
 
-=== Test Setup <sec:test-setup-172>
+=== Test Setup <sec:test-setup-182>
 
 + Ensure the EUT is configured to request controller information via
   DHCP.
 + Ensure the EUT is configured to acquire an address via DHCP.
 
-=== Test Procedure <sec:test-procedure-164>
+=== Test Procedure <sec:test-procedure-174>
 
 + Configure the DHCP server to provide a controller URL with a FQDN.
 + Reboot the EUT.
@@ -11761,14 +12439,14 @@ Conditional Mandatory (supports discovery via DHCP Options)
 + Wait for the EUT to query the DNS with the FQDN.
 + Wait for the EUT to connect to the controller.
 
-=== Test Metrics <sec:test-metrics-172>
+=== Test Metrics <sec:test-metrics-182>
 
 + After the EUT receives a FQDN in the DHCP Offer, the EUT uses DNS to
   retrieve additional information about the controller.
 
 == 8.4 mDNS <sec:mdns>
 
-=== Purpose <sec:purpose-172>
+=== Purpose <sec:purpose-182>
 
 The purpose of this test is to ensure the EUT correctly implements mDNS.
 
@@ -11777,7 +12455,7 @@ The purpose of this test is to ensure the EUT correctly implements mDNS.
 Conditional Mandatory (supports discovery via mDNS, supports the
 Reboot:1 profile)
 
-=== Test Setup <sec:test-setup-173>
+=== Test Setup <sec:test-setup-183>
 
 + Ensure the EUT has mDNS enabled.
 + Ensure the controller exists on the same network as the EUT.
@@ -11786,20 +12464,20 @@ Reboot:1 profile)
 + Ensure that a Subscription exists for the Boot! event on the EUT with
   the test Controller as the Recipient.
 
-=== Test Procedure <sec:test-procedure-165>
+=== Test Procedure <sec:test-procedure-175>
 
 + Reboot the EUT.
 + Wait for the EUT to send a mDNS request for the FQDN.
 + Allow the controller to respond to the mDNS request.
 
-=== Test Metrics <sec:test-metrics-173>
+=== Test Metrics <sec:test-metrics-183>
 
 + After the EUT receives a FQDN via DHCP containing ".local." the EUT
   uses mDNS to resolve it.
 
 == 8.5 mDNS and Message Transfer Protocols <sec:mdns-and-message-transfer-protocols>
 
-=== Purpose <sec:purpose-173>
+=== Purpose <sec:purpose-183>
 
 The purpose of this test is to ensure the EUT correctly advertises the
 MTP it supports.
@@ -11808,18 +12486,18 @@ MTP it supports.
 
 Conditional Mandatory (supports discovery via mDNS)
 
-=== Test Setup <sec:test-setup-174>
+=== Test Setup <sec:test-setup-184>
 
 + Ensure the EUT has mDNS enabled.
 + Ensure the Controller exists on the same network as the EUT.
 
-=== Test Procedure <sec:test-procedure-166>
+=== Test Procedure <sec:test-procedure-176>
 
 + Reboot the EUT.
 + Wait for the EUT to acquire an address.
 + Wait for the EUT to send an unsolicited mDNS response.
 
-=== Test Metrics <sec:test-metrics-174>
+=== Test Metrics <sec:test-metrics-184>
 
 + The EUT sends an unsolicited multicast DNS response containing correct
   SRV and TXT records that convey the DNS\-SD Service Instance Name for
@@ -11827,7 +12505,7 @@ Conditional Mandatory (supports discovery via mDNS)
 
 == 8.6 DNS \- DNS Record Requirements <sec:dns---dns-record-requirements>
 
-=== Purpose <sec:purpose-174>
+=== Purpose <sec:purpose-184>
 
 The purpose of this test is to ensure the EUT provides valid DNS\-SD
 records.
@@ -11836,17 +12514,17 @@ records.
 
 Conditional Mandatory (supports discovery via mDNS)
 
-=== Test Setup <sec:test-setup-175>
+=== Test Setup <sec:test-setup-185>
 
 + Ensure mDNS is enabled on the EUT.
 
-=== Test Procedure <sec:test-procedure-167>
+=== Test Procedure <sec:test-procedure-177>
 
 + Reboot the EUT.
 + Wait for the EUT to acquire a new address.
 + Wait for to the EUT to send a multicast mDNS advertisement.
 
-=== Test Metrics <sec:test-metrics-175>
+=== Test Metrics <sec:test-metrics-185>
 
 + The EUT sends a multicast mDNS advertisement containing a TXT record
   for every supported MTP.
@@ -11855,7 +12533,7 @@ Conditional Mandatory (supports discovery via mDNS)
 
 == 8.7 mDNS request response <sec:mdns-request-response>
 
-=== Purpose <sec:purpose-175>
+=== Purpose <sec:purpose-185>
 
 The purpose of this test is to ensure the EUT will respond to mDNS
 requests.
@@ -11864,17 +12542,17 @@ requests.
 
 Conditional Mandatory (supports discovery via mDNS)
 
-=== Test Setup <sec:test-setup-176>
+=== Test Setup <sec:test-setup-186>
 
 + Ensure that the EUT is configured to listen for mDNS requests.
 
-=== Test Procedure <sec:test-procedure-168>
+=== Test Procedure <sec:test-procedure-178>
 
 + Reboot the EUT.
 + Send an mDNS query to the multicast domain that includes the EUT.
 + Wait for an mDNS response from the EUT.
 
-=== Test Metrics <sec:test-metrics-176>
+=== Test Metrics <sec:test-metrics-186>
 
 + The EUT responds to the mDNS query with the proper information.
 
@@ -11882,7 +12560,7 @@ Conditional Mandatory (supports discovery via mDNS)
 
 == 9.1 Use of the Timer! Event (DEPRECATED by 9.11) <sec:use-of-the-timer-event-deprecated-by-9.11>
 
-=== Purpose <sec:purpose-176>
+=== Purpose <sec:purpose-186>
 
 The purpose of this test is to ensure the Timer! event can be
 configured, and the EUT correctly triggers the event.
@@ -11892,12 +12570,12 @@ configured, and the EUT correctly triggers the event.
 Conditional Mandatory (supports
 Device.LocalAgent.Controller.{i}.ScheduleTimer() command)
 
-=== Test Setup <sec:test-setup-177>
+=== Test Setup <sec:test-setup-187>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-169>
+=== Test Procedure <sec:test-procedure-179>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -11920,7 +12598,7 @@ Device.LocalAgent.Controller.{i}.ScheduleTimer() command)
   ```
 + Wait for the EUT to send a Notification.
 
-=== Test Metrics <sec:test-metrics-177>
+=== Test Metrics <sec:test-metrics-187>
 
 + The EUT sends an OperateResponse with 'ScheduleTimer()' in the
   `executed_command` element.
@@ -11929,7 +12607,7 @@ Device.LocalAgent.Controller.{i}.ScheduleTimer() command)
 
 == 9.2 Use of Device.LocalAgent.AddCertificate() <sec:use-of-device.localagent.addcertificate>
 
-=== Purpose <sec:purpose-177>
+=== Purpose <sec:purpose-187>
 
 The purpose of this test is to ensure the AddCertificate() operation on
 the EUT functions correctly.
@@ -11945,7 +12623,7 @@ command)
   to send and receive USP Records to each other.
 + Have an alternate certificate that the EUT hasn’t seen.
 
-=== Test Procedure <sec:test-procedure-170>
+=== Test Procedure <sec:test-procedure-180>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12004,7 +12682,7 @@ command)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-178>
+=== Test Metrics <sec:test-metrics-188>
 
 + The EUT sends an OperateResponse after step 1.
 + The EUT accepts the connection after the Controller has been
@@ -12015,7 +12693,7 @@ command)
 
 == 9.3 Upgraded the Agent’s Firmware \- Autoactivate enabled <sec:upgraded-the-agents-firmware---autoactivate-enabled>
 
-=== Purpose <sec:purpose-178>
+=== Purpose <sec:purpose-188>
 
 The purpose of this test is to ensure the EUT can download firmware and
 automatically activate it using the AutoActivate parameter.
@@ -12024,7 +12702,7 @@ automatically activate it using the AutoActivate parameter.
 
 Conditional Mandatory (supports Firmware:1 profile)
 
-=== Test Setup <sec:test-setup-178>
+=== Test Setup <sec:test-setup-188>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12037,7 +12715,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   'Download()' command with the Controller used for testing set as the
   Recipient.
 
-=== Test Procedure <sec:test-procedure-171>
+=== Test Procedure <sec:test-procedure-181>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12091,7 +12769,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-179>
+=== Test Metrics <sec:test-metrics-189>
 
 + The EUT sends a Notify message after step 1 containing a
   `oper_complete` element with a `command_name` of 'Download()'
@@ -12105,7 +12783,7 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 == 9.4 Upgrading the Agent’s Firmware \- Using TimeWindow, Immediate <sec:upgrading-the-agents-firmware---using-timewindow-immediate>
 
-=== Purpose <sec:purpose-179>
+=== Purpose <sec:purpose-189>
 
 The purpose of this test is to ensure the EUT can activate a firmware
 image when a TimeWindow object is used with Immediately mode.
@@ -12115,7 +12793,7 @@ image when a TimeWindow object is used with Immediately mode.
 Conditional Mandatory (supports Firmware:1 profile with Activate()
 operation)
 
-=== Test Setup <sec:test-setup-179>
+=== Test Setup <sec:test-setup-189>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12129,7 +12807,7 @@ operation)
   'Activate()' command with the Controller used for testing set as the
   Recipient.
 
-=== Test Procedure <sec:test-procedure-172>
+=== Test Procedure <sec:test-procedure-182>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12175,7 +12853,7 @@ operation)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-180>
+=== Test Metrics <sec:test-metrics-190>
 
 + The EUT sends a Notify message within 5 seconds with an
   OperationComplete element with a `command_name` of 'Activate()'.
@@ -12186,7 +12864,7 @@ operation)
 
 == 9.5 Upgrading the Agent’s Firmware \- Using TimeWindow, AnyTime <sec:upgrading-the-agents-firmware---using-timewindow-anytime>
 
-=== Purpose <sec:purpose-180>
+=== Purpose <sec:purpose-190>
 
 The purpose of this test is to ensure the EUT can activate a firmware
 image when a TimeWindow instance used with the AnyTime mode.
@@ -12195,7 +12873,7 @@ image when a TimeWindow instance used with the AnyTime mode.
 
 Conditionally Mandatory (implements Firmware:1 and Activate() operation)
 
-=== Test Setup <sec:test-setup-180>
+=== Test Setup <sec:test-setup-190>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12209,7 +12887,7 @@ Conditionally Mandatory (implements Firmware:1 and Activate() operation)
   'Activate()' command with the Controller used for testing set as the
   Recipient.
 
-=== Test Procedure <sec:test-procedure-173>
+=== Test Procedure <sec:test-procedure-183>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12255,7 +12933,7 @@ Conditionally Mandatory (implements Firmware:1 and Activate() operation)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-181>
+=== Test Metrics <sec:test-metrics-191>
 
 + The EUT sends a Notify message within 2 minutes after step 1.
 + The Notify message has a OperationComplete element.
@@ -12266,7 +12944,7 @@ Conditionally Mandatory (implements Firmware:1 and Activate() operation)
 
 == 9.6 Upgrading the Agent’s Firmware \- Validated Firmware <sec:upgrading-the-agents-firmware---validated-firmware>
 
-=== Purpose <sec:purpose-181>
+=== Purpose <sec:purpose-191>
 
 The purpose of this test is to ensure the EUT can validate the integrity
 of downloaded firmware.
@@ -12275,7 +12953,7 @@ of downloaded firmware.
 
 Conditional Mandatory (supports Firmware:1 profile)
 
-=== Test Setup <sec:test-setup-181>
+=== Test Setup <sec:test-setup-191>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12283,7 +12961,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   notification with the Controller used for testing set as the
   Recipient.
 
-=== Test Procedure <sec:test-procedure-174>
+=== Test Procedure <sec:test-procedure-184>
 
 + Send an Operate message to the EUT with the following structure using
   an invalid checksum:
@@ -12330,7 +13008,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-182>
+=== Test Metrics <sec:test-metrics-192>
 
 + The EUT sends a Notify message with a TransferComplete! event.
 + The EUT sends a Get response with a Status parameter of
@@ -12338,7 +13016,7 @@ Conditional Mandatory (supports Firmware:1 profile)
 
 == 9.7 Upgrading the Agent’s Firmware \- Download to Active Bank <sec:upgrading-the-agents-firmware---download-to-active-bank>
 
-=== Purpose <sec:purpose-182>
+=== Purpose <sec:purpose-192>
 
 The purpose of this test is to ensure the EUT is capable downloading and
 installing new firmware for EUTs that may support only the active
@@ -12348,7 +13026,7 @@ firmware bank.
 
 Conditional Mandatory (supports Firmware:1 profile)
 
-=== Test Setup <sec:test-setup-182>
+=== Test Setup <sec:test-setup-192>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12358,7 +13036,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   Controller used for testing is set as the Recipient.
 + Record the number of firmware banks the EUT supports.
 
-=== Test Procedure <sec:test-procedure-175>
+=== Test Procedure <sec:test-procedure-185>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12385,7 +13063,7 @@ Conditional Mandatory (supports Firmware:1 profile)
   ```
 + Wait for a Notify message from the EUT.
 
-=== Test Metrics <sec:test-metrics-183>
+=== Test Metrics <sec:test-metrics-193>
 
 If the EUT supports only one firmware bank: 1. The EUT sends a Notify
 message with a TransferComplete! event. 2. the EUT sends a Notify
@@ -12401,7 +13079,7 @@ true.
 
 == 9.8 Upgrading the Agent’s Firmware \- Cancelling a request using the Cancel() command <sec:upgrading-the-agents-firmware---cancelling-a-request-using-the-cancel-command>
 
-=== Purpose <sec:purpose-183>
+=== Purpose <sec:purpose-193>
 
 The purpose of this test is to ensure the EUT can correctly cancel a
 Download() operation.
@@ -12411,7 +13089,7 @@ Download() operation.
 Conditional Mandatory (supports Firmware:1 profile and
 Device.LocalAgent.Request.{i}.Cancel() operation)
 
-=== Test Setup <sec:test-setup-183>
+=== Test Setup <sec:test-setup-193>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12419,7 +13097,7 @@ Device.LocalAgent.Request.{i}.Cancel() operation)
 + Ensure the EUT has a subscription to the Boot! event with the
   Controller used for testing set as the Recipient.
 
-=== Test Procedure <sec:test-procedure-176>
+=== Test Procedure <sec:test-procedure-186>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12481,7 +13159,7 @@ Device.LocalAgent.Request.{i}.Cancel() operation)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-184>
+=== Test Metrics <sec:test-metrics-194>
 
 + The EUT sends a OperationResponse after step 1 with a
   `executed_command` element of 'Activate()' and a `req_obj_path`
@@ -12493,7 +13171,7 @@ Device.LocalAgent.Request.{i}.Cancel() operation)
 
 == 9.9 Adding a New Controller \- OnBoardRequest <sec:adding-a-new-controller---onboardrequest>
 
-=== Purpose <sec:purpose-184>
+=== Purpose <sec:purpose-194>
 
 The purpose of this test is to ensure the EUT can handle the manual
 adding of a new Controller.
@@ -12504,7 +13182,7 @@ Conditional Mandatory (supports Controller:1 profile with the ability to
 create instances of the Device.LocalAgent.Controller. object, supports
 SendOnBoardRequest())
 
-=== Test Setup <sec:test-setup-184>
+=== Test Setup <sec:test-setup-194>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -12514,7 +13192,7 @@ SendOnBoardRequest())
 + A secondary Controller is configured and ready to communicate with
   another endpoint.
 
-=== Test Procedure <sec:test-procedure-177>
+=== Test Procedure <sec:test-procedure-187>
 
 + Send an Add message to the EUT with the following structure.
 
@@ -12597,7 +13275,7 @@ SendOnBoardRequest())
 + Allow the secondary Controller to receive the OnBoardRequest() and
   send a NotifyResponse.
 
-=== Test Metrics <sec:test-metrics-185>
+=== Test Metrics <sec:test-metrics-195>
 
 + The EUT is able to start a session with the secondary Controller.
 + The EUT sends a Notify message to the secondary Controller containing
@@ -12605,7 +13283,7 @@ SendOnBoardRequest())
 
 == 9.10 Use of the Boot! event and BootParameters <sec:use-of-the-boot-event-and-bootparameters>
 
-=== Purpose <sec:purpose-185>
+=== Purpose <sec:purpose-195>
 
 The purpose of this test is to ensure the EUT correctly triggers the
 Boot! event and correctly includes the configured BootParameters.
@@ -12615,12 +13293,12 @@ Boot! event and correctly includes the configured BootParameters.
 Conditional Mandatory (supports Reboot:1 profile, supports
 Device.DeviceInfo.BootFirmwareImage)
 
-=== Test Setup <sec:test-setup-185>
+=== Test Setup <sec:test-setup-195>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-178>
+=== Test Procedure <sec:test-procedure-188>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -12679,7 +13357,7 @@ Device.DeviceInfo.BootFirmwareImage)
   ```
 + Wait for a Notify message from the EUT.
 
-=== Test Metrics <sec:test-metrics-186>
+=== Test Metrics <sec:test-metrics-196>
 
 + After step 2 the EUT sends a Notify message with an event element
   containing a ParameterMap argument with
@@ -12687,7 +13365,7 @@ Device.DeviceInfo.BootFirmwareImage)
 
 == 9.11 Use of the Timer! Event <sec:use-of-the-timer-event>
 
-=== Purpose <sec:purpose-186>
+=== Purpose <sec:purpose-196>
 
 The purpose of this test is to ensure the Timer! event can be
 configured, and the EUT correctly triggers the event.
@@ -12696,14 +13374,14 @@ configured, and the EUT correctly triggers the event.
 
 Conditional Mandatory (supports Device.ScheduleTimer() command)
 
-=== Test Setup <sec:test-setup-186>
+=== Test Setup <sec:test-setup-196>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure that a Subscription object exists on the EUT with NotifType
   OperationComplete on Device.ScheduleTimer().
 
-=== Test Procedure <sec:test-procedure-179>
+=== Test Procedure <sec:test-procedure-189>
 
 + Send an Operate message to the EUT with the following structure:
 
@@ -12727,7 +13405,7 @@ Conditional Mandatory (supports Device.ScheduleTimer() command)
   ```
 + Wait for the EUT to send a Notification.
 
-=== Test Metrics <sec:test-metrics-187>
+=== Test Metrics <sec:test-metrics-197>
 
 + The EUT sends an OperateResponse with ScheduleTimer() in the
   executed\_command element.
@@ -12738,7 +13416,7 @@ Conditional Mandatory (supports Device.ScheduleTimer() command)
 
 == 10.1 Use BulkData collection using HTTP and JSON <sec:use-bulkdata-collection-using-http-and-json>
 
-=== Purpose <sec:purpose-187>
+=== Purpose <sec:purpose-197>
 
 The purpose of this test is to verify that EUT supports JSON BulkData
 collection over HTTP.
@@ -12748,14 +13426,14 @@ collection over HTTP.
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
 
-=== Test Setup <sec:test-setup-187>
+=== Test Setup <sec:test-setup-197>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTP endpoint that is accessible by the EUT is configured to
   support receiving JSON BulkData transfers.
 
-=== Test Procedure <sec:test-procedure-180>
+=== Test Procedure <sec:test-procedure-190>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -12851,7 +13529,7 @@ Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-188>
+=== Test Metrics <sec:test-metrics-198>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -12865,7 +13543,7 @@ Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
 
 == 10.2 Use BulkData collection using HTTPS and JSON <sec:use-bulkdata-collection-using-https-and-json>
 
-=== Purpose <sec:purpose-188>
+=== Purpose <sec:purpose-198>
 
 The purpose of this test is to verify that EUT supports JSON BulkData
 collection over HTTPS.
@@ -12875,14 +13553,14 @@ collection over HTTPS.
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
 
-=== Test Setup <sec:test-setup-188>
+=== Test Setup <sec:test-setup-198>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTPS endpoint that is accessible by the EUT is configured to
   support receiving JSON BulkData transfers.
 
-=== Test Procedure <sec:test-procedure-181>
+=== Test Procedure <sec:test-procedure-191>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -12978,7 +13656,7 @@ Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-189>
+=== Test Metrics <sec:test-metrics-199>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -12992,7 +13670,7 @@ Device.BulkData.Protocols, "JSON" ∈ Device.BulkData.EncodingTypes)
 
 == 10.3 Use BulkData collection using HTTP and CSV <sec:use-bulkdata-collection-using-http-and-csv>
 
-=== Purpose <sec:purpose-189>
+=== Purpose <sec:purpose-199>
 
 The purpose of this test is to verify that EUT supports CSV BulkData
 collection over HTTP.
@@ -13002,14 +13680,14 @@ collection over HTTP.
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
 
-=== Test Setup <sec:test-setup-189>
+=== Test Setup <sec:test-setup-199>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTP endpoint that is accessible by the EUT is configured to
   support receiving CSV BulkData transfers.
 
-=== Test Procedure <sec:test-procedure-182>
+=== Test Procedure <sec:test-procedure-192>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13105,7 +13783,7 @@ Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-190>
+=== Test Metrics <sec:test-metrics-200>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13119,7 +13797,7 @@ Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
 
 == 10.4 Use BulkData collection using HTTPS and CSV <sec:use-bulkdata-collection-using-https-and-csv>
 
-=== Purpose <sec:purpose-190>
+=== Purpose <sec:purpose-200>
 
 The purpose of this test is to verify that EUT supports CSV BulkData
 collection over HTTPS.
@@ -13129,14 +13807,14 @@ collection over HTTPS.
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
 
-=== Test Setup <sec:test-setup-190>
+=== Test Setup <sec:test-setup-200>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTPS endpoint that is accessible by the EUT is configured to
   support receiving CSV BulkData transfers.
 
-=== Test Procedure <sec:test-procedure-183>
+=== Test Procedure <sec:test-procedure-193>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13232,7 +13910,7 @@ Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-191>
+=== Test Metrics <sec:test-metrics-201>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13246,7 +13924,7 @@ Device.BulkData.Protocols, "CSV" ∈ Device.BulkData.EncodingTypes)
 
 == 10.5 Use BulkData collection using HTTP with URI Parameters <sec:use-bulkdata-collection-using-http-with-uri-parameters>
 
-=== Purpose <sec:purpose-191>
+=== Purpose <sec:purpose-201>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection over HTTP with extra URI parameters
@@ -13256,13 +13934,13 @@ collection over HTTP with extra URI parameters
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-191>
+=== Test Setup <sec:test-setup-201>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTP endpoint that is accessible by the EUT is configured.
 
-=== Test Procedure <sec:test-procedure-184>
+=== Test Procedure <sec:test-procedure-194>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13384,7 +14062,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-192>
+=== Test Metrics <sec:test-metrics-202>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13396,7 +14074,7 @@ Device.BulkData.Protocols)
 
 == 10.6 Use BulkData collection using HTTPS with URI Parameters <sec:use-bulkdata-collection-using-https-with-uri-parameters>
 
-=== Purpose <sec:purpose-192>
+=== Purpose <sec:purpose-202>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection over HTTPS with extra URI parameters
@@ -13406,13 +14084,13 @@ collection over HTTPS with extra URI parameters
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-192>
+=== Test Setup <sec:test-setup-202>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTPS endpoint that is accessible by the EUT is configured.
 
-=== Test Procedure <sec:test-procedure-185>
+=== Test Procedure <sec:test-procedure-195>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13534,7 +14212,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-193>
+=== Test Metrics <sec:test-metrics-203>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13546,7 +14224,7 @@ Device.BulkData.Protocols)
 
 == 10.7 BulkData collection retry mechanism over HTTP <sec:bulkdata-collection-retry-mechanism-over-http>
 
-=== Purpose <sec:purpose-193>
+=== Purpose <sec:purpose-203>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection retry mechanism.
@@ -13556,13 +14234,13 @@ collection retry mechanism.
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-193>
+=== Test Setup <sec:test-setup-203>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTP endpoint that is accessible by the EUT is configured.
 
-=== Test Procedure <sec:test-procedure-186>
+=== Test Procedure <sec:test-procedure-196>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13676,7 +14354,7 @@ Device.BulkData.Protocols)
 + Wait for 43 seconds for the EUT to retry the BulkData transfer.
 + Wait for the EUT to send a BulkData transfer
 
-=== Test Metrics <sec:test-metrics-194>
+=== Test Metrics <sec:test-metrics-204>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13690,7 +14368,7 @@ Device.BulkData.Protocols)
 
 == 10.8 Use BulkData collection using HTTP with wildcard parameter <sec:use-bulkdata-collection-using-http-with-wildcard-parameter>
 
-=== Purpose <sec:purpose-194>
+=== Purpose <sec:purpose-204>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection over HTTP with a wildcarded parameter
@@ -13700,7 +14378,7 @@ collection over HTTP with a wildcarded parameter
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-194>
+=== Test Setup <sec:test-setup-204>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -13708,7 +14386,7 @@ Device.BulkData.Protocols)
 + Ensure there are at least 2 BootParameters configured for the test
   controller.
 
-=== Test Procedure <sec:test-procedure-187>
+=== Test Procedure <sec:test-procedure-197>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13804,7 +14482,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-195>
+=== Test Metrics <sec:test-metrics-205>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTP endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13817,7 +14495,7 @@ Device.BulkData.Protocols)
 
 == 10.9 Use BulkData collection using HTTP with Object Path <sec:use-bulkdata-collection-using-http-with-object-path>
 
-=== Purpose <sec:purpose-195>
+=== Purpose <sec:purpose-205>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection over HTTP with an Object Path
@@ -13827,13 +14505,13 @@ collection over HTTP with an Object Path
 Conditional Mandatory (supports BulkDataColl:1, "HTTP" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-195>
+=== Test Setup <sec:test-setup-205>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure a HTTP endpoint that is accessible by the EUT is configured.
 
-=== Test Procedure <sec:test-procedure-188>
+=== Test Procedure <sec:test-procedure-198>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -13929,7 +14607,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-196>
+=== Test Metrics <sec:test-metrics-206>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfers
   to the HTTPS endpoint within 130 (`(ReportingInterval * 2) + 10`)
@@ -13942,7 +14620,7 @@ Device.BulkData.Protocols)
 
 == 10.10 Use BulkData collection Push event <sec:use-bulkdata-collection-push-event>
 
-=== Purpose <sec:purpose-196>
+=== Purpose <sec:purpose-206>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection via the Push event.
@@ -13952,12 +14630,12 @@ collection via the Push event.
 Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-196>
+=== Test Setup <sec:test-setup-206>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-189>
+=== Test Procedure <sec:test-procedure-199>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -14079,7 +14757,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-197>
+=== Test Metrics <sec:test-metrics-207>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfer
   Push! events to the controller within 130
@@ -14091,7 +14769,7 @@ Device.BulkData.Protocols)
 
 == 10.11 Use BulkData collection Push event with Wildcard path <sec:use-bulkdata-collection-push-event-with-wildcard-path>
 
-=== Purpose <sec:purpose-197>
+=== Purpose <sec:purpose-207>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection via the Push event using a wildcard path.
@@ -14101,14 +14779,14 @@ collection via the Push event using a wildcard path.
 Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-197>
+=== Test Setup <sec:test-setup-207>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 + Ensure that there are at least 2 BootParameters configured for the
   test Controller.
 
-=== Test Procedure <sec:test-procedure-190>
+=== Test Procedure <sec:test-procedure-200>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -14230,7 +14908,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-198>
+=== Test Metrics <sec:test-metrics-208>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfer
   Push! events to the controller within 130
@@ -14243,7 +14921,7 @@ Device.BulkData.Protocols)
 
 == 10.12 Use BulkData collection Push event with Object path <sec:use-bulkdata-collection-push-event-with-object-path>
 
-=== Purpose <sec:purpose-198>
+=== Purpose <sec:purpose-208>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection via the Push event using an object path.
@@ -14253,12 +14931,12 @@ collection via the Push event using an object path.
 Conditional Mandatory (supports BulkDataColl:1, "USPEventNotif" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-198>
+=== Test Setup <sec:test-setup-208>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
 
-=== Test Procedure <sec:test-procedure-191>
+=== Test Procedure <sec:test-procedure-201>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -14380,7 +15058,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-199>
+=== Test Metrics <sec:test-metrics-209>
 
 + After enabling the BulkData profile the EUT sent 2 BulkData transfer
   Push! events to the controller within 130
@@ -14392,7 +15070,7 @@ Device.BulkData.Protocols)
 
 == 10.13 Use BulkData collection over MQTT <sec:use-bulkdata-collection-over-mqtt>
 
-=== Purpose <sec:purpose-199>
+=== Purpose <sec:purpose-209>
 
 The purpose of this test is to verify that EUT supports BulkData
 collection via MQTT.
@@ -14402,7 +15080,7 @@ collection via MQTT.
 Conditional Mandatory (supports BulkDataColl:1, "MQTT" ∈
 Device.BulkData.Protocols)
 
-=== Test Setup <sec:test-setup-199>
+=== Test Setup <sec:test-setup-209>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP Records to each other.
@@ -14411,7 +15089,7 @@ Device.BulkData.Protocols)
 + Ensure there is a Device.MQTT.Client. entry in the EUT’s data model
   for the MQTT endpoint mentioned in step 2 of the test setup.
 
-=== Test Procedure <sec:test-procedure-192>
+=== Test Procedure <sec:test-procedure-202>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -14511,7 +15189,7 @@ Device.BulkData.Protocols)
   ```
 + Wait up to 130 (`(ReportingInterval * 2) + 10`) seconds
 
-=== Test Metrics <sec:test-metrics-200>
+=== Test Metrics <sec:test-metrics-210>
 
 + After enabling the BulkData profile the EUT published 2 BulkData
   transfers to the MQTT server using using the configured topic within
@@ -14525,7 +15203,7 @@ Device.BulkData.Protocols)
 
 == 11.1 Support of Required MQTT Profiles <sec:support-of-required-mqtt-profiles>
 
-=== Purpose <sec:purpose-200>
+=== Purpose <sec:purpose-210>
 
 The purpose of this test is to ensure the EUT supports the required MQTT
 profiles.
@@ -14534,12 +15212,12 @@ profiles.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-200>
+=== Test Setup <sec:test-setup-210>
 
 + Ensure that the EUT and test equipment have the necessary information
   to send and receive USP records to each other.
 
-=== Test Procedure <sec:test-procedure-193>
+=== Test Procedure <sec:test-procedure-203>
 
 + Send a GetSupportedDM message to the EUT with the following structure:
 
@@ -14561,7 +15239,7 @@ Conditional Mandatory (supports the MQTT MTP)
   ```
 + Wait for the GetSupportedDMResponse.
 
-=== Test Metrics <sec:test-metrics-201>
+=== Test Metrics <sec:test-metrics-211>
 
 + The EUT sends a GetSupportedDMResponse.
 + The GetSupportedDMResponse from the EUT contains all required
@@ -14572,7 +15250,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.2 MQTT session establishment using a CONNECT packet <sec:mqtt-session-establishment-using-a-connect-packet>
 
-=== Purpose <sec:purpose-201>
+=== Purpose <sec:purpose-211>
 
 The purpose of this test is to ensure the EUT can properly start an MQTT
 session using an MQTT CONNECT packet.
@@ -14581,19 +15259,19 @@ session using an MQTT CONNECT packet.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-201>
+=== Test Setup <sec:test-setup-211>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
 + Ensure that the EUT data model is configured with
   `.MQTT.Client.{i}.Username`, `.MQTT.Client.{i}.Password` values.
 
-=== Test Procedure <sec:test-procedure-194>
+=== Test Procedure <sec:test-procedure-204>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the MQTT server.
 
-=== Test Metrics <sec:test-metrics-202>
+=== Test Metrics <sec:test-metrics-212>
 
 + The EUT sends an MQTT CONNECT packet to the MQTT server. \
 + The MQTT CONNECT packet Version is either 5.0 or 3.1.1.
@@ -14605,7 +15283,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.3 MQTT Use of TLS <sec:mqtt-use-of-tls>
 
-=== Purpose <sec:purpose-202>
+=== Purpose <sec:purpose-212>
 
 The purpose of this test is to ensure the EUT can establish secure MQTT
 communication via TLS.
@@ -14614,14 +15292,14 @@ communication via TLS.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-202>
+=== Test Setup <sec:test-setup-212>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 + Ensure the EUT and MQTT server are configured with the appropriate
   certificates to communicate over TLS.
 
-=== Test Procedure <sec:test-procedure-195>
+=== Test Procedure <sec:test-procedure-205>
 
 + Reboot the EUT
 + Wait for the EUT to reconnect to the MQTT server
@@ -14642,14 +15320,14 @@ Conditional Mandatory (supports the MQTT MTP)
   ```
 + Wait for the EUT to send a GetResponse
 
-=== Test Metrics <sec:test-metrics-203>
+=== Test Metrics <sec:test-metrics-213>
 
 + All communication between the EUT and MQTT server after step 1 are
   encrypted using TLS 1.2 or later.
 
 == 11.4 MQTT 5.0 ClientID <sec:mqtt-5.0-clientid>
 
-=== Purpose <sec:purpose-203>
+=== Purpose <sec:purpose-213>
 
 The purpose of this test is to ensure the EUT properly sets the ClientID
 field in MQTT packets.
@@ -14658,12 +15336,12 @@ field in MQTT packets.
 
 Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
-=== Test Setup <sec:test-setup-203>
+=== Test Setup <sec:test-setup-213>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-196>
+=== Test Procedure <sec:test-procedure-206>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -14709,7 +15387,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-204>
+=== Test Metrics <sec:test-metrics-214>
 
 + The EUT MQTT CONNECT packet must include a ClientID set to an empty
   string.
@@ -14718,7 +15396,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
 == 11.5 MQTT ClientID Persistence <sec:mqtt-clientid-persistence>
 
-=== Purpose <sec:purpose-204>
+=== Purpose <sec:purpose-214>
 
 The purpose of this test is to ensure the MQTT ClientID field persists
 after successful connection with an MQTT server.
@@ -14727,12 +15405,12 @@ after successful connection with an MQTT server.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-204>
+=== Test Setup <sec:test-setup-214>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-197>
+=== Test Procedure <sec:test-procedure-207>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -14752,13 +15430,13 @@ Conditional Mandatory (supports the MQTT MTP)
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the MQTT server.
 
-=== Test Metrics <sec:test-metrics-205>
+=== Test Metrics <sec:test-metrics-215>
 
 + The EUT uses the same ClientID in the subsequent MQTT CONNECT packet.
 
 == 11.6 MQTT Message Retry <sec:mqtt-message-retry>
 
-=== Purpose <sec:purpose-205>
+=== Purpose <sec:purpose-215>
 
 The purpose of this test is to ensure the EUT properly enters a retry
 state when it fails to connect to the MQTT server.
@@ -14767,12 +15445,12 @@ state when it fails to connect to the MQTT server.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-205>
+=== Test Setup <sec:test-setup-215>
 
 + Ensure the EUT is configured to use an MQTT server that is part of the
   test environment.
 
-=== Test Procedure <sec:test-procedure-198>
+=== Test Procedure <sec:test-procedure-208>
 
 + Send a Get message to the EUT with the following structure
 
@@ -14810,7 +15488,7 @@ Conditional Mandatory (supports the MQTT MTP)
 + Reenable the MQTT server after the EUT fails to connect to the MQTT
   server twice.
 
-=== Test Metrics <sec:test-metrics-206>
+=== Test Metrics <sec:test-metrics-216>
 
 + The EUT retries connecting to the MQTT server within the
   `ConnectRetryTime` of the connection instance.
@@ -14819,7 +15497,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.7 MQTT Keep Alive <sec:mqtt-keep-alive>
 
-=== Purpose <sec:purpose-206>
+=== Purpose <sec:purpose-216>
 
 The purpose of this test is to ensure the EUT can correctly implement
 the MQTT keep alive mechanism and the relevant parameters in the data
@@ -14829,12 +15507,12 @@ model.
 
 Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
-=== Test Setup <sec:test-setup-206>
+=== Test Setup <sec:test-setup-216>
 
 + The EUT is configured to use an MQTT server which exists in the test
   environment.
 
-=== Test Procedure <sec:test-procedure-199>
+=== Test Procedure <sec:test-procedure-209>
 
 + Send a Set message to the EUT with the following structure:
 
@@ -14863,7 +15541,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
   of 30 seconds.
 + Wait 45 seconds.
 
-=== Test Metrics <sec:test-metrics-207>
+=== Test Metrics <sec:test-metrics-217>
 
 + The EUT sends an MQTT CONNECT packet on boot with the Keep Alive
   property set to 60 seconds.
@@ -14872,7 +15550,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
 == 11.8 MQTT SUBSCRIBE Packet <sec:mqtt-subscribe-packet>
 
-=== Purpose <sec:purpose-207>
+=== Purpose <sec:purpose-217>
 
 The purpose of this test is to ensure the EUT includes the correct
 fields in an MQTT SUBSCRIBE packet.
@@ -14881,12 +15559,12 @@ fields in an MQTT SUBSCRIBE packet.
 
 Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
-=== Test Setup <sec:test-setup-207>
+=== Test Setup <sec:test-setup-217>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
 
-=== Test Procedure <sec:test-procedure-200>
+=== Test Procedure <sec:test-procedure-210>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the MQTT server.
@@ -14896,7 +15574,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
   Information property.
 + Wait for the EUT to send an MQTT SUBSCRIBE packet.
 
-=== Test Metrics <sec:test-metrics-208>
+=== Test Metrics <sec:test-metrics-218>
 
 + The EUT sends an MQTT CONNECT packet to the MQTT server. If the EUT
   uses MQTT 5.0, the Request Response Information property must be set
@@ -14908,7 +15586,7 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
 == 11.9 MQTT New Subscription <sec:mqtt-new-subscription>
 
-=== Purpose <sec:purpose-208>
+=== Purpose <sec:purpose-218>
 
 The purpose of this test is to ensure the EUT sends an MQTT SUBSCRIBE
 packet when a new `Device.MQTT.Client.{i}.Subscription.{i}.` object is
@@ -14918,12 +15596,12 @@ added.
 
 Conditional Mandatory (supports MQTT MTP)
 
-=== Test Setup <sec:test-setup-208>
+=== Test Setup <sec:test-setup-218>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
 
-=== Test Metrics <sec:test-metrics-209>
+=== Test Metrics <sec:test-metrics-219>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -14997,7 +15675,7 @@ Conditional Mandatory (supports MQTT MTP)
   ```
 + The MQTT Server sends an MQTT UNSUBACK packet indicating success.
 
-=== Test Metrics <sec:test-metrics-210>
+=== Test Metrics <sec:test-metrics-220>
 
 + The EUT sends an MQTT SUBSCRIBE packet that includes the new Topic
   from step 1.
@@ -15007,7 +15685,7 @@ Conditional Mandatory (supports MQTT MTP)
 
 == 11.10 MQTT No Topic in CONNACK <sec:mqtt-no-topic-in-connack>
 
-=== Purpose <sec:purpose-209>
+=== Purpose <sec:purpose-219>
 
 The purpose of this test is to ensure the EUT will disconnect from the
 MQTT server if it receives no subscribe\-topic.
@@ -15016,7 +15694,7 @@ MQTT server if it receives no subscribe\-topic.
 
 Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
-=== Test Setup <sec:test-setup-209>
+=== Test Setup <sec:test-setup-219>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
@@ -15024,20 +15702,20 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
   `Device.MQTT.Client.<active MQTT client instance>.Subscription.` are
   removed from the EUT.
 
-=== Test Procedure <sec:test-procedure-201>
+=== Test Procedure <sec:test-procedure-211>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the MQTT server.
 + The MQTT server sends an MQTT CONNACK packet that does not include a
   subscribe\-topic User Property.
 
-=== Test Metrics <sec:test-metrics-211>
+=== Test Metrics <sec:test-metrics-221>
 
 + The EUT sends an MQTT DISCONNECT packet to the MQTT server.
 
 == 11.11 MQTT Failure to Subscribe <sec:mqtt-failure-to-subscribe>
 
-=== Purpose <sec:purpose-210>
+=== Purpose <sec:purpose-220>
 
 The purpose of this test is to ensure the EUT will disconnect from the
 MQTT server if it is unable to subscribe to a Topic.
@@ -15046,7 +15724,7 @@ MQTT server if it is unable to subscribe to a Topic.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-210>
+=== Test Setup <sec:test-setup-220>
 
 + Ensure that the EUT is configured to use an MQTT server that exists in
   the test environment.
@@ -15055,7 +15733,7 @@ Conditional Mandatory (supports the MQTT MTP)
   through the Device. LocalAgent.Controller.\<i>.PeriodicNotifInterval
   parameter.
 
-=== Test Procedure <sec:test-procedure-202>
+=== Test Procedure <sec:test-procedure-212>
 
 + Reboot the EUT.
 + Wait for the EUT to send an MQTT SUBSCRIBE packet.
@@ -15063,7 +15741,7 @@ Conditional Mandatory (supports the MQTT MTP)
   each Topic in the SUBSCRIBE packet.
 + Wait 120 seconds.
 
-=== Test Metrics <sec:test-metrics-212>
+=== Test Metrics <sec:test-metrics-222>
 
 + The EUT sends an MQTT DISCONNECT packet to the MQTT server.
 + The EUT does not publish a USP record to the MQTT server for any Topic
@@ -15071,7 +15749,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.12 MQTT PUBLISH Packet <sec:mqtt-publish-packet>
 
-=== Purpose <sec:purpose-211>
+=== Purpose <sec:purpose-221>
 
 The purpose of this test is to ensure the EUT can send a properly
 formatted an MQTT PUBLISH packet.
@@ -15080,12 +15758,12 @@ formatted an MQTT PUBLISH packet.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-211>
+=== Test Setup <sec:test-setup-221>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-203>
+=== Test Procedure <sec:test-procedure-213>
 
 + Reboot the EUT.
 + Wait for the EUT to reconnect to the MQTT server.
@@ -15109,7 +15787,7 @@ Conditional Mandatory (supports the MQTT MTP)
   ```
 + Wait for the EUT to send a GetResponse
 
-=== Test Metrics <sec:test-metrics-213>
+=== Test Metrics <sec:test-metrics-223>
 
 + The EUT sends an MQTT PUBLISH packet containing a GetResponse.
 + If the EUT uses MQTT 5.0, the Response Topic is set to the Response
@@ -15122,7 +15800,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.13 MQTT QoS <sec:mqtt-qos>
 
-=== Purpose <sec:purpose-212>
+=== Purpose <sec:purpose-222>
 
 The purpose of this test is to ensure the EUT supports at least MQTT QoS
 levels 0 and 1.
@@ -15131,12 +15809,12 @@ levels 0 and 1.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-212>
+=== Test Setup <sec:test-setup-222>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-204>
+=== Test Procedure <sec:test-procedure-214>
 
 + Send an Add message to the EUT with the following structure:
 
@@ -15158,6 +15836,10 @@ Conditional Mandatory (supports the MQTT MTP)
                 param_settings {
                         param: 'Topic'
                         value: '<newTopic-11-13-QoS0 OR newTopic-11-13-QoS0/# for USP Agents using MQTT version 3.1.1>'
+                    }
+                param_settings {
+                        param: 'QoS'
+                        value: '0'
                     }
                 }
           }
@@ -15232,7 +15914,7 @@ Conditional Mandatory (supports the MQTT MTP)
   }
   ```
 
-=== Test Metrics <sec:test-metrics-214>
+=== Test Metrics <sec:test-metrics-224>
 
 + The EUT sends a GetResp for the Get message sent to topic
   'newTopic\-11\-13\-QoS0'.
@@ -15241,7 +15923,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.14 MQTT Reply to Topic <sec:mqtt-reply-to-topic>
 
-=== Purpose <sec:purpose-213>
+=== Purpose <sec:purpose-223>
 
 The purpose of this test is to ensure the EUT can process and set the
 "reply to" Topic in MQTT PUBLISH packets.
@@ -15250,12 +15932,12 @@ The purpose of this test is to ensure the EUT can process and set the
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-213>
+=== Test Setup <sec:test-setup-223>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-205>
+=== Test Procedure <sec:test-procedure-215>
 
 + Send a Get message to the EUT with the following structure:
 
@@ -15274,7 +15956,7 @@ Conditional Mandatory (supports the MQTT MTP)
   ```
 + Wait for the EUT to send a GetResponse.
 
-=== Test Metrics <sec:test-metrics-215>
+=== Test Metrics <sec:test-metrics-225>
 
 + If the EUT uses MQTT 5.0, the EUT must send an MQTT PUBLISH packet
   that includes a GetResponse. The Topic Name must be set to the "reply
@@ -15291,7 +15973,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.15 MQTT 5.0 Content Type <sec:mqtt-5.0-content-type>
 
-=== Purpose <sec:purpose-214>
+=== Purpose <sec:purpose-224>
 
 The purpose of this test is to ensure the EUT can accept valid values of
 the MQTT Content Type property.
@@ -15300,12 +15982,12 @@ the MQTT Content Type property.
 
 Conditional Mandatory (supports the MQTT MTP, version 5.0)
 
-=== Test Setup <sec:test-setup-214>
+=== Test Setup <sec:test-setup-224>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-206>
+=== Test Procedure <sec:test-procedure-216>
 
 + Configure the Controller to include an MQTT Content Type property of
   `usp.msg` in its MQTT packets.
@@ -15344,14 +16026,14 @@ Conditional Mandatory (supports the MQTT MTP, version 5.0)
   ```
 + Wait for the EUT to send a GetResponse.
 
-=== Test Metrics <sec:test-metrics-216>
+=== Test Metrics <sec:test-metrics-226>
 
 + The EUT must send a GetResponse for both Get messages, indicating that
   it processed the Controller’s MQTT PUBLISH packets.
 
 == 11.16 MQTT Connection Retry <sec:mqtt-connection-retry>
 
-=== Purpose <sec:purpose-215>
+=== Purpose <sec:purpose-225>
 
 The purpose of this test is to ensure the EUT retries its connection
 with the MQTT server after the server terminates the connection.
@@ -15360,17 +16042,17 @@ with the MQTT server after the server terminates the connection.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-215>
+=== Test Setup <sec:test-setup-225>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-207>
+=== Test Procedure <sec:test-procedure-217>
 
 + Send an MQTT DISCONNECT packet to the EUT.
 + Allow the EUT to start a new MQTT session with the MQTT server.
 
-=== Test Metrics <sec:test-metrics-217>
+=== Test Metrics <sec:test-metrics-227>
 
 + The EUT retries connecting to the MQTT server between ConnectRetryTime
   of the connection instance and
@@ -15378,7 +16060,7 @@ Conditional Mandatory (supports the MQTT MTP)
 
 == 11.17 MQTT \- Use of Connect Record <sec:mqtt---use-of-connect-record>
 
-=== Purpose <sec:purpose-216>
+=== Purpose <sec:purpose-226>
 
 The purpose of this test is to ensure the EUT correctly sends a Connect
 record after it has established a communications channel to the
@@ -15388,17 +16070,17 @@ controller.
 
 Conditional Mandatory (supports the MQTT MTP)
 
-=== Test Setup <sec:test-setup-216>
+=== Test Setup <sec:test-setup-226>
 
 + Ensure the EUT is configured to use an MQTT server that exists in the
   test environment.
 
-=== Test Procedure <sec:test-procedure-208>
+=== Test Procedure <sec:test-procedure-218>
 
 + Reboot the EUT.
 + Wait for the EUT to establish an MQTT session with the MQTT server.
 
-=== Test Metrics <sec:test-metrics-218>
+=== Test Metrics <sec:test-metrics-228>
 
 + After reconnecting to the MQTT server, the EUT transmits an
   MQTTConnectRecord within 30 seconds. The EUT includes the MQTTVersion

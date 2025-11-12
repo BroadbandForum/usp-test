@@ -16,6 +16,16 @@ resources:
     title: TP-469 Document
 
 versions:
+  v1.4.0:
+    date: 2025-11-10
+    title: |
+      [Release 1.4.0][TP-469 Amendment 4]
+    changes: |
+      * Updates all test cases to support USP 1.4.2
+      * New test case for WebSocket defragmentation
+      * New test for commands missing required input arguments
+      * New test cases for OnboardingComplete and OnboardingRestartTime
+      * New test case for WriteOnceReadOnly parameters
   v1.3.2:
     date: 2025-05-19
     title: |

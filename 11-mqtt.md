@@ -633,6 +633,10 @@ Conditional Mandatory (supports the MQTT MTP)
                           param: 'Topic'
                           value: '<newTopic-11-13-QoS0 OR newTopic-11-13-QoS0/# for USP Agents using MQTT version 3.1.1>'
                       }
+                  param_settings {
+                          param: 'QoS'
+                          value: '0'
+                      }
                   }
             }
         }
