@@ -2,6 +2,13 @@
 
 # TP-469: Conformance Test Plan for USP Agents Change Log
 
+## 2026-01-06: [Release 1.4.1][TP-469 Amendment 4 Corrigendum 1]
+
+*Tag: [v1.4.1]*
+
+* Updates test 1.75 to align with USP 1.4.2 (USPTEST-262)
+* Fixes test 2.23 to remove hardcoded Order (USPTEST-260)
+
 ## 2025-11-10: [Release 1.4.0][TP-469 Amendment 4]
 
 *Tag: [v1.4.0]*
@@ -176,6 +183,7 @@
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
 [TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
 [TP-469 Amendment 4]: https://www.broadband-forum.org/download/TP-469_Amendment-4.pdf
+[TP-469 Amendment 4 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-4_Corrigendum-1.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf
 [v1.0.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.0
 [v1.0.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.0.1
@@ -187,3 +195,4 @@
 [v1.3.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.1
 [v1.3.2]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.3.2
 [v1.4.0]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.4.0
+[v1.4.1]: https://github.com/BroadbandForum/usp-test/releases/tag/v1.4.1

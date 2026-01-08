@@ -4973,7 +4973,7 @@ Mandatory
 
 1. Send a GetInstances message to the EUT with the following structure:
 
-    ```{filter=pbv type=Msg}
+```{filter=pbv type=Msg}
     header {
         msg_id: '<msg_id>'
         msg_type: GET_INSTANCES
@@ -5239,7 +5239,7 @@ contains parameters, events, commands, and unique_key_sets.
 3. Each SupportedParamResult field contains the `param_name`, `access`, `value_type`, and `value_change` fields with valid information, if applicable.
 4. Each SupportedCommandResult field contains the `command_name` field, `command_type` field, and a set of `input_arg_names` and `output_arg_names` fields with valid information, if applicable.
 5. Each SupportedEventResult field contains the `event_name` field and a set of `arg_names` fields with valid information, if applicable.
-6. Each SupportedUniqueKeySet field contains the `key_names` field and a set of relative parameters, whose values together uniquely identify an instance of the object in the instantiated data model. `key_names` must be included in the requested objects and immediate child objects returned in the GetSupportedDMResp.
+6. Each SupportedUniqueKeySet field contains the `key_names` field and a set of relative parameters, whose values together uniquely identify an instance of the object in the instantiated data model.
 
 ## 1.76 GetSupportedDM on root object, all options
 

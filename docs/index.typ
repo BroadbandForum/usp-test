@@ -28,8 +28,8 @@
 
 #show: doc => conf(
   title: [USP – The User Services Platform],
-  subtitle: [Issue: 1 Amendment 4 #bbf-release[]],
-  date: [Issue Date: November 2025],
+  subtitle: [Issue: 1 Amendment 4 Corrigendum 1 #bbf-release[]],
+  date: [Issue Date: January 2026],
   pagenumbering: none,
   cols: 1,
   linenumbering: none,
@@ -47,19 +47,19 @@
     bbfMajor: [1],
     bbfMicro: [0],
     bbfMinor: [4],
-    bbfMonth: [November],
+    bbfMonth: [January],
     bbfNumber: [TP\-469],
-    bbfPatch: [0],
+    bbfPatch: [1],
     bbfProjectStream: [],
     bbfStatus: [],
     bbfTitle: [Conformance Test Plan for USP Agents],
     bbfType: [],
-    bbfVersion: [1 Amendment 4],
+    bbfVersion: [1 Amendment 4 Corrigendum 1],
     bbfWorkArea: [],
-    bbfYear: [2025],
+    bbfYear: [2026],
     citation-style: [bbf.csl],
-    copydate: [2025],
-    date: [Issue Date: November 2025],
+    copydate: [2026],
+    date: [Issue Date: January 2026],
     description: [This repository contains the Broadband Forum
 specification TP\-469, which is the test plan for certifying TR\-369
 (USP) Agents.
@@ -107,7 +107,7 @@ Conformance Test Plan for USP Agents],
     shortname: [USP],
     siteurl: [index.html],
     status: [],
-    subtitle: [Issue: 1 Amendment 4 #bbf-release[]],
+    subtitle: [Issue: 1 Amendment 4 Corrigendum 1 #bbf-release[]],
     summary: [],
     tagline: [Conformance Test Plan for USP Agents],
     template: [typst-template.typ],
@@ -207,7 +207,7 @@ All copies of this Test Plan (or any portion hereof) must include the
 notices, legends and other provisions set forth on this page.
 
 #bbf-note[
-© 2025, The Broadband Forum. All rights reserved. This Broadband Forum
+© 2026, The Broadband Forum. All rights reserved. This Broadband Forum
 document (TP\-469) specifies the Test Plan on which is based the
 #strong[\<BBF.NNN>]; Certification Program for #strong[\<type of
 product>]; products. Through an open selection process, the Broadband
@@ -449,6 +449,14 @@ Broadband Forum Certification Programs can be found at
     - New test for commands missing required input arguments
     - New test cases for OnboardingComplete and OnboardingRestartTime
     - New test case for WriteOnceReadOnly parameters
+    ],
+    [#link("https://www.broadband-forum.org/download/TP-469_Amendment-4_Corrigendum-1.pdf")[Release
+    1.4.1]
+    ],
+    [January 2026
+    ],
+    [- Updates test 1.75 to align with USP 1.4.2 (USPTEST\-262)
+    - Fixes test 2.23 to remove hardcoded Order (USPTEST\-260)
     ]
   )
 ]
@@ -5756,21 +5764,20 @@ Mandatory
 === Test Procedure <sec:test-procedure-68>
 
 + Send a GetInstances message to the EUT with the following structure:
-
-  ```
-  header {
-      msg_id: '<msg_id>'
-      msg_type: GET_INSTANCES
-  }
-  body {
-      request {
-          get_instances {
-              obj_paths: 'Device.LocalAgent.Controller.*.MTP.'
-              first_level_only: true
-          }
-      }
-  }
-  ```
+```
+    header {
+        msg_id: '<msg_id>'
+        msg_type: GET_INSTANCES
+    }
+    body {
+        request {
+            get_instances {
+                obj_paths: 'Device.LocalAgent.Controller.*.MTP.'
+                first_level_only: true
+            }
+        }
+    }
+```
 
 === Test Metrics <sec:test-metrics-68>
 
@@ -6046,9 +6053,7 @@ Mandatory
   set of `arg_names` fields with valid information, if applicable.
 + Each SupportedUniqueKeySet field contains the `key_names` field and a
   set of relative parameters, whose values together uniquely identify an
-  instance of the object in the instantiated data model. `key_names`
-  must be included in the requested objects and immediate child objects
-  returned in the GetSupportedDMResp.
+  instance of the object in the instantiated data model.
 
 == 1.76 GetSupportedDM on root object, all options <sec:getsupporteddm-on-root-object-all-options>
 
@@ -9855,7 +9860,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                   }
                   param_settings {
                       param: 'Order'
-                      value: '1'
+                      value: '<Unique value>'
                   }
               }
           }
@@ -9964,7 +9969,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                   }
                   param_settings {
                       param: 'Order'
-                      value: '1'
+                      value: '<Unique value>'
                   }
               }
               create_objs {
@@ -9995,7 +10000,7 @@ parameters in Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                   }
                   param_settings {
                       param: 'Order'
-                      value: '2'
+                      value: '<Value which is higher than Order values set in previous object>'
                   }
               }
           }

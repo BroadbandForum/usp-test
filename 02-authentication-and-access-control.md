@@ -1681,7 +1681,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     }
                     param_settings {
                         param: 'Order'
-                        value: '1'
+                        value: '<Unique value>'
                     }
                 }
             }
@@ -1793,7 +1793,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     }
                     param_settings {
                         param: 'Order'
-                        value: '1'
+                        value: '<Unique value>'
                     }
                 }
                 create_objs {
@@ -1824,7 +1824,7 @@ Device.LocalAgent.ControllerTrust.{i}.Role.{i}.)
                     }
                     param_settings {
                         param: 'Order'
-                        value: '2'
+                        value: '<Value which is higher than Order values set in previous object>'
                     }
                 }
             }

@@ -158,6 +158,11 @@
     * New test cases for OnboardingComplete and OnboardingRestartTime
     * New test case for WriteOnceReadOnly parameters
 
+* - [Release 1.4.1][TP-469 Amendment 4 Corrigendum 1]
+  - January 2026
+  - * Updates test 1.75 to align with USP 1.4.2 (USPTEST-262)
+    * Fixes test 2.23 to remove hardcoded Order (USPTEST-260)
+
 :::
 
 Comments or questions about this Broadband Forum  should be directed to <info@broadband-forum.org>.
@@ -206,4 +211,5 @@ Comments or questions about this Broadband Forum  should be directed to <info@br
 [TP-469 Amendment 3 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-1.pdf
 [TP-469 Amendment 3 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Amendment-3_Corrigendum-2.pdf
 [TP-469 Amendment 4]: https://www.broadband-forum.org/download/TP-469_Amendment-4.pdf
+[TP-469 Amendment 4 Corrigendum 1]: https://www.broadband-forum.org/download/TP-469_Amendment-4_Corrigendum-1.pdf
 [TP-469 Corrigendum 2]: https://www.broadband-forum.org/download/TP-469_Corrigendum-2.pdf

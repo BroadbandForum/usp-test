@@ -16,6 +16,13 @@ resources:
     title: TP-469 Document
 
 versions:
+  v1.4.1:
+    date: 2026-01-06
+    title: |
+      [Release 1.4.1][TP-469 Amendment 4 Corrigendum 1]
+    changes: |
+      * Updates test 1.75 to align with USP 1.4.2 (USPTEST-262)
+      * Fixes test 2.23 to remove hardcoded Order (USPTEST-260)
   v1.4.0:
     date: 2025-11-10
     title: |
